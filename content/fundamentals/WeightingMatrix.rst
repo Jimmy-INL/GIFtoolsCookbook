@@ -69,8 +69,8 @@ A recent advancement in inversion is the use of the sensitivity matrix as weight
 .. math::
     \mathbf{w_z} = \mathbf{A}_c^{f_z}\mathbf{w_s}
 
-where :math:`\mathbf{w_s}`, :math:`\mathbf{w_x}`, :math:`\mathbf{w_y}` and
-:math:`\mathbf{w_z}` are the cell-center and cell-face weights,
+where :math:`\mathbf{w_s}` are the cell-center weights and :math:`\mathbf{w_x}`, :math:`\mathbf{w_y}` and
+:math:`\mathbf{w_z}`  are the cell-face weights,
 :math:`\mathbf{J}_{approx}` are the values from the ``sensitivity.txt`` file,
 values from :math:`\delta` is a user-defined threhold parameter ([DEFAULT=1e-2]) and :math:`\mathbf{A}_c^{f_x}, \mathbf{A}_c^{f_y},
 \mathbf{A}_c^{f_z}` are averaging operators taking the cell-center values to the respective faces. Those weighting can then be applied to all or parts of the regularization term. Their effects are illustrated on the figures below (Linear and Log Scale conductivities). `The files to reproduce those figures can be found here. <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/DCIP_Fundamentals_SensWProject.zip>`_
