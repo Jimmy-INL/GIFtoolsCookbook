@@ -15,7 +15,7 @@ This workflow is organized as follows:
     - Preparing data for inversion <4_data_preparation>
     - Mesh design in extreme topography regions <5_mesh_design>
     - Performing the inversion <6_inversion>
-    - Convergence and data misfit <7_convergence>
-    - Final model and interpretation <8_interpretation>
+    - Convergence, data misfit and recovered model <7_results>
+    - Impact of incorrect estimate of the background conductivity <8_additional>
 
  
