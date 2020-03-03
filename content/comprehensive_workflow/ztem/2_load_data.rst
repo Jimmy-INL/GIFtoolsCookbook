@@ -94,3 +94,18 @@ Tipper data after applying the transformation is shown below. X and Y are now th
 
     ZTEM data (TZXR, TZXI, TZYR and TZYI) at 180 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
 
+
+Interpretation using total divergence
+-------------------------------------
+
+Here, we may choose to compute the total divergence parameter for the data in order to locate obvious conductive and resistive structures. To do this, we must make sure that we have :ref:`set IO headers <objectSetioHeaders>`. To compute this quantity for the real and imaginary components:
+
+    - :ref:`Computer total divergence (DT) columns <objectDataManipulationZTEM_total_divergence>`
+
+
+
+
+
+
+
+

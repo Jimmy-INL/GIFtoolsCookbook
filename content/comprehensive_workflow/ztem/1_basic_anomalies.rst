@@ -184,6 +184,25 @@ From the figure, we see that the cross-line direction is 90 degrees counter cloc
 If the convention is z +ve upward, then as I fly over a compact conductor, I would see +ve Re[Tx] values followed by -ve Re[Tx] values (opposite if z +ve downward). So from the figure above, I have some data being collected from South to North (0 degrees). And I have some data being collected from Southeast to Northwest (-45 degrees). Thus for each set of flight lines, I must apply the correct rotation in my transformation.
 
 
+.. _comprehensive_workflow_ztem_1_divergence:
+
+Interpretation using total divergence
+-------------------------------------
+
+Tipper data are sensitive to lateral changes in electrical conductivity. To represent the tipper data in a way that is directly sensitive to conductive and resistive structures, we can compute the *total divergence parameter* (termed the 'DT'). For both the real and imaginary components, the total divergence parameter is computed by:
+
+.. math::
+	DT = \frac{\partial T_{x}}{\partial x} + \frac{\partial T_{y}}{\partial y}
+
+where X is Northing and Y is Easting in the UBC-GIF convention. Below, we plot the total divergence parameter for the real component at 30 Hz over a conductive block and over a resistive block. In these plots, we see that:
+
+	- A positive anomaly is present over the conductive block
+	- A negative anomaly is present over the resistive block
+	- The dimensions of the anomaly are similar to those of the conductor/resistor for simple geometries
 
 
+.. figure:: images/total_divergence_30Hz.png
+    :align: center
+    :width: 200
 
+    Total divergence of the real component over a conductor at 30 Hz (left). Total divergence of the real component over a resistor at 30 Hz (right).

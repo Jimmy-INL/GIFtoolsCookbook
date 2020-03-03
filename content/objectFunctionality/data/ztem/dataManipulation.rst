@@ -5,6 +5,30 @@
 ZTEM Data Manipulation Menu
 ===========================
 
+
+.. _objectDataManipulationZTEM_total_divergence:
+
+Compute Total Divergence Columns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Tipper data are sensitive to lateral changes in electrical conductivity. To represent the tipper data in a way that is directly sensitive to conductive and resistive structures, we can compute the *total divergence parameter* (termed the 'DT'). For both the real and imaginary components, the total divergence parameter is computed by:
+
+.. math::
+	DT = \frac{\partial T_{x}}{\partial x} + \frac{\partial T_{y}}{\partial y}
+
+Before and after computing this quantity within the GIFtools framework, there are a few things the user should consider:
+
+	- The data must be represented in UBC-GIF format. That is, X = Northing, Y = Easting and Z +ve downward
+	- The UBC-GIF coordinate system also applies when taking derivatives
+	- When plotting the total divergence for the real component with GIFtools, you will generally see maxima (positive anomalies) over conductors and minima (negative anomalies) over resistive zones.
+
+This functionality is accessed though:
+
+**Data Manipulation** |rarr| **Calculate** |rarr| **Compute total divergence (DT) columns**
+
+When applying this functionality, GIFtools computes discrete derivatives. It is up to the user to choose the accuracy of the derivatives by setting the spacing between discrete points used in the computation. A default value of 100 is set. We suggest the user choose 1/4 to 1/2 the flight line separation distance. 
+
+
 .. _objectDataManipulationZTEM_transform:
 
 Transform Data Convention for ZTEM Data
