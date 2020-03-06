@@ -203,6 +203,6 @@ where X is Northing and Y is Easting in the UBC-GIF convention. Below, we plot t
 
 .. figure:: images/total_divergence_30Hz.png
     :align: center
-    :width: 200
+    :width: 400
 
     Total divergence of the real component over a conductor at 30 Hz (left). Total divergence of the real component over a resistor at 30 Hz (right).
