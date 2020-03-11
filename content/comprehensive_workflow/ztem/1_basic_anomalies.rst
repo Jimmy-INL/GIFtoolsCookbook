@@ -54,8 +54,8 @@ ZTEM data are generally defined using a right-handed coordinate system. The ques
 Below, we see the ZTEM anomalies for UBC-GIF modeled data and standard airborne data collected over the same compact conductor. The standard airborne data were collected along flight lines with a bearing of 45 degrees (from SW to NE). Thus the cross line direction is -45 degrees (SE to NW). Looking at these anomalies, we see that:
 
 	- The response near the edges of the conductor is large and the response directly over the conductor is relatively small; as ZTEM measurements are sensitive to lateral changes in conductivity and not the conductor itself.
-	- For UBC-GIF convention, the :math:`T_{zx} anomalies lie to the North and South of the conductor and :math:`T_{zy} anomalies lie to the East and West.
-	- For standard airborne data, the :math:`T_{zx} anomalies are oriented along the flight-direction (along-line) and :math:`T_{zy} anomalies are oriented in the cross-line direction.
+	- For UBC-GIF convention, the :math:`T_{zx}` anomalies lie to the North and South of the conductor and :math:`T_{zy}` anomalies lie to the East and West.
+	- For standard airborne data, the :math:`T_{zx}` anomalies are oriented along the flight-direction (along-line) and :math:`T_{zy}` anomalies are oriented in the cross-line direction.
 
 
 .. figure:: images/conductor_anomaly_ubcgif.png
@@ -80,15 +80,15 @@ Below, we see the ZTEM anomalies for UBC-GIF modeled data and standard airborne 
 Anomaly over a compact conductor
 --------------------------------
 
-Let us work in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and Z is +ve downward. The real and imaginary components of the :math:`T_{zx} and :math:`T_{zy} anomalies over a conductive block are shown below. The conductor is buried at a depth of 200 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. Over a conductor:
+Let us work in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and Z is +ve downward. The real and imaginary components of the :math:`T_{zx}` and :math:`T_{zy}` anomalies over a conductive block are shown below. The conductor is buried at a depth of 200 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. Over a conductor:
 
 	- The response near the edges of the conductor is large and the response directly over the conductor is relatively small; as ZTEM measurements are sensitive to lateral changes in conductivity and not the conductor itself.
 	- At lower frequencies, ZTEM anomalies are broader. At higher frequencies, ZTEM anomalies are more compact.
-	- :math:`T_{zx} is sensitive to the North and South faces of the conductor while :math:`T_{zy} is sensitive to the East and West faces.
-	- The real component of :math:`T_{zx} is always +ve to the North of the block and -ve to the South of the block.
-	- The real component of :math:`T_{zy} is always +ve to the East of the block and -ve to the West of the block.
-	- The imaginary component of :math:`T_{zx} is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx} can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
-	- The imaginary component of :math:`T_{zy} is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy} can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- :math:`T_{zx}` is sensitive to the North and South faces of the conductor while :math:`T_{zy}` is sensitive to the East and West faces.
+	- The real component of :math:`T_{zx}` is always +ve to the North of the block and -ve to the South of the block.
+	- The real component of :math:`T_{zy}` is always +ve to the East of the block and -ve to the West of the block.
+	- The imaginary component of :math:`T_{zx}` is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx}` can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- The imaginary component of :math:`T_{zy}` is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy}` can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
 
 .. figure:: images/conductor_anomaly_30Hz.png
     :align: center
@@ -109,14 +109,14 @@ Let us work in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and
 Anomaly over a compact resistor
 -------------------------------
 
-Let us work again in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and Z is +ve downward. The real and imaginary components of the :math:`T_{zx} and :math:`T_{zy} anomalies over a resistive block are shown below. The resistor is buried at a depth of 200 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. Over a conductor:
+Let us work again in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and Z is +ve downward. The real and imaginary components of the :math:`T_{zx}` and :math:`T_{zy}` anomalies over a resistive block are shown below. The resistor is buried at a depth of 200 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. Over a conductor:
 
 	- The response near the edges of the resistor is large and the response directly over the resistor is relatively small; as ZTEM measurements are sensitive to lateral changes in conductivity and not the conductor itself.
-	- :math:`T_{zx} is sensitive to the North and South faces of the conductor while :math:`T_{zy} is sensitive to the East and West faces.
-	- The real component of :math:`T_{zx} is always +ve to the North of the block and -ve to the South of the block.
-	- The real component of :math:`T_{zy} is always +ve to the East of the block and -ve to the West of the block.
-	- The imaginary component of :math:`T_{zx} is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx} can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
-	- The imaginary component of :math:`T_{zy} is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy} can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- :math:`T_{zx}` is sensitive to the North and South faces of the conductor while :math:`T_{zy}` is sensitive to the East and West faces.
+	- The real component of :math:`T_{zx}` is always +ve to the North of the block and -ve to the South of the block.
+	- The real component of :math:`T_{zy}` is always +ve to the East of the block and -ve to the West of the block.
+	- The imaginary component of :math:`T_{zx}` is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx}` can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- The imaginary component of :math:`T_{zy}` is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy}` can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
 
 
 .. figure:: images/resistor_anomaly_30Hz.png
@@ -139,7 +139,7 @@ Transforming data into UBC-GIF convention
 -----------------------------------------
 
 
-Let :math:`\theta` be the flight direction (counter-clockwise degrees from Northing). Let :math:`T_{zx} and :math:`T_{zy} be the Tipper data in the UBC-GIF coordinate system. And let :math:`T_{x'}` and :math:`T_{y'}` be the Tipper data in the field data coordinate system. To go from standard airborne data convention to UBC-GIF, the following transformation can be done:
+Let :math:`\theta` be the flight direction (counter-clockwise degrees from Northing). Let :math:`T_{zx}` and :math:`T_{zy}` be the Tipper data in the UBC-GIF coordinate system. And let :math:`T_{x'}` and :math:`T_{y'}` be the Tipper data in the field data coordinate system. To go from standard airborne data convention to UBC-GIF, the following transformation can be done:
 
 .. math::
 	\begin{bmatrix} T_{zx} \\ T_{zy} \end{bmatrix} = 
