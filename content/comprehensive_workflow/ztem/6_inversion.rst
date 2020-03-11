@@ -18,7 +18,7 @@ When inverting ZTEM data, the E3DMT codes have a tendency to place conductive st
         - set the OcTree mesh
         - set as *log model*
         - set topography as the active cells model
-        - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 60, 20, and 5)
+        - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 20, 10, and 5)
         - Face value = 0.001
         - Face tolerance = 0.001
 
@@ -38,7 +38,7 @@ We can now invert ZTEM data using E3DMT v1 or v2.
     - :ref:`Run the inversion <invRun>`
     - :ref:`Load results <invLoadResults>`
 
-For the dataset provided, **we chose to invert using E3DMT v2**, as we were able to define the receiver loops. Things are effectively the same for E3DMT v1. The parameters used are shown below.
+For the dataset provided, **we chose to invert using E3DMT v2**, as we were able to define the receiver loops. Things are effectively the same for E3DMT v1. The parameters used are shown below. **Note that we chose the data object that has shifted locations relative to discretized topography.**
 
 .. figure:: images/inversion_edit_options.png
     :align: center
@@ -54,15 +54,32 @@ Discussion of Parameters
 
 **Regarding beta cooling schedule:**
 
-For synthetic modeling, we know the uncertainties on our data. So when the data misfit equals the number of data (target misfit for chi factor of 1), we know the recovered model explains the data without over or under-fitting; see :ref:`fundamentals or inversion <Fundamentals_Uncertainties>` for further explanation. With real data, we cannot be 100% sure that we have not over-estimated or under-estimated the uncertainties. What we do assume however, is that our :ref:`criteria for assigning uncertainties <comprehensive_workflow_ztem_3>` was fairly reasonable.
+For synthetic modeling, we know the uncertainties on our data. So when the data misfit equals the number of data (target misfit for chi factor of 1), we know the recovered model explains the data without globally over or under-fitting; see :ref:`fundamentals or inversion <Fundamentals_Uncertainties>` for further explanation. With real data, we cannot be 100% sure that we have not over-estimated or under-estimated the uncertainties. What we do assume however, is that our :ref:`criteria for assigning uncertainties <comprehensive_workflow_ztem_3>` was fairly reasonable.
 
 When setting the cooling schedule for the field dataset, the strategy was pretty straightforward:
 
-    - **beta max = 1**. The model recovered at the first iteration should clearly underfit the data. However if *beta max* is too large, you will have multiple iterations where the model doesn't budge because no emphasis is being put on fitting the data.
-    - **beta min = 1e-6**. This can be set quite low. But it is good for the inversion to terminate within a reasonable number of beta iterations if target misfit is not reached.
+    - **beta max = 0.1**. The model recovered at the first iteration should clearly underfit the data. However if *beta max* is too large, you will have multiple iterations where the model doesn't budge because no emphasis is being put on fitting the data.
+    - **beta min = 1e-7**. This can be set quite low. But it is good for the inversion to terminate within a reasonable number of beta iterations if target misfit is not reached.
     - **reduction factor = 0.25:** Generally we choose a value between 0.1 and 0.9. If the reduction factor is too large, the code will run for a long time since the reduction in beta at each iteration is small. If the reduction factor is too small, we do not get much detail regarding the convergence of the inversion.
-    - **chi factor = 0.5** If we have over-estimated the uncertainties, the inversion will terminate before recovering a model that sufficiently explains the data. By setting the chi factor to less than one, we can more easily interpret the Tikhonov curve. We can also assess whether we have over-estimated or under-estimated the uncertainties. If the inversion appears to be converging, you can always terminate the code.
+    - **chi factor = 1** Here, we assume that appropriate uncertainties are set on the data. Thus, we assume the recovered model that explains the data without overfitting (fitting the noise) occurs when the data misfit equals the number of data observations (chi factor = 1). In practice, you may choose a chi factor less than 1. This will allow you to get a better understanding of the convergence, especially if you have over-estimated the uncertainties.
 
+**Regarding the alpha parameters:**
 
+As a default setting, we frequently let :math:`\alpha_x = \alpha_y = \alpha_z = 1` and we let :math:`alpha_s = 1/dh^2'; where :math:`dh` is the width of the smallest cells in the mesh. This effectively balances the emphasis on recovering a model that is similar to a reference model and recovering a model that has sufficient structure. If we have high confidence in our reference model, we may choose to increase :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`. If we have low confidence in our reference model, we may choose to decrease :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`
 
+For this exercise, we have been provided with zero prior information regarding the Earth's structure or its electrical conductivity. We have assumed the background conductivity is 0.001 S/m but at no point have we validated this assumption. As a result, we have set :math:`\alpha_s = 10^{-10}` and let :math:`\alpha_x = \alpha_y = \alpha_z = 1`. This will recover a conductivity model which is primarily driven by the data, and is impacted minimally by the reference model.
+
+**Regarding the background, starting and reference models**
+
+For the background, starting and reference models, we chose 0.001 S/m. This value was suggested by a 2D ZTEM study that came with the original dataset. Before you choose these values for your project, there are some things you should consider.
+
+If you choose a background conductivity that is lower than the true conductivity:
+
+    - The overall range of conductivities in the recovered model may be lower than the true range of conductivities.
+    - Your inversion will be more sensitive to structures at depth. Recovered conductors may be lower conductivity and placed at larger depths.
+
+If you choose a background conductivity that is higher than the true conductivity:
+
+    - The overall range of conductivities in the recovered model may be higher than the true range of conductivities.
+    - Your inversion will be not but as sensitive to structures at depth. Recovered conductors may highly conductive and placed at shallower depths.
 

@@ -20,7 +20,7 @@ The sampling rate in the along-line direction is generally much higher than is n
 
 **Our Approach:**
 
-The flight-line separation for the dataset provided is 250 m, indicating we may want to down-sample so that the minimum data separation is 200-250 m. However we chose to down-sample the data provided so that the minimum data spacing was 350 m. This was done so we could carry out the workflow on a coarser inversion. For this step:
+The flight-line separation for the dataset provided is 200 m, indicating we may want to down-sample so that the minimum data separation is 150-200 m. However we chose to down-sample the data provided so that the minimum data spacing was 400 m. This was done so we could carry out the workflow on a coarser inversion. For this step:
 
 	- :ref:`Down-sample based on distance<objectDataDownsample>`
 
@@ -28,7 +28,7 @@ The flight-line separation for the dataset provided is 250 m, indicating we may 
 Setting the Base Station
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The horizontal magnetic fields are general measured at a base station. In this case, we must define the base station location. For the dataset provided, the base station is located at Easting = 268244, Northing = 6262044 and elevation = 1656. To carry out this step:
+The horizontal magnetic fields are general measured at a base station. In this case, we must define the base station location. For the dataset provided, the base station is located at Easting = 697523 m, Northing = 6375971 and elevation = 533 in UTM zone 12. To carry out this step:
 
 	- :ref:`Set/reset base station<objectDataTypeZTEM_basestn>`
 
@@ -50,10 +50,12 @@ E3DMT v1 models the magnetic fields at discrete points whereas E3DMT v2 allows t
 
 **Our approach:**
 
-According to the contractor, *Hx* and *Hy* were measured at a base station. The receivers at the base station we square with a diameter of 3.5 m. *Hz* was measured with a circular loop with a diameter of 7.4 m. Thus we used the following parameters to fill the fields:
+According to the contractor, *Hx* and *Hy* were measured at a base station. The receivers at the base station were circular with a diameter of 0.27 m. *Hz* was measured with a circular loop with a diameter of 7.4 m. Thus we used the following parameters to fill the fields:
 
-	- **Hx, Hy receiver width: 3.5**
-	- **Hx, Hy number of segments: 4** (which defines the loop as a square)
+	- **Hx, Hy receiver width: 0.27**
+	- **Hx, Hy number of segments: 8**
 	- **Hz receiver width: 7.4**
 	- **Hx, Hy number of segments: 8**
 	- **Orientation from Nothing (deg): 0** (since all rotations to UBC-GIF were done already)
+
+.. note:: If any of the loops are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.

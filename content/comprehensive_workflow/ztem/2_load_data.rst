@@ -10,6 +10,8 @@ Here, we will assume that you have some XYZ formatted ZTEM data. The goal is to 
 
 .. important:: Requires GIFtools v2.30 or later.
 
+.. note:: The data used for this tutorial were collected at Dufferin Lake as part of a uranium exploration project. The data are public domain. They were downloaded from the `Saskatchewan Mineral Assessment Database <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey/saskatchewan-mineral-assessment-database-smad>`__ . The original data have been down-sampled to make the size of data files more manageable.
+
 Starting Your Project
 ---------------------
 
@@ -28,10 +30,9 @@ Here, we import the ZTEM data and topography.
 
     - :ref:`Import ZTEM data from Geosoft XYZ <importXYZemData>`. The data file is named *ZTEMdata_XYZ.dat* and is in the *assets* folder. If you are using the practice data:
 
-        - We are loading data at 5 frequencies: 30, 45, 90, 180 and 360 Hz. The 720 Hz data were considered poor quality.
+        - We are loading data at 6 frequencies: 30, 45, 90, 180, 360 Hz and 720 Hz.
         - There are 4 data groups (TZXR, TZXI, TZYR, TZYI)
-        - Within *ZTEMdata_XYZ.dat*, we are loading the final set of columns: XIP_xxxHz, XQd_xxxHz, YIP_xxxHz and YQd_xxxHz.
-        - Make sure you load the *Bearing* column as well!
+        - Make sure you load the *bearing* column as well!
 
     - Once loaded, make sure to :ref:`set IO headers <objectSetioHeaders>` for all ZTEM tipper data.
 
@@ -51,7 +52,7 @@ Some things to consider when examining your dataset may include:
 
     - Any information about data convention provided by the contractor. This is the most important.
     - If the data values collected along different flight line directions do not match up at the same locations.
-    - If the shape of the Tzx anomaly over a known conductor or resistor lines up with the flight direction. Recall the :ref:`anomaly over a compact conductor <comprehensive_workflow_ztem_1_conductor>` .
+    - If the shape of the Tx anomaly over a known conductor or resistor lines up with the flight direction. Recall the :ref:`anomaly over a compact conductor <comprehensive_workflow_ztem_1_conductor>` .
 
 The real and imaginary components of the raw Tipper data provided are plotted below. Below, we see that data collected Southwest to Northeast and data collected Northeast to Southwest are very different at similar locations. This indicates the data coordinates are dependent on flight direction.
 
@@ -60,16 +61,16 @@ The real and imaginary components of the raw Tipper data provided are plotted be
     :align: center
     :width: 700
 
-    Raw ZTEM data (TZXR, TZXI, TZYR and TZYI) at 180 Hz. Figure shows that Southwest to Northeast line data and Northwest to Southeast line data are not collected in the same coordinate system.
+    Raw ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz. Figure shows that data collected along different flight lines are not collected in the same coordinate system.
 
-Below, we see the convention for data collection provided by the contractor. Flying Southwest to Northeast (bearing = 45 degrees), our Re[Tzx] anomaly would be positive to the Southwest of a conductor and negative to the Northeast. Flying Northwest to Southeast (bearing = 135 degrees), our Re[Tzx] anomaly would be positive to the Northwest and negative to the Southeast. The plot indicates that the cross-line direction is 90 degrees counter clockwise from the along-line direction. The plot also indicates the Z is +ve upwards.
+Below, we see the convention for data collection provided by the contractor. Flying Northwest to Southeast (bearing = 125 degrees), our Re[Tzx] anomaly would be positive to the Northwest of a conductor and negative to the Southeast. Flying Southwest to Northeast (bearing = 35 degrees), our Re[Tzx] anomaly would be positive to the Southwest and negative to the Northeast. The plot indicates that the cross-line direction is 90 degrees counter clockwise from the along-line direction. The plot also indicates the Z is +ve upwards.
 
 
 .. figure:: images/ZTEM_contractor_convention.png
     :align: center
     :width: 500
 
-    Cross-over polarization for data flown along NE lines (left) and along SE lines (right).
+    Cross-over polarization for data flown along bearing 125 degrees (left) and along 35 degrees (right).
 
 
 Transformation to UBC GIF Coordinates
@@ -77,35 +78,42 @@ Transformation to UBC GIF Coordinates
 
 According to the contractor information, we must apply the following transformations to the ZTEM data provided:
 
-    - Data collected along Southwest to Northeast must be rotated counter clockwise by 45 degrees. And data collected along Southwest to Northeast must be rotated counter clockwise by 135 degrees.
+    - Data collected along Northwest to Southeast must be rotated counter clockwise by 125 degrees. And data collected along Southwest to Northeast must be rotated counter clockwise by 35 degrees.
     - We must transform from the cross-line direction to being 90 degrees clockwise from the along-line direction instead of 90 degrees counter clockwise.
     - We must transform from z +ve upward to z +ve downward.
 
 To apply this transformation, we use the following utility:
 
     - :ref:`ZTEM data transformation <objectDataManipulationZTEM_transform>`. The XYZ file has a column which provides the along-line direction for each datum.
+    - Don't forget to :ref:`set IO headers <objectSetioHeaders>` such that the data are defined in the UBC-GIF convention.
 
-Tipper data after applying the transformation is shown below. X and Y are now the Northing and Easting directions, respectively, and Z is positive downward. This is the UBC-GIF convention. The data map indicates a possible conductor in the region near (273000, 6245000).
+Tipper data after applying the transformation is shown below. Data are now in the UBC-GIF convention, where X = Northing, Y = Easting and Z is positive downward. The position of the data however, are still in standard UTM. The data map indicates a possible conductive feature that trends from the Southwest to Northeast.
 
 
 .. figure:: images/ZTEM_rotated_data.png
     :align: center
     :width: 700
 
-    ZTEM data (TZXR, TZXI, TZYR and TZYI) at 180 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
+    ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
 
 
 Interpretation using total divergence
 -------------------------------------
 
-Here, we may choose to compute the total divergence parameter for the data in order to locate obvious conductive and resistive structures. To do this, we must make sure that we have :ref:`set IO headers <objectSetioHeaders>`. To compute this quantity for the real and imaginary components:
+We can compute the total divergence parameter for the data at each frequency in order to locate obvious conductive and resistive structures. To do this, we must make sure that we have first :ref:`set IO headers <objectSetioHeaders>` to data in the UBC-GIF convention. To compute this quantity for the real and imaginary components:
 
     - :ref:`Computer total divergence (DT) columns <objectDataManipulationZTEM_total_divergence>`
 
+The total divergence parameter compute for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence parameter map indicates the existence of conductive structures in a more resistive background. The most prominent conductive feature strikes along a bearing of roughly 35 degrees from the North. This conductive feature is observed across all frequencies.
+
+.. figure:: images/ZTEM_DT_data.png
+    :align: center
+    :width: 700
+
+    Total divergence parameter for the real component at 30 Hz (left), 90 Hz (middle) and 360 Hz (right).
 
 
-
-
+.. note:: If structures were much more resistive than the background, they would be identified as large negative anomalies in the total divergence parameter map.
 
 
 

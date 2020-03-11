@@ -29,9 +29,9 @@ Once the inversion result have been loaded (done in the :ref:`inversion section<
 
 The Tikhonov curve for our example inversion is shown below. According to the figure:
 
-	- the inversion reaches target misfit (chi-factor = 0.5 in this case) after 7 iterations. Thus the algorithm is converging over the course of the beta cooling schedule.
-	- the inversion reaches a chi-factor of 1 (data misfit equals number of data) somewhere between the 4th or 5th iteration. Assuming the estimate of our uncertainties is correct, the optimum recovered model should correspond to a chi-factor of 1.
-	- after the 5th iteration, the data misfit does not decrease very much as beta is decreased. This indicates models after the 5th iteration are likely over-fitting the data, and that our optimum recovered model is before the 6th iteration.
+	- the inversion reaches target misfit (chi-factor = 1 in this case) after 4 iterations. Thus the algorithm is converging over the course of the beta cooling schedule.
+	- the inversion reaches a chi-factor of 1 (data misfit equals number of data) somewhere between the 3rd or 4th iteration. Assuming the estimate of our uncertainties is correct, the optimum recovered model should correspond to a chi-factor of 1.
+	- the Tikhonov curve starts to flatten out at the 4th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data. You may choose to verify this by setting the chi factor to something like 0.5 and re-running the inversion.
 
 .. figure:: images/convergence.png
     :align: center
@@ -40,30 +40,43 @@ The Tikhonov curve for our example inversion is shown below. According to the fi
 Data Misfit
 ^^^^^^^^^^^
 
-According the Tikhonov curve, the recovered model at iteration 5 has a good change of explaining the data without fitting the noise. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
+According the Tikhonov curve, the recovered model at iteration 4 has a good change of explaining the data without fitting the noise. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
 
 	- Are the prominent anomaly features identified in the observed data also found in the predicted data? Is this true for all components and for all frequencies?
 	- Are there obvious coherent features in your normalized misfit map? If so, this indicates you are over-fitting certain regions at the expense of others and that you must assign new uncertainties and re-run the inversion.
 	- Are the ranges of normalized misfits for each component and for each frequency generally the same? If not, the uncertainties are not balanced between components and/or frequencies. In this case, new uncertainties should be applied and the inversion should be re-run.
 
-For our example inversion, the predicted data, observed data and normalized misfit are shown at 180 Hz. Here are some things we noticed:
+For our example inversion, here are some things we noticed:
 
-	- At 180 Hz, the data misfit maps for all components do not show excessive coherent features. This indicates we are not greatly over-fitting certain locations at the expense of others.
-	- The most important features in the observed data are reproduced well in the predicted data for TZXR, TZYR and TZYI, but not nearly as well for TZXI.
-	- The range of normalized misfit values are consistent between TZXR, TZYR and TZYI, but the range of normalized misfits is lower for TZXI.
-	- From the previous two points, we can infer that we somewhat *over-estimated* the uncertainties for TZXI relative to TZXR, TZYR and TZYI. As a result, we *under-fit* the TZXI anomaly.
-	- The range over normalized misfits are generally consistent over all frequencies. This indicates we are not over-fitting certain frequencies at the expense of others.
+	- The general shape and amplitude of the main geophysical signatures are well reproduced by the predicted data at all frequencies and for all components.
+	- The range of normalized misfits are generally consistent over all frequencies and over all components. This indicates that our basic estimate of the data uncertainties was a good first estimate.
+	- The TZXI component has noticeably smaller normalized misfits than the other components, indicating the inversion fits these data better than it does the other components.
+	- TZYI shows higher normalized misfits and more coherent features at low frequencies.
+	- Individual misfit maps shown coherent features, but these features are not consistent over all frequencies.
+	
 
-For our example, better results could be obtained by decreasing the floor uncertainty on TZXI by some factor and re-running the inversion to ensure we recover a model which fits the data evenly. This change will force the inversion to fit the TZXI component as well as it does the TZXR, TZYR and TZYI components.
+For our example, better results could be obtained by decreasing the floor uncertainty on TZXI by some factor and re-running the inversion to ensure we recover a model which fits the data evenly. This change will force the inversion to fit the TZXI component as well as it does the TZXR, TZYR and TZYI components. We may also adjust the floor uncertainty for individual components and frequencies which we feel are over/under fit.
 
 
 .. figure:: images/misfit.png
     :align: center
     :width: 700
 
+    Predicted data, observed data and normalized misfit for all data components at 180 Hz. For each component, predicted and observe data are plotted on the same scale. All normalized misfit maps are plotted on a range from -3 to 3.
+
 Recovered Model
 ^^^^^^^^^^^^^^^
 
-The conductivity model recovered at the 5th iteration is shown below.
+The conductivity model recovered at the 4th iteration is shown below. A cutoff of 0.003 S/m was applied. The model was also sliced horizontally at an elevation of 253 m. To show how well structures in the recovered model match data signatures, we plotted the total divergence parameter at 45 Hz and at 180 Hz.
+
+The inversion recovers the large conductive feature that strikes along a bearing of 35 degrees. The conductivity along the recovered feature corresponds well to amplitude of the ZTEM response. A secondary conductive feature is also recovered at the Southernmost tip of the survey area. Along the Eastern end of the of the survey area, ZTEM data and the total divergence parameter indicated the possible presence of another conductor. Although the inversion placed conductive structures in this area, the feature is poorly constrained by the data. 
+
+
+.. figure:: images/recovered_001_iter4.png
+    :align: center
+    :width: 700
+
+    Recovered model and total divergence parameter at 45 Hz (left) and at 180 Hz (right).
+
 
 

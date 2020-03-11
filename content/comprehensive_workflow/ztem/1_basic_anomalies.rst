@@ -196,8 +196,8 @@ Tipper data are sensitive to lateral changes in electrical conductivity. To repr
 
 where X is Northing and Y is Easting in the UBC-GIF convention. Below, we plot the total divergence parameter for the real component at 30 Hz over a conductive block and over a resistive block. In these plots, we see that:
 
-	- A positive anomaly is present over the conductive block
-	- A negative anomaly is present over the resistive block
+	- A positive anomaly is present for the real component over the conductive block
+	- A negative anomaly is present for the real component over the resistive block
 	- The dimensions of the anomaly are similar to those of the conductor/resistor for simple geometries
 
 
