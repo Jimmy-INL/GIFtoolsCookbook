@@ -8,14 +8,14 @@ Comprehensive Workflows (ZTEM)
 This workflow is organized as follows:
 
 .. toctree::
+    :maxdepth: 1
 
-    - Understanding ZTEM anomalies from compact conductors, compact resistors and the impact of layered structures <1_basic_anomalies>
+    - Understanding ZTEM anomalies from basic structures, ZTEM coordinate systems and the total divergence parameter <1_basic_anomalies>
     - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
-    - Assigning uncertainties to ZTEM data <3_uncertainties>
-    - Preparing data for inversion <4_data_preparation>
-    - Mesh design in extreme topography regions <5_mesh_design>
-    - Performing the inversion <6_inversion>
-    - Convergence, data misfit and recovered model <7_results>
-    - Impact of incorrect estimate of the background conductivity <8_additional>
+    - Standard assignment of uncertainties to ZTEM data <3_uncertainties>
+    - Preparing data for inversion within the GIFtools framework <4_data_preparation>
+    - Mesh design <5_mesh_design>
+    - Setting appropriate parameters and running the inversion <6_inversion>
+    - Examining convergence, data misfit and the recovered model <7_results>
 
  
