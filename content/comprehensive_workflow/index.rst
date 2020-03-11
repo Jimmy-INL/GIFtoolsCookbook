@@ -4,23 +4,22 @@
 Comprehensive Workflows
 =======================
 
-Here we focus on:
+This section of the GIFtools cookbook is meant to provide practical tutorials for inverting field-collected data. Generally, the user will start with topography and geophysical data in a standard format. The ultimate goal is to invert the field collected data and recover a model that can be used for interpretation. Successful inversion of geophysical data using the UBC-GIF framework requires:
 
-  - Understanding basic geophysical anomalies
-  - Loading geophysical data and topography in standard formats
-  - Transforming data from other formats into GIF convention
-  - Basic interpretation
-  - Strategies for assigning uncertainties
-  - Detailed strategies for mesh design
-  - Inversion
-  - Assessment of inversion results
-
-
+  - Understanding geophysical anomalies produced by basic structures
+  - Importing geophysical data and topography into GIFtools
+  - Transforming data from other conventions to the UBC-GIF convention
+  - Basic interpretation of the data
+  - Assigning appropriate uncertainties
+  - Designing an appropriate mesh
+  - Inverting the data with reasonable parameters
+  - Assessment and interpretation of inversion results
 
 
+**List of Comprehensive Workflows**
 
 .. toctree::
-    :maxdepth: 0
+    :maxdepth: 1
 
     ZTEM: From XYZ data to inversion <ztem/index>
 
