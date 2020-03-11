@@ -4,7 +4,7 @@
 Mesh Design
 ===========
 
-Here we a basic approach for mesh design when inverting ZTEM data. The field data provided was collected in a region with extreme topography. Here, we will show how to account for this during the mesh design step.
+Here we a basic approach for mesh design when inverting ZTEM data. The field data provided was collected in a region with minimal topography. However, the approach is the same in the case of extreme topography.
 
 
 Skin Depth

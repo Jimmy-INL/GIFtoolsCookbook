@@ -64,6 +64,7 @@ For our example, better results could be obtained by decreasing the floor uncert
 
     Predicted data, observed data and normalized misfit for all data components at 180 Hz. For each component, predicted and observe data are plotted on the same scale. All normalized misfit maps are plotted on a range from -3 to 3.
 
+
 Recovered Model
 ^^^^^^^^^^^^^^^
 
