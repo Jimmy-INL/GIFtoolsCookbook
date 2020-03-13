@@ -62,14 +62,14 @@ Below, we see the ZTEM anomalies for UBC-GIF modeled data and standard airborne 
     :align: center
     :width: 700
 
-    ZTEM anomaly in UBC-GIF coordinates over a compact conductor at 30 Hz. From left to right: Re[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly in UBC-GIF coordinates over a compact conductor at 30 Hz. From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. figure:: images/conductor_anomaly_airborne_45.png
     :align: center
     :width: 700
 
-    ZTEM anomaly in airborne data coordinate system at 30 Hz. Flight lines were at 45 degree (SW to NE) From left to right: Re[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly in airborne data coordinate system at 30 Hz. Flight lines were at 45 degree (SW to NE) From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. note:: The process of transforming data from the field coordinate system to UBC-GIF is discussed further down on the page.
@@ -94,14 +94,14 @@ Let us work in the UBC-GIF ZTEM data convention; X is Northing, Y is Easting and
     :align: center
     :width: 700
 
-    ZTEM anomaly over a compact conductor at 30 Hz. From left to right: Rx[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly over a compact conductor at 30 Hz. From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. figure:: images/conductor_anomaly_720Hz.png
     :align: center
     :width: 700
 
-    ZTEM anomaly over a compact conductor at 720 Hz. From left to right: Rx[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly over a compact conductor at 720 Hz. From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. _comprehensive_workflow_ztem_1_resistor:
@@ -123,14 +123,14 @@ Let us work again in the UBC-GIF ZTEM data convention; X is Northing, Y is Easti
     :align: center
     :width: 700
 
-    ZTEM anomaly over a compact resistor at 30 Hz. From left to right: Rx[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly over a compact resistor at 30 Hz. From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. figure:: images/resistor_anomaly_720Hz.png
     :align: center
     :width: 700
 
-    ZTEM anomaly over a compact resistor at 720 Hz. From left to right: Rx[Tx], Im[Tx], Re[Ty] and Im[Ty].
+    ZTEM anomaly over a compact resistor at 720 Hz. From left to right: Re[Tzx], Im[Tzx], Re[Tzy] and Im[Tzy].
 
 
 .. _comprehensive_workflow_ztem_1_transformation:

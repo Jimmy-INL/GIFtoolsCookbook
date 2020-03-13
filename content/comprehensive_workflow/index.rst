@@ -21,6 +21,7 @@ This section of the GIFtools cookbook is meant to provide practical tutorials fo
 .. toctree::
     :maxdepth: 1
 
+    MT: From EDI data to inversion <mt/index>
     ZTEM: From XYZ data to inversion <ztem/index>
 
 
