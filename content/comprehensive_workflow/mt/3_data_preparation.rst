@@ -1,0 +1,90 @@
+.. _comprehensive_workflow_mt_3:
+
+
+Apparent Resistivities and Data Preparation
+===========================================
+
+At this point, we assume the data are loaded into GIFtools and that our impedance tensor values are defined in the standard UBC-GIF convention. It is difficult to gain information about the Earth's electrical resistivity from impedances. That is why the initial interpretation of the data is generally done using apparent resistivities. We will provide a basic interpretation for our tuturial data set.
+
+When looking at your data for the first time, you will notice that 1) you have data at many frequencies, and 2) the range of frequencies spans many orders of magnitude. For the tutorial data set, we have data at 100 frequencies from 0.00034 Hz to 10400 Hz. It is impossible to invert all of the data at once. As a result, we must extract a reasonable set of frequencies which are sensitive to the target.
+
+
+Examining Apparent Resistivities
+--------------------------------
+
+**Computing apparent resistivities**
+
+If you have :ref:`set IO headers <objectSetioHeaders>` for the impedance data, it is easy to convert these data to apparent resistivities. This can be used to estimate the background conductivity and verify that the units of your impedances are correct. If your impedance data are not in the correct units, the range of values for the apparent resistivities will not be reasonable. To use this functionality:
+
+    - :ref:`Compute apparent resistivities from impedances <objectDataManipulationMT_IMP2APP>`
+
+
+**Interpreting apparent resistivity maps**
+
+Below, we see the apparent resistivity maps obtained from the :math:`Z_{xy}` component at 11 Hz, 110 Hz, 1100 Hz and 10400 Hz. The range of apparent resistivity values is reasonable (1 :math:`\Omega m` - 10000 :math:`\Omega m` ), indicating the impedance data are likely represented in the correct units for UBC-GIF codes. The maps indicate:
+
+	- the near surface is very conductive.
+	- at depth, the Earth is much more resistive towards the Southeast
+	- nearly identical signatures were observed in the apparent resistivities computed from the :math:`Z_{yx}` component.
+
+
+.. figure:: images/MT_app_res.png
+    :align: center
+    :width: 700
+
+    Apparent resistivity maps obtained from the :math:`Z_{xy}` component at 11 Hz (left), 110 Hz (middle) and 1100 Hz (right).
+
+
+**Interpreting sounding curves**
+
+Below, we see sounding curve for the apparent resistivities computed from the :math:`Z_{xy}` component. All three curve indicate:
+
+	- a highly conductive near-surface geology
+	- at intermediate depth, the Earth is increasingly resistive towards the Southwest
+	- at low frequencies, it is difficult to make an interpretation as the data are more contaminated by 3D effects.
+
+
+.. figure:: images/MT_sounding.png
+    :align: center
+    :width: 500
+
+    Sounding curves for 3 locations: North (black), center (red) and Southwest (blue).
+
+
+
+Frequency-Based Down-Sampling
+-----------------------------
+
+Because we cannot invert data at all frequencies, we must decide what frequencies are sensitive to the target. Furthermore, we generally don't need all of the frequencies within our chosen range. Some things we may consider:
+
+	- Assume the target is a compact conductor. We have inferred its horizontal position from apparent resistivity maps or prior knowledge. We can look at the sounding curves over the potential target to determine which frequencies are sensitive.
+	- We want to learn about the basement geology and the near surface geology is well-constrained. We should use low frequencies.
+
+Using GIFtools, we can extract data at a subset of the total range of frequencies. To do this:
+
+	- :ref:`Frequency-based extraction of data<objectTimeFreqExtract>`
+
+For the tutorial data, we extracted the data at 5 logarithmically spaced frequencies from 4.1 Hz to 1100 Hz.
+
+
+.. important:: As a general rule, our extracted data should be at frequencies that span a maximum of 3 orders of magnitude. This ensures the smallest cells in the mesh can correctly model the highest frequencies. And ensures we can create a large enough mesh for modeling the lowest frequency.
+
+
+Defining Receivers
+------------------
+
+E3DMT v1 models the magnetic fields at discrete points whereas E3DMT v2 allows the user to define receiver loops. If you intend to invert data with E3DMT v2, this step is required. To define the electric and magnetic field receivers, we use the following functionality:
+
+	- :ref:`Set/reset receivers from data locations<objectDataTypeMT_snid>`
+
+**Our approach:**
+
+According to the contractor, the electric field dipoles had lengths of 100 m. Phoenix MTC‐150L coils were used to measure the magnetic fields. Receivers measuring the magnetic fields are much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m. We used the following parameters to fill the fields:
+
+	- **Hx, Hy receiver width: 1 m**
+	- **Hx, Hy number of segments: 8**
+	- **Ex, Ey receiver length: 100 m**
+	- **Ex, Ey number of segments: 4**
+	- **Orientation from Nothing (deg): 0** (since data are defined Northing-Easting-Down)
+
+.. note:: If the loop receivers are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.

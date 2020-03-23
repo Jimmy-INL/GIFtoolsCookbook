@@ -4,18 +4,18 @@
 Understanding MT Anomalies
 ==========================
 
-In order to properly interpret MT data, it is import to understand the shape and characteristics of MT anomalies for basic structures. Here, we investigate the MT anomalies produced by compact conductors and resistors. The knowledge gained here can be used to determine the coordinate system and sign convention for field collected data, and the operations required to transform the raw data into UBC GIF format.
+In order to properly interpret MT data, it is import to understand the shape and characteristics of the anomalies due to basic structures. Here, we investigate the MT anomalies produced by compact conductors and resistors. The knowledge gained here can be used to determine the coordinate system and sign convention for field collected data, and the operations required to transform the raw impedance data into UBC-GIF format.
 
 Impedance tensor (MT data) definition
 -------------------------------------
 
-The magnetotelluric technique (MT) records the horizontal components of the electric field (:math:`E_x` and :math:`E_y` ) and the horizontal components of the magnetic field (:math:`H_x` and :math:`H_y` ) at the Earth's surface. It uses these field components to compute a quantity which is directly dependent on the Earth's conductivity. If the Earth is a half-space, then for a planewave source whose electric field is polarized along the x axis:
+The magnetotelluric technique (MT) records the horizontal components of the electric field (:math:`E_x` and :math:`E_y` ) and the horizontal components of the magnetic field (:math:`H_x` and :math:`H_y` ) at the Earth's surface. These field measurements are then used to compute a quantity which is directly dependent on the Earth's conductivity. If the Earth is a half-space, then for a planewave source whose electric field is polarized along the x-axis:
 
 .. math::
 	Z_{xy} = \frac{E_x}{H_y} = \sqrt{\frac{-i\omega \mu}{\sigma}}
 
 
-For a 3-dimensional Earth, the magnetotelluric data are defined by the impedance tensor. The impedance tensor can be defined using the ratios of electric and magnetic field components in both the x and y directions for 2 orthogonal plane wave polarizations; one polarization with the electric field along the x axis and one polarization with the electric file along the y axis. Where the impedance tensor :math:`\mathbf{Z}` is a 2 by 2 matrix:
+For a 3-dimensional Earth, magnetotelluric data are defined by the **impedance tensor**. The impedance tensor can be defined using the ratios of electric and magnetic field components in both the x and y directions for 2 orthogonal plane wave polarizations; one polarization with the electric field along the x axis and one polarization with the electric file along the y axis. Where the impedance tensor :math:`\mathbf{Z}` is a 2 by 2 matrix:
 
 .. math::
     \mathbf{Z} = \mathbf{E H}^{-1}
@@ -37,7 +37,7 @@ where 1 and 2 refer to fields associated with plane waves polarized along two pe
 Impedances over a compact conductor
 -----------------------------------
 
-Let us work in the UBC-GIF MT data convention; X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}`and :math:`Z_{yy}` anomalies over a conductive block are shown below. The conductor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. If your data are in the UBC-GIF convention, then over a conductor:
+Let us work in the UBC-GIF data convention; X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}` and :math:`Z_{yy}` anomalies over a conductive block are shown below. The conductor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. If your data are in the UBC-GIF convention, then over a conductor:
 
 	- Unless data are collected near major 3D structures, :math:`Z_{xy}` data will be in the lower-right quadrant of the complex plane and :math:`Z_{yx}` data will be in the upper-left quadrant. For more detail on this, see :ref:`data conventions for MT <sign_mt_conv>`.
 	- Over the conductor, the amplitude of the :math:`Z_{xy}` and :math:`Z_{yx}` signals decreases.
@@ -64,7 +64,7 @@ Let us work in the UBC-GIF MT data convention; X is Northing, Y is Easting, Z is
 Impedances over a compact resistor
 ----------------------------------
 
-Let us work in the UBC-GIF MT data convention; X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}`and :math:`Z_{yy}` anomalies over a resistive block are shown below. The resistor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.00001 S/m. If your data are in the UBC-GIF convention, then over a resistor:
+Let us work in the UBC-GIF data convention; X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}`and :math:`Z_{yy}` anomalies over a resistive block are shown below. The resistor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.00001 S/m. If your data are in the UBC-GIF convention, then over a resistor:
 
 	- Unless data are collected near major 3D structures, :math:`Z_{xy}` data will be in the lower-right quadrant of the complex plane and :math:`Z_{yx}` data will be in the upper-left quadrant. For more detail on this, see :ref:`data conventions for MT <sign_mt_conv>`.
 	- Over the resistor, the amplitude of the :math:`Z_{xy}` and :math:`Z_{yx}` signals increase.
@@ -89,10 +89,10 @@ Let us work in the UBC-GIF MT data convention; X is Northing, Y is Easting, Z is
 Apparent resistivity maps and sounding curves
 ---------------------------------------------
 
-Apparent resistivities are a good way to interpret MT data and they can be easily computed. For impedance tensor data, apparent resistivities can be computed using :math:`Z_{xy}` or :math:`Z_{yx}` data at each frequency. The formula for computing the apparent resistivity is given by:
+Apparent resistivities are a good way to interpret MT data and they can be easily computed. From impedance tensor data, apparent resistivities can be computed using :math:`Z_{xy}` or :math:`Z_{yx}` at each frequency. The formula for computing the apparent resistivity is given by:
 
 .. math::
-	\rho_{app} = \frac{ \big | Z_{ij} \big |^{2} \;\;\; \textrm{where} \;\;\; i \neq j }{\omega \mu}
+	\rho_{app} = \frac{ \big | Z_{ij} \big |^{2} }{\omega \mu} \;\;\; \textrm{where} \;\;\; i \neq j
 
 
 By computing apparent resistivities, you can:
@@ -131,18 +131,16 @@ At the highest frequency (smallest skin depth), the apparent resistivity is roug
     Sounding curve for a single data location.
 
 
-
-
 .. _comprehensive_workflow_mt_1_coordinates:
 
-MT data and coordinate conventions
-----------------------------------
+Impedance data and coordinate conventions
+-----------------------------------------
 
-MT data are generally defined using the **UBC-GIF convention**, X is Northing, Y is Easting and Z is +ve downward**. But what if they are not? How does this affect the shape and sign of MT anomalies? Here we show a couple of examples you might see. We will use the same conductive block model from earlier.
+Impedance data are generally defined using the **UBC-GIF convention**; X is Northing, Y is Easting and Z is +ve downward**. But what if they are not? How does this affect the shape and sign of the corresponding anomalies? We have chosen 2 examples to demonstrate the effects of the data convention. We will use the same conductive block model from earlier.
 
-Some people may choose to define the impedance such that **X is Easting, Y is Northing and Z is +ve upward**. This is a natural way to define vector quantities but it is not the standard for impedance data. When comparing this convention with UBC-GIF convention, you will notice that we have the same 4 data images, except the order is different.
+Impedance data are sometimes defined such that **X is Easting, Y is Northing and Z is +ve upward**. This is a natural way to define vector quantities but it is not the standard for impedance data. When comparing this convention with the UBC-GIF convention, you will notice that we have the same 4 data images, except the order is different. If the data columns are not labeled correctly, you will not be able to successfully invert the data with UBC-GIF codes.
 
-There are other instances when the contractor will measure and compute the impedance for an orientation of their choose. Below, we show the same data over a conductor in the case that **X is Northeast, Y is Southeast and Z is down**. You will notice that for the block, the anomalies line up with the Northeast and Southeast.
+There are other instances when the contractor will measure and compute the impedance for an orientation of their choosing. Below, we show the same data over a conductor in the case that **X is Northeast, Y is Southeast and Z is down**. You will notice that for the block, the anomalies line up with the Northeast and Southeast.
 
 
 .. figure:: images/conductor_anomaly_100Hz_real.png

@@ -1,16 +1,16 @@
 .. _comprehensive_workflow_mt_2:
 
+..important:: These data were acquired from a `Geoscience Australia public database <https://data.gov.au/dataset/ds-ga-b20cdc13-039f-4217-b154-9d6e01208054/details?q=>`__ . We would like to acknowledge Geoscience Australia and Geological Survey of Queensland for allowing us to use this dataset to complete the tutorial.
+
 
 Loading and Transforming Field Data into GIF Convention
 =======================================================
 
-The first step in any project is to load field collected data and visualize it. MT datasets are challenging to work with for several reasons. First, MT data are computed by applying a non-trivial operation to the components of the measured fields. Second, the MT data are sometimes represented in a non-standard coordinate system.
+The first step in any project is to load field collected data and visualize it. Impedance data are challenging to work with for several reasons. First, they are computed by applying a non-trivial operation to the components of the measured fields. Second, impedance data are sometimes represented in a non-standard coordinate system.
 
-Here, we will assume that you have some EDI formatted MT data. The goal is to transform these data into UBC-GIF format so that we can eventually invert them. Using contractor information and GIFtools, we will show how this is possible.
+Here, we will assume that you have some EDI formatted impedance data. The goal is to transform these data into UBC-GIF format so that we can eventually invert them. Using contractor information and GIFtools, we will show how this is possible.
 
 .. important:: Requires GIFtools v2.30 or later.
-
-**PLACE PROPER CITATION HERE**
 
 Starting Your Project
 ---------------------
@@ -22,98 +22,54 @@ Starting Your Project
 Import Files
 ------------
 
-.. note:: If you do not have EDI formatted data from which to work with, you may `download practice data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_ . It is from this dataset that we will demonstrate the workflow.
+.. note:: If you do not have EDI formatted data from which to work with, you may `download tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_ . It is from this dataset that we will demonstrate the workflow.
 
-Here, we import the MT data and topography.
+Here, we import the impedance data and topography.
 
-    - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *MTtopo.xyz* and is in the *assets* folder.
+    - First, :ref:`import topography data (XYZ format) <importTopo>`. The data file is named *MTtopo.xyz*.
 
-    - :ref:`Import EDI standard MT data from Geosoft XYZ <importXYZemData>`. The data file is named *ZTEMdata_XYZ.dat* and is in the *assets* folder. If you are using the practice data:
+    - Next, :ref:`import EDI standard impedance data <importNSEMData_edi>`. For this step, you **must** know before-hand if your data are defined Northing-Easting-Down or Easting-Northing-Up. This will ensure your data columns are appropriately labeled after being loaded into GIFtools. The EDI files for the tutorial example are in the *processed_edi* folder. If you are using the tutorial data:
 
-        - We are loading data at 6 frequencies: 30, 45, 90, 180, 360 Hz and 720 Hz.
-        - There are 4 data groups (TZXR, TZXI, TZYR, TZYI)
-        - Make sure you load the *bearing* column as well!
+        - We are loading data at 100 frequencies between 0.00034 Hz and 10400 Hz. Certain frequencies may be missing at certain stations.
+        - You can choose to load all variables. But for this example you only need: FREQ, ZROT, ZXXR, ZXXI, ZXYR, ZXYI, ZYXR, ZYXI, ZYYR and ZYYI.
+        - You assume the data are in UBC-GIF convention.
 
-    - Once loaded, make sure to :ref:`set IO headers <objectSetioHeaders>` for all ZTEM tipper data.
+    - Once loaded, make sure to :ref:`set IO headers <objectSetioHeaders>` for all impedance data columns.
 
     - **Pro tip:** To avoid confusion between location and data coordinate systems, use the :ref:`set data headers <objectDataHeaders>` tool to define location columns as *Easting, Northing* and *Elevation*.
 
 
 
-Determining Data Convention
----------------------------
+Asserting Data are in UBC-GIF Convention
+----------------------------------------
 
-Now that we have loaded the XYZ data file and set the IO headers, we can take a first look at our data. By looking at the raw data and using any contractor information we can determine:
+Now that we have loaded the data file and set the IO headers, we can take a first look at our data. Here, we determine if the impedance data are in UBC-GIF format. If not, we must apply the appropriate transformation.
 
-    1) the coordinate system in which our data are being represented
-    2) the transformation required to go from the raw data coordinate system to UBC-GIF
+From the :ref:`understanding anomalies section <comprehensive_workflow_mt_1>`, we know that UBC-GIF formatted impedance data has :math:`Z_{xy}` and :math:`Z_{yx}` values located in the lower-right and upper-left quadrants of the complex plane, respectively. So the first step is to examine the real and imaginary components of :math:`Z_{xy}` and :math:`Z_{yx}`. We suggest carrying out the analysis at frequencies between 10 Hz and 1000 Hz. Here are some things to consider:
 
-Some things to consider when examining your dataset may include:
+    - If the sign of the real and imaginary components of :math:`Z_{xy}` are the same (also for :math:`Z_{yx}`), then your data are currently in a :math:`+i\omega t` Fourier convention. To fix this, you must multiply the ZXXI, ZXYI, ZYXI and ZYYI columns by -1. This can be done with the :ref:`basic calculator <objectCalculator>`.
+    - If :math:`Z_{xy}` and :math:`Z_{yx}` values are **not** located in the appropriate quadrants of the complex plane, you chose the wrong *change of coordinates option* when :ref:`importing EDI standard MT data <importNSEMData_edi>`. In this case, it is better to re-import the data using the correct option. 
 
-    - Any information about data convention provided by the contractor. This is the most important.
-    - If the data values collected along different flight line directions do not match up at the same locations.
-    - If the shape of the Tx anomaly over a known conductor or resistor lines up with the flight direction. Recall the :ref:`anomaly over a compact conductor <comprehensive_workflow_mt_1_conductor>` .
-
-The real and imaginary components of the raw Tipper data provided are plotted below. Below, we see that data collected Southwest to Northeast and data collected Northeast to Southwest are very different at similar locations. This indicates the data coordinates are dependent on flight direction.
+Below, we see the real and imaginary components of :math:`Z_{xy}` and :math:`Z_{yx}` at 115 Hz for our tutorial data set. According to the plots, :math:`Z_{xy}` and :math:`Z_{yx}` values are located in the lower-right and upper-left quadrants of the complex plane, respectively. This means they are in UBC-GIF format and we can move to the next step.
 
 
-.. figure:: images/ZTEM_raw_data.png
+.. figure:: images/MT_coord_test.png
     :align: center
     :width: 700
 
-    Raw ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz. Figure shows that data collected along different flight lines are not collected in the same coordinate system.
-
-Below, we see the convention for data collection provided by the contractor. Flying Northwest to Southeast (bearing = 125 degrees), our Re[Tzx] anomaly would be positive to the Northwest of a conductor and negative to the Southeast. Flying Southwest to Northeast (bearing = 35 degrees), our Re[Tzx] anomaly would be positive to the Southwest and negative to the Northeast. The plot indicates that the cross-line direction is 90 degrees counter clockwise from the along-line direction. The plot also indicates the Z is +ve upwards.
+    From left to right: ZXYR, ZXYI, ZYXR and ZYXI at 100 Hz.
 
 
-.. figure:: images/ZTEM_contractor_convention.png
-    :align: center
-    :width: 500
+Rotating Impedance Tensor Data
+------------------------------
 
-    Cross-over polarization for data flown along bearing 125 degrees (left) and along 35 degrees (right).
+It is standard practice for contractors to provide impedance data defined in the Easting and Northing directions or visa versa. This is true even if the electric and magnetic fields themselves were not measured along the Easting and Northing directions. So long as the horizontal fields were each measured along 2 orthogonal directions, you can compute impedance tensor data in Easting-Northing-Up or Northing-Easting-Down convention. This step is generally carried out by the contractor during initial data processing. In rare instances however, the impedance data may be provided by the contractor where X and Y are defined along two arbitrary (but orthogonal) directions. You may also choose to represent the impedance data this way to highlight certain geological features.
 
+Once loaded into GIFtools, you can rotate the impedance tensor data using built-in functionality:
 
-Transformation to UBC GIF Coordinates
--------------------------------------
+    - :ref:`Rotate impedance tensor <objectDataManipulationMT_rotate>`
 
-According to the contractor information, we must apply the following transformations to the ZTEM data provided:
-
-    - Data collected along Northwest to Southeast must be rotated counter clockwise by 125 degrees. And data collected along Southwest to Northeast must be rotated counter clockwise by 35 degrees.
-    - We must transform from the cross-line direction to being 90 degrees clockwise from the along-line direction instead of 90 degrees counter clockwise.
-    - We must transform from z +ve upward to z +ve downward.
-
-To apply this transformation, we use the following utility:
-
-    - :ref:`ZTEM data transformation <objectDataManipulationZTEM_transform>`. The XYZ file has a column which provides the along-line direction for each datum.
-    - Don't forget to :ref:`set IO headers <objectSetioHeaders>` such that the data are defined in the UBC-GIF convention.
-
-Tipper data after applying the transformation is shown below. Data are now in the UBC-GIF convention, where X = Northing, Y = Easting and Z is positive downward. The position of the data however, are still in standard UTM. The data map indicates a possible conductive feature that trends from the Southwest to Northeast.
+**Example:** Let's assume that your data are in UBC-GIF format, but X is defined towards the Southeast (bearing 135 degrees from North), Y is defined towards the Southwest (90 degrees clockwise from X) and Z is positive downward. To rotate your data such that X = Northing, Y = Easting and Z = down, you would apply a rotation of -135 degrees.
 
 
-.. figure:: images/ZTEM_rotated_data.png
-    :align: center
-    :width: 700
-
-    ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
-
-
-Interpretation using total divergence
--------------------------------------
-
-We can compute the total divergence parameter for the data at each frequency in order to locate obvious conductive and resistive structures. To do this, we must make sure that we have first :ref:`set IO headers <objectSetioHeaders>` to data in the UBC-GIF convention. To compute this quantity for the real and imaginary components:
-
-    - :ref:`Computer total divergence (DT) columns <objectDataManipulationZTEM_total_divergence>`
-
-The total divergence parameter compute for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence parameter map indicates the existence of conductive structures in a more resistive background. The most prominent conductive feature strikes along a bearing of roughly 35 degrees from the North. This conductive feature is observed across all frequencies.
-
-.. figure:: images/ZTEM_DT_data.png
-    :align: center
-    :width: 700
-
-    Total divergence parameter for the real component at 30 Hz (left), 90 Hz (middle) and 360 Hz (right).
-
-
-.. note:: If structures were much more resistive than the background, they would be identified as large negative anomalies in the total divergence parameter map.
-
-
-
+.. note:: The dataset used for this tutorial did not need to undergo a rotation.

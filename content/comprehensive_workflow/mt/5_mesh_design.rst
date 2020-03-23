@@ -15,7 +15,8 @@ For frequency-domain data, an important step is to compute the minimum and maxim
 .. math::
 	\delta \approx 500 \sqrt{\frac{\rho}{f}} = 500 \sqrt{\frac{1}{\sigma f}}
 
-Unlike MT and FEM data, it is extremely challenging to estimate the background conductivity directly from ZTEM data directly. As result, physical property values estimated from lab measurements or other survey methods are very useful. As we will demonstrate in the :ref:`inversion step <comprehensive_workflow_mt_6>` , failure to accurately estimate the background conductivity will impact the recovered model.
+The background resistivity can be obtained from the apparent resistivity maps.
+
 
 **Our Approach:**
 
