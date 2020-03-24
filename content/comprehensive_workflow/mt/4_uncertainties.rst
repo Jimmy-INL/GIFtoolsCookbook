@@ -50,7 +50,7 @@ There are a few options for choosing the floor uncertainty values for each compo
     1) The user may take some fractional percents of the largest anomalous value and use that as the floor.
     2) The user may sort the data by absolute value, and choose a threshold at which the data values contain an insignificant amount of signal and are dominated by noise.
 
-Since the diagonal impedances do less to constrain the inversion result than the off-diagonal components, it is best to over-estimate the uncertainties for ZXXR, ZXXI, ZYYR and ZYYI rather than to under-estimate the uncertainties. To ensure that off-diagonal impedances are driving the inversion, sometimes very large uncertainties are applied to the diagonal imdpedances.
+Since the diagonal impedances do less to constrain the inversion result than the off-diagonal components, it is best to over-estimate the uncertainties for ZXXR, ZXXI, ZYYR and ZYYI rather than to under-estimate the uncertainties. To ensure that off-diagonal impedances are driving the inversion, sometimes very large uncertainties are applied to the diagonal impedances.
 
 
 .. figure:: images/Uncertainties_Approach_Floor.png
@@ -65,7 +65,33 @@ To examine sorted data and apply uncertainties:
     - Use the :ref:`GUI for applying frequency-dependent uncertainties <objectAssignUncertGUI>`.
 
 
-.. note:: To keep the tutorial example simple, we choose to add uncertainties of 0.02 + 20% to all diagonal impedances (ZXXR, ZXXI, ZYYR and ZYYI). And uncertainties of 0.0001 + 5% were added to all off-diagonal impedances (ZXYR, ZXYI, ZYXR and ZYXI).
+Uncertainties for Tutorial Data
+-------------------------------
+
+**Off-Diagonal Impedances (ZXYR, ZXYI, ZYXR and ZYXI):**
+
+For off-diagonal impedance components, we applied both a percent and a floor. For all components and for all frequencies, the percent uncertainty was 10%. Choosing a floor was more involved.
+
+From the higher frequency data, we saw significant fluctuations in the apparent resistivities corresponding to the near-surface. We felt that the uncertainty in the apparent resistivities was roughly 1 :math:`\Omega m`. To convert this to impedances, we used the apparent resistivity formula. So for each frequency, the floor is given by:
+
+.. math::
+    \varepsilon (f) \sqrt{2*\pi*f* (1 \Omega m)}
+
+This resulted in floor uncertainties of: 0.0043, 0.01, 0.025 and 0.06 V/A. Essentially, the floor uncertainties ensures we do not try to fit the fluctuations in the very high conductivities which are likely at the Earth's surface.
+
+When inverting these data for the first time, we did not apply this floor. We found that our inversion did not converge, we over-fit the near surface and we did not recover resistive structures very well.
+
+
+**Diagonal Impedances (ZXXR, ZXXI, ZYYR and ZYYI):**
+
+For diagonal impedance components, we applied a floor uncertainty equal to 5% the maximum value. This was done separately for each component and for each frequency.
+
+
+**Erroneous Data:**
+
+In both the diagonal and off-diagonal components, there were obvious erroneous data. To keep the tutorial simple, we did not address this. As a result, we will likely over-fit these data values. In practice, you make choose to remove the erroneous data or individually apply a very large uncertainty to them. To switch an individual datum to NaN or to assign a large uncertainty, you can manually edit though:
+
+    - :ref:`Table viewer <viewData_table>`
 
 
 

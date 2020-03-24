@@ -22,6 +22,8 @@ VTK data viewer
 The shortcut for this viewer is ``control + k`` for any item selected in the tree.
 
 
+.. _viewData_table:
+
 Table viewer
 ^^^^^^^^^^^^
 

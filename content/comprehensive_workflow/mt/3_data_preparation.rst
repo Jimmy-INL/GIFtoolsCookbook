@@ -4,7 +4,7 @@
 Apparent Resistivities and Data Preparation
 ===========================================
 
-At this point, we assume the data are loaded into GIFtools and that our impedance tensor values are defined in the standard UBC-GIF convention. It is difficult to gain information about the Earth's electrical resistivity from impedances. That is why the initial interpretation of the data is generally done using apparent resistivities. We will provide a basic interpretation for our tuturial data set.
+At this point, we assume the data are loaded into GIFtools and that our impedance tensor values are defined in the standard UBC-GIF convention. It is difficult to gain information about the Earth's electrical resistivity from impedances. That is why the initial interpretation of the data is generally done using apparent resistivities. We will provide a basic interpretation for our tutorial data set.
 
 When looking at your data for the first time, you will notice that 1) you have data at many frequencies, and 2) the range of frequencies spans many orders of magnitude. For the tutorial data set, we have data at 100 frequencies from 0.00034 Hz to 10400 Hz. It is impossible to invert all of the data at once. As a result, we must extract a reasonable set of frequencies which are sensitive to the target.
 
@@ -21,7 +21,7 @@ If you have :ref:`set IO headers <objectSetioHeaders>` for the impedance data, i
 
 **Interpreting apparent resistivity maps**
 
-Below, we see the apparent resistivity maps obtained from the :math:`Z_{xy}` component at 11 Hz, 110 Hz, 1100 Hz and 10400 Hz. The range of apparent resistivity values is reasonable (1 :math:`\Omega m` - 10000 :math:`\Omega m` ), indicating the impedance data are likely represented in the correct units for UBC-GIF codes. The maps indicate:
+Below, we see the apparent resistivity maps obtained from the :math:`Z_{xy}` component at 2.03 Hz, 22.5 Hz, 229 Hz and 2200 Hz. The range of apparent resistivity values is reasonable (1 :math:`\Omega m` - 10000 :math:`\Omega m` ), indicating the impedance data are likely represented in the correct units for UBC-GIF codes. The maps indicate:
 
 	- the near surface is very conductive.
 	- at depth, the Earth is much more resistive towards the Southeast
@@ -32,15 +32,16 @@ Below, we see the apparent resistivity maps obtained from the :math:`Z_{xy}` com
     :align: center
     :width: 700
 
-    Apparent resistivity maps obtained from the :math:`Z_{xy}` component at 11 Hz (left), 110 Hz (middle) and 1100 Hz (right).
+    From left to right: apparent resistivity maps obtained from the :math:`Z_{xy}` component at 2.03 Hz, 22.5 Hz, 229 Hz and 2200 Hz.
 
 
 **Interpreting sounding curves**
 
-Below, we see sounding curve for the apparent resistivities computed from the :math:`Z_{xy}` component. All three curve indicate:
+Below, we see sounding curve for the apparent resistivities computed from the :math:`Z_{xy}` component. We observe that:
 
-	- a highly conductive near-surface geology
-	- at intermediate depth, the Earth is increasingly resistive towards the Southwest
+	- the Earth is quite conductive near the surface and at depth in the Northeast.
+	- towards the Southwest, the near surface is more conductive while the Earth is resistive at depth.
+	- the Earth is increasingly resistive towards the Southwest.
 	- at low frequencies, it is difficult to make an interpretation as the data are more contaminated by 3D effects.
 
 
@@ -48,7 +49,7 @@ Below, we see sounding curve for the apparent resistivities computed from the :m
     :align: center
     :width: 500
 
-    Sounding curves for 3 locations: North (black), center (red) and Southwest (blue).
+    Sounding curves for 3 locations: Northeast (black), center (red) and Southwest (blue).
 
 
 
@@ -64,7 +65,7 @@ Using GIFtools, we can extract data at a subset of the total range of frequencie
 
 	- :ref:`Frequency-based extraction of data<objectTimeFreqExtract>`
 
-For the tutorial data, we extracted the data at 5 logarithmically spaced frequencies from 4.1 Hz to 1100 Hz.
+For the tutorial data, we extracted the data at 4 logarithmically spaced frequencies from 2.34 Hz to 460 Hz.
 
 
 .. important:: As a general rule, our extracted data should be at frequencies that span a maximum of 3 orders of magnitude. This ensures the smallest cells in the mesh can correctly model the highest frequencies. And ensures we can create a large enough mesh for modeling the lowest frequency.
@@ -81,8 +82,8 @@ E3DMT v1 models the magnetic fields at discrete points whereas E3DMT v2 allows t
 
 According to the contractor, the electric field dipoles had lengths of 100 m. Phoenix MTC‐150L coils were used to measure the magnetic fields. Receivers measuring the magnetic fields are much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m. We used the following parameters to fill the fields:
 
-	- **Hx, Hy receiver width: 1 m**
-	- **Hx, Hy number of segments: 8**
+	- **Hx, Hy receiver width: 4 m**
+	- **Hx, Hy number of segments: 4**
 	- **Ex, Ey receiver length: 100 m**
 	- **Ex, Ey number of segments: 4**
 	- **Orientation from Nothing (deg): 0** (since data are defined Northing-Easting-Down)

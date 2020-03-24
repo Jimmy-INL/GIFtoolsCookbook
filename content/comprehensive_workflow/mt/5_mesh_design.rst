@@ -4,7 +4,7 @@
 Mesh Design
 ===========
 
-Here we a basic approach for mesh design when inverting ZTEM data. The field data provided was collected in a region with minimal topography. However, the approach is the same in the case of extreme topography.
+Here we a basic approach for mesh design when inverting MT data. The field data provided was collected in a region with minimal topography. However, the approach is the same in the case of extreme topography.
 
 
 Skin Depth
@@ -15,20 +15,21 @@ For frequency-domain data, an important step is to compute the minimum and maxim
 .. math::
 	\delta \approx 500 \sqrt{\frac{\rho}{f}} = 500 \sqrt{\frac{1}{\sigma f}}
 
-The background resistivity can be obtained from the apparent resistivity maps.
+The background resistivity can be obtained from the apparent resistivity maps and sounding curves.
 
 
 **Our Approach:**
 
-2D ZTEM inversion results from past studies used a background conductivity of 0.001 S/m. As a result, we assume a background conductivity of 0.001 S/m. We are inverting 6 frequencies between 30 Hz and 720 Hz. For the maximum and minimum frequencies, and for the background conductivity chosen, the skin depths are:
+According to the apparent resistivity maps and sounding curves, the Earth is fairly conductive. Over the range of frequencies we are inverting, we estimated a background resistivity of 20 :math:`\Ohm m`. From the skin depth formula:
 
-	- :math:`\delta_{min}` = 589 m
-	- :math:`\delta_{max}` = 2887 m
+	- :math:`\delta_{min}` = 104 m
+	- :math:`\delta_{max}` = 1462 m
+
 
 Create Mesh
 ^^^^^^^^^^^
 
-Here, we explain how to create an OcTree mesh based on ZTEM survey geometry. We also explain the reasoning for the parameter values entered. We can create OcTree meshes from ZTEM surveys with the following utilities:
+Here, we explain how to create an OcTree mesh based on MT survey geometry. We also explain the reasoning for the parameter values entered. We can create OcTree meshes from MT surveys with the following utilities:
 
 	- :ref:`create OcTree mesh with E3DMT utilities <createE3DMToctreeMesh>`
 	- :ref:`create OcTree mesh with E3DMT v2 utilities <createE3DMTv2octreeMesh>`
@@ -40,7 +41,7 @@ Once you have created the object, complete the following steps:
 	3) Run the utility
 	4) Load results
 
-For the field data provided, we chose to create the mesh using E3DMT v2 utilities. This was done because we are able to define the receiver loops. The parameters set in *Edit Options* are shown below along with reasoning for several important choices. For definitions of the parameters, consult the `E3DMT <https://e3dmt.readthedocs.io/en/e3dmt/content/inputfiles/createOcTree.html>`__ or `E3DMT v2 <https://e3dmt.readthedocs.io/en/e3dmt_v2/content/inputfiles/createOcTree.html>`__ manual.
+For the field data provided, we chose to create the mesh using E3DMT v2 utilities. This was done because we are able to define the dipole and loop receivers. The parameters set in *Edit Options* are shown below along with reasoning for several important choices. For definitions of the parameters, consult the `E3DMT <https://e3dmt.readthedocs.io/en/e3dmt/content/inputfiles/createOcTree.html>`__ or `E3DMT v2 <https://e3dmt.readthedocs.io/en/e3dmt_v2/content/inputfiles/createOcTree.html>`__ manual.
 
 
 .. figure:: images/mesh_design.png
@@ -49,9 +50,11 @@ For the field data provided, we chose to create the mesh using E3DMT v2 utilitie
 
     Parameters used to define the mesh for the field dataset using E3DMT v2 mesh utility.
 
-**Minimum cell width (horizontal):** A minimum horizontal cell width of 150 m was chosen based on a minimum data separation of 400 m. In practice, the user should have at least 2-3 cells between each data point. In general, the down-sampling and minimum horizontal cell width is dependent on the flight-line separation.
 
-**Minimum cell width (vertical):** The minimum vertical cell width is determined primarily by the smallest skin depth. If the topography is flat and the geology is relatively simple, the minimum vertical cell width can be roughly 10%-20% the minimum skin depth. Because the source signal for natural source EM data is a vertically propagating plane-wave, it is sometimes more beneficial to discretize in the vertical more than in the horizontal; because lateral variations in the fields are smaller. For the dataset provided, a minimum vertical cell width of 75 m was chosen.
+**Minimum cell width (vertical):** The minimum vertical cell width is determined primarily by the smallest skin depth. If the topography is flat and the geology is relatively simple, the minimum vertical cell width can be roughly 10%-20% the minimum skin depth. For the dataset provided, a minimum vertical cell width of 25 m was chosen.
+
+**Minimum cell width (horizontal):** The minimum horizontal cell width is usually determined by the station spacing. It is good to have a least 3 cells between each station. For the tutorial data, the station spacing is roughly 2 km. Since the source is a vertically propagating plane-wave, we can discretize much more coarsely along the horizontal. However there are limits to this. To balance mesh size and ensure we model the fields correctly, we chose a minimum horizontal cell width of 250 m. 
+
 
 **Max. topo cell:** Even if the topography is significant, we do not want to over-discretize in regions away from the survey, as the fields there do not greatly impact the data. As a result, this parameter was set to a larger number. If you want to more finely discretize the topography, set this to 4, or even 2. E3DMT v1 does not have this option.
 
@@ -61,9 +64,9 @@ For the field data provided, we chose to create the mesh using E3DMT v2 utilitie
 
 **Number of cells around Rx:** The number of fine mesh cells near receivers does need to be as large for natural source EM modeling as is does for controlled source EM modeling. Fields associated with natural sources are are much smoother. You can make the mesh a much more reasonable size by taking advantage of this, however sufficient discretization is still required to model the fields accurately.
 
-**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In pratice, this should be 1-2 times the smallest skin depth.
+**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In practice, this should be 1-2 times the smallest skin depth.
 
-**Shift data:** We chose to shift the data locations so that true flight height was preserved over the discretized topography. **See important notices below**.
+**Shift data:** We chose to shift the data locations so that receivers lie on the discretized topography. If you fail to do this, you may be measuring electric fields in the air. **See important notices below**.
 
 
-.. important:: If you choose to *shift data* for E3DMT v2 utilities, the mesh utility will create a receivers file. When loading output, a new data object is created under the mesh utility. You will notice that the base station is **not** defined and that the *ZTEM data type* is 'MTH'. This is not a problem, as all receivers are organized to measure the fields at the appropriate places. But if you are concerned, you can repeat the steps in the :ref:`data preparation section <comprehensive_workflow_mt_4>` .
+.. important:: If you choose to *shift data* for E3DMT v2 utilities, the mesh utility will create a receivers file. When loading output, a new data object is created under the mesh utility. All the receivers are organized to measure the fields at the appropriate places. But if you are concerned, you can repeat the steps in the :ref:`data preparation section <comprehensive_workflow_mt_4>` .

@@ -28,7 +28,7 @@ Here, we import the impedance data and topography.
 
     - First, :ref:`import topography data (XYZ format) <importTopo>`. The data file is named *MTtopo.xyz*.
 
-    - Next, :ref:`import EDI standard impedance data <importNSEMData_edi>`. For this step, you **must** know before-hand if your data are defined Northing-Easting-Down or Easting-Northing-Up. This will ensure your data columns are appropriately labeled after being loaded into GIFtools. The EDI files for the tutorial example are in the *processed_edi* folder. If you are using the tutorial data:
+    - Next, :ref:`import EDI standard impedance data <importNSEMData_edi>`. For this step, you **must** know before-hand if your data are defined Northing-Easting-Down or Easting-Northing-Up. This will ensure your data columns are appropriately labeled after being loaded into GIFtools. The EDI files for the tutorial example are in the *EDIfiles* folder. If you are using the tutorial data:
 
         - We are loading data at 100 frequencies between 0.00034 Hz and 10400 Hz. Certain frequencies may be missing at certain stations.
         - You can choose to load all variables. But for this example you only need: FREQ, ZROT, ZXXR, ZXXI, ZXYR, ZXYI, ZYXR, ZYXI, ZYYR and ZYYI.
@@ -57,7 +57,7 @@ Below, we see the real and imaginary components of :math:`Z_{xy}` and :math:`Z_{
     :align: center
     :width: 700
 
-    From left to right: ZXYR, ZXYI, ZYXR and ZYXI at 100 Hz.
+    From left to right: ZXYR, ZXYI, ZYXR and ZYXI at 115 Hz.
 
 
 Rotating Impedance Tensor Data
