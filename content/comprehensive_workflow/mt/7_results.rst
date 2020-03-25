@@ -31,6 +31,7 @@ The Tikhonov curve for our example inversion is shown below. According to the fi
 
 	- the inversion reaches target misfit (chi-factor = 1 in this case) after 6 iterations. Thus the algorithm is converging over the course of the beta cooling schedule.
 	- the Tikhonov curve starts to flatten out at the 4th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data.
+	- Globally, we have likely under-estimated the uncertainties on our data. Or, most likely, we should have removed any erroneous data values.
 
 
 .. figure:: images/convergence.png
@@ -48,6 +49,13 @@ According the Tikhonov curve, the recovered model at iteration 4 has a good chan
 
 **Off-Diagonal Components:**
 
+The observed data, predicted data and normalized misfits for off-diagonal impedance data are shown below at 13.7 Hz. We plotted -ZXYI and -ZYXR so that we could plot the values on a log scale. From these plots, and plots at other frequencies, we found that:
+
+	- Predicted data generally reproduces the main features seen in the observed data. However, we did not fit localized small impedance values because the uncertainties on those data were set fairly high (see ZXYI plot below).
+	- With some exceptions (ZYXR at 13.7 Hz for example), the range of normalized misfits is more or less the same for all off-diagonal components and for all frequencies.
+	- Most of the normalized misfit maps do not show coherent structures.
+	- By trying to fit erroneous data values, we likely under-fit the data in other areas.
+
 
 .. figure:: images/misfit_off_diag.png
     :align: center
@@ -57,6 +65,15 @@ According the Tikhonov curve, the recovered model at iteration 4 has a good chan
 
 
 **Diagonal Components:**
+
+The observed data, predicted data and normalized misfits for diagonal impedance data are shown below at 13.7 Hz. From these plots, and plots at other frequencies, we found that:
+
+	- The predicted data explains most, but not all, of the large diagonal impedances.
+	- With some exceptions (ZXXR at 2.34 Hz for example), the range of normalized misfits is more or less the same for all diagonal components and for all frequencies.
+	- Most of the normalized misfit maps do not show coherent structures.
+	- Uncertainties were set to prioritize fitting the off-diagonal components. Thus, we generally have a poorer fit of the diagonal components and smaller misfits.
+
+
 
 .. figure:: images/misfit_diag.png
     :align: center
@@ -68,16 +85,19 @@ According the Tikhonov curve, the recovered model at iteration 4 has a good chan
 Recovered Model
 ^^^^^^^^^^^^^^^
 
-The conductivity model recovered at the 4th iteration is shown below. A cutoff of 0.003 S/m was applied. The model was also sliced horizontally at an elevation of 253 m. To show how well structures in the recovered model match data signatures, we plotted the total divergence parameter at 45 Hz and at 180 Hz.
+The conductivity model recovered at the 4th iteration is shown below at 3 depths. According to the recovered model:
 
-The inversion recovers the large conductive feature that strikes along a bearing of 35 degrees. The conductivity along the recovered feature corresponds well to amplitude of the MT response. A secondary conductive feature is also recovered at the Southernmost tip of the survey area. Along the Eastern end of the of the survey area, MT data and the total divergence parameter indicated the possible presence of another conductor. Although the inversion placed conductive structures in this area, the feature is poorly constrained by the data. 
+	- We can see some pixelation in the recovered model right at the surface. This could be because insufficient interface weighting was applied. It could also be due to the inversion trying to fit erroneous data.
+	- There is a large conductive structure in the East which extends to depth.
+	- The near surface conductivity is highly variable but is generally fairly conductive.
+	- In the West, there is a large resistive structure at depth.
 
 
-.. figure:: images/recovered_001_iter4.png
+.. figure:: images/recovered_model_iter4.png
     :align: center
     :width: 700
 
-    Recovered model and total divergence parameter at 45 Hz (left) and at 180 Hz (right).
+    Recovered model at iteration 4.
 
 
 
