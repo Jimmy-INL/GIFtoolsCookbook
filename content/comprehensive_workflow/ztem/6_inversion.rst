@@ -10,7 +10,7 @@ Here, we provide the steps for setting up and running an inversion with E3DMT or
 Reducing Artifacts through Interface Weighting
 ----------------------------------------------
 
-When inverting ZTEM data, the E3DMT codes have a tendency to place conductive structures near receiver locations due to the sensitivity of the data to those cells. Here, we generate interface weights to counteract this problem. By forcing lateral smoothness within the top few layers of cells, we can limit the artifacts and force the inversion to place conductive structures at the appropriate depths.
+When inverting ZTEM data, the E3DMT codes have a tendency to place conductive structures near receiver locations due to the sensitivity of the data to those locations. Here, we generate interface weights to counteract this problem. By forcing lateral smoothness within the top few layers of cells, we can limit the artifacts and force the inversion to place conductive structures at the appropriate depths.
 
     - :ref:`Create and interface weights utility <createinterfWeights>`
     - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
@@ -38,7 +38,7 @@ We can now invert ZTEM data using E3DMT v1 or v2.
     - :ref:`Run the inversion <invRun>`
     - :ref:`Load results <invLoadResults>`
 
-For the dataset provided, **we chose to invert using E3DMT v2**, as we were able to define the receiver loops. Things are effectively the same for E3DMT v1. The parameters used are shown below. **Note that we chose the data object that has shifted locations relative to discretized topography.**
+For the tutorial data, **we chose to invert using E3DMT v2**, as we were able to define the receiver loops. Things are effectively the same for E3DMT v1. The parameters used are shown below. **Note that we chose the data object that has shifted locations relative to discretized topography.**
 
 .. figure:: images/inversion_edit_options.png
     :align: center
@@ -54,18 +54,18 @@ Discussion of Parameters
 
 **Regarding beta cooling schedule:**
 
-For synthetic modeling, we know the uncertainties on our data. So when the data misfit equals the number of data (target misfit for chi factor of 1), we know the recovered model explains the data without globally over or under-fitting; see :ref:`fundamentals or inversion <Fundamentals_Uncertainties>` for further explanation. With real data, we cannot be 100% sure that we have not over-estimated or under-estimated the uncertainties. What we do assume however, is that our :ref:`criteria for assigning uncertainties <comprehensive_workflow_ztem_3>` was fairly reasonable.
+For synthetic modeling, we know the uncertainties on our data. With real data, we cannot be 100% sure that we have correctly estimated the uncertainties. In the case that we have globally under-estimated our uncertainties, we sometime set the *chi factor* to be less than 1. That way, we get to see more of the Tikhonov curve.
 
-When setting the cooling schedule for the field dataset, the strategy was pretty straightforward:
+When setting the cooling schedule for the tutorial data set, the strategy was pretty straight-forward:
 
-    - **beta max = 0.1**. The model recovered at the first iteration should clearly under-fit the data. However if *beta max* is too large, you will have multiple iterations where the model doesn't budge because no emphasis is being put on fitting the data.
+    - **beta max = 0.1**. The model recovered at the first iteration should clearly underfit the data. However if *beta max* is too large, you will have multiple iterations where the model doesn't budge because no emphasis is being put on fitting the data. We knew a good starting beta for the final inversion from cursory inversions of the data.
     - **beta min = 1e-7**. This can be set quite low. But it is good for the inversion to terminate within a reasonable number of beta iterations if target misfit is not reached.
     - **reduction factor = 0.25:** Generally we choose a value between 0.1 and 0.9. If the reduction factor is too large, the code will run for a long time since the reduction in beta at each iteration is small. If the reduction factor is too small, we do not get much detail regarding the convergence of the inversion.
     - **chi factor = 1** Here, we assume that appropriate uncertainties are set on the data. Thus, we assume the recovered model explains the data without over-fitting (fitting the noise) when the data misfit equals the number of data observations (chi factor = 1). In practice, you may choose a chi factor less than 1. This will allow you to get a better understanding of the convergence, especially if you have over-estimated the uncertainties.
 
 **Regarding the alpha parameters:**
 
-As a default setting, we frequently let :math:`\alpha_x = \alpha_y = \alpha_z = 1` and we let :math:`alpha_s = 1/dh^2'; where :math:`dh` is the width of the smallest cells in the mesh. This effectively balances the emphasis on recovering a model that is similar to a reference model and recovering a model that has sufficient structure. If we have high confidence in our reference model, we may choose to increase :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`. If we have low confidence in our reference model, we may choose to decrease :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`
+As a default setting, we frequently let :math:`\alpha_x = \alpha_y = \alpha_z = 1` and we let :math:`alpha_s = 1/dh^2` ; where :math:`dh` is the width of the smallest cells in the mesh. This effectively balances the emphasis on recovering a model that is similar to a reference model and recovering a model that has sufficient structure. If we have high confidence in our reference model, we may choose to increase :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`. If we have low confidence in our reference model, we may choose to decrease :math:`\alpha_s` relative to :math:`\alpha_x`, :math:`\alpha_y` and :math:`\alpha_z`
 
 For this exercise, we have been provided with zero prior information regarding the Earth's structure or its electrical conductivity. We have assumed the background conductivity is 0.001 S/m but at no point have we validated this assumption. As a result, we have set :math:`\alpha_s = 10^{-10}` and let :math:`\alpha_x = \alpha_y = \alpha_z = 1`. This will recover a conductivity model which is primarily driven by the data, and is impacted minimally by the reference model.
 

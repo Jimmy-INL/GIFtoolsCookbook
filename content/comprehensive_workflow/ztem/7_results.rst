@@ -23,7 +23,7 @@ Only when the convergence and data misfit are acceptable can we infer geological
 Convergence
 ^^^^^^^^^^^
 
-Once the inversion result have been loaded (done in the :ref:`inversion section<comprehensive_workflow_ztem_6>`)
+Once the inversion outputs have been loaded (done in the :ref:`inversion section<comprehensive_workflow_ztem_6>`)
 
 	- :ref:`View convergence <convergence_curve>`
 

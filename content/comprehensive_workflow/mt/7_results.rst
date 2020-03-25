@@ -23,11 +23,11 @@ Only when the convergence and data misfit are acceptable can we infer geological
 Convergence
 ^^^^^^^^^^^
 
-Once the inversion result have been loaded (done in the :ref:`inversion section<comprehensive_workflow_mt_6>`)
+Once the inversion outputs have been loaded (done in the :ref:`inversion section<comprehensive_workflow_mt_6>`)
 
 	- :ref:`View convergence <convergence_curve>`
 
-The Tikhonov curve for our example inversion is shown below. According to the figure:
+The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
 	- the inversion reaches target misfit (chi-factor = 1 in this case) after 6 iterations. Thus the algorithm is converging over the course of the beta cooling schedule.
 	- the Tikhonov curve starts to flatten out at the 4th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data.
@@ -44,14 +44,14 @@ Data Misfit
 According the Tikhonov curve, the recovered model at iteration 4 has a good chance of explaining the data without fitting the noise. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
 
 	- Are the prominent anomaly features identified in the observed data also found in the predicted data? Is this true for all components and for all frequencies?
-	- Are there obvious coherent features in your normalized misfit map? If so, this indicates you are over-fitting certain regions at the expense of others and that you must assign new uncertainties and re-run the inversion.
+	- Are there obvious coherent features in the normalized misfit maps? If so, this indicates you are over-fitting certain regions at the expense of others and that you must assign new uncertainties and re-run the inversion.
 	- Are the ranges of normalized misfits for each component and for each frequency generally the same? If not, the uncertainties are not balanced between components and/or frequencies. In this case, new uncertainties should be applied and the inversion should be re-run.
 
 **Off-Diagonal Components:**
 
 The observed data, predicted data and normalized misfits for off-diagonal impedance data are shown below at 13.7 Hz. We plotted -ZXYI and -ZYXR so that we could plot the values on a log scale. From these plots, and plots at other frequencies, we found that:
 
-	- Predicted data generally reproduces the main features seen in the observed data. However, we did not fit localized small impedance values because the uncertainties on those data were set fairly high (see ZXYI plot below).
+	- Predicted data generally reproduce the main features seen in the observed data. However, we did not fit localized small impedance values because the uncertainties on those data were set fairly high (see ZXYI plot below).
 	- With some exceptions (ZYXR at 13.7 Hz for example), the range of normalized misfits is more or less the same for all off-diagonal components and for all frequencies.
 	- Most of the normalized misfit maps do not show coherent structures.
 	- By trying to fit erroneous data values, we likely under-fit the data in other areas.
