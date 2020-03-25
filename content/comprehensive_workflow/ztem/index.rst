@@ -4,6 +4,10 @@
 Comprehensive Workflows: ZTEM
 =============================
 
+.. figure:: images/title_page.png
+    :align: center
+    :width: 700
+
 Here, we present a general workflow for loading, interpreting and inverting Z-axis Tipper electromagnetic (ZTEM) data. We begin with ZTEM data in xyz data format. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
 
 	- `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_ztem.zip>`_
