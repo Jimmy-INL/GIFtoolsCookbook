@@ -16,7 +16,7 @@ This section of the GIFtools cookbook is meant to provide practical tutorials fo
   - Assessment and interpretation of inversion results
 
 
-**List of Comprehensive Workflows**
+**List of Comprehensive Workflows:**
 
 .. toctree::
     :maxdepth: 1
