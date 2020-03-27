@@ -124,7 +124,7 @@ At the highest frequency (smallest skin depth), the apparent resistivity is roug
 
 
 
-.. figure:: images/example_sounding_curve.png
+.. figure:: images/example_sounding_curve.PNG
     :align: center
     :width: 500
 
