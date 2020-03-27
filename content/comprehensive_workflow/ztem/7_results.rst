@@ -33,7 +33,7 @@ The Tikhonov curve for our example inversion is shown below. According to the fi
 	- the inversion reaches a chi-factor of 1 (data misfit equals number of data) somewhere between the 3rd or 4th iteration. Assuming the estimate of our uncertainties is correct, the optimum recovered model should correspond to a chi-factor of 1.
 	- the Tikhonov curve starts to flatten out at the 4th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data. You may choose to verify this by setting the chi factor to something like 0.5 and re-running the inversion.
 
-.. figure:: images/convergence.png
+.. figure:: images/convergence.PNG
     :align: center
     :width: 500
 
