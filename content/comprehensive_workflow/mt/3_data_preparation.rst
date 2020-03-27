@@ -45,7 +45,7 @@ Below, we see sounding curves for the apparent resistivities computed from the :
 	- at low frequencies, it is difficult to make an interpretation, as the data are more contaminated by 3D effects
 
 
-.. figure:: images/MT_sounding.png
+.. figure:: images/MT_sounding.PNG
     :align: center
     :width: 500
 
