@@ -248,7 +248,7 @@ amount. In addition, data columns (such as a flight altitude column) within
 the data object can be used to create the elevation values. This functionality
 is accessed through:
 
-**Data Manipulation** |rarr| **Coordinates** |rarr| **Calculate elevation from surface**
+**Data Manipulation** |rarr| **Calculate** |rarr| **Calculate elevation from surface**
 
 
 
