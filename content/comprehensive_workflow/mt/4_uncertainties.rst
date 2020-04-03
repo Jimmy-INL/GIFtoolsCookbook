@@ -78,7 +78,7 @@ For off-diagonal impedance components, we applied both a percent and a floor. Fo
 From the higher frequency data, we saw significant fluctuations in the apparent resistivities corresponding to the near-surface. We felt that the uncertainty in the apparent resistivities was roughly 1 :math:`\Omega m`. To convert this to impedances, we used the apparent resistivity formula. So for each frequency, the floor is given by:
 
 .. math::
-    \varepsilon (f) = \sqrt{2\pi f (1 \Omega m)}
+    \varepsilon (f) = \sqrt{2\pi \mu f (1 \Omega m)}
 
 This resulted in floor uncertainties of: 0.0043, 0.01, 0.025 and 0.06 V/A. Essentially, the floor uncertainties ensures we do not try to fit the fluctuations in the very high conductivities which are likely at the Earth's surface.
 
