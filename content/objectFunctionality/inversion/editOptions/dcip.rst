@@ -235,15 +235,18 @@ Create a weighting files from a ``GIFmodel`` file (preferentially created from a
 DCIP Octree
 ===========
 
+.. important:: This manual contains the documentation for DCIP octree package releases beginning on 2020-05-08. This version of the package is **compatible with GIFtools v2.31 and later**. If using an earlier version of GIFtools, everything is essentially the same except for the *independent smallness weights* option.
+
+
 .. figure:: ../images/dcipoctree.png
     :align: center
     :width: 700
 
-    Basic (left), model options (middle) and advanced parameters  (right) tabs.
+    Basic (left), model options (middle) and advanced parameters (right) tabs.
 
 
 tol_nl mindm iter_per_beta
-        The first parameter tol_nl defines a tolerance for the relative gradient at each :math:`\beta` step: tol_nl math:`= ||g|| / ||g_o||`, where :math:`g` is the current gradient and :math:`g_o` is the gradient at the start of the current :math:`\beta` step iteration. If the relative gradient is less than tol_nl, then the code exits the current :math:`\beta` iteration and decreases :math:`\beta` by the beta_factor.
+        The first parameter tol_nl defines a tolerance for the relative gradient at each :math:`\beta` step: tol_nl :math:`= ||g|| / ||g_o||`, where :math:`g` is the current gradient and :math:`g_o` is the gradient at the start of the current :math:`\beta` step iteration. If the relative gradient is less than tol_nl, then the code exits the current :math:`\beta` iteration and decreases :math:`\beta` by the beta_factor.
 
         mindm defines the smallest allowable model perturbation (if the model perturbation :math:`\Delta m` recovered as a result of IPCH iteration is smaller than mindm, then the current :math:`\beta` iteration is terminated and :math:`\beta` is reduced by beta_factor before the next beta step.
 
@@ -260,5 +263,9 @@ Update reference model throughout
 SMOOTH_MOD | SMOOTH_MOD_DIF
         This option is used to define the reference model in and out of the derivative terms of the model objective function. The options are: SMOOTH_MOD_DIF (reference model is defined in the derivative terms of the model objective function) and SMOOTH_MOD (reference model is defined only the smallest model term of the objective function).
 
+Smallness weights
+		The latest DCIP octree code allows the user to specify cells weights which impact the smallness term in the model objective function.
+
+
 .. note::
-	more details in the `dcipOctree manual <https://dcipoctree.readthedocs.io/en/latest/content/runprog/dcinv.html>`_.
+	more details in the `dcipOctree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/ipinversion.html>`_.
