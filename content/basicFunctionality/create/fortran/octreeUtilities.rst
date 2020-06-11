@@ -77,3 +77,13 @@ Interaction with the Fortran utility program ``surface_electrodes`` can be done 
 **Create** |rarr| **Fortran utility program** |rarr| **Octree utilities** |rarr| **Create surface electrodes (DC/IP)**
 
 
+
+.. _createDCsensitivities:
+
+Create sensitivity weights for DC octree
+----------------------------------------
+
+Interaction with the Fortran utility program ``dcsensitivity`` can be done by creating an *sensitivityWeightsDCIP* item. This item will interact with the utility program to generate a sensisitivity weights model for DC octree inversion. To create, use the menu structure:
+
+
+**Create** |rarr| **Fortran utility program** |rarr| **Octree utilities** |rarr| **Create sensitivity weights (DC)**

@@ -53,7 +53,6 @@ E3DMT v2 Mesh Utility
 	    :align: center
 	    :width: 600
 
-.. important:: Regarding the *shift_data* button. If MT data are used to design the survey, *shift_data* will create a receivers file that places all receivers on the discretized surface. If ZTEM data are used to design the survey, *shift_data* will create a receivers file such that true flight height is preserved over the discretized surface.
 
 
 .. _utilEditOptions_E3Dver2Tiled:
@@ -104,4 +103,26 @@ E3D_ver2_Tiled Mesh Utility
 		- Value: Distance (m) outside the data convex haul
 		- Object: Points defining the outer core region
 
+
+
+
+.. _utilEditOptions_DCsensitivity:
+
+DC Octree Sensitivity Utility
+-----------------------------
+
+Set parameters to compute approximate senstivity weights model for DC octree inversion.
+
+.. figure:: ../../../images/utilityDCsensitivity.png
+    :align: center
+    :width: 400
+
+
+- Input Options (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
+
+	- *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's approach
+
+	- *Computation method:* Choosing the random vectors for applying Hutchinson's approach
+
+	- *Smallest weight value:* This is a truncation value for the smallest allowable weights value. A good default value is 0.001 - 0.01.
 
