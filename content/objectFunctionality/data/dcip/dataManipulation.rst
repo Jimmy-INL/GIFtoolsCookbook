@@ -33,6 +33,7 @@ Click on the data item of interest and use the menu:
 **Data manipulation** |rarr| **Add data** |rarr| **Apparent resistivity from normalized voltage**
 
 
+.. _objectDCIPDataCalculate_geofactor:
 
 Geometry factor
 ^^^^^^^^^^^^^^^
