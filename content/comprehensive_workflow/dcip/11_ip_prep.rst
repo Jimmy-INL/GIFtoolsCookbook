@@ -2,6 +2,6 @@
 
 .. include:: <isonum.txt>
 
-IP OcTree Inversion
-===================
+IP Weights and Reference Model
+==============================
 

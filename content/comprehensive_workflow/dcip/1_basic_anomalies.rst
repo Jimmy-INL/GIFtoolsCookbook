@@ -8,3 +8,22 @@ In order to properly interpret DC and IP data, it is import to first understand 
 
 
 
+
+
+
+.. _comprehensive_workflow_dcip_1_voltage:
+
+Normalized Voltage
+------------------
+
+
+
+
+
+
+
+.. _comprehensive_workflow_dcip_1_ip:
+
+Induced Polarization
+--------------------
+

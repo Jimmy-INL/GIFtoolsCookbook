@@ -2,6 +2,6 @@
 
 .. include:: <isonum.txt>
 
-DC Weights and Reference Model
-==============================
+OcTree Mesh Design
+==================
 

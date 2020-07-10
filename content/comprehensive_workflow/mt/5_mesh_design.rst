@@ -20,7 +20,7 @@ The background resistivity can be obtained from the apparent resistivity maps an
 
 **Our Approach:**
 
-According to the apparent resistivity maps and sounding curves, the Earth is fairly conductive. Over the range of frequencies we are inverting, we estimated a background resistivity of 20 :math:`\Ohm m`. From the skin depth formula:
+According to the apparent resistivity maps and sounding curves, the Earth is fairly conductive. Over the range of frequencies we are inverting, we estimated a background resistivity of 20 :math:`\Omega m`. From the skin depth formula:
 
 	- :math:`\delta_{min}` = 104 m
 	- :math:`\delta_{max}` = 1462 m

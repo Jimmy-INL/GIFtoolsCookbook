@@ -2,6 +2,6 @@
 
 .. include:: <isonum.txt>
 
-DC OcTree Inversion
-===================
+DC Weights and Reference Model
+==============================
 
