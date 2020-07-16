@@ -81,14 +81,14 @@ If none are selected, the ``Batch Inversion`` will default to the input topograp
 
 .. _batchInversionCreateInv:
 
-Create Inversions
-^^^^^^^^^^^^^^^^^
+Create/Write Inversions
+^^^^^^^^^^^^^^^^^^^^^^^
 
 With this option, the ``Batch Inversion`` routine copies the ``Template`` and replace only
 the components specific to each inversions (data, mesh, topography). By default, the selected ``Data`` and
 ``TOPO2Ddata`` objects will be copied to the newly created inversion object.
 
-**Workflow** |rarr| **Create Inversions**
+**Workflow** |rarr| **Create/Write all**
 
 .. _batchInversionRun:
 

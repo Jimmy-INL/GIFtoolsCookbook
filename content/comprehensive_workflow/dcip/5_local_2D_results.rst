@@ -32,7 +32,7 @@ Once the inversion outputs have been loaded (done in the :ref:`inversion section
 
 The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
-    - the inversion reaches a chi-factor of 1.08 after 12 iterations.
+    - the inversion reaches a chi-factor of 1 after 12 iterations.
     - the data misfit is decreasing over the course of the beta cooling schedule, except for at iteration 13.
     - the inversion is able to reach target misfit (chi-factor = 1)
 
@@ -117,17 +117,17 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
 Data Misfit
 ^^^^^^^^^^^
 
-According the Tikhonov curve, the recovered model at iteration 4 has a good chance of explaining the data without fitting the noise. This is assuming we have slightly under-estimated the uncertainties on our data. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
+According the Tikhonov curve, the recovered model at iteration 5 has a good chance of explaining the data without fitting the noise. This is assuming we have accurately estimated the uncertainties on our data. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
 
     - Are the prominent anomaly features identified in the observed data also found in the predicted data?
     - Are there obvious coherent features in the normalized misfit maps? If so, this indicates you are over-fitting certain regions at the expense of others and that you must assign new uncertainties and re-run the inversion.
 
 
-For iteration 4, we used the *split data based on electrode geometry* to separate the dipole-pole and pole-dipole data once again. For each electrode configuration, we see the predicted data, observed data and normalized misfit below. For this survey line, we saw that:
+For iteration 5, we used the *split data based on electrode geometry* to separate the dipole-pole and pole-dipole data once again. For each electrode configuration, we see the predicted data, observed data and normalized misfit below. For this survey line, we saw that:
 
-    - Data structures in the dipole-pole and pole-dipole data are reasonably well reproduced. However, the predicted pole-dipole IP anomaly has a smaller amplitude than was observed. 
-    - The dipole-pole data appear slightly over-fit while the pole-dipole data are slightly under-fit.
-    - The balance between floor and percent uncertainty seems reasonable as we are fitting the anomalies and not the background.
+    - Data structures in the dipole-pole and pole-dipole data are reasonably well reproduced. 
+    - Normalized misfits generally lie within a range of [-2, 2].
+    - The highest normalized misfit values are associated with anomalous apparent chargeability values. This could be caused by a) under-estimating the floor uncertainty and/or b) over-estimating the percent uncertainty.
 
 For this exercise, we will not assign new uncertainties and re-run the inversion. In practice however, you may choose to decrease the percent uncertainty on the pole-dipole data.
 
@@ -152,8 +152,8 @@ Recovered Conductivity Model
 
 The chargeability model recovered at the 4th iteration is shown below. According to the recovered model:
 
-    - The maximum chargeability value is 61 ms, which is less than the largest apparent chargeability seen in the pole-dipole data. The model at iteration 5 has a larger maximum chargeability. However, the structures in this model were less geologically plausible.
-    - The secondary conductive structure at *X* = 950 m appears to be chargeable.
+    - The model at iteration 5 fits the data appropriately. However, the structures in this model were less geologically plausible than observed in iteration 4. This suggests the ideal chi factor is somewhere between that of the 4th and 5th iteration.
+    - The secondary conductive structure at *X* = 950 m appears to be chargeable but the primary conductive structure at *X* = 1500 m is not.
 
 
 
@@ -161,5 +161,5 @@ The chargeability model recovered at the 4th iteration is shown below. According
     :align: center
     :width: 500
 
-    Recovered model at iteration 4.
+    Recovered model at iteration 5.
 
