@@ -149,6 +149,48 @@ where *x* and *y* define the cell center location of model column **m** in the u
 |                                                               |                                                                  |
 +---------------------------------------------------------------+------------------------------------------------------------------+
 
+
+.. _objectFunctionalityNearest3D:
+
+Nearest Neighbour (3D Interpolation)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This funcationality will apply nearest neighbour to interpolate the model from one 3D or OcTree mesh to another 3D or OcTree mesh. This functionality is accessed through:
+
+**Model** |rarr| **3D options** |rarr| **Nearest neighbour interpolation**
+
+
+.. figure:: ../../../images/modelNearestInterp.png
+    :align: center
+    :width: 400
+
+
+Important parameters for the interpolation and management of cells in the padding are as follows:
+
+    - **Air value:** The value given to all cells lying outside the active topography
+
+    - **Padding Cell Options:**
+
+        - *Nearest neighbour:* All cells within the active topography will be determined via nearest neighbour interpolation
+        - *Set padding to constant:* All active topography cells in the padding will be assigned a constant value
+        - *Decay to constant:* Cells in the padding will decay towards a background value according to the following expression
+
+
+.. math::
+    m_0 + (m_i - m_0)\, \eta^q \;\;\; \textrm{where} \;\;\; q = 1 - \bigg ( \frac{V}{V_{min}} \bigg )^{1/3}
+
+
+where :math:`m_0` is the background value, :math:`m_i` is the value if nearest neighbour was applied, :math:`0 < \eta < 1` and :math:`V` is the volume. For OcTree meshes, :math:`\eta \in` [0.8, 0.9] works well. For tensor models, :math:`\eta \sim` 0.5 works well.
+
+
+.. figure:: ../../../images/modelNearestInterp_examples.png
+    :align: center
+    :width: 400
+
+    Examples of different padding choices when input model is only defined in the core mesh region. Nearest neighbour (left). Constant (middle). Decay to constant (right).
+
+
+
 .. _objectFunctionalityAddPolyhedra:
 
 Add Rectangular Block and Polyhedra-Based Structures

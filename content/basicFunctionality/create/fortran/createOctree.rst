@@ -13,6 +13,19 @@ Create octree mesh
     :align: center
     :figwidth: 100%
 
+
+
+.. _createDCIPoctreeMesh:
+
+Create an ocTree mesh from DC or IP data
+----------------------------------------
+
+Interaction with the Fortran utility program ``create_octree_mesh_dcip`` can be done by creating an *DCIPmeshUtility* item. This item will interact with the utility program to create an ocTree mesh from a DC3D or IP3D data item for the ``dcipoctree`` package. To create, use the menu structure:
+
+
+**Create** |rarr| **Fortran utility program** |rarr| **Create ocTree mesh** |rarr| **DC (and IP)**
+
+
 .. _createE3DoctreeMesh:
 
 Create an ocTree mesh from FEM data

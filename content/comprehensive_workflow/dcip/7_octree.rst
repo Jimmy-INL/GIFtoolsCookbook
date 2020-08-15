@@ -5,3 +5,54 @@
 OcTree Mesh Design
 ==================
 
+Here we provide a basic approach for mesh design when inverting DCIP data. Mesh design for DCIP problems depends on both the maximum and minimum electrode spacing.
+
+Here, we explain how to create an OcTree mesh based on DCIP survey geometry. We also explain the reasoning for the parameter values entered. We can create OcTree meshes from DCIP surveys with the following utility:
+
+	- :ref:`create OcTree mesh with DC/IP utilities <createDCIPoctreeMesh>`
+
+Once you have created the object, complete the following steps:
+
+	1) Set the data object corresponding to the survey
+	2) Define the mesh using *Edit Options*
+	3) Run the utility
+	4) Load results
+
+The parameters set in *Edit Options* are shown below along with reasoning for several important choices. For definitions of the parameters, consult the `DCIP octree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/createOcTree.html>`__ .
+
+
+.. figure:: images/mesh_design.png
+    :align: center
+    :width: 500
+
+    Parameters used to define the mesh for the field dataset using E3DMT v2 mesh utility.
+
+
+**Minimum cell size:** The minimum cell size is determined by the minimum electrode spacing. To have sufficient accuracy, you must have at least 2.5 to 4 cells between each electrode.
+
+**Padding cell expansions:** The extent of the mesh depends on the largest electrode spacing. The thickness of the padding should be about 2-3 times the length of the largest electrode spacing.
+
+**Core region discretization:** *Thickness 1* should be used to discretize the region with the largest currents. For dipole-dipole data, this should be 30\% to 50\% the size of the largest electrode spacing. For pole-dipole or dipole-pole data, this should 75\% to 100\% the size of the largest electrode spacing. If you let *Thickness 1* be on the smaller side, make sure *Thickness 2* is equal or greater than *Thickness 1*.
+
+**Number of cells around Rx:** The number of fine mesh cells near receivers must be sufficiently large to model the electric potentials near electrodes accurately. It is important to set *RX cells #1* to be between 4 and 8.
+
+**Make polygon:** This parameter controls the horizontal extent of the core mesh region. In practice, the distance between any electrode and the horizontal edges of the core mesh region should be 2-3 times larger than the smallest electrode spacing.
+
+
+Important Comments on Topography
+--------------------------------
+
+When including real topography (not flat), the discretized surface will not match the true surface of the Earth. DCIP octree utilities remedy this issue by creating an observed data file where the electrode locations have be projected onto the surface of the discretized Earth. When loading the output from the DCIP octree utility, GIFtools will load this projected data file. You must use this file when running the inversion.
+
+It is very common to have both DC and IP data. In the case of real topography, we will need to project both DC and IP data to the Earth's surface and load the data files into GIFtools. The following is a trick for accomplishing this and create the octree mesh in a clean fashion:
+
+	1) Set the data object corresponding to the survey as the IP data object
+	2) Define the mesh using *Edit Options*
+	3) Run the utility (which creates a project IP data file)
+	4) Reset the data object corresponding to the survey as the DC data object
+	5) Run the utility again (which creates a project DC data file)
+	6) Load results (which will load everything but the projected IP data file)
+	7) Use *import* drop-down menu to import the projected IP data file
+
+
+

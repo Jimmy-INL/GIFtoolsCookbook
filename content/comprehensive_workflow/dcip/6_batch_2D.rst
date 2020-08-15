@@ -17,7 +17,7 @@ Defining an Inversion Template
 Here, we define the parameters that will be used when inverting each survey line. To create the template:
 
     - :ref:`Create a new 2D DC inversion object <createDCIPInv>` and select a working directory when prompted. It is important that you create a new inversion object for this.
-    - Use :ref:`edit options <invEditOptions_dcip2d>` to set the parameters for the inversion. For the tutorial data, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_DC>`.
+    - Use :ref:`edit options <invEditOptions_dcip2d>` to set the parameters for the inversion. **For the tutorial data**, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_DC>`, except the trade-off parameter was set using the *Discrepancy* option with a chi-factor of 1.
     - Click *Apply*. **Do not** write the files.
 
 .. note::
@@ -33,29 +33,27 @@ To set up and run the batch inversion, apply the following under the *Batch Inve
 
     - :ref:`Set inversion template <batchInversionSetTemplate>` to the 2D DC inversion object you created
     - :ref:`Set the 2D DC data objects <batchInversionSetData>` (the data object for each survey line). If applicable, GIFtools will prompt you to select the associated topography objects.
-    - :ref:`Create/Write all <batchInversionCreateInv>` 2D inversion objects. **If** sensitivity weighting are being applied, GIFtools will automatically compute the sensitivity weights. Please allows this step to finish before doing anything else.
+    - :ref:`Create/Write all <batchInversionCreateInv>` 2D inversion objects. **If** sensitivity weighting is being applied, GIFtools will automatically compute the sensitivity weights. Please allows this step to finish before doing anything else.
     - :ref:`Run inversions <batchInversionRun>`
 
 
 Results
 ^^^^^^^
 
-If the **Default** option was selected for the trade-off parameter, the user believes the target chi-factor for each survey line could be different. For each 2D inversion object, the user must:
+If the **Discrepancy** option was used, the user believes the chi-factor is the same for all survey lines. You can use functionality under the *Batch Inversion* menu to:
 
-    - Analyze the inversion results and choose a final model according to the :ref:`Analyzing 2D Inversion Results <comprehensive_workflow_dcip_5>` section of this tutorial. **For the tutorial data**, in order (lines 1-10), we chose iterations: 12, 12, 13, 12, 12, 11, 11, 10, 10 and 11.
+    - :ref:`Load the final model or the first to reach the chi-factor <batchInversionLoad>` for all 2D inversions.
 
-If the **Discrepancy** option was used and a target chi-factor was defined, you can use functionality under the *Batch Inversion* menu to:
 
-    - :ref:`Load the final model or the first to reach the target chi-factor <batchInversionLoad>` for all 2D inversions.
-
+If the **Default** option was selected for the trade-off parameter, the user believes the chi-factor for each survey line could be different. For each 2D inversion object, the user must analyze the inversion results and choose a final model according to the :ref:`Analyzing 2D Inversion Results <comprehensive_workflow_dcip_5>` section of this tutorial.
 
 
 Interpolation to 3D Mesh
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once you have completed the batch inversion, it is benefitial to compare the set of recovered 2D models side by side. Here, we interpolate the set of recovered 2D models onto a 3D tensor mesh. We start by creating a 3D tensor mesh. Next, we interpolate the set of 2D models onto the 3D mesh.
+Once you have completed the batch inversion, it is benefitial to compare the set of recovered 2D models side by side. You may also want to interpolate the 2D slices to approximate 3D geometries. Here, we interpolate the set of recovered 2D models onto a 3D tensor mesh. We start by creating a 3D tensor mesh on which the 2D slices can live. Next, we place the set of 2D models onto the 3D mesh. Finally, we interpolate the 2D slices to create a 3D model.
 
-**Creating the mesh:**
+**1. Creating the mesh:**
 
     - :ref:`Create 3D tensor mesh <create_mesh_3D>`
 
@@ -82,19 +80,38 @@ The set of parameters used to create a 3D mesh for the **tutorial data** is show
     Parameters used to create 3D tensor mesh.
 
 
+**2. Placing 2D slices on the 3D mesh**
+
 Once the 3D mesh has been created, select any of the *Batch Inversion* objects and:
 
     - :ref:`Merge all <batchInversionMerge>` to interpolate to 3D mesh.
 
 
-**For the tutorial data**, we see the set of recovered 2D conductivity models below. For comparison, we also show the result if *Discrepancy* and a chi-factor of 1 was used to define the trade-off parameter.
+For the tutorial data, we see the set of recovered 2D conductivity models below.
 
 
 .. figure:: images/inv_dc2d_batch.png
     :align: center
-    :width: 600
+    :width: 350
 
-    2D conductivity models with *Default* trade-off parameter and manual picking (left). 2D conductivity models with *Discrepancy* and a chi-factor of 1 (right).
+    2D conductivity models with *Discrepancy* and a chi-factor of 1.
+
+
+
+**3. Interpolate 2D slices to create 3D model**
+
+To gain insight with regards to 3D structures, you may want to interpolate the 2D slices to create the fully 3D model. To do this, you can use an inverse distance interpolation:
+
+    - :ref:`Fill no data values with inverse disctance interpolation <objectFunctionalityFillNDValue>`
+
+
+For the tutorial data, the parameters used for the interpolation and the final 3D model are shown below.
+
+.. figure:: images/inv_dc2d_batch_interp.png
+    :align: center
+    :width: 700
+
+    Interpolation parameters and interpolated 3D conductivity model for tutorial data.
 
 
 
@@ -102,15 +119,20 @@ Once the 3D mesh has been created, select any of the *Batch Inversion* objects a
 ---------------------
 
 
-The process for creating and running a 2D IP batch inversion is nearly identical to that of a 2D DC batch inversion. When prompted, the batch inversion will ask you for the associated set of 2D DC inversion objects. This is done to assign a background conductivity model for each IP inversion.
-
-**For the tutorial data**, the 5th iteration was chosen as the final model for all survey lines. The set of recovered 2D models was interpolated to the same 3D mesh. We see the set of recovered 2D chargeability models below. For comparison, we also show the result if *Discrepancy* and a chi-factor of 1 was used to define the trade-off parameter.
-
+The process for creating and running a 2D IP batch inversion is nearly identical to that of a 2D DC batch inversion. When prompted, the batch inversion will ask you for the associated set of 2D DC inversion objects. This is done to assign a background conductivity model for each IP inversion. **For the tutorial data**, we once again used the *Discrepancy* option and a chi-factor of 1 to define the trade-off parameter. The 2D slices were places on the same 3D mesh, then interpolated to obtain the 3D chargeability model.
 
 
 .. figure:: images/inv_ip2d_batch.png
     :align: center
-    :width: 600
+    :width: 350
 
-    2D chargeability models with *Default* trade-off parameter and manual picking (left). 2D chargeability models with *Discrepancy* and a chi-factor of 1 (right).
+    2D chargeability models with *Discrepancy* and a chi-factor of 1.
+
+
+.. figure:: images/inv_ip2d_batch_interp.png
+    :align: center
+    :width: 700
+
+    Interpolation parameters and interpolated 3D chargeability model for tutorial data.
+
 

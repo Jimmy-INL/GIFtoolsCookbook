@@ -108,10 +108,10 @@ E3D_ver2_Tiled Mesh Utility
 
 .. _utilEditOptions_DCsensitivity:
 
-DC Octree Sensitivity Utility
------------------------------
+DC/IP Octree Sensitivity Utility
+--------------------------------
 
-Set parameters to compute approximate senstivity weights model for DC octree inversion.
+Set parameters to compute approximate senstivity weights model for DC or IP octree inversion. The utility will look at the data type to determine whether DC or IP weights are being computed.
 
 .. figure:: ../../../images/utilityDCsensitivity.png
     :align: center
@@ -120,9 +120,10 @@ Set parameters to compute approximate senstivity weights model for DC octree inv
 
 - Input Options (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
 
-	- *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's approach
+	- *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's or probing approach. A value of 10 is reasonable.
 
-	- *Computation method:* Choosing the random vectors for applying Hutchinson's approach
+	- *Computation method:* Choosing the random vectors for applying Hutchinson's approach or probing method.
 
-	- *Smallest weight value:* This is a truncation value for the smallest allowable weights value. A good default value is 0.001 - 0.01.
+	- *Truncation Factor:* We must apply a truncation factor due to the large dynamic range of the sensitivities. A value between 0.01 and 0.2 is good.
 
+	- *Apply Smoothing:* Artifacts related to approximating the sensitivities can negatively impact the final inversion result. To mitigate this, we 'smooth out' these artifact. This paramter specifies the number of times smoothing is applied. A value of 1-5 works well.
