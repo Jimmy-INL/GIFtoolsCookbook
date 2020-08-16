@@ -2,8 +2,8 @@
 
 .. include:: <isonum.txt>
 
-Weights and Models for DC Inversion
-===================================
+DC OcTree Inversion: Weights and Reference Models
+=================================================
 
 In this section we demonstrate how to:
 
@@ -12,24 +12,7 @@ In this section we demonstrate how to:
 	- Create sensitivity weights for the DC inversion
 
 
-Starting/Reference Model from Batch 2D Inversion
-------------------------------------------------
-
-In the :ref:`2D batch inversion <omprehensive_workflow_dcip_6>` section, we generated a 3D conductivity model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting/reference model. To do this, we must interpolate the 3D tensore model onto the :ref:`OcTree mesh we generated in the previous section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
-
-	- :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
-
-
-**For the tutorial data** , the parameters used and the OcTree model are shown below.
-
-
-.. figure:: images/mrefDC.png
-    :align: center
-    :width: 700
-
-    Interpolation parameters and reference/starting conductivity model on OcTree mesh for tutorial data.
-
-
+.. _comprehensive_workflow_dcip_8_interface:
 
 Near-Surface Interface Weighting
 --------------------------------
@@ -43,29 +26,51 @@ When inverting DC data, the code has a tendency to place conductive structures n
         - set as *log model*
         - set topography as the active cells model
         - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 10, and 4)
-        - Face value = 1 (only matters for non-homogeneous backgrgound model)
-        - Face tolerance = 1 (only matters for non-homogeneous backgrgound model)
+        - Face value = 1 (only matters for inhomogeneous background model)
+        - Face tolerance = 1 (only matters for inhomogeneous background model)
 
     - :ref:`Run the utility <utilRun>`
     - :ref:`Load results <utilLoadResults>`
 
+
+.. _comprehensive_workflow_dcip_8_sens:
 
 Sensitivity Weighting for DC Inversion
 --------------------------------------
 
-To counteract issues related to the sensitivity of the data with respect to cells near electrodes, you may choose to implement sensitivity weighting. To create a cell weights model for the DC inversion, do the following:
+To counteract issues related to the sensitivity of the data with respect to cells near electrodes, you may choose to implement sensitivity weighting. To create a cell weights model for the DC inversion using the sensitivities, do the following:
 
-    - :ref:`Create and interface weights utility <createinterfWeights>`
-    - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
-
-        - set the OcTree mesh
-        - set as *log model*
-        - set topography as the active cells model
-        - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 10, and 4)
-        - Face value = 1
-        - Face tolerance = 1
-
-    - :ref:`Run the utility <utilRun>`
+    - :ref:`Create a DCIP sensitivity weights utility <createDCsensitivities>`
+    - Use :ref:`edit options <utilEditOptions_DCsensitivity>` to set the parameters and click *Apply*
+    - Write the input files
+    - Run *sensitivities*
+    - Run *sens2weights*
     - :ref:`Load results <utilLoadResults>`
 
 
+**For the tutorial data** the input parameters and sensitivity weights are shown below.
+
+
+.. figure:: images/sensitivityDC.png
+    :align: center
+    :width: 700
+
+
+.. _comprehensive_workflow_dcip_8_mref:
+
+Starting/Reference Model from Batch 2D Inversion
+------------------------------------------------
+
+In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we generated a 3D conductivity model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting/reference model. To do this, we must interpolate the 3D tensore model onto the :ref:`OcTree mesh we generated in the previous section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
+
+    - :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
+
+
+**For the tutorial data** , the parameters used and the OcTree model are shown below.
+
+
+.. figure:: images/mrefDC.png
+    :align: center
+    :width: 700
+
+    Interpolation parameters and reference/starting conductivity model on OcTree mesh for tutorial data.

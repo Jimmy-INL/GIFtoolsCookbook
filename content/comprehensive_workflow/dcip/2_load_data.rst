@@ -70,6 +70,8 @@ UBC-GIF codes accept many definitions for IP data, including intrinsic chargeabi
 .. important:: If the elevations for electrode locations are **not** set, GIFtools will assume the surface topography is flat. This will impact the plotted locations of the apparent resistivity/chargeability data.
 
 
+.. _comprehensive_workflow_dcip_2_lineid:
+
 Assigning Survey Line Numbers
 -----------------------------
 
@@ -96,6 +98,8 @@ If your data object has a column containing the line IDs, this step is not requi
 
     Assigning line ID through VTK.
 
+
+.. _comprehensive_workflow_dcip_2_2Dlines:
 
 Create 2D Survey Lines
 ----------------------

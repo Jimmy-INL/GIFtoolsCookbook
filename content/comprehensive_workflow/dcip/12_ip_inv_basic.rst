@@ -2,6 +2,6 @@
 
 .. include:: <isonum.txt>
 
-IP OcTree Inversion
-===================
+General IP OcTree Inversion
+===========================
 

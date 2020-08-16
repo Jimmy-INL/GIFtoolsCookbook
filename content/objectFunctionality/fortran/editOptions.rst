@@ -118,7 +118,7 @@ Set parameters to compute approximate senstivity weights model for DC or IP octr
     :width: 400
 
 
-- Input Options (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
+**Input Options** (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
 
 	- *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's or probing approach. A value of 10 is reasonable.
 

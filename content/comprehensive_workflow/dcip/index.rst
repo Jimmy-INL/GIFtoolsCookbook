@@ -27,11 +27,11 @@ This workflow is organized as follows:
     - Analyze 2D DC and IP inversion results <5_local_2D_results>
     - Batch 2D DC and IP inversion <6_batch_2D>
     - OcTree mesh design <7_octree>
-    - Weights and reference model for DC octree inversion <8_dc_prep>
-    - Setting appropriate parameters and running the DC inversion <9_dc_inv>
-    - Examining convergence, data misfit and the recovered conductivity model <10_dc_results>
-    - Weights and reference model for IP octree inversion <11_ip_prep>
-    - Setting appropriate parameters and running the IP inversion <12_ip_inv>
-    - Examining convergence, data misfit and the recovered chargeability model <13_ip_results>
+    - DC OcTree inversion: creating weights and reference model <8_dc_prep>
+    - DC OcTree inversion: setting up, running and examining results <9_dc_inv_basic>
+    - DC OcTree inversion using sensitivity weights and reference models <10_dc_inv_compare>
+    - IP Octree inversion: creating weights and reference model <11_ip_prep>
+    - IP OcTree inversion: setting up, running and examining results <12_ip_inv_basic>
+    - IP OcTree inversion using sensitivity weights and reference models <13_ip_inv_compare>
 
  
