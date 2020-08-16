@@ -87,7 +87,7 @@ According the Tikhonov curve, the recovered model at iteration 9 has a good chan
 Recovered Model
 ---------------
 
-The conductivity model recovered at the 4th iteration is shown below at 3 depths. According to the recovered model:
+The conductivity model recovered at the 9th iteration is shown below at 3 depths. According to the recovered model:
 
 	- We can see some pixelation in the recovered model right at the surface. This could be because insufficient interface weighting was applied. It could also be due to the inversion trying to fit erroneous data.
 	- There is a large conductive structure in the East which extends to depth.
