@@ -16,9 +16,12 @@ Defining an Inversion Template
 
 Here, we define the parameters that will be used when inverting each survey line. To create the template:
 
-    - :ref:`Create a new 2D DC inversion object <createDCIPInv>` and select a working directory when prompted. It is important that you create a new inversion object for this.
-    - Use :ref:`edit options <invEditOptions_dcip2d>` to set the parameters for the inversion. **For the tutorial data**, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_DC>`, except the trade-off parameter was set using the *Discrepancy* option with a chi-factor of 1.
+    - :ref:`Create a new 2D DC inversion object <createDCIPInv>` and select a working directory when prompted. It is **important** that you create a new inversion object for this.
+    - Use :ref:`edit options <invEditOptions_dcip2d>` to set the parameters for the inversion.
     - Click *Apply*. **Do not** write the files.
+
+
+ **For the tutorial data**, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_DC>`; except for the trade-off parameter which was set to *Discrepancy* option with a chi-factor of 1.
 
 .. note::
 
@@ -62,7 +65,7 @@ Once you have completed the batch inversion, it is benefitial to compare the set
         - Click *OK*
 
 
-The set of parameters used to create a 3D mesh for the **tutorial data** is shown below.
+**For the tutorial data**, the set of parameters used to create the 3D mesh is shown in the image below.
 
 .. important::
 
@@ -87,7 +90,7 @@ Once the 3D mesh has been created, select any of the *Batch Inversion* objects a
     - :ref:`Merge all <batchInversionMerge>` to interpolate to 3D mesh.
 
 
-For the tutorial data, we see the set of recovered 2D conductivity models below.
+**For the tutorial data** , we see the set of recovered 2D conductivity models below.
 
 
 .. figure:: images/inv_dc2d_batch.png
@@ -119,7 +122,9 @@ For the tutorial data, the parameters used for the interpolation and the final 3
 ---------------------
 
 
-The process for creating and running a 2D IP batch inversion is nearly identical to that of a 2D DC batch inversion. When prompted, the batch inversion will ask you for the associated set of 2D DC inversion objects. This is done to assign a background conductivity model for each IP inversion. **For the tutorial data**, we once again used the *Discrepancy* option and a chi-factor of 1 to define the trade-off parameter. The 2D slices were places on the same 3D mesh, then interpolated to obtain the 3D chargeability model.
+The process for creating and running a 2D IP batch inversion is nearly identical to that of a 2D DC batch inversion. When prompted, the batch inversion will ask you for the associated set of 2D DC inversion objects. This is done to assign a background conductivity model for each IP inversion.
+
+**For the tutorial data**, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_IP>`; except for the trade-off parameter which was set to *Discrepancy* option with a chi-factor of 1. The 2D slices were places on the same 3D mesh, then interpolated to obtain the 3D chargeability model.
 
 
 .. figure:: images/inv_ip2d_batch.png

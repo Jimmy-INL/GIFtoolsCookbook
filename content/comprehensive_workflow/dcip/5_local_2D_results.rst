@@ -156,7 +156,6 @@ The chargeability model recovered at the 4th iteration is shown below. According
     - The secondary conductive structure at *X* = 950 m appears to be chargeable but the primary conductive structure at *X* = 1500 m is not.
 
 
-
 .. figure:: images/inv_ip2d_line1_model4.png
     :align: center
     :width: 500

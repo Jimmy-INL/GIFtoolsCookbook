@@ -16,13 +16,13 @@ In this portion of the comprehensive workflow, we focus on:
 Define 2D Tensor Mesh
 ---------------------
 
-A 2D mesh must be defined one which the conductivity and chargeability models live. The mest is also required for modeling the fields. When designing a 2D mesh for 2D DC/IP, the general rules are as follows:
+A 2D mesh must be defined on which the recovered conductivity and chargeability models will live. The mesh is also required for modeling the fields. When designing a 2D mesh for 2D DC/IP simulations, the general rules are as follows:
 
     - The minimum horizontal cell width *dx* depends on the minimum electrode spacing. Generally you would like to have 2.5 to 4 cells between each electrode.
     - The minimum vertical cell width *dz* is generally between *dx/2* and *dx*.
     - The depth of the core mesh region depends on the maximum electrode spacing (or length of the survey line). For dipole-dipole surveys, the depth should be at least 1/2 the maximum electrode spacing. For pole-dipole and dipole-pole surveys, the core mesh region should be 1/2 to 1 times the maximum electrode spacing.
     - The *X* coordinate generally defines the *along line spacing* as opposed to a real geographic coordinate. Thus your first electrode is almost certainly defined at *X* = 0 m. Keep this in mind when defining the horizontal extent of the core mesh region.
-    - The padding should be 1-2 times the depth of the core mesh.
+    - The padding thickness should be 1-2 times the depth of the core mesh.
 
 To design a 2D mesh:
 
@@ -31,7 +31,7 @@ To design a 2D mesh:
 **For the tutorial data:**
 
     - The minimum electrode distance was 50 m. We chose to set *dx* = *dz* = 15 m.
-    - The largest electrode separation is 2000 m. Since the data contain dipole-pole and pole-dipole, we set the core mesh to extend 2000 m below the surface.
+    - The largest electrode separation was 2000 m. Since the data contain dipole-pole and pole-dipole, we set the core mesh to extend 2000 m below the surface.
     - The horizontal limits of the mesh were set to -400 m and 2400 m. Thus the core mesh extends 400 m horizontally past the first and last electrodes.
     - All padding, except in the air, was set to 2000 m with an expansion factor of 1.3.
 
@@ -64,9 +64,6 @@ We can now use the DCIP2D package to invert DC data for a single profile line. T
     Parameters used for independent 2D inversion of tutorial data (line 1).
 
 
-Discussion of Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. note:: The parameters chosen for inversion of the tutorial data set were experimentally derived. The numbers used here worked well for inverting this dataset but should not necessary be used as general default values!
 
 
@@ -80,7 +77,7 @@ Discussion of Parameters
 
     - **Advanced Tab: Parameter 1**
 
-        - *Trade-off parameter:* For synthetic modeling, we know the uncertainties on our data. With real data, we cannot be 100% sure that we have correctly estimated the uncertainties. To see the complete Tikhonov curve, we et to *Default* and set the *max number of iterations* to 20
+        - *Trade-off parameter:* We set to *Default* and set the *max number of iterations* to 20
         - *Solver:* the maximum number of iterations for the CG solve was increased to 30
         - *Length scales:* Choose *Alphas* and set *Alpha_s* = 1e-6 and *Alpha_x* = *Alpha_z* = 1
 
@@ -116,9 +113,6 @@ We can now use the DCIP2D package to invert the IP data for a single profile lin
     Parameters used for independent 2D inversion of tutorial data (line 1).
 
 
-Discussion or Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^
-
 .. note:: The parameters chosen for inversion of the tutorial data set were experimentally derived. The numbers used here worked well for inverting this dataset but should not necessary be used as general default values!
 
 **For the tutorial data**, use the Northernmost survey line (line 1). Parameters changed from their default value are shown below. The edit options GUI for the 2D IP inversion is nearly identical to that of the 2D DC inverion.
@@ -127,7 +121,7 @@ Discussion or Parameters
 
         - Set the 2D mesh as your mesh object
         - Set the observed data and keep as *surface format*
-        - Set the background conductivity model as the recovered model from your 2D DC inversion
+        - Set the background conductivity model as the recovered model from your 2D DC inversion (we chose iteration 12)
         - When creating 2D survey lines, 2D topography objects were created. Use the associated topography object here
 
     - **Advanced Tab: Parameter 1**
@@ -147,7 +141,7 @@ For synthetic modeling, we know the uncertainties on our data. With real data, w
 
 *Alpha_s* was set very low because the reference model is almost certainly not a reasonable first approximation of the true resistivity structure. Thus were are providing a starting model for the inversion and letting the data constrain the result. This is known as the smoothest model. We set a lower bound of 0 to force the recovered chargeabilities to be positive. Because we do not have an upper bound for the inversion, we set the value to something very large.
 
-The background conductivity model is chosen as the recovered model from the 2D DC inversion. In general, we are looking for chargeable structures in a non-chargeable background. As a result, the reference model was set to 0. To ensure a non-zero model update at the first iteration, a very small value (1e-2) is chosen for the starting model.
+The background conductivity model is chosen as the recovered model from the 2D DC inversion. Discussion regarding how this model was chosen is covered on the next page. In general, we are looking for chargeable structures in a non-chargeable background. As a result, the reference model was set to 0. To ensure a non-zero model update at the first iteration, a very small value (1e-2) is chosen for the starting model.
 
 
 

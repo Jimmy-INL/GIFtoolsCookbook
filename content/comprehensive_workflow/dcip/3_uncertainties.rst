@@ -49,12 +49,12 @@ Chargeability Data
 In the :ref:`basic anomalies: understanding voltage data <comprehensive_workflow_dcip_1_ip>` section, we learned that:
 
 	- IP data depends on the DC data
-	- The IP response is zero unless we are in the presence of a chargeable structure
+	- The IP response is negligible unless we are in the presence of a chargeable structure
 
 
-If only a percent uncertainty is applied, the inversion will fit the background instead of fitting IP anomalies. That is why an appropriate floor uncertainty is important. The floor uncertainty is set based on what the user believes is the "background IP response". The user may also choose the floor as being some percent of the maximum value.
+If only a percent uncertainty is applied, the inversion will fit the background instead of fitting IP anomalies. That is why an appropriate floor uncertainty is important. The floor uncertainty is set based on what the user believes is the "background IP response". The user may also choose the floor as being some percent of the maximum data value.
 
-A percent uncertainty is added if the IP anomalies are noisy and/or there are some anomalously high apparent chargeabilities. In this case, it is very difficult to fit the data with geologically reasonable models. The user is encourage to assign a floor uncertainty, the add a percent if they feel it is necessary.
+A percent uncertainty is added if the IP anomalies are noisy and/or there are some anomalously high apparent chargeabilities. In this case, it is very difficult to fit the data with geologically reasonable models. The user is encourage to assign a floor uncertainty, then add a percent if they feel it is necessary.
 
 For the **tutorial data set**, we assigned uncertainties of 2ms + 5\%. For reference, the IP data and uncertainties for Line 1 are plotted on pseudo-section below. The data and corresponding uncertainties are plotted on the same scale.
 
