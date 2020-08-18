@@ -16,7 +16,7 @@ Once you have created the object, complete the following steps:
 	3) Run the utility
 	4) Load results
 
-**For the tutorial data** , the parameters set in *Edit Options* are shown below. For definitions of the parameters, consult the `DCIP octree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/createOcTree.html>`__ .
+**For the tutorial data**, the parameters set in *Edit Options* are shown below. For definitions of the parameters, consult the `DCIP octree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/createOcTree.html>`__ .
 
 
 .. figure:: images/mesh_design.png

@@ -5,7 +5,7 @@
 General IP OcTree Inversion
 ===========================
 
-Here we present the standard steps for completing an IP OcTree inversion. The steps are organized as follows:
+Here we present the standard steps for completing an IP OcTree inversion and performing a general analysis of results. The steps are organized as follows:
 
 	1. Set up, run and load inversion results
 	2. Examine the convergence
@@ -25,7 +25,7 @@ We can now invert DC data using the DCIP OcTree package. To do this:
     - :ref:`Load results <invLoadResults>`
 
 
-**For the tutorial data** , the following parameters were used in the inversion. A thorough discussion of the input parameters and their impact on the final inversion result is discussed in the :ref:`DC OcTree Inversion using Weights and Reference Models <comprehensive_workflow_dcip_13>` section. For now, we invert to recover the smoothest model with modest near-surface interface weights.
+**For the tutorial data**, the following parameters were used in the inversion. A thorough discussion of the input parameters and their impact on the final inversion result is discussed in the :ref:`DC OcTree Inversion using Weights and Reference Models <comprehensive_workflow_dcip_13>` section. For now, we invert to recover the smoothest model with modest near-surface interface weights.
 
 
 .. figure:: images/edit_options_ipinv_smoothest.png
@@ -42,11 +42,10 @@ Once the inversion has completed:
 
 	- :ref:`View convergence <convergence_curve>`
 
-**For the tutorial inversion** , the Tikhonov curve is shown below. According to the figure and the *log* file:
+**For the tutorial data**, the Tikhonov curve is shown below. According to the figure and the *log* file:
 
-	- the inversion reaches target misfit (chi-factor = 1 in this case) between iteration 2 and 3.
-	- There isn't an obvious place in which the curve 'flattens out', indicating the choice in optimum model is a little subjective.
-	- We will need to examine the data misfits and recovered models to determine the quality of our result.
+	- the inversion converges over the course the cooling schedule.
+    - the inversion reaches target misfit (chi-factor = 1 in this case) between iteration 2 and 3, at which point the curve begins to 'flatten'; recall that there are several Gauss-Newton iteration for each beta. And the algorithm is converging over the course of the beta cooling schedule.
 
 
 .. figure:: images/convergence_ipoctree.PNG
@@ -70,6 +69,9 @@ According the Tikhonov curve, the recovered model at iteration 3 has a good chan
 	3. :ref:`Plot with VTK <viewData>` to examine observed data, predicted data and normalized misfit.
 
 
+For line 5, the predicted data reproduces the field observations well but slightly underfits the amplitude of the IP anomaly in the dipole-pole data. Normalized misfits lie within [-2, 2]. The misfit map for the pole-dipole data shows uncorrelated errors but the dipole-pole misfit map shows some small coherent features associated with underfitting the anomaly amplitude. We will not do it here, but the user is encouraged to examine the misfit maps for other survey lines.
+
+
 .. figure:: images/inv_ipoctree_line5_dipole_pole.png
     :align: center
     :width: 700
@@ -87,12 +89,12 @@ According the Tikhonov curve, the recovered model at iteration 3 has a good chan
 Recovered Model
 ---------------
 
-The chargeability model recovered at the 3rd iteration is shown below at 3 depths. According to the recovered model:
+**For the tutorial data**, the chargeability model recovered at the 3rd iteration is shown below at 3 depths. According to the recovered model:
 
-	- We can see some pixelation in the recovered model right at the surface. This could be because insufficient interface weighting was applied. It could also be due to the inversion trying to fit erroneous data.
-	- There is a large conductive structure in the East which extends to depth.
-	- The near surface conductivity is highly variable but is generally fairly conductive.
-	- In the West, there is a large resistive structure at depth.
+	- We can see some effects at the surface due to the sensitivity of the data to the electrodes, but it is manageable.
+	- Several prominent chargeable features are observed in the Z = 349 m slice.
+    - The large resistor to the West is non-chargeable
+    - The large NS conductor does not exhibit chargeability
 
 
 .. figure:: images/model_ipinv_smoothest_iter3.png

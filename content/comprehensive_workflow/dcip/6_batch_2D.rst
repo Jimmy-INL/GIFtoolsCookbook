@@ -90,7 +90,7 @@ Once the 3D mesh has been created, select any of the *Batch Inversion* objects a
     - :ref:`Merge all <batchInversionMerge>` to interpolate to 3D mesh.
 
 
-**For the tutorial data** , we see the set of recovered 2D conductivity models below.
+**For the tutorial data**, we see the set of recovered 2D conductivity models below.
 
 
 .. figure:: images/inv_dc2d_batch.png

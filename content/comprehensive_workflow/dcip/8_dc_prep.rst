@@ -69,7 +69,7 @@ In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we gen
     - :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
 
 
-**For the tutorial data** , the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptible convergence was observed.
+**For the tutorial data**, the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptible convergence was observed.
 
 
 .. figure:: images/mrefDC.png

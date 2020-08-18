@@ -4,18 +4,28 @@
 Comprehensive Workflows: DC and IP
 ==================================
 
-.. .. figure:: images/title_page.png
-..     :align: center
-..     :width: 700
+**Author: Devin C. Cowan**
 
-Here, we present a general workflow for loading, interpreting and inverting directed current resistivity (DC) and induced polarization (IP) data. We begin with UBC-GIF formatted data files for the DC and IP data. However, instruction is given in the case the data are in XYZ format. Our goal is to invert the data to recover both a 3D conductivity model and a 3D chargeability. You may work with the tutorial dataset provided or your own data:
+**Published: August, 2020**
 
-    .. - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_
+Here, we present a general workflow for loading, interpreting and inverting directed current resistivity (DC) and induced polarization (IP) data. We begin with UBC-GIF formatted data files for the DC and IP data. However, instruction is given in the case the data are in XYZ format. Our goal is to invert the data to recover both a 3D conductivity model and a 3D chargeability. You may work with your own data or the tutorial dataset provided here:
+
+    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_dcip.zip>`_
+
+
+.. figure:: images/title_page.png
+    :align: center
+    :width: 500
+
+
 
 
 .. These data were acquired from a `Geoscience Australia public database <https://data.gov.au/dataset/ds-ga-b20cdc13-039f-4217-b154-9d6e01208054/details?q=>`__ . We would like to acknowledge Geoscience Australia and Geological Survey of Queensland for allowing us to use this dataset to complete the tutorial. To reduce computation time and memory requirements, we have chosen to start with a subset of the original dataset.
 
-This workflow is organized as follows:
+
+
+Tutorial Sections
+-----------------
 
 .. toctree::
     :maxdepth: 1

@@ -191,7 +191,7 @@ Here we invert the apparent chargeability data for the practice example. On the 
 
 	- The best result is obtained if the true conductivity model is available for the background model.
 	- If the background conductivity model is generally similar to the true conductivity model, you will recover the region of largest chargeability with some artifacts. Depending on the quality of your background conductivity model, you may recover a reasonable chargeability model.
-	- A homogeneous background model **may** place the region of highest chargeability in the correct location. **However** , the magnitude of the anomalous chargeable body may be incorrect and there will almost certainly be major artifacts.
+	- A homogeneous background model **may** place the region of highest chargeability in the correct location. **However**, the magnitude of the anomalous chargeable body may be incorrect and there will almost certainly be major artifacts.
 
 
 
