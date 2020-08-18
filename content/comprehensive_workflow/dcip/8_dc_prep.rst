@@ -5,32 +5,35 @@
 DC OcTree Inversion: Weights and Reference Models
 =================================================
 
-In this section we demonstrate how to:
+Weights are used to reduce artifacts and starting/reference models can be used to constrain the data with a-priori information. In this section we demonstrate how to:
 
-	- Create a starting/reference model from the batch 2D inversion result
-	- Create near-surface interface weights
-	- Create sensitivity weights for the DC inversion
-
+    - Create near-surface interface weights
+    - Create sensitivity weights for the DC inversion
+    - Create a starting/reference model from the batch 2D inversion result
+    
 
 .. _comprehensive_workflow_dcip_8_interface:
 
 Near-Surface Interface Weighting
 --------------------------------
 
-When inverting DC data, the code has a tendency to place conductive structures near electrode locations due to the sensitivity of the data to those locations. One way to counteract this problem is to generate interface weights. By forcing lateral smoothness within the top few layers of cells, we can limit the artifacts and force the inversion to place conductive structures at the appropriate depths.
+When inverting DC data, the code has a tendency to place conductive structures near electrode locations due to the sensitivity of the data to those locations. One way to counteract this problem is to generate interface weights. By forcing lateral smoothness within the top few layers of cells, we can limit near-surface artifacts and force the inversion to place conductive structures at the appropriate depths. To create interface weights:
 
     - :ref:`Create and interface weights utility <createinterfWeights>`
     - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
 
         - set the OcTree mesh
-        - set as *log model*
+        - set the model
+        - set as *log model* for DC inversion
         - set topography as the active cells model
-        - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 10, and 4)
-        - Face value = 1 (only matters for inhomogeneous background model)
-        - Face tolerance = 1 (only matters for inhomogeneous background model)
+        - set number of layers and corresponding weights
+        - for inhomogeous background models, set the *face value* and *face tolerance*
 
     - :ref:`Run the utility <utilRun>`
     - :ref:`Load results <utilLoadResults>`
+
+
+**For the tutorial data**, we set 2 layers of interface weights with values of 10 and 4. Earlier attempts to invert the data used larger interfaces weights and more layers, however the inversion struggled to reach target misfit in this case. It was thought that by applying very large interface weights, we were not able to recover near-surface inhomogeneities that exist in the true conductivity model.
 
 
 .. _comprehensive_workflow_dcip_8_sens:
@@ -48,7 +51,7 @@ To counteract issues related to the sensitivity of the data with respect to cell
     - :ref:`Load results <utilLoadResults>`
 
 
-**For the tutorial data** the input parameters and sensitivity weights are shown below.
+**For the tutorial data** the input parameters and sensitivity weights are shown below. Generally a *truncation factor* of 0.05-0.2 of used. In this case, we set the *truncation factor* to 0.25. In earier inversion attempts, we found that large sensitivity weights forced near-surface conductive structures to collect in the space between surface lines.
 
 
 .. figure:: images/sensitivityDC.png
@@ -66,7 +69,7 @@ In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we gen
     - :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
 
 
-**For the tutorial data** , the parameters used and the OcTree model are shown below.
+**For the tutorial data** , the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptible convergence was observed.
 
 
 .. figure:: images/mrefDC.png

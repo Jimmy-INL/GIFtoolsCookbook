@@ -147,10 +147,10 @@ For this exercise, we will not assign new uncertainties and re-run the inversion
     Predicted data, oberved data and normalized data misfit (pole-dipole). Predicted data are plotted on the same scale. Normalized misfits are plotted on a colorscale from -2 to 2.
 
 
-Recovered Conductivity Model
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Recovered Chargeability Model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The chargeability model recovered at the 4th iteration is shown below. According to the recovered model:
+The chargeability model recovered at the 5th iteration is shown below. According to the recovered model:
 
     - The model at iteration 5 fits the data appropriately. However, the structures in this model were less geologically plausible than observed in iteration 4. This suggests the ideal chi factor is somewhere between that of the 4th and 5th iteration.
     - The secondary conductive structure at *X* = 950 m appears to be chargeable but the primary conductive structure at *X* = 1500 m is not.
