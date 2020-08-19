@@ -5,7 +5,7 @@
 Loading 3D DC/IP Data and Cursory Interpretation
 ================================================
 
-The first step in any project is to load field collected data and visualize it. Here, we will assume the data are in `UBC-GIF formatted observation files <https://dcipoctree.readthedocs.io/en/latest/content/files/obsFile.html>`__ . However, we will explain how to load data which are in XYZ format. The tutorial data set consists of 10 East-West lines of DC/IP data collected using a MIMDAS system.
+The first step in any project is to load field collected data and visualize it. Here, we will assume the data are in `UBC-GIF formatted observation files <https://dcipoctree.readthedocs.io/en/latest/content/files/obsFile.html>`__. However, we will explain how to load data which are in XYZ format. **The tutorial data** consists of 10 East-West lines of DC/IP data collected using a MIMDAS system.
 
 Our goal is to load the 3D DC/IP data and visualize it in a meaningful way. DC/IP data can be a little challenging to visualize, as the measurements are not defined at distinct locations. If the dataset is comprised of a set of 2D DC/IP profiles, then each line can be plotted as a 2D pseudo-section. 
 
@@ -24,12 +24,12 @@ Import Files
 
 .. If you do not have UBC-GIF formatted data from which to work with, you may `download tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_dcip.zip>`_ . It is from this dataset that we will demonstrate the workflow.
 
-Here, we import the DC, IP and topography data. The **tutorial data are in 3D UBC-GIF format**. If you have data of the same format:
+Here, we import the DC, IP and topography data. **The tutorial data are in 3D UBC-GIF format**. If you have data of the same format:
 
     - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *topo.xyz*.
     - :ref:`Import 3D DC data <importDCIP3Ddata>` as an observed data format file. The data file is named *DCdata.dat*.
     - :ref:`Import 3D IP data <importDCIP3Ddata>` as 'any format'. The data file is named *IPdata.dat*.
-    - If the elevation of the electrodes is not defined, you can :ref:`apply topography <objectDCIPApplyTopo>`. This is not necessary if the surface topography is flat.
+    - If the elevations of the electrodes are not defined, you can :ref:`apply topography <objectDCIPApplyTopo>`. This is not necessary if the surface topography is flat.
 
 
 **Data in XYZ or CSV format** :ref:`can be imported <importDCIP3Ddata>` together or separately into GIFtools. In this case, GIFtools will require the user to select the columns corresponding to electrode positions and data. If DC and IP data are loaded into a single data object, the user can:
@@ -52,7 +52,7 @@ Here, we import the DC, IP and topography data. The **tutorial data are in 3D UB
 Normalized Voltage to Apparent Resistivity
 ------------------------------------------
 
-UBC-GIF codes define DC data as the measured voltage normalized by the transmitter current in units of V/A. **If** your data are raw voltage, you **must** normalize the data by the source current. To do this:
+UBC-GIF codes define DC data as the measured voltage normalized by the transmitter current in units of V/A. **If** your data are raw voltages, you **must** normalize the data by the source current. To do this:
 
     - Use the :ref:`column calculator <objectCalculator>` to divide the raw voltage column by the source current column.
     - :ref:`Set the IO header <objectSetioHeaders>` for voltage data to the normalized voltage column.
@@ -62,7 +62,7 @@ Much can be gained by interpreting the data as apparent resistivities. Depending
     - :ref:`Compute geometric factor <objectDCIPDataCalculate_geofactor>`
     - :ref:`Transform between normalized voltage and apparent resistivity <objectDCIPDataCalculate>`
 
-UBC-GIF codes accept many definitions for IP data, including intrinsic chargeability (V/V) and integrated chargeability (msec). If you would like to eventually view the data as apparent chargeabilities, select the *IP3Ddata* and:
+UBC-GIF codes accept many definitions and normalizations for IP data, including intrinsic chargeability, integrated chargeability and secondary potential. If you would like to eventually view the data as apparent chargeabilities, select the *IP3Ddata* and:
 
     - :ref:`Compute geometric factor <objectDCIPDataCalculate_geofactor>`. Subsequent transform of the data is not required.
 
@@ -104,7 +104,7 @@ If your data object has a column containing the line IDs, this step is not requi
 Create 2D Survey Lines
 ----------------------
 
-.. note:: If you have a good estimate of your uncertainties for the entire 3D dataset, you may choose to assign them before creating 2D profiles. See the :ref:`assigning uncertainties <comprehensive_workflow_dcip_3>` section. If uncertainties have been assigned, the data column will be carried over when creating the 2D profiles.
+.. note:: If you have a good estimate of your uncertainties for the entire 3D dataset, you may choose to assign them before creating 2D profiles. See the :ref:`assigning uncertainties <comprehensive_workflow_dcip_3>` section. If uncertainties have been assigned, the uncertainties column will be carried over when creating the 2D profiles.
 
 
 Since we are unable to plot apparent resistivities/chargeabilities in 3D in a meaningful way, we must separate the data into a set 2D profiles. This is not possible without a data column which defines each line ID. To parse the 3D DC and/or IP datasets into a suite of 2D profiles:
@@ -116,14 +116,14 @@ Since we are unable to plot apparent resistivities/chargeabilities in 3D in a me
 
 If the potential electrode measurements are on either side of the source electrodes, you will **not** be able to plot 2D pseudo-sections without data points being plotted on top of one another. The **tutorial data** was collected by a MIMDAS system which contains both pole-dipole and dipole-pole data. To separate the data:
 
-    - Select one of the newly created 2D data objects
+    - Select any of the newly created 2D data objects
     - And under the *data manipulation* drop-down menu, select *split data* |rarr| *based on electrode geometry*
 
 
 Cursory Interpretation
 ----------------------
 
-The normalized voltage, apparent resistivity and apparent chargeability pseudo-sections for profile 1 (most Northern) are shown below. Since the dipole-pole and pole-dipole data have different sensitivities to the same structures, we see the pseudo-sections are not identical. Both datasets generally show a range of apparent resistivities spanning 4 orders of magnitude. A dominant resistive structure exists within the Western portion of the survey line. Whereas in the Eastern portion of the survey, there is a more conductive structure that may extend to significant depth. Both the dipole-pole and pole-dipole data show a notable IP signature near the middle of the survey line. However, the signatures manifest different in the dipole-pole and pole-dipole pseudo-sections.
+**For the tutorial data**, the normalized voltage, apparent resistivity and apparent chargeability pseudo-sections for profile 1 (most Northern) are shown below. Since the dipole-pole and pole-dipole data have different sensitivities to the same structures, we see the pseudo-sections are not identical. Both datasets generally show a range of apparent resistivities spanning 4 orders of magnitude. A dominant resistive structure exists within the Western portion of the survey line. Whereas in the Eastern portion of the survey, there is a more conductive structure that may extend to significant depth. Both the dipole-pole and pole-dipole data show a notable IP signature near the middle of the survey line. However, the signatures manifest different in the dipole-pole and pole-dipole pseudo-sections.
 
     - To view the data, you may select any data object and :ref:`plot with VTK <viewData>`
 

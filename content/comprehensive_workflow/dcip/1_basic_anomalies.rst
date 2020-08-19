@@ -4,16 +4,16 @@
 Understanding DC and IP Data
 ============================
 
-In order to properly interpret DC and IP data, it is import to first understand the characteristics of the anomalies due to basic structures. We also need to understand the nature of DC and IP data. Here, we investigate the DC signatures produced by compact conductors and resistors. We also consider the IP signature when one of the structures is chargeable. The knowledge gained here can be used to infer a realistic background model, the locations of anomalous structures and the level of data uncertainty.
+In order to properly interpret DC and IP data, it is import to first understand the characteristics of the anomalies due to basic structures. We also need to understand the nature of DC and IP data. Here, we investigate the DC signatures produced by compact conductors and resistors. We also consider the IP signature when the conductor is also chargeable. The knowledge gained here can be used to infer a realistic background model and the locations of anomalous structures from DC/IP data.
 
 For this section, we will simulate DC and IP data over a resistive block (:math:`\sigma` = 0.001 S/m) to the West and a conductive block (:math:`\sigma` = 0.1 S/m) to the East within a moderately conductive background (:math:`\sigma_b` = 0.01 S/m). The background and resistor are non-chargeable but the conductor has been given an integrated chargeability of :math:`\eta` = 100 ms. Both blocks extend from a depth of 50 m to a depth of 250 m and extend infinitely in the North-South direction. Data are simulated for dipole-dipole, pole-dipole and dipole-pole electrode configurations.
 
 
 .. figure:: images/anomaly_model.png
     :align: center
-    :width: 500
+    :width: 700
 
-    Conductivity model (left) and chargeability model (right) sliced horizontally at a depth of 150 m.
+    Conductivity model (left) and chargeability model (right).
 
 
 .. _comprehensive_workflow_dcip_1_voltage:
@@ -47,9 +47,9 @@ where :math:`r_{AM}` is the distance between electrodes *A* and *M*; likewise fo
 
 Below, we see DC data in `pseudo-section <https://gpg.geosci.xyz/content/DC_resistivity/DC_data.html#plotting-raw-data>`__ for our example conductivity model for 3 standard electrode configurations. Note that:
 
-	- The data values decrease in magnitude as the electrode spacing increases. This is expected based on our expression for defining DC data.
-	- Data sensitive to conductors will manifest as an anomalous decrease in amplitude and data sensitive to resistors will manifest as an anomalous increase in amplitude. This is also consistent with our definition of DC data.
-	- The anomalous structures corresponding to each electrode configuration have different shape. This is expected given the data are dependent on the electrode geometry.
+	- the data values decrease in magnitude as the electrode spacing increases. This is expected based on our expression for defining DC data.
+	- data sensitive to conductors will manifest as an anomalous decrease in the magnitude of the normalized voltage. And data sensitive to resistors will manifest as an anomalous increase in the magnitude of the normalized voltage. This is consistent with our definition of DC data.
+	- the anomalous structures corresponding to each electrode configuration have different shapes. This is expected given the data are dependent on the electrode geometry.
 
 
 .. figure:: images/anomaly_voltage.png
@@ -78,10 +78,10 @@ By computing apparent resistivities, you can:
 
 Below, we see apparent resistivities for our example conductivity model for 3 standard electrode configurations. Note that:
 
-	- For data that are only sensitive to the background, the apparent resistivity is equal to the true background resistivity (:math:`\rho_b = 1/\sigma_b = 100 \; \Omega m` ).
-	- Data sensitive to the conductor results in lower apparent resistivities and data sensitive to the resistor results in higher apparent resistivities.
-	- Since the data are dependent on the electrode geometry, so are the apparent resistivities.
-	- The horizontal and vertical position of signatures in the pseudo-section are correlated with the locations of their respective anomalous bodies.
+	- for data that are only sensitive to the background, the apparent resistivity is equal to the true background resistivity (:math:`\rho_b = 1/\sigma_b = 100 \; \Omega m` ).
+	- data sensitive to the conductor results in lower apparent resistivities and data sensitive to the resistor results in higher apparent resistivities.
+	- since the data are dependent on the electrode geometry, so are the apparent resistivities.
+	- the horizontal and vertical position of signatures in the pseudo-section are correlated with the locations of their respective anomalous bodies.
 
 
 
@@ -100,9 +100,9 @@ Induced Polarization
 
 When collecting DC (and IP) data, repeated measurements are acquired by applying a duty cycle for the source current. When the Earth is chargeable, a decaying voltage is observed during the off-time. The off-time decaying voltage is referred to as the IP response. The decay rate and magnitude of the IP response depends on the dimensions and character of the chargeable body and the electrode geometry. For reference:
 
-	- :math:`V_m` is the DC voltage at saturation
-	- :math:`V_\sigma` is the instantaneous increase or decrease in voltage due to DC resistivity
-	- :math:`V_s` is the magnitude of the IP contribution at saturation
+	- :math:`V_m` is the observed voltage for a steady-state current
+	- :math:`V_\sigma` is the instantaneous increase or decrease in voltage attributed to DC resistivity
+	- :math:`V_s` is the magnitude of the IP contribution for a steady-state current
 
 
 .. figure:: images/anomaly_ipsurvey.png
@@ -113,7 +113,7 @@ When collecting DC (and IP) data, repeated measurements are acquired by applying
 Chargeability Definitions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-IP data can be somewhat confusing, as there are multiple definitions of chargeability and normalizations that are used in practice. The most common definitions of chargeability are:
+IP data can be somewhat confusing, as there are multiple definitions of chargeability used in practice. In addition, a multiplication factor may be applied so that chargeability values are more easy to work with. The most common definitions of chargeability are:
 
 
 **1. Intrinsic Chargeability:** The intrinsic chargeability is the ratio between the IP voltage just after shutoff and the steady-state voltage, i.e.:
@@ -139,9 +139,9 @@ where :math:`t_1` and :math:`t_2` denote the times over which the measured volta
 IP Data
 ^^^^^^^
 
-IP data are generally represented as *apparent chargeabilities* (:math:`\eta_a`) or as *secondary potentials* (:math:`\phi_s`) attributed to the IP response. IP data can be challenging to work with because there are multiple definitions for the physical property. To remedy this, we talk about the benefits of a linearized model for IP.
+IP data are generally represented as *apparent chargeabilities* (:math:`\eta_a`) or as *secondary potentials* (:math:`\phi_s`) attributed to the IP response. IP data can be challenging to work with because there are multiple definitions for the physical property. To remedy this, data are generally inverted using a linearized formulation.
 
-Let :math:`\mathcal{F}[\sigma]` be the forward modeling operation that computes the DC electric potential due to a conductivity model. According to the `theory section of the DCIP OcTree manual <https://dcipoctree.readthedocs.io/en/latest/content/theory.html#forward-modelling>`__ , the secondary potentials attributed to IP are given by:
+Let :math:`\mathcal{F}[\sigma]` be the forward modeling operation that computes the DC electric potentials due to a conductivity model. According to the `theory section of the DCIP OcTree manual <https://dcipoctree.readthedocs.io/en/latest/content/theory.html#forward-modelling>`__, the secondary potentials attributed to IP are given by:
 
 .. math::
 	\phi_s = \mathcal{F}[\sigma (1-\eta )] - \mathcal{F}[\sigma]
@@ -150,31 +150,31 @@ Let :math:`\mathcal{F}[\sigma]` be the forward modeling operation that computes 
 where :math:`\eta` is the intrinsic chargeability. And the apparent chargeability is given by:
 
 .. math::
-	\eta_a = \frac{\mathcal{F}[\sigma (1-\eta )] - \mathcal{F}[\sigma]}{\mathcal{F}[\sigma]}
+	\eta_a = \frac{\mathcal{F}[\sigma (1-\eta )] - \mathcal{F}[\sigma]}{\mathcal{F}[\sigma (1-\eta )]}
 
 
 To handle any definition and normalization for the chargeability model/data, the linearized forward model is given by:
 
 .. math::
-	\mathbf{d} = \boldsymbol{J \eta} \;\;\textrm{where} \;\;
+	\mathbf{d_{IP}} = \boldsymbol{J \eta} \;\;\textrm{where} \;\;
 	\begin{cases}
-	J_{ij} = \frac{\partial\, \phi_i [\sigma]}{\partial\, \textrm{ln}[\sigma_j]} \;\;\;\;\; \textrm{for} \; \mathbf{d}=\phi_s \\
-	J_{ij} = \frac{\partial\, \big [ \textrm{ln} \phi_i [\sigma] \big ]}{\partial\, [ \sigma_j ]} \; \textrm{for} \; \mathbf{d}=\eta_a
+	J_{ij} = \frac{\partial\, \phi_i [\sigma]}{\partial\, \textrm{ln}[\sigma_j]} \;\;\;\;\; \textrm{for} \; \mathbf{d_{IP}}=\phi_s \\
+	J_{ij} = \frac{\partial\, \big [ \textrm{ln} \phi_i [\sigma] \big ]}{\partial\, [ \sigma_j ]} \; \textrm{for} \; \mathbf{d_{IP}}=\eta_a
 	\end{cases}
 
 
 Note that the linearized operator :math:`\mathbf{J}` **only** depends on the background electrical conductivity model and **not** on the chargeability. As a result:
 
-	- **Any definition or normalization** of apparent or intrinsic chargeability can be used for apparent chargeability data. The inversion will recover a model that is defined using the same convention as the data.
+	- **Any definition or normalization of apparent or intrinsic chargeability** can be used for apparent chargeability data. The inversion will recover a model that is defined using the same convention as the data.
 	- If secondary potential data are being modeled, the user **must** use intrinsic chargeability with :math:`0 \leq \eta \leq 1` **or** normalize the data before inverting.
 
 
-Below, we see apparent chargeability data for our example integrated chargeability model for 3 standard electrode configurations. Note that:
+Below, we see apparent chargeability data for our example chargeability model for 3 standard electrode configurations. Note that:
 
-	- The apparent chargeabilities fall within the range of values defined by the true chargeability model
-	- Data sensitive to the chargeable body results in higher apparent chargeabilities and data away from chargeable bodies results in small apparent chargeability values
-	- Since the data are dependent on the electrode geometry, so are the apparent chargeabilities
-	- The horizontal and vertical positions of signatures in the pseudo-section are correlated with the locations of their respective anomalous bodies.
+	- the apparent chargeabilities fall within the range of values defined by the true chargeability model
+	- data sensitive to the chargeable body manifests as higher apparent chargeabilities and data away from the chargeable body manifests as small apparent chargeability values
+	- since the data are dependent on the electrode geometry, so are the apparent chargeabilities
+	- the horizontal and vertical positions of signatures in the pseudo-section are correlated with the locations of their respective anomalous bodies
 
 
 .. figure:: images/anomaly_appchg.png
@@ -182,16 +182,16 @@ Below, we see apparent chargeability data for our example integrated chargeabili
     :width: 700
 
 
-Effects of Resistivity Models on IP Inversion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Effects of Conductivity Models on IP Inversion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Successful IP inversion requires an accurate background conductivity model. That is because the background conductivity model is used to construct the forward modeling operator :math:`\mathbf{J}`.
 
-Here we invert the apparent chargeability data for the practice example. On the left, we show the set of background conductivity models that were used. On the right, we show the recovered integrated chargeability models. From the figure below, we see that:
+Here we invert the apparent chargeability data for the practice example. On the left, we show the set of background conductivity models that were used. On the right, we show the recovered chargeability models. From the figure below, we see that:
 
-	- The best result is obtained if the true conductivity model is available for the background model.
-	- If the background conductivity model is generally similar to the true conductivity model, you will recover the region of largest chargeability with some artifacts. Depending on the quality of your background conductivity model, you may recover a reasonable chargeability model.
-	- A homogeneous background model **may** place the region of highest chargeability in the correct location. **However**, the magnitude of the anomalous chargeable body may be incorrect and there will almost certainly be major artifacts.
+	- the best result is obtained if the true conductivity model is used for the background model.
+	- if the background conductivity model is generally similar to the true conductivity model, you will recover the region of largest chargeability with manageable artifacts. Depending on the quality of your background conductivity model, you may recover a reasonable chargeability model.
+	- a homogeneous background model **may** place the region of highest chargeability in the correct location. **However**, the magnitude of the anomalous chargeable body may be incorrect and there will almost certainly be major artifacts.
 
 
 

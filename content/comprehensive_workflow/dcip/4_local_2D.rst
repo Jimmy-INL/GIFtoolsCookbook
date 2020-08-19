@@ -79,7 +79,7 @@ We can now use the DCIP2D package to invert DC data for a single profile line. T
 
         - *Trade-off parameter:* We set to *Default* and set the *max number of iterations* to 20
         - *Solver:* the maximum number of iterations for the CG solve was increased to 30
-        - *Length scales:* Choose *Alphas* and set *Alpha_s* = 1e-6 and *Alpha_x* = *Alpha_z* = 1
+        - *Length scales:* Choose *Alphas* and set *alpha S* = 1e-6 and *alpha X* = *alpha Z* = 1
 
     - **Advanced Tab: Parameter 2**
 
@@ -89,7 +89,7 @@ We can now use the DCIP2D package to invert DC data for a single profile line. T
 
 For synthetic modeling, we know the uncertainties on our data. With real data, we cannot be 100% sure that we have correctly estimated the uncertainties. We set the trade-off parameter to *Default* in order to see the entire Tikhonov curve and not make assumptions about the target misfit.
 
-The starting and reference models were chosen from the distribution of apparent resistivity values observed in pseudo-section. *Alpha_s* was set very low because the reference model is almost certainly not a reasonable first approximation of the true resistivity structure. Thus were are providing a starting model for the inversion and letting the data constrain the result. This is known as inverting for the smoothest model.
+The starting and reference models were chosen from the distribution of apparent resistivity values observed in pseudo-section. *alpha S* was set very low because the reference model is almost certainly not a reasonable first approximation of the true resistivity structure. Thus were are providing a starting model for the inversion and letting the data constrain the result. This is known as inverting for the smoothest model.
 
 
 .. _comprehensive_workflow_dcip_4_IP:
@@ -127,7 +127,7 @@ We can now use the DCIP2D package to invert the IP data for a single profile lin
     - **Advanced Tab: Parameter 1**
 
         - *Trade-off parameter:* Set to *Default* and set the *max number of iterations* to 10 (convergence for IP is fast)
-        - *Length scales:* Choose *Alphas* and set *Alpha_s* = 1e-6 and *Alpha_x* = *Alpha_z* = 1
+        - *Length scales:* Choose *Alphas* and set *alpha S* = 1e-6 and *alpha X* = *alpha Z* = 1
         - *Solver:* the maximum number of iterations for the CG solve was increased to 30
         - *Bounds:* Set *Lower* = 0 and *Upper* = 1e6
 
@@ -139,7 +139,7 @@ We can now use the DCIP2D package to invert the IP data for a single profile lin
 
 For synthetic modeling, we know the uncertainties on our data. With real data, we cannot be 100% sure that we have correctly estimated the uncertainties. We set the trade-off parameter to *Default* in order to see the entire Tikhonov curve and not make assumptions about the target misfit. The IP inversion converges quickly so we can reduce the *max number of iterations* parameter.
 
-*Alpha_s* was set very low because the reference model is almost certainly not a reasonable first approximation of the true resistivity structure. Thus were are providing a starting model for the inversion and letting the data constrain the result. This is known as the smoothest model. We set a lower bound of 0 to force the recovered chargeabilities to be positive. Because we do not have an upper bound for the inversion, we set the value to something very large.
+*alpha S* was set very low because the reference model is almost certainly not a reasonable first approximation of the true resistivity structure. Thus were are providing a starting model for the inversion and letting the data constrain the result. This is known as the smoothest model. We set a lower bound of 0 to force the recovered chargeabilities to be positive. Because we do not have an upper bound for the inversion, we set the value to something very large.
 
 The background conductivity model is chosen as the recovered model from the 2D DC inversion. Discussion regarding how this model was chosen is covered on the next page. In general, we are looking for chargeable structures in a non-chargeable background. As a result, the reference model was set to 0. To ensure a non-zero model update at the first iteration, a very small value (1e-2) is chosen for the starting model.
 
