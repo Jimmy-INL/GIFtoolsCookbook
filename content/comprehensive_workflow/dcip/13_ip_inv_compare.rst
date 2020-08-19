@@ -32,7 +32,7 @@ Discussion of Parameters
 **Weighting constants (alpha S, E, N, Z):** To recover the smoothest model, we set *alpha S* = 1e-6 (or something else very small). By doing this, the contribution of the :ref:`smallness term in the model objective function <modelObjectiveFunction>` becomes negligible. By setting *alpha E* = 1, *alpha N* = 4 and *alpha Z* = 1, we wanted to smooth out artifacts associated with EW survey lines but did not want to excessively force NS smoothness in recovered chargeability structures.
 
 
-**Initial and reference models:** Here, we assume that we are looking for chargeable bodies within a non-chargeable background. As a result, the *reference model* is set to zero. The inversion connot produce a model update for a 0 model. As a result, the *starting model* is set to something sufficiently small.
+**Initial and reference models:** Here, we assume that we are looking for chargeable bodies within a non-chargeable background. As a result, the *reference model* is set to zero. The inversion cannot produce a model update for a 0 model. As a result, the *starting model* is set to something sufficiently small.
 
 
 **Bounds:** Chargeability is a strictly positive physical property. As a result we set a *lower bound* of 0. The *upper bound* is made redundant by choosing a value much larger than the range of apparent chargeabilities. Note that DC inversion does not have this problem because we invert for the log-conductivity which can be negative.
@@ -85,7 +85,7 @@ Discussion of Parameters
 **Weighting constants (alpha S, E, N, Z):** To recover the smoothest model, we set *alpha S* = 1e-6 (or something else very small). By doing this, the contribution of the :ref:`smallness term in the model objective function <modelObjectiveFunction>` becomes negligible. By setting *alpha E* = 1, *alpha N* = 4 and *alpha Z* = 1, we wanted to smooth out artifacts associated with EW survey lines but did not want to excessively force NS smoothness in recovered chargeability structures.
 
 
-**Initial and reference models:** Here, we assume that we are looking for chargeable bodies within a non-chargeable background. As a result, the *reference model* is set to zero. The inversion connot produce a model update for a 0 model. As a result, the *starting model* is set to something sufficiently small.
+**Initial and reference models:** Here, we assume that we are looking for chargeable bodies within a non-chargeable background. As a result, the *reference model* is set to zero. The inversion cannot produce a model update for a 0 model. As a result, the *starting model* is set to something sufficiently small.
 
 
 **Bounds:** Chargeability is a strictly positive physical property. As a result we set a *lower bound* of 0. The *upper bound* is made redundant by choosing a value much larger than the range of apparent chargeabilities. Note that DC inversion does not have this problem because we invert for the log-conductivity which can be negative.

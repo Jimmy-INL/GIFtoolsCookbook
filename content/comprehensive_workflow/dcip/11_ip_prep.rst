@@ -5,11 +5,11 @@
 IP OcTree Inversion: Weights and Reference Models
 =================================================
 
-In this section we demonstrate how to:
+Weights are used to reduce artifacts causes by the sensitivity of the data to cell near electrodes. Starting and reference models can be used to constrain the data with a-priori information. In this section we demonstrate how to:
 
-	- Create a starting/reference model from the batch 2D inversion result
-	- Create near-surface interface weights
-	- Create sensitivity weights for the IP inversion
+    - Create near-surface interface weights
+    - Create sensitivity weights for the IP inversion
+    - Create a starting/reference model from the batch 2D inversion result
 
 
 .. _comprehensive_workflow_dcip_11_interface:
@@ -64,16 +64,16 @@ To counteract issues related to the sensitivity of the data with respect to cell
 Starting/Reference Model from Batch 2D Inversion
 ------------------------------------------------
 
-In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we generated a 3D chargeability model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting/reference model. To do this, we must interpolate the 3D tensore model onto the :ref:`OcTree mesh we generated in an earlier section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
+In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we generated a 3D chargeability model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting and/or reference model. To do this, we must interpolate the 3D tensor model onto the :ref:`OcTree mesh we generated in an earlier section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
 
     - :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
 
 
-**For the tutorial data**, the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptible convergence was observed.
+**For the tutorial data**, the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptable convergence was observed.
 
 
 .. figure:: images/mrefIP.png
     :align: center
     :width: 700
 
-    Interpolation parameters and reference/starting chargeability model on OcTree mesh for tutorial data sliced at an elevation of 50 m.
+    Interpolation parameters and reference/starting chargeability model on OcTree mesh for tutorial data.

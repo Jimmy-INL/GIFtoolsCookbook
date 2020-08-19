@@ -69,21 +69,21 @@ According the Tikhonov curve, the recovered model at iteration 3 has a good chan
 	3. :ref:`Plot with VTK <viewData>` to examine observed data, predicted data and normalized misfit.
 
 
-For line 5, the predicted data reproduces the field observations well but slightly underfits the amplitude of the IP anomaly in the dipole-pole data. Normalized misfits lie within [-2, 2]. The misfit map for the pole-dipole data shows uncorrelated errors but the dipole-pole misfit map shows some small coherent features associated with underfitting the anomaly amplitude. We will not do it here, but the user is encouraged to examine the misfit maps for other survey lines.
+For line 5, the predicted data reproduces the field observations well but slightly under-fits the amplitude of the IP anomaly in the dipole-pole data. Normalized misfits lie within [-2, 2]. The misfit map for the pole-dipole data shows uncorrelated errors but the dipole-pole misfit map shows some small coherent features associated with under-fitting the anomaly amplitude. We will not do it here, but the user is encouraged to examine the misfit maps for other survey lines.
 
 
 .. figure:: images/inv_ipoctree_line5_dipole_pole.png
     :align: center
     :width: 700
 
-    Predicted data, oberved data and normalized data misfit (dipole-pole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a colorscale from -2 to 2.
+    Predicted data, observed data and normalized data misfit (dipole-pole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a color scale from -2 to 2.
 
 
 .. figure:: images/inv_ipoctree_line5_pole_dipole.png
     :align: center
     :width: 700
 
-    Predicted data, oberved data and normalized data misfit (pole-dipole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a colorscale from -2 to 2.
+    Predicted data, observed data and normalized data misfit (pole-dipole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a color scale from -2 to 2.
 
 
 Recovered Model

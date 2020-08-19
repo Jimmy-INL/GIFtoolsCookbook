@@ -5,7 +5,7 @@
 DC OcTree Inversion: Weights and Reference Models
 =================================================
 
-Weights are used to reduce artifacts and starting/reference models can be used to constrain the data with a-priori information. In this section we demonstrate how to:
+Weights are used to reduce artifacts causes by the sensitivity of the data to cell near electrodes. Starting and reference models can be used to constrain the data with a-priori information. In this section we demonstrate how to:
 
     - Create near-surface interface weights
     - Create sensitivity weights for the DC inversion
@@ -51,7 +51,7 @@ To counteract issues related to the sensitivity of the data with respect to cell
     - :ref:`Load results <utilLoadResults>`
 
 
-**For the tutorial data** the input parameters and sensitivity weights are shown below. Generally a *truncation factor* of 0.05-0.2 of used. In this case, we set the *truncation factor* to 0.25. In earier inversion attempts, we found that large sensitivity weights forced near-surface conductive structures to collect in the space between surface lines.
+**For the tutorial data**, the input parameters and sensitivity weights are shown below. Generally a *truncation factor* of 0.05-0.2 of used. In this case, we set the *truncation factor* to 0.25. In earier inversion attempts, we found that large sensitivity weights forced near-surface conductive structures to collect in the space between surface lines instead of pushing them to an appropriate depth.
 
 
 .. figure:: images/sensitivityDC.png
@@ -64,12 +64,12 @@ To counteract issues related to the sensitivity of the data with respect to cell
 Starting/Reference Model from Batch 2D Inversion
 ------------------------------------------------
 
-In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we generated a 3D conductivity model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting/reference model. To do this, we must interpolate the 3D tensore model onto the :ref:`OcTree mesh we generated in the previous section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
+In the :ref:`2D batch inversion <comprehensive_workflow_dcip_6>` section, we generated a 3D conductivity model by interpolating the set of 2D slices. If we have confidence in the structures recovered from the batch 2D inversion, we may want to use it as a starting and/or reference model. To do this, we must interpolate the 3D tensor model onto the :ref:`OcTree mesh we generated in the previous section <comprehensive_workflow_dcip_7>` . To accomplish this, we use:
 
     - :ref:`Interpolate with nearest neighbour <objectFunctionalityNearest3D>`
 
 
-**For the tutorial data**, the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options* , the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptible convergence was observed.
+**For the tutorial data**, the parameters used and the resulting OcTree model are shown below. When *nearest neighbour* was used for the *padding cell options*, the padding in the reference model contained large anomalous structures that impacted the predicted data and created obvious artifacts in the inversion result. When using *set padding to constant* , the large discontinuity created at the edge of the core mesh region greatly impacted the regularization. The inversion tried to smooth this out at the expense of evenly fitting the data. It was only by using the *decay to constant* option that artifacts were minimized and acceptable convergence was observed.
 
 
 .. figure:: images/mrefDC.png

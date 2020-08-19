@@ -81,14 +81,14 @@ For line 5, the predicted data reproduces the field observations quite well. Nor
     :align: center
     :width: 700
 
-    Predicted data, oberved data and normalized data misfit (dipole-pole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a colorscale from -2 to 2.
+    Predicted data, observed data and normalized data misfit (dipole-pole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a color scale from -2 to 2.
 
 
 .. figure:: images/inv_dcoctree_line5_pole_dipole.png
     :align: center
     :width: 700
 
-    Predicted data, oberved data and normalized data misfit (pole-dipole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a colorscale from -2 to 2.
+    Predicted data, observed data and normalized data misfit (pole-dipole) for the 5th survey line. Predicted data are plotted on the same scale. Normalized misfits are plotted on a color scale from -2 to 2.
 
 
 Recovered Model
