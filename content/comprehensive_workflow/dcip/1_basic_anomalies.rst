@@ -23,7 +23,7 @@ DC Resistivity
 
 The DC resistivity technique injects electrical current at electrodes *A* and *B* and measures the difference in electric potential between electrodes *M* and *N*. Electrode *A* is generally designated the +ve current electrode (associated with a positive electric potential) and *B* is the -ve current electrode (associated with a negative electric potential). Electrodes *M* and *N* are referred to as the potential electrodes.
 
-.. figure:: images/anomaly_survey.png
+.. figure:: images/anomaly_survey.PNG
     :align: center
     :width: 400
 
@@ -105,7 +105,7 @@ When collecting DC (and IP) data, repeated measurements are acquired by applying
 	- :math:`V_s` is the magnitude of the IP contribution for a steady-state current
 
 
-.. figure:: images/anomaly_ipsurvey.png
+.. figure:: images/anomaly_ipsurvey.PNG
     :align: center
     :width: 350
 
