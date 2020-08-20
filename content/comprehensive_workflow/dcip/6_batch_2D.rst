@@ -76,7 +76,7 @@ Once you have completed the batch inversion, it is benefitial to compare the set
 
 
 
-.. figure:: images/mesh3D.png
+.. figure:: images/mesh3D.PNG
     :align: center
     :width: 500
 
@@ -93,7 +93,7 @@ Once the 3D mesh has been created, select any of the *Batch Inversion* objects a
 **For the tutorial data**, we see the set of recovered 2D conductivity models below.
 
 
-.. figure:: images/inv_dc2d_batch.png
+.. figure:: images/inv_dc2d_batch.PNG
     :align: center
     :width: 350
 
@@ -127,7 +127,7 @@ The process for creating and running a 2D IP batch inversion is nearly identical
 **For the tutorial data**, we used the :ref:`same parameters as before <comprehensive_workflow_dcip_4_IP>` when creating the template for the batch inversion; except for the trade-off parameter which was set to *Discrepancy* option with a chi-factor of 1. The 2D slices were places on the same 3D mesh, then interpolated to obtain the 3D chargeability model.
 
 
-.. figure:: images/inv_ip2d_batch.png
+.. figure:: images/inv_ip2d_batch.PNG
     :align: center
     :width: 350
 

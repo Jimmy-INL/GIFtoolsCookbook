@@ -42,7 +42,7 @@ Here, we import the DC, IP and topography data. **The tutorial data are in 3D UB
 .. note:: If data are UBC-GIF observed data format, the file will contain uncertainties. As part of this tutorial, we will discuss aspects of assigning appropriate uncertainties to the data.
 
 
-.. figure:: images/locations.png
+.. figure:: images/locations.PNG
     :align: center
     :width: 500
 

@@ -37,7 +37,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - the inversion is able to reach target misfit (chi-factor = 1)
 
 
-.. figure:: images/inv_dc2d_line1_convergence.png
+.. figure:: images/inv_dc2d_line1_convergence.PNG
     :align: center
     :width: 500
 
@@ -86,7 +86,7 @@ The conductivity model recovered at the 12th iteration is shown below. According
     - There is a very resistive structure East of *X* = 700 m.
 
 
-.. figure:: images/inv_dc2d_line1_model12.png
+.. figure:: images/inv_dc2d_line1_model12.PNG
     :align: center
     :width: 500
 
@@ -107,7 +107,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - the inversion is able to reach target misfit between iterations 5 and 6 (chi-factor = 1)
 
 
-.. figure:: images/inv_ip2d_line1_convergence.png
+.. figure:: images/inv_ip2d_line1_convergence.PNG
     :align: center
     :width: 500
 
