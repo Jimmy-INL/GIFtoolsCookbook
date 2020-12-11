@@ -28,9 +28,9 @@ E3DMT Mesh Utility
 
 - Input Options (`related documentation for E3DMT <https://e3dmt.readthedocs.io/en/e3dmt/content/inputfiles/createOcTree.html>`_)
 
-	.. figure:: ../../../images/utilityE3DMTMeshEditOption_panel1.png
-	    :align: center
-	    :width: 600
+    .. figure:: ../../../images/utilityE3DMTMeshEditOption_panel1.png
+        :align: center
+        :width: 600
 
 .. important:: Regarding the *shift_data* button. If MT data are used to design the survey, *shift_data* will create a receivers file that places all receivers on the discretized surface. If ZTEM data are used to design the survey, *shift_data* will create a receivers file such that true flight height is preserved over the discretized surface.
 
@@ -49,9 +49,9 @@ E3DMT v2 Mesh Utility
 
 - Input Options (`related documentation for E3DMT v2 <https://e3dmt.readthedocs.io/en/e3dmt_v2/content/inputfiles/createOcTree.html>`_)
 
-	.. figure:: ../../../images/utilityE3DMTv2MeshEditOption_panel1.png
-	    :align: center
-	    :width: 600
+    .. figure:: ../../../images/utilityE3DMTv2MeshEditOption_panel1.png
+        :align: center
+        :width: 600
 
 
 
@@ -70,38 +70,38 @@ E3D_ver2_Tiled Mesh Utility
 
 - Input Options (`related documentation for E3D v2 tiled <https://e3d.readthedocs.io/en/latest/content/inputfiles/createOcTree.html#create-octree-mesh-input-file>`_)
 
-	.. figure:: ../../../images/utilityE3DMeshEditOption_panel2.png
-	    :align: center
-	    :width: 600
+    .. figure:: ../../../images/utilityE3DMeshEditOption_panel2.png
+        :align: center
+        :width: 600
 
 
-	- Core cell dimension
-		- East, North and Thickness dimension of the smallest octree level
+    - Core cell dimension
+        - East, North and Thickness dimension of the smallest octree level
 
-	- Octree Refinement Level
-		- Power of expension (Min. fact.): Integer value of power 2
-		- Minimum cell size (min_cell_size_fwd): Sets the minimum cell size for the forward mesh, factor of base core cell.
-		- Maximum topography-based cell size (max_topo_cell): Largest cell before rapid octree expansion.
+    - Octree Refinement Level
+        - Power of expension (Min. fact.): Integer value of power 2
+        - Minimum cell size (min_cell_size_fwd): Sets the minimum cell size for the forward mesh, factor of base core cell.
+        - Maximum topography-based cell size (max_topo_cell): Largest cell before rapid octree expansion.
 
-	- Padding cell expansion
-		- Distance to expand outside the core region along the Cartesian directions.
+    - Padding cell expansion
+        - Distance to expand outside the core region along the Cartesian directions.
 
-	- Topography
-		- Value: Assume flat topography at given elevation (m)
-		- Object: Topography defined by a ``TOPOdata`` object
+    - Topography
+        - Value: Assume flat topography at given elevation (m)
+        - Object: Topography defined by a ``TOPOdata`` object
 
-	- Core Region refinement (Inversion)
-		- Sets the discretization depth for the first three octree levels (global inversion mesh)
+    - Core Region refinement (Inversion)
+        - Sets the discretization depth for the first three octree levels (global inversion mesh)
 
-	- Core region refinement (Forward)
-		- Sets the discretization depth for the first three octree levels (local forward meshes)
+    - Core region refinement (Forward)
+        - Sets the discretization depth for the first three octree levels (local forward meshes)
 
-	- Number of cells around Rx
-		- Number of cells around each receiver for the first three octree levels
+    - Number of cells around Rx
+        - Number of cells around each receiver for the first three octree levels
 
-	- Make polygon
-		- Value: Distance (m) outside the data convex haul
-		- Object: Points defining the outer core region
+    - Make polygon
+        - Value: Distance (m) outside the data convex haul
+        - Object: Points defining the outer core region
 
 
 
@@ -120,10 +120,10 @@ Set parameters to compute approximate senstivity weights model for DC or IP octr
 
 **Input Options** (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
 
-	- *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's or probing approach. A value of 10 is reasonable.
+    - *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's or probing approach. A value of 10 is reasonable.
 
-	- *Computation method:* Choosing the random vectors for applying Hutchinson's approach or probing method.
+    - *Computation method:* Choosing the random vectors for applying Hutchinson's approach or probing method.
 
-	- *Truncation Factor:* We must apply a truncation factor due to the large dynamic range of the sensitivities. A value between 0.01 and 0.2 is good.
+    - *Truncation Factor:* We must apply a truncation factor due to the large dynamic range of the sensitivities. A value between 0.01 and 0.2 is good.
 
-	- *Apply Smoothing:* Artifacts related to approximating the sensitivities can negatively impact the final inversion result. To mitigate this, we 'smooth out' these artifact. This paramter specifies the number of times smoothing is applied. A value of 1-5 works well.
+    - *Apply Smoothing:* Artifacts related to approximating the sensitivities can negatively impact the final inversion result. To mitigate this, we 'smooth out' these artifact. This paramter specifies the number of times smoothing is applied. A value of 1-5 works well.
