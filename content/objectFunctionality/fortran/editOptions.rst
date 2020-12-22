@@ -113,7 +113,7 @@ DC/IP Octree Sensitivity Utility
 
 Set parameters to compute approximate senstivity weights model for DC or IP octree inversion. The utility will look at the data type to determine whether DC or IP weights are being computed.
 
-.. figure:: ../../../images/utilityDCsensitivity.png
+.. figure:: ../../../../images/utilityDCsensitivity.png
     :align: center
     :width: 400
 
