@@ -48,6 +48,7 @@ Once the inversion has completed:
     - the inversion reaches target misfit (chi-factor = 1 in this case) between iteration 2 and 3, at which point the curve begins to 'flatten'; recall that there are several Gauss-Newton iteration for each beta. And the algorithm is converging over the course of the beta cooling schedule.
 
 
+
 .. figure:: images/convergence_ipoctree.PNG
     :align: center
     :width: 500
@@ -95,6 +96,7 @@ Recovered Model
 	- Several prominent chargeable features are observed in the Z = 349 m slice.
     - The large resistor to the West is non-chargeable
     - The large NS conductor does not exhibit chargeability
+
 
 
 .. figure:: images/model_ipinv_smoothest_iter3.png
