@@ -176,6 +176,24 @@ Browser
 
 .. _PythonInstaller:
 
+
+Installing Fortran Modeling/Inversion Codes
+-------------------------------------------
+
+Forward modeling, inversion and other specialized functionality is carried out using a set of external
+executables written in Fortran. For each modeling code (Mag3D, DCIPoctree, E3DMT, etc...), there is a separate
+coding package. **Individual licenses must be purchased to use each Fortran coding package in addition to the
+GIFtools license**. If the user is licensed to use particular Fortran coding package, the installation steps
+are as follows:
+
+- Acquire the .zip file containing the Fortran coding package. Note that Consortium sponsors have specialized access and may login and download Fortran packages from the `UBC-GIF website <https://gif.eos.ubc.ca/about>`__ .
+
+- Unzip the file and place the contents into a desired folder.
+
+- Add the folder to your computer's *path variables*. That is, go to your computer's settings to 'edit system environment variables', and add the folder to the one called 'PATH'. If this step is not completed, your computer will not find the necessary executables when running the Fortran code from the GUI.
+
+
+
 Python Installation (Optional)
 ------------------------------
 
