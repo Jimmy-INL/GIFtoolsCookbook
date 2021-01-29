@@ -12,12 +12,19 @@ Weights are used to reduce artifacts causes by the sensitivity of the data to ce
     - Create a starting/reference model from the batch 2D inversion result
 
 
+.. important:: The ideal weights for IP inversion is very problem-dependent. And as of yet, there isn't fool-proof recipe for constructing these weights. We will, however, describe a reasonable set of starting parameters for these utilities. We generally encourage the user to implement interface weights OR sensitivity weights but NOT both; unless they are very confident in how it will impact their inversion result.
+
 .. _comprehensive_workflow_dcip_11_interface:
 
 Near-Surface Interface Weighting
 --------------------------------
 
-When inverting IP data, the code has a tendency to place chargeable structures near electrode locations due to the sensitivity of the data to those locations. One way to counteract this problem is to generate interface weights. By forcing lateral smoothness within the top few layers of cells, we can limit near-surface artifacts and force the inversion to place chargeable structures at the appropriate depths. To create interface weights:
+When inverting IP data, the code has a tendency to place conductive structures near electrode locations due to the sensitivity of the data to those locations. One way to counteract this problem is to generate interface weights. By forcing lateral smoothness within the top few layers of cells, we can limit near-surface artifacts and force the inversion to place chargeable structures at the appropriate depths. The rule of thumb is to define 2-4 layers. From the top layer down, the weighting value should decrease exponentially by a factor of 2-3; e.g. [20, 10, 5].
+
+Near-surface interface weights are simple to implement and fairly intuitive to understand. However this approach for reducing the aforementioned artifacts has its pros and cons. When the lateral variation in near-surface chargeability is smooth, this approach is ideal. Essentially, the near-surface geology matches the regularization you are imposing. Therefore you can reduce the artifacts without compromising the inversion's ability to fit the data. When the lateral variation in near-surface chargeability is highly variable, you are imposing a regularization that fights against your inversion's ability to fit the data. When excessive near-surface interface weighting is applied, the inversion will have a very difficult time reaching target misfit.
+Limited testing also suggests near-surface interface weighting is less effective when the topography is very rough.
+
+To create interface weights:
 
     - :ref:`Create and interface weights utility <createinterfWeights>`
     - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
@@ -41,7 +48,11 @@ When inverting IP data, the code has a tendency to place chargeable structures n
 Sensitivity Weighting for IP Inversion
 --------------------------------------
 
-To counteract issues related to the sensitivity of the data with respect to cells near electrodes, you may choose to implement sensitivity weighting. To create a cell weights model for the IP inversion using the sensitivities, do the following:
+Sensitivity weighting is another approach for reducing near-surface artifacts at the location of electrodes. For this approach, we approximate the root mean squared sensitivities for a given model and use them to construct cell weights. The cell weights counteract the inversion's natural inclination to place chargeable structures at the locations of highest sensitivity; i.e. at the electrode locations.
+
+This approach is better suited when the topography is rough; compared to interface weighting. The user should keep several things in mind when using sensitivity weights. 1) For the IP octree code, the sensitivities are approximated with Hutchinson's method because it is too time-consuming to compute the true sensitivities. The user will need to apply a smoothing factor to reduce 'pixelation' in the cell weights model. If the sensitivity weighting is too large, the inversion may place artifacts in the space between surface lines. Generally, we suggest setting the *number of samples* to be 5-20, using a *truncation factor* of 0.05-0.2 and to *smooth* 1-4 times.
+
+To create a cell weights model for the IP inversion using the sensitivities, do the following:
 
     - :ref:`Create a DCIP sensitivity weights utility <createDCsensitivities>`
     - Use :ref:`edit options <utilEditOptions_DCsensitivity>` to set the parameters and click *Apply*
