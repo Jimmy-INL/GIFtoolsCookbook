@@ -107,7 +107,7 @@ To create a full 3D model from the merge 2D models created in :ref:`the merging 
 Then you can use that model as starting and reference model:
 
 - :ref:`Copy the inversion object from Case 2 <invCopyOptions>`
-- :ref:`Set the reference and starting model <invDCIP3DInputOptions>`
+- :ref:`Set the reference and starting model <invEditOptions_dcip3d>`
 - :ref:`Write All <invWriteAll>` and :ref:`Run <invRun>`
 
 .. figure:: ./../../../images/AtoZ_DCIP/AtoZ_DCIP_Started2D.png

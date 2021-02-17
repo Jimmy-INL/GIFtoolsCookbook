@@ -166,68 +166,82 @@ values from :math:`\delta` is a user-defined threhold parameter ([DEFAULT=1e-2])
 
 .. _invEditOptions_dcip3d:
 
-DCIP3D
-======
+DCIP3D v5.5
+===========
 
 .. figure:: ../images/dc3d.png
     :align: center
     :width: 700
 
-    Basic (left), model and bounds (right) tabs.
+    Inversion parameters tab (left), Models and constraints tab (right).
 
 Functionality specific to the ``DCIPinversion`` object
 
 
-Discrete topo/weights -> Create Files (make_wdat)
--------------------------------------------------
+Inversion Parameters Tab
+------------------------
 
-.. figure:: ../../../../images/Inputs_make_wdat.png
-    :align: center
-    :width: 350
+**Mesh:** The 3D tensor mesh file used in the DC or IP inversion
+
+**Observed Data:** a *DC3Ddata* or *IP3Ddata* object
+
+**Data format:** the *surface* and *general* buttons are used to set whether the output observed data file is formatted as surface data or in general format (usually borehole).
+
+**Topography:**
+
+	- **TOPOdata:** An xyz *TOPOdata* object. If you leave as *null*, the topography will correspond to the top of your mesh.
+
+	- **ACTIVEmodel:** An *ACTIVEmodel* object that defines which cells are above and below the surface topography.
+
+	- **IDX file:** File path to an idx file. This is a special file which can be used to define topography for the DCIP3D coding package.
+
+**Conductivity model (IP inversion only):** Define a constant value for all Earth cells or provide a GIFmodel.
+
+**Wavelet parameters:** Define parameters for the wavelet compression for the sensitivity matrix. For more on these parameters, see the `DCIP3D v5.5 manual <https://dcip3d.readthedocs.io/en/latest/content/runprog/dcinv.html#parameter-definitions>`__ .
+
+**Vector memory:** Specifies how solution vectors are to be stored in the computer’s memory. For more on these parameters, see the `DCIP3D v5.5 manual <https://dcip3d.readthedocs.io/en/latest/content/runprog/dcinv.html#parameter-definitions>`__ .
+
+**Forward problem - Solver tolerance:** Sets the relative tolerance for the accuracy of the solution of the forward problem.
+
+Models and Constraints Tab
+--------------------------
+
+**Inversion Mode:** Either use the discrepancy principle to choose the optimum trade-off parameter or fix the trade-off parameter for the optimization. For more on these parameters, see the `DCIP3D v5.5 manual <https://dcip3d.readthedocs.io/en/latest/content/runprog/dcinv.html#parameter-definitions>`__ .
+
+**Sensitivity Matrix:** The *Default* option is selected if the user must form the sensitivity matrix for the problem. If you have done an inversion with the same data and mesh, you can use the *already exists* option to set the file path to the sensitivity matrix binary file.
+
+**Weighting:** Sets the weights for smallness and smoothness regularization in x, y and z; for relevant equations :ref:`fundamentals of inversion <Fundamentals_alphas>`
+
+	- **Default:** Sets the values of *alpha S*, *alpha X*, *alpha Y* and *alpha Z* based on cell dimensions
+	- **Alphas:** Sets specific values for *alpha S*, *alpha X*, *alpha Y* and *alpha Z*
+	- **Lengths:** User sets values *Len E*, *Len N* and *Len Z* which define the values of *alpha X*, *alpha Y* and *alpha Z* relative to *alpha S*.
+
+**Weights object:**
+
+	- *No weighting:* select if you have not created sensitivity weighting yet or if no weighting is being applied.
+
+	- *Weights object:* A GIFweights object that represents sensitivity weights or an additional weights object. Note that when creating sensitivity weights, you can multiply this weights object by the sensitivity weights.
+
+**Active cells:** An *ACTIVEmodel* which denotes active cells in the inversion. If *null*, the active cells are determined by the topography.
+
+**Initial model:**
+
+	- *Value:* A constant background value
+
+	- *Object:* GIFmodel object
+
+	- *Default:* best-fitting halfspace
 
 
-``MAKE_WDAT`` is a utility used to make a ``w.dat`` file that has smoothing in the x- and y-directions for the first few layers that underlie the topography surface. It suppresses the tendency of the algorithm to make highly variable structure in these top layers of the model (`link to the dcip3d manual <https://dcip3d.readthedocs.io/en/latest/content/runprog/weights.html>`__ ).
+**Reference model:**
 
-.. note::
-	We stress that the above weighting should be applied with care. A strong horizontal smoothing can often eliminate horizontal changes in the conductivity, even if the earth model truly had these. The inclusion, and details, of the surface weighting therefore involves subjective decision by the u er. Without weighting, the model at the surface can be quite rough (due to electrod effects). On the other hand, local geology is also sometimes quite rough and hence the tr e earth model should exhibit a large heterogeneity.
+	- *Value:* A constant background value
 
+	- *Object:* GIFmodel object
 
-mesh
-	The 3D mesh file used in the DC or IP inversion
-topo
-	A topography file that is in the general format. Use null to apply to the top layers of the mesh.
+	- *Default:* best-fitting halfspace
 
-Layer
-	Specify he number of layers to implement the weighting. The air layers will not be weighted and the remaining portion of the model will have a weight of 1.
-
-weights
-	Values of weights for the n layers specified on the previous line.
-
-
-The program ``MAKE_WDAT`` outputs two files:
-
-w.dat
-	A 3D weighting file to use in the inversion
-
-topo.idx (is ``Create File`` is selected)
-	The topography file in discrete format named from the last line in the input file. This file is not generated if the name line in the input file was null.
-
-.. _invDCIP3DInputOptions:
-
-Discrete topo/weights -> Set for Inversion
-------------------------------------------
-
-.. figure:: ../../../../images/set_for_inversion.png
-    :align: center
-    :width: 350
-
-Set the weights created with ``make_wdat`` in the inversion.
-
-
-Discrete topo/weights -> create Sensitivity weights
----------------------------------------------------
-
-Create a weighting files from a ``GIFmodel`` file (preferentially created from a ``sensitivity.txt`` file)
+**Role in model objective function:** To see the difference between *SMOOTH_MOD* and *SMOOTH_MOD_DIF* , see the :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>` .
 
 
 .. _invEditOptions_dcipoctree:
