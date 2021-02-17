@@ -5,6 +5,9 @@
 Write inversion files to directory
 ==================================
 
+General
+-------
+
 Prior to running the inversion, the user must write the appropriate inversion files to the working directory. For inversion that require sensitivity calculations (magnetics, gravity, gravity gradiometry, IP, etc), see below. To write all files, regardless, click on the inversion item, select the menu showing its class (e.g., ``E3Dinversion``):
 
 **[Inversion class]** |rarr| **Write [inversion name] files**
@@ -14,7 +17,7 @@ Prior to running the inversion, the user must write the appropriate inversion fi
     :width: 400
 
 DCIP: Surface or General data format
-====================================
+------------------------------------
 
 For DCIP data object, GIFtools allow to export two types of data format for the inversion:
 - **Surface Data Format (recommended)**: Use this data format if the electrodes are at the surface. The Z-values will be excluded from the output data file and the inversion code will take care of projecting them at the surface. This avoid the risk of having electrodes in the air or underground.
@@ -25,17 +28,3 @@ For DCIP data object, GIFtools allow to export two types of data format for the 
 .. figure:: ../../../images/dcipForwardModelingWriteFiles.png
     :align: center
     :width: 400
-
-
-Write inversion files with a sensitivity prerequisite
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For those inversions that require sensitivity matrices (and weighting), using the **Write** **All inversion files** will work. The user has the ability to micro-manage the inversion and the same menu will also allow the user to write the sensitivity or weighting files to disk:
-
-.. figure:: ../../../images/invWriteAll.png
-    :align: center
-    :width: 400
-
-
-**NOTE:** Writing all inversion files will automatically write the sensitivity (and weighting) files for the user.
-

@@ -10,6 +10,7 @@ Inversion
 
        Set the working directory <setWorkDir>
        Edit Options <editOptions/index>
+       Sensitivity weights for DCIP3D <dcip3d_sensitivity>
        Write files <writeAll>
        Run <run>
        Load results <loadResults>
