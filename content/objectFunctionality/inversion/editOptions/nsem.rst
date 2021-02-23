@@ -110,7 +110,7 @@ Model Options
 
     - **Update reference model throughout:**
 
-        - *Un-checked:** The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
+        - *Un-checked:* The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
         - *Checked:* Each time beta is updated, the current recovered model is set as the reference model for the next beta value. This results in faster convergence but does not emphasize preserving structures in the original reference model as strongly.
 
     - **Role in model objective function:** See :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`
@@ -143,10 +143,10 @@ Inversion Parameters
 
     - **BICG settings:** If solving the forward problem using an iterative solver, these parameters specify the tolerances and stopping criteria for the BiCGstab algorithm.
 
-        **tol_bicg:** (default = 1e-11)
-        **tol_ipcg_bicg:** (default = 1e-5)
-        **max_it_bicg:** (default 150)
-        **freq_Aphi:** (default = 1e6)
+        - **tol_bicg:** (default = 1e-11)
+        - **tol_ipcg_bicg:** (default = 1e-5)
+        - **max_it_bicg:** (default 150)
+        - **freq_Aphi:** (default = 1e6)
 
 
 
@@ -265,7 +265,7 @@ Model Options
 
     - **Update reference model throughout:**
 
-        - *Un-checked:** The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
+        - *Un-checked:* The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
         - *Checked:* Each time beta is updated, the current recovered model is set as the reference model for the next beta value. This results in faster convergence but does not emphasize preserving structures in the original reference model as strongly.
 
     - **Role in model objective function:** See :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`
@@ -284,8 +284,8 @@ Inversion Parameters
 
     - **IPCG settings:** Sets tolerances for solving the system at each Gauss-Newton iteration using incomplete preconditioned conjugate gradient; see `E3DMT version 2 manual <https://e3dmt.readthedocs.io/en/manual_ver2/content/theory.html#gauss-newton-solve>`__ . Parameters are:
 
-        **tol_ipcg:** relative tolerance for solution (default = 0.01)
-        **max_iter_ipcg:** maximum number of IPCG iterations (20)
+        - **tol_ipcg:** relative tolerance for solution (default = 0.01)
+        - **max_iter_ipcg:** maximum number of IPCG iterations (20)
 
     - **Memory settings:** This code factors the forward system at each frequency for repeated use in the inversion algorithm. The user has a choice in where the factorizations are stored:
 

@@ -34,13 +34,13 @@ This functionality is responsible for setting all forward modeling parameters pe
 
     - **Model total field or secondary field:**
 
-        - If *total field* is selected, the data output from the forward modeling is the total field.
+        - **Total field:** the data output by the forward modeling is the total field.
 
-        - If *secondary (analytic)* is selected, the code will forward model the secondary field. It will do this by computing the total field then subtracting the analytic total field using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (analytic):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the analytic total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
-        - If *secondary (numeric)* is selected, the code will forward model the secondary field. It will do this by computing the total field then subtracting a numeric total field computation using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (numeric):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the numerically computed total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
-    - **Solver Options:** The forward problem can be solver using the direct Pardiso solver or the BiCG iterative solver. The parameters for the accuracy of the iterative solver are described in the `E3D v1 manual <https://e3d.readthedocs.io/en/e3d/content/inputfiles/inversion.html>`__ .
+    - **Solver Options:** The forward problem can be solver using the direct Pardiso solver or the BiCG iterative solver. The parameters for the accuracy of the iterative solver are described in the `E3D v1 manual <https://e3d.readthedocs.io/en/e3d/content/inputfiles/inversion.html#e3d-input-inv-ln19>`__ .
 
 
 Units
@@ -85,11 +85,11 @@ This functionality is responsible for setting all forward modeling parameters pe
 
     - **Model total field or secondary field:**
 
-        - If *total field* is selected, the data output from the forward modeling is the total field.
+        - **Total field:** the data output by the forward modeling is the total field.
 
-        - If *secondary (analytic)* is selected, the code will forward model the secondary field. It will do this by computing the total field then subtracting the analytic total field using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (analytic):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the analytic total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
-        - If *secondary (numeric)* is selected, the code will forward model the secondary field. It will do this by computing the total field then subtracting a numeric total field computation using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (numeric):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the numerically computed total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
     - **Solver Options:** The forward problem can be solver using the direct Pardiso solver or the BiCG iterative solver. The parameters for the accuracy of the iterative solver are described in the `E3D v1 manual <https://e3d.readthedocs.io/en/e3d/content/inputfiles/inversion.html>`__ .
 

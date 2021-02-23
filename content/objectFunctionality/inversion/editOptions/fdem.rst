@@ -41,11 +41,11 @@ Basic
 
     - **Model total field or secondary field:**
 
-        - If *total field* is selected, observed data are the total field.
+        - **Total field:** the data output by the forward modeling is the total field.
 
-        - If *secondary (analytic)* is selected, the code will assume the data are secondary field data. It will solve the forward problem by computing the total field then subtracting the analytic total field using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (analytic):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the analytic total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
-        - If *secondary (numeric)* is selected, the code will assume the data are secondary field data. It will solve the forward problem by computing the total field then subtracting a numeric total field computation using the homogeneous background conductivity provided. For a free-space primary field, let the background conductivity be 1e-8 S/m.
+        - **Secondary (numeric):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the numerically computed total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
     - **Background susceptibility model:** Here, the user can specify a background magnetic susceptibility model for the inversion. There are 3 options:
 
@@ -104,7 +104,7 @@ Model Options
 
     - **Update reference model throughout:**
 
-        - *Un-checked:** The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
+        - *Un-checked:* The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
         - *Checked:* Each time beta is updated, the current recovered model is set as the reference model for the next beta value. This results in faster convergence but does not emphasize preserving structures in the original reference model as strongly.
 
     - **Role in model objective function:** See :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`
@@ -124,15 +124,14 @@ Inversion Parameters
 
     - **IPCG settings:** Sets tolerances for solving the system at each Gauss-Newton iteration using incomplete preconditioned conjugate gradient; see `E3D version 1 manual <https://e3d.readthedocs.io/en/e3d/content/theory.html#gauss-newton-solve>`__ . Parameters are:
 
-        **tol_ipcg:** relative tolerance for solution (default = 0.01)
-        **max_iter_ipcg:** maximum number of IPCG iterations (20)
+        - **tol_ipcg:** relative tolerance for solution (default = 0.01)
+        - **max_iter_ipcg:** maximum number of IPCG iterations (20)
 
     - **BICG settings:** If solving the forward problem using an iterative solver, these parameters specify the tolerances and stopping criteria for the BiCGstab algorithm; see E3D version 1 manual <https://e3d.readthedocs.io/en/e3d/content/theory.html#gauss-newton-solve>`__ .
 
-        **tol_bicg:** (default = 1e-11)
-        **tol_ipcg_bicg:** (default = 1e-5)
-        **max_it_bicg:** (default 150)
-        **freq_Aphi:** (default = 1e6)
+        - **tol_bicg:** (default = 1e-11)
+        - **tol_ipcg_bicg:** (default = 1e-5)
+        - **max_it_bicg:** (default 150)
 
 
 
@@ -165,7 +164,7 @@ This functionality is responsible for setting all inversion parameters pertainin
 
     - **Inversion Parameters:** Sets advanced parameters and tolerances for the inversion
 
-    .. figure:: ../images/e3d_2.png
+    .. figure:: ../images/e3d_v2.png
         :align: center
         :width: 700
 
@@ -181,6 +180,14 @@ Basic
     - **Forward tile meshes file path (tiled code only):** Sets the path to the file containing the local meshes (tiles)
 
     - **Topography:** The user may define the surface topography using an *ACTIVEmodel* object or set all cells as active (ALL_ACTIVE). If using reference/starting models where air cells are defined as 1e-8 S/m, merely set all topography cells to active. If an *ACTIVEmodel* is used to define the underground cells, all cells in the air are automatically assigned a value of 1e-8 S/m.
+
+    - **Model total field or secondary field:**
+
+        - **Total field:** the data output by the forward modeling is the total field.
+
+        - **Secondary (analytic):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the analytic total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
+
+        - **Secondary (numeric):** the code will forward model the secondary field. It will do this by computing the total field for the *conductivity model* provided, then subtracting the numerically computed total field using the homogeneous *background conductivity* provided. To subtract the free-space primary field, let the background conductivity be 1e-8 S/m.
 
     - **Background susceptibility model:** Here, the user can specify a background magnetic susceptibility model for the inversion. There are 3 options:
 
@@ -239,7 +246,7 @@ Model Options
 
     - **Update reference model throughout:**
 
-        - *Un-checked:** The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
+        - *Un-checked:* The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
         - *Checked:* Each time beta is updated, the current recovered model is set as the reference model for the next beta value. This results in faster convergence but does not emphasize preserving structures in the original reference model as strongly.
 
     - **Role in model objective function:** See :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`
@@ -258,8 +265,8 @@ Inversion Parameters
 
     - **IPCG settings:** Sets tolerances for solving the system at each Gauss-Newton iteration using incomplete preconditioned conjugate gradient; see `E3D v2 manual <https://e3d.readthedocs.io/en/e3d_v2/content/theory.html#gauss-newton-solve>`__ . Parameters are:
 
-        **tol_ipcg:** relative tolerance for solution (default = 0.01)
-        **max_iter_ipcg:** maximum number of IPCG iterations (20)
+        - **tol_ipcg:** relative tolerance for solution (default = 0.01)
+        - **max_iter_ipcg:** maximum number of IPCG iterations (20)
 
     - **Memory settings:** This code factors the forward system at each frequency for repeated use in the inversion algorithm. The user has a choice in where the factorizations are stored:
 
