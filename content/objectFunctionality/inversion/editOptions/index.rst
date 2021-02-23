@@ -23,6 +23,7 @@ The options for each inversion type are organized as follows:
        DCIP <dcip>
        EM1DFM Inversions <em1dfm>
        EM1DTM Inversions <em1dtm>
+       Frequency Domain EM <fdem>
        Natural Source EM (MT and ZTEM) <nsem>
 
 
