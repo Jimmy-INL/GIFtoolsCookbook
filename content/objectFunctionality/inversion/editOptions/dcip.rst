@@ -259,27 +259,87 @@ DCIP Octree
     Basic (left), model options (middle) and advanced parameters (right) tabs.
 
 
-tol_nl mindm iter_per_beta
-        The first parameter tol_nl defines a tolerance for the relative gradient at each :math:`\beta` step: tol_nl :math:`= ||g|| / ||g_o||`, where :math:`g` is the current gradient and :math:`g_o` is the gradient at the start of the current :math:`\beta` step iteration. If the relative gradient is less than tol_nl, then the code exits the current :math:`\beta` iteration and decreases :math:`\beta` by the beta_factor.
-
-        mindm defines the smallest allowable model perturbation (if the model perturbation :math:`\Delta m` recovered as a result of IPCH iteration is smaller than mindm, then the current :math:`\beta` iteration is terminated and :math:`\beta` is reduced by beta_factor before the next beta step.
-
-        iter_per_beta sets the maximum number of times that the model can be updated within a given beta iteration.
-
-tol_ipcg max_iter_ipcg
-        tol_ipcg is the tolerance to which the IPCG iteration needs to solve the model perturbation. This defines how well the system :math:`J^T J + \beta W_m^T W_m` is solved.
-
-        max_iter_ipcg defines the maximum number of IPCG iterations allowed per :math:`\beta` step to solve for the model perturbation.
-
-Update reference model throughout
-        This parameter provides the optional capability to change the reference model at each beta step. If the option is selected, then the reference model is updated every time the regularization parameter changes and is set to the last recovered model from the previous iteration. This may result in quicker convergence. If the option is not used, then the same reference model, as originally defined in line 4 is used throughout the inversion.
-
-SMOOTH_MOD | SMOOTH_MOD_DIF
-        This option is used to define the reference model in and out of the derivative terms of the model objective function. The options are: SMOOTH_MOD_DIF (reference model is defined in the derivative terms of the model objective function) and SMOOTH_MOD (reference model is defined only the smallest model term of the objective function).
-
-Smallness weights
-		The latest DCIP octree code allows the user to specify cells weights which impact the smallness term in the model objective function.
+Basic
+-----
 
 
-.. note::
-	more details in the `dcipOctree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/ipinversion.html>`_.
+    - **Observed data:** The user selects a *DC3Ddata* or *IP3Ddata* object from the drop-down list.
+
+    - **Mesh:** OcTree mesh on which a conductivity/chargeability model is recovered. 
+
+    - **Topography:** The user may define the surface topography using an *ACTIVEmodel* object or set all cells as active (ALL_ACTIVE). If using reference/starting models where air cells are defined as 1e-8 S/m, merely set all topography cells to active. If an *ACTIVEmodel* is used to define the underground cells, all cells in the air are automatically assigned a value of 1e-8 S/m.
+
+    - **Background conductivity (IP only):** For IP inversion, the user must define a background conductivity model. Either a constant value for all cells below the surface topography or a *GIFmodel*.
+
+
+
+Model Options
+-------------
+
+    - **Beta Cooling Schedule:** Sets the rate of decrease in beta as the algorithm puts increasing emphasis on fitting the data; see :ref:`fundamentals of inversion<Fundamentals_Beta>`.
+
+        - **Default:** A default cooling schedule is used.
+
+        - **Custom:** The user sets the following parameters:
+
+            - *beta max:* Starting beta value
+            - *beta min:* Final beta value before the algorithm quits (if target misfit not attained)
+            - *reduction factor:* a multiplicative constant between (0,1). Sets how much beta is reduced at each iteration
+
+    - **Chi Factor:** Sets the target data misfit for the inversion. A chi-factor of 1 (default value) implies the data misfit is equal to the total number of data observations.
+
+    - **Weighting constants:** Sets the weights for smallness and smoothness regularization in x, y and z; see :ref:`fundamentals of inversion <Fundamentals_alphas>`.
+
+        - **Default:** Sets the values of *alpha S*, *alpha E*, *alpha N* and *alpha Z* based on cell dimensions
+        - **Alphas:** Sets specific values for *alpha S*, *alpha E*, *alpha N* and *alpha Z*
+        - **Lengths:** User sets values *Len E*, *Len N* and *Len Z* which define the values of *alpha X*, *alpha Y* and *alpha Z* relative to *alpha S*. These relationships are given by :math:`L_E = \sqrt{\frac{\alpha_E}{\alpha_S}}`, :math:`L_N = \sqrt{\frac{\alpha_N}{\alpha_S}}` and :math:`L_Z = \sqrt{\frac{\alpha_Z}{\alpha_S}}`.
+
+    - **Cell and interface weights:** Here, the user may specify the implementation of cell and/or face weighting; see :ref:`fundamentals of inversion <Fundamentals_WeightingMatrix>`. In this case, the user selects a *GIFweight* object that is defined on the OcTree mesh.
+
+    - **Independent smallness weights:** Standard cell weights are applied in both the smallness and smoothness terms. This functionality allows the user to include independent cell weights only to the smallness term. The user will choose a *GIFweight* object whose cell weights are to be applied. If you have a *GIFmodel* that you would like to use as independent smallness weights, first :ref:`use octree mesh to create weights object <objectMeshCreateWeights>`, then click the newly created *GIFweights* object and use :ref:`set model <objectWeightsObjects_setModel>`.
+
+    - **Active model cells:** Here, the user specifies which cells are active during the inversion (allowed to change their value). If all are set to active, then all cells within the surface topography are allowed to change. If an active cells model is used, only the active cells change their value during the inversion; the remaining cells (inactive) are left as the starting model value.
+
+    - **Initial model:** Staring model for the inversion. Can be either a constant value or an OcTree model
+
+    - **Upper bounds:** Upper bounds for the recovered conductivity model.
+
+        - *None:* No upper bounds
+        - *Value:* Set a constant upper bound to be applied to all cells.
+        - *Model:* An OcTree model that defines the upper bound for each cell individually. Values corresponding to inactive cells in the inversion are ignored.
+
+    - **Lower bounds:**
+
+        - *None:* No lower bounds
+        - *Value:* Set a constant lower bound to be applied to all cells.
+        - *Model:* An OcTree model that defines the lower bound for each cell individually. Values corresponding to inactive cells in the inversion are ignored.
+
+    - **Reference model:** Reference model for the inversion; see :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`.
+
+        - *Value:* Set a constant value for the reference model.
+        - *Model:* An OcTree model that defines the reference model.
+
+    - **Update reference model throughout:**
+
+        - *Un-checked:* The reference model remains the same throughout the entire inversion. This option emphasizes preserving structures included in the reference model.
+        - *Checked:* Each time beta is updated, the current recovered model is set as the reference model for the next beta value. This results in faster convergence but does not emphasize preserving structures in the original reference model as strongly.
+
+    - **Role in model objective function:** See :ref:`fundamentals of inversion <Fundamentals_SmoothInDiff>`
+
+        - *SMOOTH_MOD:* Reference model only used in smallness term in the model objective function
+        - *SMOOTH_MOD_DIF:* Reference model using in the smallness and smoothness terms in the model objective function
+
+
+Advanced Parameters
+-------------------
+    
+    - **Newton iteration settings:** Sets stopping criteria for Gauss-Newton iterations; see `DCIPoctree manual <https://dcipoctree.readthedocs.io/en/latest/content/theory.html#chart>`__ . Parameters are:
+
+        - **tol_nl:** stopping criteria based on gradient size (defaul = 0.01)
+        - **mindm:** stopping criteria based on size of model perturbation (default = 0.001)
+        - **iter_per_beta:** maximum number of Gauss-Newton iterations (default = 3)
+
+    - **IPCG settings:** Sets tolerances for solving the system at each Gauss-Newton iteration using incomplete preconditioned conjugate gradient; see `DCIPoctree manual <https://dcipoctree.readthedocs.io/en/latest/content/theory.html#chart>`__ . Parameters are:
+
+        - **tol_ipcg:** relative tolerance for solution (default = 0.01)
+        - **max_iter_ipcg:** maximum number of IPCG iterations (20)

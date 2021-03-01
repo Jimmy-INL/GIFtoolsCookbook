@@ -113,8 +113,8 @@ Model Options
         - *SMOOTH_MOD_DIF:* Reference model using in the smallness and smoothness terms in the model objective function
 
 
-Inversion Parameters
-^^^^^^^^^^^^^^^^^^^^
+Advanced Parameters
+^^^^^^^^^^^^^^^^^^^
     
     - **Newton iteration settings:** Sets stopping criteria for Gauss-Newton iterations; see `E3D version 1 manual <https://e3d.readthedocs.io/en/e3d/content/theory.html#gauss-newton-update>`__ . Parameters are:
 

@@ -30,6 +30,7 @@ Here, we describe the specific set of actions (or methods) which can be applied 
     mesh/index
     model/index
     image/index
+    weights/general
     workflow/index
     forward/index
     inversion/index
