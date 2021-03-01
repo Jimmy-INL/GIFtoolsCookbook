@@ -2,8 +2,10 @@
 
 .. include:: <isonum.txt>
 
-General Functionality for GIFweights
-====================================
+Weights
+=======
+
+Here we describe the general functionality for *GIFweight* objects.
 
 
 .. _objectWeightsObjects_setModel:
@@ -16,8 +18,6 @@ For a given *GIFweight* object, the user may want to change the cell or face wei
 **Weighting functions** |rarr| **Set Model** |rarr| **Cell Weighting**
 
 **Weighting functions** |rarr| **Set Model** |rarr| **Face Weighting**
-
-|
 
 This action will make a copy of the *GIFmodel* or *FACEmodel* selected, place it within the items contained in the *GIFweight* object,
 then set the new cell/face weights as a property of the *GIFweight* object. The user must make sure that the *GIFmodel* or *FACEmodel*
