@@ -198,17 +198,15 @@ Python Installation (Optional)
 ------------------------------
 
 Starting from version 2.25, GIFtools has the option to run some
-functionalities from the open-source community. In order to get access to
-these codes, users must install Python and few additional packages. This is
-done through the Anaconda project. Please follow these steps to get setup:
+functionalities from the open-source community; namely batch 2D DC/IP inversions. In order to get access to
+these codes, users must install Python. This is
+done through the Anaconda project
 
-- Download the `installation package <https://www.eoas.ubc.ca/~dfournie/simpegEM1D_install.zip>`_
+**If you do not already have Python 3.5 or greater already installed**, please follow these steps to get setup:
 
-- ``Double-click`` on ``Setup.bat``. This will run 2 separate installations sequentially
-    - ``Miniconda`` installation (press cancel IF already installed)
-        .. figure:: ../images/MinicondaInstaller.png
-            :align: center
-            :width: 400
+- Download the latest `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_
+
+- Run the installed executable
 
         - Let Anaconda set the Environment Path (check both boxes!!)
             .. figure:: ../images/AnacondaPath.png
