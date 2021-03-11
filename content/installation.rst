@@ -202,6 +202,9 @@ functionalities from the open-source community; namely batch 2D DC/IP inversions
 these codes, users must install Python. This is
 done through the Anaconda project
 
+Part 1
+^^^^^^
+
 **If you do not already have Python 3.5 or greater already installed**, please follow these steps to get setup:
 
 - Download the latest `Miniconda <https://docs.conda.io/en/latest/miniconda.html>`_
@@ -225,3 +228,21 @@ Either with anaconda (recommended)>  ``conda install PackageName``
 
 or alternatively through pip>   ``pip install PackageName``
 
+
+Part 2
+^^^^^^
+
+Now that you have Python installed, you must ensure that GIFtools can find Python when it is needed.
+To do this, you will need to edit your computer's environment variables. For Windows computers,
+this is set through the control panel under *Edit the System Environment Variables*.
+
+In the **System Properties** window, click the *Environment Variables* button. In the **Environment Variables** window that pops up,
+you will need to select the variable called *PATH* and click *edit* for either the *user variables* (whoever is logged in)
+or *system variables* (everyone). If there is no variable called *PATH*, you will need to create a new variable called *PATH*.
+
+When you click *edit*, the **Edit Environment Variable** window will pop up. You must add the path to *Anaconda3* and the *Library\\bin* subdirectory.
+In our case, these directories were *C:\\Users\\devin\\anaconda3* and *C:\\Users\\devin\\anaconda3\\Library\\bin*.
+
+.. figure:: ../images/InstallEnvironment_Path.png
+                :align: center
+                :width: 700
