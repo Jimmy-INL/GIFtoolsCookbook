@@ -9,12 +9,23 @@ Here we provide a basic approach for mesh design when inverting DC/IP data. Mesh
 
 	- :ref:`create OcTree mesh with DC/IP utilities <createDCIPoctreeMesh>`
 
-Once you have created the object, complete the following steps:
+**DC data only:** Once you have created the object, complete the following steps:
 
 	1) Set the data object corresponding to the survey
 	2) Define the mesh using *Edit Options*
 	3) Run the utility
 	4) Load results
+
+**DC and IP data:** In the case of real topography, we will need to project both DC and IP data to the discretized surface and load the data files into GIFtools. The following is a trick for accomplishing this and create the octree mesh in a clean fashion:
+
+	1) Set the data object corresponding to the survey as the IP data object
+	2) Define the mesh using *Edit Options*
+	3) Run the utility (which creates a project IP data file)
+	4) Reset the data object corresponding to the survey as the DC data object
+	5) Run the utility again (which creates a project DC data file)
+	6) Load results (which will load everything but the projected IP data file)
+	7) Use *import* drop-down menu to import the projected IP data file
+
 
 **For the tutorial data**, the parameters set in *Edit Options* are shown below. For definitions of the parameters, consult the `DCIP octree manual <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/createOcTree.html>`__ .
 
@@ -24,6 +35,7 @@ Once you have created the object, complete the following steps:
     :width: 500
 
     Parameters used to define the mesh for the field dataset using E3DMT v2 mesh utility.
+
 
 
 Comments on Choosing Parameters
@@ -46,15 +58,7 @@ Important Comments on Topography
 
 When including real topography (not flat), the discretized surface will not match the true surface of the Earth. DCIP octree utilities remedy this issue by creating an observed data file where the electrode locations have be projected onto the surface of the **discretized** Earth. When loading the output from the DCIP octree utility, GIFtools will load this projected data file. You must use this file when running the inversion.
 
-It is very common to have both DC and IP data. In the case of real topography, we will need to project both DC and IP data to the discretized surface and load the data files into GIFtools. The following is a trick for accomplishing this and create the octree mesh in a clean fashion:
 
-	1) Set the data object corresponding to the survey as the IP data object
-	2) Define the mesh using *Edit Options*
-	3) Run the utility (which creates a project IP data file)
-	4) Reset the data object corresponding to the survey as the DC data object
-	5) Run the utility again (which creates a project DC data file)
-	6) Load results (which will load everything but the projected IP data file)
-	7) Use *import* drop-down menu to import the projected IP data file
 
 
 
