@@ -14,6 +14,23 @@ To change the options of the utility, click on the utility item, select the menu
     :width: 400
 
 
+
+.. _utilEditOptions_DCIP:
+
+DCIP OcTree Mesh Utility
+------------------------
+
+
+- Input Options (`related documentation for DCIP OcTree <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/createOcTree.html>`_)
+
+    .. figure:: ../../../images/utilityDCIPMeshEditOption.png
+        :align: center
+        :width: 600
+
+.. important:: If **surface** is selected, all electrodes will be projected to the discrete surface topography. If **general** is selected, all electrodes above the discrete surface topography are projected and all electrodes below the discrete surface are left in their original locations. The latter option is mean for datasets containing borehole data.
+
+
+
 .. _utilEditOptions_E3DMT:
 
 E3DMT Mesh Utility
@@ -106,6 +123,18 @@ E3D_ver2_Tiled Mesh Utility
 
 
 
+.. _utilEditOptions_SurfaceElectrodes:
+
+Project Electrodes to Discrete Topography
+-----------------------------------------
+
+
+.. figure:: ../../../images/utilitySurfaceElectrodes.PNG
+    :align: center
+    :width: 400
+
+
+
 .. _utilEditOptions_DCsensitivity:
 
 DC/IP Octree Sensitivity Utility
@@ -121,9 +150,11 @@ Set parameters to compute approximate senstivity weights model for DC or IP octr
 
 **Input Options** (`thorough description of all parameters provided in DCIP octree documentation <https://dcipoctree.readthedocs.io/en/latest/content/inputfiles/sensFile.html>`_)
 
+    - If **surface** is selected, all electrodes will be projected to the discrete surface topography. If **general** is selected, all electrodes above the discrete surface topography are projected and all electrodes below the discrete surface are left in their original locations. The latter option is mean for datasets containing borehole data.
+
     - *Number of samples:* This is the number of iterations for approximating the diagonals of :math:`J^T J` with Hutchinson's or probing approach. A value of 10 is reasonable.
 
-    - *Computation method:* Choosing the random vectors for applying Hutchinson's approach or probing method.
+    - *Computation method:* Choose one of the approximate or analytic methods for computing the sensitivities. We suggest using *average sensitivities* or *RMS sensitivities* because these approaches are analytic and do not take much longer than any of the approximate sensitivity methods.
 
     - *Truncation Factor:* We must apply a truncation factor due to the large dynamic range of the sensitivities. A value between 0.01 and 0.2 is good.
 

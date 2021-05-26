@@ -263,6 +263,12 @@ Basic
 -----
 
 
+    - **Data file format:**
+
+        - *Surface:* All electrodes are projected to the discrete surface topography. This setting uses the surface file format and ignores the elevation columns for the electrodes.
+
+        - *General:* Elevation columns for the electrodes must be set. Here, any electrodes lying above the discrete surface topography are projected downward while all other electrodes are left in their original positions. This necessary when borehole data are included.
+
     - **Observed data:** The user selects a *DC3Ddata* or *IP3Ddata* object from the drop-down list.
 
     - **Mesh:** OcTree mesh on which a conductivity/chargeability model is recovered. 

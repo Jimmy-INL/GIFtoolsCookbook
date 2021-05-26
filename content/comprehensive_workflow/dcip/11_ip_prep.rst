@@ -48,6 +48,8 @@ To create interface weights:
 Sensitivity Weighting for IP Inversion
 --------------------------------------
 
+.. important:: Since the initial creation of the sensitivity weights utility, analytic methods for computing the *average sensitivities* and *RMS sensitivities* have been added. In practice, we suggest using these methods over the approximate methods.
+
 Sensitivity weighting is another approach for reducing near-surface artifacts at the location of electrodes. For this approach, we approximate the root mean squared sensitivities for a given model and use them to construct cell weights. The cell weights counteract the inversion's natural inclination to place chargeable structures at the locations of highest sensitivity; i.e. at the electrode locations.
 
 This approach is better suited when the topography is rough; compared to interface weighting. The user should keep several things in mind when using sensitivity weights. 1) For the IP octree code, the sensitivities are approximated with Hutchinson's method because it is too time-consuming to compute the true sensitivities. The user will need to apply a smoothing factor to reduce 'pixelation' in the cell weights model. If the sensitivity weighting is too large, the inversion may place artifacts in the space between surface lines. Generally, we suggest setting the *number of samples* to be 5-20, using a *truncation factor* of 0.05-0.2 and to *smooth* 1-4 times.

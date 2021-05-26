@@ -3,11 +3,8 @@
 
 .. include:: <isonum.txt>
 
-Fortran utility programs
+Fortran Utility Programs
 ========================
-
-RECIPE PENDING
-
 
     .. toctree::
         :maxdepth: 2
@@ -15,6 +12,7 @@ RECIPE PENDING
         createOctree
         interpolateModels
         octreeUtilities
+        dcipUtilities
 
 
 

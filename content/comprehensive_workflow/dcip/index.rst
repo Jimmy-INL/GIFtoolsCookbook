@@ -35,6 +35,7 @@ Tutorial Sections
     - Analyze 2D DC and IP inversion results <5_local_2D_results>
     - Batch 2D DC and IP inversion <6_batch_2D>
     - OcTree mesh design <7_octree>
+    - Project electrodes to discrete surface <7b_projection>
     - DC OcTree inversion: creating weights and reference models <8_dc_prep>
     - DC OcTree inversion: setting up, running and examining results <9_dc_inv_basic>
     - DC OcTree inversion using sensitivity weights and reference models <10_dc_inv_compare>

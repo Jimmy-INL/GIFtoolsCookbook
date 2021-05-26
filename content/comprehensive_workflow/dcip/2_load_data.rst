@@ -29,7 +29,7 @@ Here, we import the DC, IP and topography data. **The tutorial data are in 3D UB
     - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *topo.xyz*.
     - :ref:`Import 3D DC data <importDCIP3Ddata>` as an observed data format file. The data file is named *DCdata.dat*.
     - :ref:`Import 3D IP data <importDCIP3Ddata>` as 'any format'. The data file is named *IPdata.dat*.
-    - If the elevations of the electrodes are not defined, you can :ref:`apply topography <objectDCIPApplyTopo>`. This is not necessary if the surface topography is flat.
+    - If the elevations of the electrodes are not defined in the data file, we strongly advise that you :ref:`apply topography <objectDCIPApplyTopo>`.
 
 
 **Data in XYZ or CSV format** :ref:`can be imported <importDCIP3Ddata>` together or separately into GIFtools. In this case, GIFtools will require the user to select the columns corresponding to electrode positions and data. If DC and IP data are loaded into a single data object, the user can:
