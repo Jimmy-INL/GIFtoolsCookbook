@@ -55,7 +55,7 @@ According to the contractor, *Hx* and *Hy* were measured at a base station. The 
 	- **Hx, Hy receiver width: 0.27**
 	- **Hx, Hy number of segments: 8**
 	- **Hz receiver width: 7.4**
-	- **Hx, Hy number of segments: 8**
+	- **Hz number of segments: 8**
 	- **Orientation from Nothing (deg): 0** (since all rotations to UBC-GIF were done already)
 
 .. note:: If any of the loops are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.
