@@ -55,10 +55,9 @@ Some things to consider when examining your dataset may include:
     - Any information about data convention provided by the contractor. This is the most important.
     - If the data values collected along different flight line directions do not match up at the same locations.
     - If the shape of the Tzx anomaly over a known conductor or resistor lines up with the flight direction. Recall the :ref:`anomaly over a compact conductor <comprehensive_workflow_ztem_1_conductor>` .
-    - Whether the real and quadrature components are the same sign (+iwt) or opposing sign (-iwt) at the lowest frequency.
+    - Whether the real and quadrature components are the same sign (+iwt) or opposing sign (-iwt) at the lowest frequency. **Use this only when necessary!!!** It is best to determine the Fourier convention directly from the contractor.
 
-For the tutorial data, the real and imaginary components of the tipper data are plotted below. We see that data collected Southwest to Northeast and data collected Northeast to Southwest are very different at similar locations. This indicates the data coordinates are dependent on flight direction.
-At the lowest frequency (f = 30 Hz), the real and quadrature components of the tipper have opposing sign; indicating the data are likely in a -iwt Fourier convention. Note that at 90 Hz (seen below), induction is significant and the sign of the quadrature components has changed!!!
+For the tutorial data, the real and imaginary components of the tipper data are plotted below. We see that data collected Southwest to Northeast and data collected Northeast to Southwest are very different at similar locations. This indicates the data coordinates are dependent on flight direction. According to the contractor, the imaginary component of the tutorial data are represented using a :math:`-i\omega t` Fourier convention. Note that at 90 Hz (seen below), induction is significant and the sign of the quadrature components has changed!!!
 
 
 .. figure:: images/ZTEM_raw_data.png
@@ -87,6 +86,7 @@ According to the contractor information, we must apply the following transformat
     - Data collected along Northwest to Southeast must be rotated counter clockwise by 125 degrees. And data collected along Southwest to Northeast must be rotated counter clockwise by 35 degrees.
     - We must transform the cross-line direction to being 90 degrees clockwise from the along-line direction instead of 90 degrees counter clockwise.
     - We must transform from z +ve upward to z +ve downward.
+    - The Fourier convention for the data is :math:`-i\omega t` (which is UBC-GIF format). If this were not the case, you would need to multiply the imaginary component of the Tipper data by -1 after the spatial transform.
 
 To apply this transformation, we use the following utility:
 
@@ -101,9 +101,6 @@ Tipper data after applying the transformation is shown below. Data are now in th
     :width: 700
 
     ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
-
-
-.. important:: Note that at the lowest frequency, the real and imaginary components of the Tipper data have opposing sign; indicating a -iwt Fourier convention. This is consistent with UBC-GIF. Therefore we do not need to multiply the imaginary components of the Tipper data after applying the spatial transform to UBC-GIF convention.
 
 
 Interpretation using total divergence

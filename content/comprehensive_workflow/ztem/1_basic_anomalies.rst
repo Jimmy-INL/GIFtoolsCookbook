@@ -87,8 +87,8 @@ Let us work in the UBC-GIF ZTEM data convention; where X is Northing, Y is Easti
 	- :math:`T_{zx}` is sensitive to the North and South faces of the conductor while :math:`T_{zy}` is sensitive to the East and West faces.
 	- The real component of :math:`T_{zx}` is always +ve to the North of the block and -ve to the South of the block.
 	- The real component of :math:`T_{zy}` is always +ve to the East of the block and -ve to the West of the block.
-	- The imaginary component of :math:`T_{zx}` is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx}` can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
-	- The imaginary component of :math:`T_{zy}` is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy}` can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- For a :math:`-i\omega t` Fourier convention (UBC-GIF), the real and imaginary components of the :math:`T_{zx}` anomaly will **generally** have opposing sign **at low frequencies** (see below at 30 Hz); likewise for the real and imaginary components of :math:`T_{zy}`. **However** because of the complicated nature of ZTEM anomalies, this is not true 100\% of the time. If possible, determine the Fourier convention from the contractor.
+	- At sufficiently high frequencies, the imaginary component of the anomaly **may** undergo a change in polarity (see below). This occurs when EM induction effects become larger than the galvanic effects that dominate at lower frequencies.
 
 .. figure:: images/conductor_anomaly_30Hz.png
     :align: center
@@ -115,8 +115,8 @@ Let us work again in the UBC-GIF ZTEM data convention; where X is Northing, Y is
 	- :math:`T_{zx}` is sensitive to the North and South faces of the conductor while :math:`T_{zy}` is sensitive to the East and West faces.
 	- The real component of :math:`T_{zx}` is always +ve to the North of the block and -ve to the South of the block.
 	- The real component of :math:`T_{zy}` is always +ve to the East of the block and -ve to the West of the block.
-	- The imaginary component of :math:`T_{zx}` is generally -ve to the North of the block and +ve to the South (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zx}` can be +ve to the North of the block and -ve to the South of the block. The latter case occurs when EM induction effects become larger than the galvanic.
-	- The imaginary component of :math:`T_{zy}` is generally -ve to the East of the block and +ve to the West (opposite to what we see in the real component). At sufficiently high frequencies however, the imaginary component of :math:`T_{zy}` can be +ve to the East of the block and -ve to the West of the block. The latter case occurs when EM induction effects become larger than the galvanic.
+	- For a :math:`-i\omega t` Fourier convention (UBC-GIF), the real and imaginary components of the :math:`T_{zx}` anomaly will **generally** have opposing sign **at low frequencies** (see below at 30 Hz); likewise for the real and imaginary components of :math:`T_{zy}`. **However** because of the complicated nature of ZTEM anomalies, this is not true 100\% of the time. If possible, determine the Fourier convention from the contractor.
+	- At sufficiently high frequencies, the imaginary component of the anomaly **may** undergo a change in polarity (see below). This occurs when EM induction effects become larger than the galvanic effects that dominate at lower frequencies.
 
 
 .. figure:: images/resistor_anomaly_30Hz.png
@@ -155,6 +155,8 @@ The operations being performed can be summarized as follows:
 
 
 .. note:: This transformation has been built into GIFtools. We will demonstrate this in the workflow.
+
+.. note:: If the Fourier convention of the the field collected data is not the same as UBC-GIF convention, the imaginary components of the Tipper data can be multiplied by -1 after the coordinate system transform is carried out.
 
 
 Example
