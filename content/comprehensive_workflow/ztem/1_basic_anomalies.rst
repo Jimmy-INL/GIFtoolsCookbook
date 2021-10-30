@@ -135,8 +135,8 @@ Let us work again in the UBC-GIF ZTEM data convention; where X is Northing, Y is
 
 .. _comprehensive_workflow_ztem_1_transformation:
 
-Transforming data into UBC-GIF convention
------------------------------------------
+Spatial Transformation to UBC-GIF convention
+--------------------------------------------
 
 
 Let :math:`\theta` be the flight direction (counter-clockwise degrees from Northing). Let :math:`T_{zx}` and :math:`T_{zy}` be the Tipper data in the UBC-GIF coordinate system. And let :math:`T_{x'}` and :math:`T_{y'}` be the Tipper data in the field data coordinate system. To go from standard airborne data convention to UBC-GIF, the following transformation can be done:
