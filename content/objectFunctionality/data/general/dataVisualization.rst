@@ -33,6 +33,8 @@ To access the table viewer (and editor), click on the data item and the use the 
 
 The shortcut for this viewer is ``control + t`` for any item selected in the tree.
 
+.. _viewData_statistics:
+
 Statistics viewer
 ^^^^^^^^^^^^^^^^^
 

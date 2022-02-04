@@ -142,9 +142,9 @@ as the solution to a Green's function. From Blakely (1995):
 Equivalent source methods are a result of Green's third identity, which states: the potential field at any point within region can be obtained from fields defined on a surface enclosing that region. No knowledge of the source is required. To obtain the field at a particular location, we simply need a sufficient
 number of field measurements on a surface enclosing that location.
 
-In practice, we assume that our field collected data provides a sufficient characterization of the fields.
+In practice, we assume that our field collected data provides a sufficient characterization of the fields on our theoretical bounded surface.
 We then use geophysical inversion to recover a susceptibility model that fits those data exactly; i.e. an 'equivalent source' model.
-With the equivalent source model, we can predict the data at locations and for different inducing field orientations.
+With the equivalent source model, we can predict the data at different locations and for different inducing field orientations.
 
 
 Reduction to Pole
@@ -162,26 +162,25 @@ For magnetic data collected over a set of UXO at low latitude, the results of a 
     :width: 550
 
 
+.. _comprehensive_workflow_magnetics_1_upcont:
+
 Upward Continuation
 ^^^^^^^^^^^^^^^^^^^
 
-Field collected data (especially at the surface) may have high spatial frequency signals that are not produced by targets of interest
-and may make interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
+Field collected data (especially at the surface) may have high spatial frequency signals or noise that are not produced by targets of interest
+; making interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
 higher frequency signals. Upward continuation is a method for removing erroneous high frequency signals from the data by computing the
 data as if it were collected at a higher elevation.
 
 Equivalent source models can be used to upward continue field collected data (FFT methods also exist).
 The steps are as follows:
 
-    1) Estimate the very long period signal by examining the background and subtract this from the data. Generally a DC shift works. 
+    1) Estimate the very long period signal (regional or larger scale) by examining the background, then subtract it from the data. Generally a DC shift works. 
     2) Invert the shifted data to obtain an equivalent sources model
     3) Use the equivalent source model to predict the data at a higher elevation (using the same inducing field)
     4) Add the very long period signal (or DC shift) back to the data.
 
-For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace. The data map indicates a
-background contribution of roughly 1000 nT. This is subtracted from the data before upward continuing, then re-added as a final step.
-For a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well
-as data that were upward continued (dots).
+For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace that also contains an unknown broad regional structure. The data map indicates this regional feature produces a roughly 1000 nT anomaly within our survey area. This is subtracted from the data before upward continuing, then re-added as a final step. or a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well as data that were upward continued (dots).
 
 
 .. figure:: images/anomalies_upward_continuation_shift.png
@@ -191,8 +190,8 @@ as data that were upward continued (dots).
 
 **Why the shift is crucial:**
 
-    - The equivalent source model will place structures in the padding cells. The effect of these structures increases the more the data are upward continued. This is especially problematic if the very-low frequency signal has not been removed (see below).
-    - The signal produced by a half-space and by a thin horizontal layer do not decay identically as a function of elevation. If one does not shift the data prior to upward continuing, the amplitude of the upward coninued data will be underestimated (see below.) 
+    - The equivalent source model tends to place larger amplitude structures in the padding cells if a DC shift is not applied to the data. The effect of these structures increases the more the data are upward continued.
+    - The signal produced by a large deep regional structure and a thin horizontal layer do not decay identically as a function of elevation. If one does not shift the data prior to upward continuing, the amplitude of the upward continued regional signal will be underestimated (see below.) 
 
 
 

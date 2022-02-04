@@ -29,8 +29,8 @@ Tutorial Sections
     :maxdepth: 1
 
     - Understanding magnetic anomalies <1_basic_anomalies>
-    .. - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
-    .. - Standard assignment of uncertainties to ZTEM data <3_uncertainties>
+    - Loading data and cursory interpretation <2_load_data>
+    - Equivalent source inversion <3_equivalent_source>
     .. - Preparing data for inversion within the GIFtools framework <4_data_preparation>
     .. - Mesh design <5_mesh_design>
     .. - Setting appropriate parameters and running the inversion <6_inversion>
