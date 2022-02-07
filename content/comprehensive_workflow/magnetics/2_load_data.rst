@@ -5,9 +5,9 @@
 Loading TMI Data and Cursory Interpretation
 ===========================================
 
-The first step in any project is to load field collected data and visualize it. Here, we will assume the data are in XYZ-formatted files. However, data can be loaded directly if they are in `UBC-GIF format <https://giftoolscookbook.readthedocs.io/en/latest/content/fileFormats/magfile.html>`__. Here, we load the TMI data, remove the background magnetic field and visualize the anomaly data.
+The first step in any project is to load field collected data and visualize it. Here, we load magnetic data, assign and remove the background magnetic field, and visualize the anomaly data.
 
-**The tutorial data consists of both local and regional datasets**. The local scale dataset encompasses our region of interest. It consists of many lines of surface TMI data collected using a skidoo. If available, coarse regional magnetic data can be used to better understand regional-scale magnetic anomalies and constrain local inversion results. 
+**The tutorial data consists of both local and regional datasets**. The local scale dataset encompasses our region of interest. It consists of many North-South lines of surface TMI data collected using a skidoo. The coarse-scale regional magnetic data was obtained from the Natural Resources Canada. Regional data (if available) can be used to better understand regional-scale magnetic anomalies and constrain local inversion results. 
 
 
 .. important:: Requires GIFtools v2.34 or later.
@@ -22,18 +22,24 @@ Starting Your Project
 Import Files
 ------------
 
-Here, we import the TMI data and topography data. **The tutorial data are in a general XYZ format but the same functionality is available for CSV or UBC-GIF formatted data**. To import the data and topography:
+.. important:: If you are working with your own dataset and you do cannot aquire regional scale data, you can still complete this tutorial; although you will not be able to implement certain techniques.
 
-    - :ref:`Import topography data (XYZ format) <importTopo>`
-    - :ref:`Import magnetic (TMI) data <importMagData>`
+Here, we import magnetic and topography data. **Local and regional tutorial data are in a general XYZ format but the same functionality is available for CSV or UBC-GIF formatted data**. To import the data and topography:
+
+    - :ref:`Import local and regional topography data (XYZ format) <importTopo>`. These files are called *topo_xyz_local.xyz* and *topo_xyz_regional.xyz*.
+    - :ref:`Import local and regional TMI magnetic data (XYZ format) <importMagData>`. These files are called *mag_xyz_local.xyz* and *mag_xyz_regional.xyz*.
+
+
+.. note:: If you are loading amplitude data in XYZ or CSV format, apply :ref:`change data type <objectMagDataChangeType>` and convert your *MAGdata* object to an *AMPdata* object.
+
 
 
 Defining Earth's Inducing Field
 -------------------------------
 
-.. note:: If the data file is UBC-GIF format, the file contains the properties for defining the Earth's field. And these properties are automatically assign upon loading the data file.
+.. note:: If the data file is UBC-GIF format, the file contains the properties for defining the Earth's field. And these properties are automatically assigned upon loading the data file.
 
-In this step, we define the inclination, declination and intensity of the Earth's magnetic field for the local survey site. There are several ways to obtain this information:
+In this step, we define the inclination, declination and intensity of the Earth's magnetic field for any magnetic data objects. There are several ways to obtain this information:
 
     - It is provided within the magnetic data file
     - The historical `international geomagnetic reference field <//en.wikipedia.org/wiki/International_Geomagnetic_Reference_Field>`__ for the survey location on the survey date is obtained using online resources
@@ -99,4 +105,17 @@ The topography, TMI anomaly data and coverage of the local survey data are plott
     :width: 700
 
 
+
+
+Downsampling the Data
+---------------------
+
+The along-line sampling rate for both surface and airborne surveys is generally higher than is necessary to accurately characterize anomalies. Furthermore, 3D potential field inversions cannot fit the data if multiple data points lie above a single cell; implying you may consider some aspects of mesh design during this step. Here, we downsample the local magnetic data based on a desired minimum spacing; which is generally determined by the line separation.
+
+    - :ref:`Downsample by distance <objectDataDownsample>`
+
+
+**For the local tutorial data**, we downsampled to a minimum spacing of 25 m. This is roughly equal to the line spacing for the local magnetic survey. This reduced the total number of data points from 101,679 to 11,192.
+
+**The regional tutorial data** has already been gridded to a spacing of 200 m and does not need to be downsampled.
 

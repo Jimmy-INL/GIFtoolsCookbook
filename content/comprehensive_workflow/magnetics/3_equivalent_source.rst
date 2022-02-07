@@ -5,46 +5,33 @@
 Equivalent Source Inversion
 ===========================
 
-Here, equivalent source inversion is used to recover an equivalent sources model. That is, a model that represents a source distribution that fits the observed data exactly and can be used to compute the expected magnetic anomaly for other locations/field orientations. Once recovered the equivalent source model can be used to:
+Here, we provide the steps for performing the equivalent source inversion using the GIFtools framework. Equivalent source inversion is a method for recovering an equivalent source model from potential field data. The equivalent source model represents a source distribution that fits the observed data exactly, and can be used to compute the expected magnetic anomalies for other locations/field orientations.
+Equivalent source models are used to:
 
-    - Compute the magnetic anomaly data for a vertical inducing field (reduction to pole)
-    - Compute the magnetic anomaly data at a higher elevation (upward continuation)
-
-
-**For the tutorial data**, an equivalent source model will be recovered for the local data. Our intention is to upward continue the local data to in order to remove problematic high-frequency signals. For the regional data, we will not need to carry out and equivalent source inversion.
+    - compute the magnetic anomaly data for a vertical inducing field (reduction to pole)
+    - compute the magnetic anomaly data at a higher elevation (upward continuation)
 
 
-Downsampling the Data
----------------------
-
-The along-line sampling rate for both surface and airborne surveys is generally higher than is necessary to accurately characterize anomalies. Furthermore, 3D potential field inversions cannot fit the data if multiple data points lie above a single cell; implying you may consider some aspects of mesh design during this step. Here, we down-sample the data based on a desired minimum separation; which is generally determined by the line separation.
-
-    - :ref:`Downsample by distance <objectDataDownsample>`
+**Regarding the tutorial data,** we recover an equivalent source model for the local surface-collected magnetic data. In the following tutorial section, this model is used to upward continue the data to in order to remove problematic high-frequency signals. For the regional magnetic data, we will not need to carry out and equivalent source inversion. A reduction to pole is also no necessary, as the Earth's inducing field is fairly vertical.
 
 
-**For the tutorial data**, we downsampled to a minimum spacing of 25 m. This is roughly equal to the line spacing used for the local magnetic survey. This reduced the total number of data points from 101,679 to 11,192. 
-
-
+.. _comprehensive_workflow_magnetics_3_detrend:
 
 Very Long Period Removal
 ------------------------
 
-As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long period signals. To recover an equivalent source model that accurately characterizes local anomalies, we must first remove the very-long period signal. In the case of upward continuation, this signal can be added back afterwards. We begin by:
+As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long period (VLP) signals. To recover an equivalent source model that accurately characterizes our local anomalies, we must first remove the very-long period signal from the local magnetic data. In the case of upward continuation, this signal can be added back afterwards so long as the inducing field remains roughly the same. We begin by:
 
     - :ref:`plotting the data with VTK <viewData>`
 
-From here, there are several approaches you can take to determine the background signal:
+From here, there are several approaches you can take to determine the VLP signal:
 
     - **Option 1:** Examine the values away from any obvious anomalies on the standard data map. *Pro tip: Click the 'Plot Contours' tab. Set background colour to black and axes and labels to white. This will allow you to hover the cursor over data points and see the values in the bottom-left corner of the data map*
     - **Option 2:** Click the 'Profiler' tab. Here you can plot the anomaly values along a user-defined path
-    - **Option 3:** fit a polynomial to a set of selected points. To do this:
+    - **Option 3:** fit a polynomial to a set of selected points. A detailed description of this can be found in the :ref:`polynomial detrending section <comprehensive_workflow_magnetics_5_approach>` of the tutorial.
 
-        - click the 'Edit' tab
-        - choose one of the selection options and select data on the data map. *For the rectangular option, you can hold Ctrl and append multiple selections*
-        - click the 'Regional fit' tab and fit the desired polynomial to either highlighted or not highlighted data
-        - click 'OK' to create the resulting data column with the polynomial defined at all survey locations.
 
-Once you have determine the very long period contribution, you subtract it from the original anomaly data and define a new column using the :ref:`column calculator <objectCalculator>`.
+Once you have determine the very long period contribution, you subtract it from the original anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
 
 
 **For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the very long period signal. Therefore 375 nT were added to the original data column to create a 'shifted' anomaly column.
@@ -60,14 +47,14 @@ Once you have determine the very long period contribution, you subtract it from 
 Generating a Mesh and Defining Active Cells
 -------------------------------------------
 
-Here, we define the mesh and the cells on which our equivalent source model will live. In this case, our equivalent source model
-will consist of several layers of cells which follow the local topography. We are not trying to recover structures from the data.
+Here, we define the mesh and the cells on which our local equivalent source model will live. In this case, our equivalent source model
+will consist of several layers of cells which follow the local topography. We are not trying to recover realistic structures from the data.
 We are simply recovering a model which fits the data exactly.
 
 **Generate a mesh:**
 
     - :ref:`Create 3D mesh <create_mesh>` under the 'Create' drop-down menu
-    - **Cell size:** set the cell size for the core mesh cells. Cell dimensions CANNOT be larger than this minimum horizontal spacing between data points. A cells size that is 0.5-0.8 times the minimum horizontal spacing generally works.
+    - **Cell size:** set the cell size for the core mesh cells. Cell dimensions CANNOT be larger than the minimum horizontal spacing between data points. A cells size that is 0.5-0.8 times the minimum horizontal spacing generally works.
     - **Horizontal Extent:** under 'Choose Object', select the local magnetic data object then click 'calculate limits'. This defines your core mesh region
     - **Vertical Extent:** Add a thickness equal to 2-4 layers of cells
     - **Padding Parameters:** Do not pad in the vertical direction. Pad out sufficiently in the horizontal. Larger padding thicknesses are required if you are upward continuing significantly.
@@ -118,7 +105,7 @@ We do not want an equivalent source model that overfits the background at the ex
 Setting Up and Running the Inversion
 ------------------------------------
 
-We can now invert MT data using E3DMT v1 or v2. 
+We can now perform the local equivalent source inversion. 
 
     - :ref:`Create a MAG3D v6.0 inversion object <createMagInv>`
     - Use :ref:`edit options <invEditOptions_Mag3D>` to set the inversion parameters
@@ -147,7 +134,7 @@ Discussion of Inversion Parameters
 For equivalent source inversion, there is no need to apply the sensitivity weighting typically used in potential field inversion. In fact, it is easier for the inversion to fit the data with a layer if sensitivity weighting is NOT applied. To accomplish this, we do not use the default weighting. We set the *Exponent* to equal 0 and the contant *R0* to be some positive contant. By doing this, all of the weights in our weights model will be equal to 1.
 
 
-**Regarding chi factor schedule:**
+**Regarding chi factor:**
 
 The goal of the of the equivalent source inversion is to recover a model that fits the data as well as possible. To accomplish this, we set the target chi factor to something much smaller than 1 (e.g. 0.01 in this case).
 

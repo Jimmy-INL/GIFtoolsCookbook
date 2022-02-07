@@ -31,8 +31,12 @@ Tutorial Sections
     - Understanding magnetic anomalies <1_basic_anomalies>
     - Loading data and cursory interpretation <2_load_data>
     - Equivalent source inversion <3_equivalent_source>
-    .. - Preparing data for inversion within the GIFtools framework <4_data_preparation>
-    .. - Mesh design <5_mesh_design>
+    - Upward continuation and reduction to pole <4_upward_continuation>
+    - Polynomial detrending <5_detrending>
+    - Uncertainties for magnetic data <6_uncertainties>
+    - Mesh design <7_mesh_design>
+    - Regional inversion (optional) <8_regional_inversion>
+    - Regional removal <9_regional_removal>
     .. - Setting appropriate parameters and running the inversion <6_inversion>
     .. - Examining convergence, data misfit and the recovered model <7_results>
 
