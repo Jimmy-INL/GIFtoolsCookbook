@@ -1,13 +1,14 @@
 .. _comprehensive_workflow_magnetics_1:
 
 
-Understanding Magnetic Anomalies
-================================
+Understanding TMI Anomalies
+===========================
 
-In order to properly interpret magnetic data, it is import to first understand what what is being measured and the anomalies for basic structures. Here, we investigate magnetic anomalies produced by a compact magnetized block within a homogeneously magnetized host. The knowledge gained here can be used to understand the relationship between the inducing field orientation and the resulting magnetic anomaly, as well as infer the presence of remanent magnetism.
+TMI stands for total magnetic intensity. In order to properly interpret and invert TMI data, it is important to first understand what is being measured by the sensor and the characteristic anomalies produced by basic magnetized structures. Here, we define TMI data and describe the magnetic anomalies produced by a compact magnetized block within a homogeneously magnetized host.
 
-Magnetic Data
--------------
+
+Defining TMI Anomaly Data
+-------------------------
 
 Let :math:`\mathbf{B}` represent the total magnetic field at some point in space. We can decompose this quantity into two parts:
 
@@ -15,19 +16,10 @@ Let :math:`\mathbf{B}` represent the total magnetic field at some point in space
     \mathbf{B} = \mathbf{B_0} + \mathbf{B_a}
 
 
-where :math:`\mathbf{B_0}` represents the source/background field and :math:`\mathbf{B_a}` represents the anomalous field.
-The source/background field is generally defined according to the `international geomagnetic reference field <//en.wikipedia.org/wiki/International_Geomagnetic_Reference_Field>`__ or a set of time-dependent base station measurements. The anomalous field represents the fields produced by local magnetized structures.
+where :math:`\mathbf{B_0}` represents the background field and :math:`\mathbf{B_a}` represents the anomalous field.
+The background field is generally defined according to the `international geomagnetic reference field <//en.wikipedia.org/wiki/International_Geomagnetic_Reference_Field>`__ or a set of time-dependent base station measurements. The anomalous field represents the fields produced by local magnetized structures of interest.
 
-In practive, magnetic data are collected by measuring the components or amplitude of the total magnetic field. The source/background field is then
-removed to obtain a representation of the anomalous field. And anomalous field data are interpreted and eventually inverted.
-
-
-Total Magnetic Intensity Data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Total magnetic intensity (TMI) data are by far the most commonly collected magnetic data. TMI anomamly data represent the projection of the anomalous field along the direction of the Earth's inducing field.
-
-At each survey location, the sensor measures the amplitude of the total field. I.e.:
+During a TMI survey, a sensor is used to measure the amplitude of the total magnetic field at each survey location. I.e.:
 
 .. math::
     | \mathbf{B} | =  |\mathbf{B_0} + \mathbf{B_a} |
@@ -41,32 +33,17 @@ amplitude of the background field from the total field measurements:
     d_{tmi} = \mathbf{B_a} \cdot \mathbf{\hat{B}_0} \approx  |\mathbf{B}| - |\mathbf{B_0} |
 
 
-Component and Amplitude Data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Fluxgate and SQUID magnetometers are capable of measuring the components of magnetic fields along particular directions.
-Since the amplitude and direction of the international geomagnetic reference field is known, it is used as the background field.
-And thus, the background field can be subtracted from the total field directly to obtain the components of the anomalous field:
-
-.. math::
-    \mathbf{B_a} = \mathbf{B} - \mathbf{B_0}
-
-
-If three orthogonal components of the anomalous field are obtained, the amplitude anomaly can also be computed:
-
-.. math::
-   d_{amp} = | \mathbf{B_a} |
-
+**TMI anomaly data therefore represent the projection of the anomalous field along the direction of the Earth's magnetic field.**
 
 
 TMI Anomalies over a Susceptible Block
 --------------------------------------
 
-Here we discuss the impact of inclination and declination angle of the Earth's field and
+Here we discuss the impact of the inclination and declination angles of the Earth's field as well as
 remanent magnetization on TMI anomalies. For this example, a block (0.25 SI) is located within
 a homogeneous background (0.01 SI). The horizontal and vertical dimensions of the block are all
 300 m, and the top of the block is at a depth of 100 m. The receivers are at a constant height
-of 100 m and horizontal spacing of 40 m is used.
+of 100 m and a horizontal spacing of 40 m is used.
 
 
 .. figure:: images/anomalies_geometry.png
@@ -105,6 +82,8 @@ will align with the declination angle of the Earth's inducing field.
     :align: center
     :width: 700
 
+
+.. _comprehensive_workflow_magnetics_1_remanence:
 
 Anomalies Including Remanent Magnetization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

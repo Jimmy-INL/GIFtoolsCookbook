@@ -5,9 +5,9 @@
 Loading TMI Data and Cursory Interpretation
 ===========================================
 
-The first step in any project is to load field collected data and visualize it. Here, we load magnetic data, assign and remove the background magnetic field, and visualize the anomaly data.
+The first step in any project is to load field collected data and visualize it. Here, we load TMI data, assign and remove the background magnetic field, and visualize the TMI anomaly data.
 
-**The tutorial data consists of both local and regional datasets**. The local scale dataset encompasses our region of interest. It consists of many North-South lines of surface TMI data collected using a skidoo. The coarse-scale regional magnetic data was obtained from the Natural Resources Canada. Regional data (if available) can be used to better understand regional-scale magnetic anomalies and constrain local inversion results. 
+**The tutorial data consists of both local and regional datasets**. The local scale dataset encompasses our region of interest. It consists of many North-South lines of surface TMI data collected on the back of a skidoo. The coarse-scale regional magnetic data was obtained from Natural Resources Canada. Regional data (if available) can be used to better understand regional-scale magnetic anomalies and constrain local inversion results. 
 
 
 .. important:: Requires GIFtools v2.34 or later.
@@ -22,16 +22,12 @@ Starting Your Project
 Import Files
 ------------
 
-.. important:: If you are working with your own dataset and you do cannot aquire regional scale data, you can still complete this tutorial; although you will not be able to implement certain techniques.
+.. important:: If you are working with your own dataset and you do cannot acquire regional scale data, you can still complete this tutorial; although you will not be able to implement certain techniques.
 
-Here, we import magnetic and topography data. **Local and regional tutorial data are in a general XYZ format but the same functionality is available for CSV or UBC-GIF formatted data**. To import the data and topography:
+Here, we import the TMI and topography datasets. **Local and regional tutorial data are in a general XYZ format but the same functionality is available for CSV or UBC-GIF formatted data**. To import the TMI data and topography:
 
     - :ref:`Import local and regional topography data (XYZ format) <importTopo>`. These files are called *topo_xyz_local.xyz* and *topo_xyz_regional.xyz*.
     - :ref:`Import local and regional TMI magnetic data (XYZ format) <importMagData>`. These files are called *mag_xyz_local.xyz* and *mag_xyz_regional.xyz*.
-
-
-.. note:: If you are loading amplitude data in XYZ or CSV format, apply :ref:`change data type <objectMagDataChangeType>` and convert your *MAGdata* object to an *AMPdata* object.
-
 
 
 Defining Earth's Inducing Field
@@ -69,7 +65,7 @@ So long as the size of the survey region is reasonable, we assume the properties
 Removing the Background Field
 -----------------------------
 
-The background field may be defined by as base station measurements (which contain regional signals) or as the Earth's inducing field (which does not). We must remove the background field from total field measurements in order to obtain the magnetic anomaly data. There are two ways in which this can be done using GIFtools:
+The background field may be defined using base station measurements (which contain regional signals) or as the Earth's inducing field (which does not). We must remove the background field from the total field measurements in order to obtain the TMI anomaly data. There are two ways in which this can be done using GIFtools:
 
     - If the background field (base station or IGRF) is provided in a column, the :ref:`column calculator <objectCalculator>` can be used to subtract the background field from the total field.
     - Or use :ref:`remove IGRF <objectRemoveIGRF>` to subtract the inducing field defined in the previous step of the tutorial.
@@ -87,7 +83,7 @@ Cursory Interpretation
 
 **Local tutorial data:**
 
-The topography and TMI anomaly are shown below. The topography ranges from an elevation of 540 m to 670 m. The tutorial data were were collected at the surface. In this case, several extremely high amplitude signals were measured and the range of the color scale needed to be fixed between -2000 nT and 10000 nT. The general anomalies features observed in the data map appear to be trending from WSW to ENE. And a large anomalous structure is seen near the middle of the data map.
+The topography and TMI anomaly data are shown below. The topography ranges from an elevation of 540 m to 670 m. The tutorial data were were collected at the surface. In this case, several extremely high amplitude signals were measured and the range of the color scale needed to be fixed between -2000 nT and 10000 nT. The general anomalies features observed in the data map appear to be trending from WSW to ENE. And a large anomalous structure is seen near the middle of the data map.
 
     
 .. figure:: images/cursory_interpretation_local.png
@@ -106,7 +102,6 @@ The topography, TMI anomaly data and coverage of the local survey data are plott
 
 
 
-
 Downsampling the Data
 ---------------------
 
@@ -115,7 +110,7 @@ The along-line sampling rate for both surface and airborne surveys is generally 
     - :ref:`Downsample by distance <objectDataDownsample>`
 
 
-**For the local tutorial data**, we downsampled to a minimum spacing of 25 m. This is roughly equal to the line spacing for the local magnetic survey. This reduced the total number of data points from 101,679 to 11,192.
+**For the local tutorial data**, we downsampled to a minimum spacing of 25 m. This is roughly equal to half the average line spacing for the local magnetic survey. This reduced the total number of data points from 101,679 to 11,192. Downsampling to 25 m was able to greatly reduce the number of data without filtering out coherent higher frequency signals we are attributing to magnetized structures.
 
 **The regional tutorial data** has already been gridded to a spacing of 200 m and does not need to be downsampled.
 

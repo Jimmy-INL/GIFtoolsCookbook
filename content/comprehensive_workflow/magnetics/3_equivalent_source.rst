@@ -5,14 +5,14 @@
 Equivalent Source Inversion
 ===========================
 
-Here, we provide the steps for performing the equivalent source inversion using the GIFtools framework. Equivalent source inversion is a method for recovering an equivalent source model from potential field data. The equivalent source model represents a source distribution that fits the observed data exactly, and can be used to compute the expected magnetic anomalies for other locations/field orientations.
-Equivalent source models are used to:
+Here, we provide the steps for performing an equivalent source inversion within the GIFtools framework. Equivalent source inversion is a method for recovering an equivalent source model from potential field data. An equivalent source model represents a source distribution that fits the observed data exactly, and can be used to compute the expected potential field(s) for other locations/field orientations.
+In magnetics, equivalent source models are used to:
 
-    - compute the magnetic anomaly data for a vertical inducing field (reduction to pole)
-    - compute the magnetic anomaly data at a higher elevation (upward continuation)
+    - compute the TMI anomaly data for a vertical inducing field (reduction to pole)
+    - compute the TMI anomaly data at higher elevations (upward continuation)
 
 
-**Regarding the tutorial data,** we recover an equivalent source model for the local surface-collected magnetic data. In the following tutorial section, this model is used to upward continue the data to in order to remove problematic high-frequency signals. For the regional magnetic data, we will not need to carry out and equivalent source inversion. A reduction to pole is also no necessary, as the Earth's inducing field is fairly vertical.
+**Regarding the tutorial data,** we recover an equivalent source model for the local surface-collected TMI anomaly data. In the following tutorial section, this model is used to upward continue the data in order to remove problematic high-frequency signals. For the regional magnetic data, we will not need to carry out and equivalent source inversion. A reduction to pole is also not necessary, as the Earth's inducing field is fairly vertical (~80 degrees inclination).
 
 
 .. _comprehensive_workflow_magnetics_3_detrend:
@@ -20,7 +20,7 @@ Equivalent source models are used to:
 Very Long Period Removal
 ------------------------
 
-As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long period (VLP) signals. To recover an equivalent source model that accurately characterizes our local anomalies, we must first remove the very-long period signal from the local magnetic data. In the case of upward continuation, this signal can be added back afterwards so long as the inducing field remains roughly the same. We begin by:
+As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long period (VLP) signals. To recover an equivalent source model that accurately characterizes local-scale anomalies, we must first remove the very-long period signal from the local TMI anomaly data. In the case of upward continuation, this signal can be added back afterwards so long as the inducing field remains roughly the same. We begin by:
 
     - :ref:`plotting the data with VTK <viewData>`
 
@@ -31,7 +31,7 @@ From here, there are several approaches you can take to determine the VLP signal
     - **Option 3:** fit a polynomial to a set of selected points. A detailed description of this can be found in the :ref:`polynomial detrending section <comprehensive_workflow_magnetics_5_approach>` of the tutorial.
 
 
-Once you have determine the very long period contribution, you subtract it from the original anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
+Once you have determine the very long period contribution, you subtract it from the original TMI anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
 
 
 **For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the very long period signal. Therefore 375 nT were added to the original data column to create a 'shifted' anomaly column.
@@ -41,7 +41,7 @@ Once you have determine the very long period contribution, you subtract it from 
     :align: center
     :width: 700
 
-    Original anomaly data scaled between -1000 nT and 1500 nT (left). Profile oriented along the declination angle (right).
+    Original TMI anomaly data scaled between -1000 nT and 1500 nT (left). Profile oriented along the declination angle (right).
 
 
 Generating a Mesh and Defining Active Cells
@@ -80,14 +80,14 @@ We are simply recovering a model which fits the data exactly.
 Applying Uncertainties
 ----------------------
 
-The uncertainties used for the equivalent source inversion are not the uncertainties that will be used to recover our final susceptibility model. Here, we apply a set of ad hoc uncertainties. For example, a floor uncertainty of 1 nT can be applied to all data. These uncertainties are almost certainly are not representative of the true level of uncertainty on the data, but this is okay.
+The uncertainties used for equivalent source inversion are not the uncertainties that will be used to recover our final susceptibility model. Here, we apply a set of ad hoc uncertainties. For example, a floor uncertainty of 1 nT can be applied to all data. These uncertainties are almost certainly are not representative of the true level of uncertainty on the data, but this is okay.
 
 We do not want an equivalent source model that overfits the background at the expense of fitting magnetic anomalies. As a result, we do not advise assigning percent uncertainties to the data. Furthermore, we may select certain regions and assign a lowever floor uncertainty; ensuring we fit the data in these regions sufficiently.
 
 **For the local tutorial data,** we defined the uncertainties as follows:
 
     - We assigned a floor uncertainty of 1 nT to all data using :ref:`assign uncertainties <objectAssignUncert>`
-    - At locations in the regional of our target anomaly, we replaced the uncertainties with a floor value of 0.25 nT. This was done by:
+    - At locations in the region of our target anomaly, we replaced the uncertainties with a floor value of 0.25 nT. This was done by:
 
         - :ref:`Plotting the data with VTK <viewData>`
         - Setting the anomaly data to be our currently viewed data

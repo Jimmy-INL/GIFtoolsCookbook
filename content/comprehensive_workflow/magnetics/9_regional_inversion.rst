@@ -1,4 +1,4 @@
-.. _comprehensive_workflow_magnetics_8:
+.. _comprehensive_workflow_magnetics_9:
 
 .. include:: <isonum.txt>
 
@@ -9,55 +9,7 @@ If available, the inversion of regional-scale data provides a regional-scale mod
 Unlike simple detrending, the inclusion of regional-scale data in processing
 
 
-Cropping
---------
 
-
-
-
-Detrending
-----------
-
-Magnetic data generally contains signals whose spatial wavelengths are larger than the dimensions of the survey area.
-For regional scale data, we use polynomial detrending to remove these signals. The process of polynomial detrending was previously
-presented when discussing :ref:`equivalent source inversion <comprehensive_workflow_magnetics_3_detrend>`. The steps are as follows:
-
-    - :ref:`Plot the regional data with VTK <viewData>`
-    - click the 'Edit' tab
-    - choose one of the selection options and select data on the data map. *For the rectangular option, you can hold Ctrl and append multiple selections*
-    - click the 'Regional fit' tab and fit the desired polynomial to either highlighted or not highlighted data
-    - click 'OK' to create the resulting data column with the polynomial defined at all survey locations.
-    - close the VTK plotter
-    - subtract the polynomial column from the original anomaly data and define a new column (*B_anomaly_detrended*) using the :ref:`column calculator <objectCalculator>`.
-
-
-**For the regional tutorial data,** the polynomial and resulting detrended data are 
-
-
-
-Uncertainties
--------------
-
-The general approach for assigning uncertainties to magnetic data was discussed in :ref:`the previous section <comprehensive_workflow_magnetics_5>`.
-**For the regional tutorial data,** a background floor uncertainty of 2 nT was assigned. In the region near anomalous structures, a floor uncertainty of 1 nT was assigned. See below.
-
-
-
-Regional Mesh
--------------
-
-
-
-**Generate a mesh:**
-
-    - :ref:`Create 3D mesh <create_mesh>` under the 'Create' drop-down menu
-    - **Cell size:** set the cell size for the core mesh cells. Cell dimensions CANNOT be larger than the minimum horizontal spacing between data points. A cells size that is 0.5-0.8 times the minimum horizontal spacing generally works.
-    - **Horizontal Extent:** under 'Choose Object', select the local magnetic data object then click 'calculate limits'. This defines your core mesh region
-    - **Vertical Extent:** Add a thickness equal to 2-4 layers of cells
-    - **Padding Parameters:** Do not pad in the vertical direction. Pad out sufficiently in the horizontal. Larger padding thicknesses are required if you are upward continuing significantly.
-
-
-**For the local tutorial data,** the following parameters were used.
 
 
 
@@ -117,11 +69,38 @@ Analyzing Inversion Results
 Convergence
 ^^^^^^^^^^^
 
+.. figure:: images/inv_regional_convergence.png
+    :align: center
+    :width: 700
+
 
 Data Misfit
 ^^^^^^^^^^^
 
 
 
+.. figure:: images/inv_regional_misfit_iter9_smoothest.png
+    :align: center
+    :width: 700
+
+
+.. figure:: images/inv_regional_misfit_iter9_default.png
+    :align: center
+    :width: 700
+
+
+.. figure:: images/inv_regional_misfit_profile.png
+    :align: center
+    :width: 700
+
+
+
 Recovered Model
 ^^^^^^^^^^^^^^^
+
+
+
+
+.. figure:: images/inv_regional_models_iter9.png
+    :align: center
+    :width: 700

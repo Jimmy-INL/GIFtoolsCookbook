@@ -1,8 +1,8 @@
 .. _comprehensive_workflow_magnetics_index:
 
 
-Comprehensive Workflows: Magnetics
-==================================
+Comprehensive Workflows: TMI Magnetics
+======================================
 
 **Author: Devin C. Cowan**
 
@@ -33,10 +33,11 @@ Tutorial Sections
     - Equivalent source inversion <3_equivalent_source>
     - Upward continuation and reduction to pole <4_upward_continuation>
     - Polynomial detrending <5_detrending>
-    - Uncertainties for magnetic data <6_uncertainties>
-    - Mesh design <7_mesh_design>
-    - Regional inversion (optional) <8_regional_inversion>
-    - Regional removal <9_regional_removal>
+    - Data interpretation (including remanence) <6_data_interpretation>
+    - Uncertainties for magnetic data <7_uncertainties>
+    - Mesh design <8_mesh_design>
+    - Regional inversion (optional) <9_regional_inversion>
+    - Regional removal <10_regional_removal>
     .. - Setting appropriate parameters and running the inversion <6_inversion>
     .. - Examining convergence, data misfit and the recovered model <7_results>
 
