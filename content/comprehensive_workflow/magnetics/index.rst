@@ -36,9 +36,9 @@ Tutorial Sections
     - Data interpretation (including remanence) <6_data_interpretation>
     - Uncertainties for magnetic data <7_uncertainties>
     - Mesh design <8_mesh_design>
-    - Regional inversion (optional) <9_regional_inversion>
-    - Regional removal <10_regional_removal>
-    .. - Setting appropriate parameters and running the inversion <6_inversion>
-    .. - Examining convergence, data misfit and the recovered model <7_results>
+    - Least-squares inversion <9_inversion>
+    - Examining inversion outputs <10_inversion_results>
+    - Local inversion using regional removal <11_regional_removal>
+    - Sparse norm inversion <12_sparse_inversion>
 
  

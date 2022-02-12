@@ -2,8 +2,8 @@
 
 .. include:: <isonum.txt>
 
-Regional Removal
-================
+Examining Inversion Outputs
+===========================
 
 
 

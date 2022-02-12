@@ -2,14 +2,10 @@
 
 .. include:: <isonum.txt>
 
-Regional Inversion (Optional)
-=============================
+Least Squares Inversion
+=======================
 
-If available, the inversion of regional-scale data provides a regional-scale model that can be used to remove regional trends from local magnetic data.
-Unlike simple detrending, the inclusion of regional-scale data in processing
-
-
-
+If available, the inversion of regional-scale data provides a regional susceptibility model. This model can be used to remove regional trends from local survey data or account for local TMI anomalies that are truncated by the extent of the local survey area. 
 
 
 
@@ -29,7 +25,7 @@ We can now perform the local equivalent source inversion
 
 **For the local tutorial data,** the following inversion parameters were used.
 
-.. figure:: images/regional_inversion_edit_options.png
+.. figure:: images/inv_regional_edit_options.png
     :align: center
     :width: 700
 
