@@ -5,14 +5,19 @@
 Least Squares Inversion
 =======================
 
-If available, the inversion of regional-scale data provides a regional susceptibility model. This model can be used to remove regional trends from local survey data or account for local TMI anomalies that are truncated by the extent of the local survey area. 
 
 
 
-Running the Inversion
----------------------
 
-We can now perform the local equivalent source inversion
+
+.. If available, the inversion of regional-scale data provides a regional susceptibility model. This model can be used to remove regional trends from local survey data or account for local TMI anomalies that are truncated by the extent of the local survey area. 
+
+
+
+Running a Least-Squares Inversion
+---------------------------------
+
+The steps for setting up and running the magnetic inversion are as follows:
 
     - :ref:`Create a MAG3D v6.0 inversion object <createMagInv>`
     - Use :ref:`edit options <invEditOptions_Mag3D>` to set the inversion parameters
@@ -20,12 +25,23 @@ We can now perform the local equivalent source inversion
     - Run weights
     - Run sensitivities
     - Run inversion
-    - :ref:`Load final result <invLoadResults>`
+    - :ref:`Load results for desired iterations <invLoadResults>`
+
+
+**For the regional tutorial data,** the following inversion parameters were used.
+
+.. figure:: images/inv_regional_edit_options.png
+    :align: center
+    :width: 700
+
+
+
+
 
 
 **For the local tutorial data,** the following inversion parameters were used.
 
-.. figure:: images/inv_regional_edit_options.png
+.. figure:: images/inv_local_edit_options.png
     :align: center
     :width: 700
 
@@ -59,44 +75,3 @@ A starting model of 0.0001 SI was chosen as the starting model. This is done bec
 Here, we set a lower bound of 0 SI to enforce a positivity constraint on the recovered susceptibility model.
 
 
-Analyzing Inversion Results
----------------------------
-
-Convergence
-^^^^^^^^^^^
-
-.. figure:: images/inv_regional_convergence.png
-    :align: center
-    :width: 700
-
-
-Data Misfit
-^^^^^^^^^^^
-
-
-
-.. figure:: images/inv_regional_misfit_iter9_smoothest.png
-    :align: center
-    :width: 700
-
-
-.. figure:: images/inv_regional_misfit_iter9_default.png
-    :align: center
-    :width: 700
-
-
-.. figure:: images/inv_regional_misfit_profile.png
-    :align: center
-    :width: 700
-
-
-
-Recovered Model
-^^^^^^^^^^^^^^^
-
-
-
-
-.. figure:: images/inv_regional_models_iter9.png
-    :align: center
-    :width: 700
