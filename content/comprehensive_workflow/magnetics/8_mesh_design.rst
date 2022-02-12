@@ -5,19 +5,36 @@
 Mesh Design
 ===========
 
-Here, we describe a general approach for designing meshes for magnetic inversion.
+Here, we describe a general approach for designing meshes for TMI inversion.
 
 Downsampling
 ------------
 
+Downsampling was first introduced in the :ref:`Loading TMI Data and Cursory Interpretation <comprehensive_workflow_magnetics_2_downsampling>` section of the tutorial. Downsampling was applied to the local tutorial data to increase the minimum spacing between data points without filtering out any coherent signals from magnetized structures. This enabled us to perform an equivalent source inversion on a mesh whose cells were reasonably sized.
 
+Here, downsampling is performed for the same reason. Memory requirements for potential field inversion are linearly proportional to mesh size. By downsampling appropriately, we can invert the data on a coarser mesh since we have increased the minimum data spacing.
+
+    - :ref:`Downsample by distance <objectDataDownsample>`
+
+
+**For the local tutorial data,** we downsampled to a minimum distance of 50 m. This is equal to the average line spacing of the origin field-collected skidoo data. For the data being inverted (upward continued to 100 m), this minimum spacing accurately characterizes the observed TMI anomaly.
 
 
 General Approach
 ----------------
 
-**Depth of core mesh region:** As mentionned in the :ref:`interpretation <comprehensive_workflow_magnetics_6_halfwidth>` section, the depth to a magnetized body is correlated with the width of the anomaly it produces. The largest halfwidth for anomalies within the regional of interest sets a rough estimate for the lower bound of the core mesh region.
+To create a tensor mesh based on survey geometry:
 
+    - :ref:`Create 3D mesh <create_mesh>` under the 'Create' drop-down menu
+    - **Cell size:** set the cell size for the core mesh cells.
+    - **Horizontal Extent:** under 'Choose Object', select the magnetic data object then click 'calculate limits'. This defines your core mesh region
+    - **Vertical Extent:** Depth of your core mesh region under surface topography
+    - **Padding Parameters:** Do not pad in the vertical direction. These cells are not used when modeling potential fields and would be set to inactive
+
+
+Here are some rules of thumb for generating tensor meshes for magnetic inversion:
+
+**Depth of core mesh region:** As mentionned in the :ref:`interpretation <comprehensive_workflow_magnetics_6_halfwidth>` section, the depth to a magnetized body is correlated with the width of the anomaly it produces. To estimate the depth of the core mesh region, use the half-width formula on any notable TMI anomalies then determine the corresponding burial depths. The bottom of the core mesh region should be 1-2 times the largest burial depth; ensuring that a significant portion of the target does not end up in the padding.
 
 **Minimum cell dimension:** The dimensions of the cells in the core mesh region depend on the smallest spatial frequency contained within the data. When data are very smooth and contain lower spatial frequencies, coarser meshes can be used and the inversion will demonstrate reasonable convergence. If data contains significant higher frequency signals, more cells are required between each data point in order for the inversion to converge appropriately; i.e. reach target misfit with a geologically reasonable model.
 
@@ -32,21 +49,34 @@ Meshes for Tutorial Data
 Regional Mesh
 ^^^^^^^^^^^^^
 
+For regional-scale inversion, the following parameters were used to generate the mesh.
+
 
 .. figure:: images/mesh_regional_parameters.png
     :align: center
     :width: 600
 
 
+**Depth of core mesh region:** 1200 m was 2x the burial depth using the half-space formula.
 
+**Minimum cell dimensions:** Since the regional data are gridded to 200 m spacing, we chose a minimum cell dimension of 80 m (2.5 cells per station).
 
+**Padding:** We chose to define the mesh boundary 10 km from the survey region in every direction. Based on our best-practices, this could be seen as a bit of an underestimation (survey region is 45 km by 45 km). But assuming we have removed the very-long period signal from the regional data, this was acceptable.
 
 
 Local Mesh
 ^^^^^^^^^^
 
+For local-scale inversion, the following parameters were used to generate the mesh.
 
 
 .. figure:: images/mesh_local_parameters.png
     :align: center
     :width: 600
+
+
+**Depth of core mesh region:** 1000 m was 2x the burial depth using the half-space formula.
+
+**Minimum cell dimensions:** Since the data were downsampled to a minimum spacing of 50 m, we chose a minimum cell dimension of 20 m (2.5 cells per station).
+
+**Padding:** We chose to define the mesh boundary 4 km from the survey region in every direction. Based on our best-practices, this was reasonable given a survey area of 4.5 km by 4.5 km.

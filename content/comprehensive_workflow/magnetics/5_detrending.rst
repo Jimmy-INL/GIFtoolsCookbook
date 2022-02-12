@@ -5,20 +5,19 @@
 Polynomial Detrending and Levelling
 ===================================
 
-**Polynomial detrending** is used to remove longer period signals from the data in order to more accurately characterize local magnetic anomalies; see the image below. Failure to remove longer period signals from magnetic data prior to inversion can result in artifacts and structures which mischaracterize local anomalies. Depending on the data you have available, there are two cases:
-
-    - **Case 1:** You only have local scale data (no regional data). In this case, polynomial detrending is applied to directly to the local data prior to inversion. Here, we assume that signals from regional and/or nearby structures can be approximated by a low-order polynomial.
-    - **Case 2:** You have both local and regional scale data. Polynomial detrending is applied to the regional data only. And the detrended regional data is used to account for regional trends in the local scale data.
-
+**Polynomial detrending** is used to remove longer period signals from the data in order to more accurately characterize local magnetic anomalies; see the image below. Failure to remove longer period signals from magnetic data prior to inversion can result in artifacts and structures which mischaracterize local anomalies.
 
 .. figure:: https://gpg.geosci.xyz/_images/regional.gif
     :align: center
 
 
-**Levelling** is sometimes required when you have both local and regional scale data collected during different surveys. Levelling is a DC shift that is added to one of the datasets, so that the background values for both datasets are comparable in the same region.
+**Levelling** is sometimes required when you have both local and regional scale data collected during different surveys. Here, the levelling is a DC shift that is added to one of the datasets, so that the background values for both datasets are comparable in the same region.
 
+Depending on the data you have available, there are two cases:
 
-**For the tutorial data,** we have both local and regional data. As a result, polynomial detrending will be applied to the regional dataset. Upward continued local data are then compared to the detrended regional data to determine the required levelling constant; which can be applied to upward continued local data at any other height. The methodology for removing the regional signals from the local dataset are covered later.
+    - **Case 1:** You only have local data (no regional data). In this case, polynomial detrending is applied directly to the local data prior to inversion. Here, we assume that contribution from regional and/or nearby structures can be approximated by a low-order polynomial and removed.
+    - **Case 2:** You have both local and regional scale data. Polynomial detrending is applied to the regional data only. Levelling between local and region datasets is applied if needed. And the detrended regional data is used later to remove regional trends from the local dataset.
+
 
 
 .. _comprehensive_workflow_magnetics_5_approach:
@@ -50,13 +49,15 @@ The general approach for polynomial detrending is to select the set of data poin
     - Even after polynomial detrending is applied, there may be background regions with negative data values that cannot easily be fit with a strictly positive susceptibility model. In this case, you may detrend with a different polynomial fit OR apply a small DC shift.
 
 
+.. _comprehensive_workflow_magnetics_5_tutorial_data:
+
 Detrending and Levelling Tutorial Data
 --------------------------------------
 
 Regional Tutorial Data
 ^^^^^^^^^^^^^^^^^^^^^^
 
-For the regional magnetic data, a 1st order polynomial was used to fit the set of selected background points. We were careful not to include any small scale anomalies or obvious lows. The polynomial indicates a significant linear trend along the NNE direction. A profile trending roughly along the same direction as the Earth's declination is shown below. The 1st order polynomial generally does a good job of detrending the data. However, we noticed some background regions had coherent negative values. During a preliminary regional magnetic inversion, we found it difficult for the data to be fit by a strictly positive susceptibility model. As a result, we applied a DC shift of **+30 nT** to the regional data after detrending.
+For the regional magnetic data, a 1st order polynomial was used to fit the set of selected background points; creating a column we call *poly1*. We were careful not to include any small scale anomalies or obvious lows. The polynomial indicates a significant linear trend along the NNE direction. The 1st order polynomial was subtracted from the TMI anomaly data to create a column called *B_anomaly_detrended*. A profile roughly along the same direction as the Earth's declination is shown below. The 1st order polynomial generally does a good job of detrending the data. However, we noticed some background regions had coherent negative values. During a preliminary regional magnetic inversion, we found it difficult for the data to be fit by a strictly positive susceptibility model. As a result, we applied a DC shift of **+30 nT** to the regional data after detrending to create a column *B_anomaly_detrended_shift30nT*.
 
 .. figure:: images/polynomial_detrending_points.png
     :align: center
@@ -73,34 +74,25 @@ For the regional magnetic data, a 1st order polynomial was used to fit the set o
 Local Tutorial Data
 ^^^^^^^^^^^^^^^^^^^
 
-For the local magnetic data, we are interested in comparing final inversion results when regional data are and are not available. As a result, we:
+Consider the local TMI anomaly data that were upward continued to 100 m and then unshifted; whose column we call *B_anomaly_unshifted*. For this exercise, we are interested in comparing final inversion results when regional data both are and are not available. Thus we:
 
-    - used a 1st order polynomial to fit the background, then subtracted it to obtain a data column we are calling *B_anomaly_poly_detrended*. This data column will be inverted to recover a magnetic susceptibility model in the case where regional data are not available.
-    - applied a levelling constant of +380 nT to all upward continued and unshifted TMI anomaly data. Regional removal must be applied to this data column prior to local-scale inversion. Note that the levelling constant is quite close to the value of the first order polynomial region of the local survey, plus the DC shift of 30 nT.
-
-
+    - used a 1st order polynomial to fit the background, then subtracted the polynomial data column to obtain a data column we are calling *B_anomaly_detrended*. This data column will be inverted to recover a magnetic susceptibility model in the case where regional data are not available.
+    - applied a levelling constant of +380 nT to all upward continued and unshifted TMI anomaly data (i.e. *B_anomaly_unshifted*) to produce a column we call *B_anomaly_levelled*.
 
 
+We can see that locally, the change in the 'background response' is much smaller than the amplitude of the TMI anomaly. In this case, the *B_anomaly_detrended* and the *B_anomaly_levelled* profiles are pretty much the same over this profile. Also note that the regional 1st order polynomial trend and the local 1st order polynomial trend are not aligned along the same gradient; implying the coarse regional background is not a good characterization of the background at local scale. 
 
 
+.. figure:: images/polynomial_detrending_points_local.png
+    :align: center
+    :width: 700
+
+    Polynomial detrending applied to local tutorial data.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.. figure:: images/polynomial_detrending_profile_local.png
+    :align: center
+    :width: 600
 
 
 

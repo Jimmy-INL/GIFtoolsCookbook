@@ -24,7 +24,7 @@ As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnet
 
     - :ref:`plotting the data with VTK <viewData>`
 
-From here, there are several approaches you can take to determine the VLP signal:
+From here, there are several approaches you can take to determine the VLP signal from the TMI anomaly data column:
 
     - **Option 1:** Examine the values away from any obvious anomalies on the standard data map. *Pro tip: Click the 'Plot Contours' tab. Set background colour to black and axes and labels to white. This will allow you to hover the cursor over data points and see the values in the bottom-left corner of the data map*
     - **Option 2:** Click the 'Profiler' tab. Here you can plot the anomaly values along a user-defined path
@@ -34,14 +34,14 @@ From here, there are several approaches you can take to determine the VLP signal
 Once you have determine the very long period contribution, you subtract it from the original TMI anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
 
 
-**For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the very long period signal. Therefore 375 nT were added to the original data column to create a 'shifted' anomaly column.
+**For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the very long period signal. Therefore 375 nT were added to the original data column to create a column we call *B_anomaly_shifted*. These 'shifted' data are inverted to recover the equivalent source model.
 
 
 .. figure:: images/dc_shift_local.png
     :align: center
     :width: 700
 
-    Original TMI anomaly data scaled between -1000 nT and 1500 nT (left). Profile oriented along the declination angle (right).
+    Original local TMI anomaly data scaled between -1000 nT and 1500 nT (left). Profile oriented along the declination angle (right).
 
 
 Generating a Mesh and Defining Active Cells
@@ -198,3 +198,5 @@ Recovered Model
 .. figure:: images/equivalent_source_model_local.png
     :align: center
     :width: 500
+
+    Local equivalent source model

@@ -45,13 +45,16 @@ To carry out the upward continuation or reduction to pole:
     - Write the files
     - Run the forward model
     - Load the results when complete
-    - *For upward continuation,* undo the DC shift that was applied prior to the equivalent source inversion.
+    - **For upward continuation,** remove the DC shift from any predicted data. We call this column *B_anomaly_unshifted*.
 
-.. note:: If you have regional data, you will need to upward continue the local data to the height at which the regional data were collected.
+.. note:: If you have regional data, you will need to upward continue the local data to 1) a desired flight height for local-scale inversion, and 2) the height at which the regional data were collected.
 
 
-**For the local tutorial data,** upward continued TMI anomaly data at elevations of 50 m, 100 m and 305 m are shown below BEFORE the removal of the 375 nT shift. As expected the TMI anomaly is broader, smoother and has lower peak amplitude at higher elevations.
+**For the local tutorial data,** upward continued TMI anomaly data at elevations of 50 m, 100 m and 305 m are shown below BEFORE the removal of the 375 nT shift. As expected the TMI anomaly is broader, smoother and has lower peak amplitude at higher elevations. Upward continued data to an elevation of 50 m may still contain some higher frequency signals that aren't fully characterized with the current line/station spacing. **So moving forward, we plan to use data upward continued to 100 m in our local scale inversion.**
+
 
 .. figure:: images/upward_continued_local.png
     :align: center
     :width: 700
+
+    Local TMI anomaly data upward continued to gridded locations at 50 m, 100 m and 305 m above the Earth's surface. Note that the data in these plots have NOT been unshifted.

@@ -70,9 +70,9 @@ The background field may be defined using base station measurements (which conta
     - If the background field (base station or IGRF) is provided in a column, the :ref:`column calculator <objectCalculator>` can be used to subtract the background field from the total field.
     - Or use :ref:`remove IGRF <objectRemoveIGRF>` to subtract the inducing field defined in the previous step of the tutorial.
 
-**For the local tutorial data**, we subtracted the Earth's field from the total field using the column calculator. As such, regional and local information are contained within the resulting data column.
+**For the local tutorial data**, we subtracted the Earth's field from the total field using the column calculator. You maybe choose to call the new data column *B_anomaly*. Note that regional and local information are contained within the resulting data column because only the Earth's field was removed. 
 
-**For the regional tutorial data**, the background field had already been removed and this step was not necessary.
+**For the regional tutorial data**, the background field had already been removed and this step was not necessary. You may choose to call the data column *B_anomaly*.
 
 
 
@@ -101,11 +101,12 @@ The topography, TMI anomaly data and coverage of the local survey data are plott
     :width: 700
 
 
+.. _comprehensive_workflow_magnetics_2_downsampling:
 
 Downsampling the Data
 ---------------------
 
-The along-line sampling rate for both surface and airborne surveys is generally higher than is necessary to accurately characterize anomalies. Furthermore, 3D potential field inversions cannot fit the data if multiple data points lie above a single cell; implying you may consider some aspects of mesh design during this step. Here, we downsample the local magnetic data based on a desired minimum spacing; which is generally determined by the line separation.
+The along-line sampling rate for both surface and airborne surveys is generally higher than is necessary to accurately characterize anomalies. Furthermore, 3D potential field inversions cannot fit the data if multiple data points lie above a single cell; implying you may consider some aspects of mesh design during this step. Here, we downsample the local magnetic data based on a desired minimum spacing.
 
     - :ref:`Downsample by distance <objectDataDownsample>`
 
