@@ -23,8 +23,7 @@ These data were acquired from a `Geoscience Australia public database <https://d
 
 
 
-Tutorial Sections
------------------
+**Tutorial Sections**
 
 .. toctree::
     :maxdepth: 1

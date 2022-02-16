@@ -15,8 +15,8 @@ Polynomial Detrending and Levelling
 
 Depending on the data you have available, there are two cases:
 
-    - **Case 1:** You only have local data (no regional data). In this case, polynomial detrending is applied directly to the local data prior to inversion. Here, we assume that contribution from regional and/or nearby structures can be approximated by a low-order polynomial and removed.
-    - **Case 2:** You have both local and regional scale data. Polynomial detrending is applied to the regional data only. Levelling between local and region datasets is applied if needed. And the detrended regional data is used later to remove regional trends from the local dataset.
+    - **Case 1:** You only have local data (no regional data). In this case, polynomial detrending is applied directly to the local data prior to inversion. Here, we assume that contributions from regional and/or nearby structures can be approximated by a low-order polynomial and removed.
+    - **Case 2:** You have both local and regional scale data. Polynomial detrending is applied to the regional data only. Levelling between local and region datasets is applied if needed. And the detrended regional data is used later to remove regional trends from the local dataset prior to inversion.
 
 
 
@@ -71,16 +71,18 @@ For the regional magnetic data, a 1st order polynomial was used to fit the set o
     :width: 600
 
 
+.. _comprehensive_workflow_magnetics_5_levelled:
+
 Local Tutorial Data
 ^^^^^^^^^^^^^^^^^^^
 
-Consider the local TMI anomaly data that were upward continued to 100 m and then unshifted; whose column we call *B_anomaly_unshifted*. For this exercise, we are interested in comparing final inversion results when regional data both are and are not available. Thus we:
+Consider the local TMI anomaly data that were upward continued to 100 m and then unshifted; whose column we call *B_anomaly_unshifted*. For this exercise we are interested in comparing final inversion results when regional data are available, and when they are not. To accomplish this we:
 
-    - used a 1st order polynomial to fit the background, then subtracted the polynomial data column to obtain a data column we are calling *B_anomaly_detrended*. This data column will be inverted to recover a magnetic susceptibility model in the case where regional data are not available.
-    - applied a levelling constant of +380 nT to all upward continued and unshifted TMI anomaly data (i.e. *B_anomaly_unshifted*) to produce a column we call *B_anomaly_levelled*.
+    - used a 1st order polynomial to fit the background, then subtracted the polynomial data column to obtain a data column we are calling *B_anomaly_detrended*. This data column will be inverted to recover a local susceptibility model in the case where regional data are not available.
+    - applied a levelling constant of +380 nT to all upward continued and unshifted TMI anomaly data (i.e. *B_anomaly_unshifted*) to produce a column we call *B_anomaly_levelled*. We will remove regional trends from this data with the help of regional data prior to inverting.
 
 
-We can see that locally, the change in the 'background response' is much smaller than the amplitude of the TMI anomaly. In this case, the *B_anomaly_detrended* and the *B_anomaly_levelled* profiles are pretty much the same over this profile. Also note that the regional 1st order polynomial trend and the local 1st order polynomial trend are not aligned along the same gradient; implying the coarse regional background is not a good characterization of the background at local scale. 
+We can see that locally, the change in the 'background response' is much smaller than the amplitude of the TMI anomaly. Along the profile, *B_anomaly_detrended* and *B_anomaly_levelled* are more or less the same. Also note that the regional 1st order polynomial trend and the local 1st order polynomial trend are not aligned along the same gradient; implying the coarse regional background is not a good characterization of the background locally. 
 
 
 .. figure:: images/polynomial_detrending_points_local.png

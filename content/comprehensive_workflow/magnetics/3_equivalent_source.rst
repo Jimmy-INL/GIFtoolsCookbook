@@ -12,7 +12,7 @@ In magnetics, equivalent source models are used to:
     - compute the TMI anomaly data at higher elevations (upward continuation)
 
 
-**Regarding the tutorial data,** we recover an equivalent source model for the local surface-collected TMI anomaly data. In the following tutorial section, this model is used to upward continue the data in order to remove problematic high-frequency signals. For the regional magnetic data, we will not need to carry out and equivalent source inversion. A reduction to pole is also not necessary, as the Earth's inducing field is fairly vertical (~80 degrees inclination).
+**Regarding the tutorial data,** we recover an equivalent source model for the local surface-collected TMI anomaly data. In the following tutorial section, this model is used to upward continue the data in order to remove problematic high-frequency signals. For the regional magnetic data, we will not need to carry out an equivalent source inversion. A reduction to pole is also not necessary, as the Earth's inducing field is fairly vertical (~80 degrees inclination).
 
 
 .. _comprehensive_workflow_magnetics_3_detrend:
@@ -102,10 +102,15 @@ We do not want an equivalent source model that overfits the background at the ex
 .. important:: If you have not already done this, use :ref:`set i/o headers <objectSetioHeaders>` to set the X, Y, Z, data and uncertainty columns. Recall that you want to invert the SHIFTED anomaly data.
 
 
+.. figure:: images/equivalent_source_uncertainties.png
+    :align: center
+    :width: 550
+
+
 Setting Up and Running the Inversion
 ------------------------------------
 
-We can now perform the local equivalent source inversion. 
+We can now perform the local equivalent source inversion on the shifted TMI anomaly data. 
 
     - :ref:`Create a MAG3D v6.0 inversion object <createMagInv>`
     - Use :ref:`edit options <invEditOptions_Mag3D>` to set the inversion parameters
@@ -127,7 +132,7 @@ We can now perform the local equivalent source inversion.
 Discussion of Inversion Parameters
 ----------------------------------
 
-.. note:: The parameters chosen for inversion of the tutorial data set were experimentally derived. The numbers used here worked well for inverting this dataset but should not necessary be used as general default values!
+.. note:: The parameters chosen for inversion of the tutorial data were experimentally derived. The numbers used here worked well for inverting this dataset but should not necessary be used as general default values!
 
 **Regarding sensitivity weighting:**
 
@@ -141,11 +146,11 @@ The goal of the of the equivalent source inversion is to recover a model that fi
 
 **Regarding the alpha parameters:**
 
-We set :math:`\alpha_s` = 1e-8 (something very small) such that we recover the 'smoothest model'. That is, a model which does not depend on the reference model. The regularization and reference model impacts the structures that are placed in the padding cells. And as we learned in the :ref:`upward continuation <comprehensive_workflow_magnetics_1_upcont>` section of understanding anomalies, structures in the padding impact upward continued data. Our approach was to constraining the padding cells with a reference model.
+As we learned in the :ref:`upward continuation <comprehensive_workflow_magnetics_1_upcont>` section of understanding anomalies, structures recovered in the padding cells impact upward continued data at greater elevations. Our approach was not to enforce any assumptions on the values in the padding cells by setting :math:`\alpha_s` = 1e-8 (something very small). This is known as recovering the 'smoothest model'; a model which does not depend on the reference model. Ideally, any very-long period signals that weren't completely removed prior to inversion will be accounted for by smooth features that continue into the padding.
 
 **Regarding the starting model:**
 
-A starting model of 0.0001 SI was chosen as the starting model. This is done because a starting model of 0 SI would not produce a step direction for updating the model. So in practice, we just choose something small if we do not have a-priori information that guides our choice for a starting model.
+A starting model of 0.0001 SI was chosen. This is done because a starting model of 0 SI will not produce a step direction for updating the model at the first iteration. Thus in practice, we assign something small whenever our reference model is equal to 0.
 
 **Regarding active cells:**
 
@@ -153,7 +158,7 @@ Don't forget to use your active layer cells model to set the active cells in the
 
 **Regarding the bounds:**
 
-For equivalent source inversion, we simply need a model that fits the data as well as possible. We constraints are required regarding the positivity or magnitude of the recovered 'susceptibilities'. By setting the bounds to [-9999, 9999] we are essentially solving an unbounded inverse problem.
+For equivalent source inversion, we simply need a model that fits the data as well as possible. No constraints are required for the positivity or magnitude of the recovered 'susceptibilities'. By setting the bounds to [-9999, 9999] we are essentially solving an unbounded inverse problem.
 
 
 Analyzing Outputs
@@ -165,9 +170,9 @@ Convergence
 As a first step, examine the convergence curve. We want to be sure that our equivalent source model globally fits the data to the desired chi factor. If the inversion does not reach the target data misfit:
 
     - Your cell size is too large
-    - You set extremely small uncertainties or an extremely small chi factor.
+    - You set extremely small uncertainties or an extremely small chi factor for the target misfit.
 
-**For the local tutorial data,** we set a target chi factor of 0.01. Given that we inverted 11,192 data, the corresponding target data misfit is ~112. The figure below shows the convergence of the equivalent source inversion for the tutorial data. Our inversion reaches the target data misfit (chi factor).
+**For the local tutorial data,** we set a chi factor of 0.01. Given that we inverted 11,192 data, the corresponding target data misfit is ~112. The figure below shows the convergence of the equivalent source inversion for the local tutorial data. Our inversion reaches the target data misfit for the chi factor assigned.
 
     - :ref:`View convergence <convergence_curve>`
 

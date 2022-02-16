@@ -22,8 +22,7 @@ Here, we present a general workflow for loading, interpreting and inverting "Uni
 ..     :width: 700
 
 
-Tutorial Sections
------------------
+**Tutorial Sections**
 
 .. toctree::
     :maxdepth: 1

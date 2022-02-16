@@ -25,21 +25,19 @@ During a TMI survey, a sensor is used to measure the amplitude of the total magn
     | \mathbf{B} | =  |\mathbf{B_0} + \mathbf{B_a} |
 
 
-We do not know the direction of the anomalous contribution :math:`\mathbf{B_a}`. However since :math:`|\mathbf{B_0}| \gg |\mathbf{B_a}|`, we assume
-that anomalous fields are induced by and mostly aligned with the Earth's field. And thus the TMI anomaly data can be obtained by subtracting the
-amplitude of the background field from the total field measurements:
+We do not know the exact direction of the anomalous contribution :math:`\mathbf{B_a}`. However, we assume that anomalous fields are much smaller than and mostly aligned with the Earth's field; i.e. we assume components of the anomalous field perpendicular to the Earth's field are negligible. Under these assumptions,  the TMI anomaly data can be obtained by subtracting the amplitude of the background field from the total field measurements as follows:
 
 .. math::
     d_{tmi} = \mathbf{B_a} \cdot \mathbf{\hat{B}_0} \approx  |\mathbf{B}| - |\mathbf{B_0} |
 
 
-**TMI anomaly data therefore represent the projection of the anomalous field along the direction of the Earth's magnetic field.**
+**Therefore TMI anomaly data represent the projection of the anomalous field along the direction of the Earth's magnetic field.**
 
 
 TMI Anomalies over a Susceptible Block
 --------------------------------------
 
-Here we discuss the impact of the inclination and declination angles of the Earth's field as well as
+Here, we discuss the impact of the orientation of the Earth's inducing field as well as
 remanent magnetization on TMI anomalies. For this example, a block (0.25 SI) is located within
 a homogeneous background (0.01 SI). The horizontal and vertical dimensions of the block are all
 300 m, and the top of the block is at a depth of 100 m. The receivers are at a constant height
@@ -51,15 +49,15 @@ of 100 m and a horizontal spacing of 40 m is used.
     :width: 700
 
 
-Anomalies for Different Inclinations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Anomalies for Different Inclination Angles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As shown below, different inclination angles for the Earth's inducing field produce different
 TMI anomalies. The declination was fixed at 0 degrees and the intensity was fixed at 55,000 nT.
 From the figures below, we see that:
 
     - the peak anomaly amplitude isn't necessarily located directly over the target. This is only true for near-vertical inducing fields (high latitudes)
-    - despite removing the IGRF (background field), the anomaly does no go to 0 away from the target. This is because the host rock contributes to the anomaly.
+    - despite removing the IGRF (background field), the anomaly does not go to 0 away from the target. This is because the host rock contributes to the anomaly; i.e. we have not removed regional effects.
     - the peak amplitude is larger for more vertical inducing fields.
     - the peak amplitude is negative for near-horizontal inducing fields (low latitudes)
 
@@ -69,8 +67,8 @@ From the figures below, we see that:
     :width: 700
 
 
-Anomalies for Different Declinations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Anomalies for Different Declination Angles
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As shown below, different declination angles for the Earth's inducing field produce different
 TMI anomalies. The inclination was fixed at 60 degrees and the intensity was fixed at 55,000 nT.
@@ -94,7 +92,7 @@ and a field intensity of 55,000 nT.
 
     - The leftmost figure illustrates the TMI anomaly for purely induced magnetization (no remanence).
     - In the middle figure, vertical remanent magnetization has been added to the block such that its magnitude is equal that of the induced magnetization.
-    - In rightmost figure, remanent magnetization in the x-direction has been added to the block such that its magnitude is equal that of the induced magnetization.
+    - In right-most figure, remanent magnetization in the x-direction has been added to the block such that its magnitude is equal that of the induced magnetization.
 
 These figures show that significant remanent magnetization can impact the magnitude and location of the peak anomaly as well the shape of the anomaly itself.
 When examining TMI anomaly data to infer the presence of remanent magnetization, there are some basic questions one can ask:
@@ -121,8 +119,8 @@ as the solution to a Green's function. From Blakely (1995):
 Equivalent source methods are a result of Green's third identity, which states: the potential field at any point within region can be obtained from fields defined on a surface enclosing that region. No knowledge of the source is required. To obtain the field at a particular location, we simply need a sufficient
 number of field measurements on a surface enclosing that location.
 
-In practice, we assume that our field collected data provides a sufficient characterization of the fields on our theoretical bounded surface.
-We then use geophysical inversion to recover a susceptibility model that fits those data exactly; i.e. an 'equivalent source' model.
+In practice, we assume that our field collected data provides a sufficient characterization of the fields on our theoretical enclosing surface.
+We then use geophysical inversion to recover a susceptibility model that fits our observed data exactly; i.e. an 'equivalent source' model.
 With the equivalent source model, we can predict the data at different locations and for different inducing field orientations.
 
 
@@ -131,9 +129,9 @@ Reduction to Pole
 
 Reduction to pole is a method for using magnetic data collected at lower latitudes to compute the data if were collected in the presence of a vertical inducing field. At high latitudes, the Earth's inducing field is nearly vertical and TMI anomalies are much easier to interpret. The locations of the targets are clear and dipolar anomalies can be used to infer the presence of magnetic remanence.
 
-Reduction to pole is carried out by inverting to recover an equivalent source model.
-The data are then forward modeled using the equivalent source model using an inducing field with an inclication of 90 degress.
-For magnetic data collected over a set of UXO at low latitude, the results of a reduction to pole are shown below.
+Reduction to pole is carried out by first inverting to recover an equivalent source model.
+Next, the data are forward modeled using the equivalent source model for an inducing field with an inclication of 90 degress.
+For TMI magnetic data collected over a set of UXOs at low latitude, the results of a reduction to pole are shown below.
 
 
 .. figure:: images/anomalies_reduction_to_pole.png
@@ -146,20 +144,18 @@ For magnetic data collected over a set of UXO at low latitude, the results of a 
 Upward Continuation
 ^^^^^^^^^^^^^^^^^^^
 
-Field collected data (especially at the surface) may have high spatial frequency signals or noise that are not produced by targets of interest
-; making interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
-higher frequency signals. Upward continuation is a method for removing erroneous high frequency signals from the data by computing the
+Field collected data (especially at the surface) may have high spatial frequency signals or noise that are not produced by targets of interest; making interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
+these higher frequency signals. Upward continuation is a method for removing erroneous high frequency signals from the data by computing the
 data as if it were collected at a higher elevation.
 
-Equivalent source models can be used to upward continue field collected data (FFT methods also exist).
-The steps are as follows:
+Equivalent source models can be used to upward continue field collected data. The steps are as follows:
 
     1) Estimate the very long period signal (regional or larger scale) by examining the background, then subtract it from the data. Generally a DC shift works. 
     2) Invert the shifted data to obtain an equivalent sources model
     3) Use the equivalent source model to predict the data at a higher elevation (using the same inducing field)
     4) Add the very long period signal (or DC shift) back to the data.
 
-For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace that also contains an unknown broad regional structure. The data map indicates this regional feature produces a roughly 1000 nT anomaly within our survey area. This is subtracted from the data before upward continuing, then re-added as a final step. or a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well as data that were upward continued (dots).
+For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace that also contains an unknown broad regional structure. The data map indicates this regional feature produces a roughly 1000 nT anomaly within our survey area. This is subtracted from the data before upward continuing, then re-added as a final step. For a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well as data that were upward continued (dots).
 
 
 .. figure:: images/anomalies_upward_continuation_shift.png

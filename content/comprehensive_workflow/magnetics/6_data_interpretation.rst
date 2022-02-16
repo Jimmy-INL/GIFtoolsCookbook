@@ -9,7 +9,7 @@ At this point, upward continuation, reduction to pole and/or polynomial detrendi
 
     - roughly estimate the depth to structures based on anomaly half-width
     - infer the presence of significant magnetic remanence
-    - estimate the minimum station spacing require to constrain target anomalies
+    - estimate the minimum station spacing required to constrain target anomalies
     - estimate data uncertainties from closely spaced along-line data
 
 
@@ -32,7 +32,7 @@ More deply buried targets produce broader and smoother magnetic anomalies. As a 
     \textrm{Pole:} \;\; D \approx \frac{1}{2} x_{1/2} - h
 
 
-Obviously the majority of targets are not magnetic poles or dipoles. However magnetic dipoles are useful for approximating the anomalies from compact bodies and magnetic poles are good for approximating the anomalies from vertically buried pipe-like strucutres. Using these simple relationships, one can roughly estimate the lower extent of the core mesh region and better understand the scale of the magnetic anomalies observed within the survey region. Beware that you can overestimate the depth of the anomaly if it is caused by a shallower and wider structure.
+Obviously the majority of targets are not magnetic poles or dipoles. However magnetic dipoles are useful for approximating the anomalies from compact bodies and magnetic poles are good for approximating the anomalies from vertically buried pipe-like strucutres. Using these simple relationships, one can roughly estimate the lower extent of the core mesh region and better understand the scale of the TMI anomalies observed within the survey region. Beware that you can overestimate the depth of the anomaly if it is caused by a shallower and wider structure.
 
 **For the regional tutorial data,** the :ref:`polynomial detrended TMI anomaly data <comprehensive_workflow_magnetics_5_tutorial_data>` are shown below; whose data column we called *B_anomaly_detrended*. The half-width is crudely labeled for two distinct anomalies. For each anomaly, the half-width is ~900 m. Given the flight height of the regional survey is assumed to be 305 m, the half-width formula for a magnetic dipole suggests a burial depth of ~600 m.
 
@@ -51,12 +51,12 @@ Remanence
 
 In the :ref:`remanence portion of the understanding anomalies section <comprehensive_workflow_magnetics_1_remanence>`, we learned that:
 
-    - purely induced magnetization produces magnetic anomalies that are oriented along the direction of the Earth's declination angle
-    - observed anomalies that differ significantly from the expected anomalies produced by strictly induced magnetization are likely contaminated with remanent magnetization.
+    - purely induced magnetization produces TMI anomalies that are oriented along the direction of the Earth's declination angle.
+    - observed TMI anomalies that differ significantly from the expected anomalies produced by strictly induced magnetization are likely contaminated with remanent magnetization.
 
 So one way to infer remanence is to compare the observed data to the expected anomaly for purely induced magnetization.
 
-**Regarding the local tutorial data:** the inducing field is practically vertical (inclination of 80.35 degrees), thus we generally don't expect large negative regions on either side of a large positive anomaly; especially for data collected at sufficient height. The data map for levelled TMI anomaly data (*B_anomaly_levelled*) showed a significant 'low' region to the northwest of the target and a smaller 'low' region to the southeast. With complex geologies, it is possible these anomalies are produced strictly by induced magnetization; as the anomaly roughly aligns with the declination angle. At this juncture, we cannot infer magnetic remanence.
+**Regarding the local tutorial data:** the inducing field is practically vertical (inclination of 80.35 degrees), thus we generally don't expect large negative regions on either side of a large positive anomaly; especially for data collected at sufficient height. The data map for levelled TMI anomaly data (*B_anomaly_levelled*) showed a significant 'low' region to the northwest of the target and a smaller 'low' region to the southeast. With complex geologies, it is possible these anomalies are produced strictly by induced magnetization; as the anomaly roughly aligns with the declination angle. At this juncture, we cannot confidently infer magnetic remanence.
 
 .. figure:: images/interpretation_remanence.png
     :align: center

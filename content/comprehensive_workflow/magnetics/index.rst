@@ -6,35 +6,35 @@ Comprehensive Workflows: TMI Magnetics
 
 **Author: Devin C. Cowan**
 
-**Published: March, 2020**
+**Published: February, 2022**
+
+Here, we present a general workflow for loading, interpreting, processing and inverting total magnetic intensity (TMI) magnetic data. We begin with TMI data in a basic XYZ format. Our goal is to process and invert the TMI data to recover a 3D magnetic susceptibility model for a local survey area. For this tutorial, we have both local and regional datasets; the later of which can be used to constrain the local-scale inversion if available. You may work with the tutorial datasets provided or use your own data:
+
+    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_
 
 
-.. Here, we present a general workflow for loading, interpreting and inverting "University of Toronto ElecroMagnetometer" (UTEM) data. We begin with UTEM data in AMIRA TEM files. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
-
-..     - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_ztem.zip>`_
+We would like to thank `Glencore <https://www.glencore.com/>`__ for providing the local survey data used to create this comprehensive workflow. The regional-scale data were queried from the `Natural Resources Canada Geoscience Data Repository for Geophysical Data <http://gdr.agg.nrcan.gc.ca/gdrdap/dap/search-eng.php>`__ .
 
 
-.. The data used for this tutorial were collected at Dufferin Lake as part of a uranium exploration project. The data are public domain. They were downloaded from the `Saskatchewan Mineral Assessment Database <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey/saskatchewan-mineral-assessment-database-smad>`__ . The original data have been down-sampled to make the size of data files more manageable.
+.. figure:: images/title_page.png
+    :align: center
+    :width: 700
+
+    Regional and local TMI anomaly data (above). Local susceptibility models recovered with inversion using various norms (bottom).
 
 
-.. .. figure:: images/title_page.png
-..     :align: center
-..     :width: 700
-
-
-Tutorial Sections
------------------
+**Tutorial Sections**
 
 .. toctree::
     :maxdepth: 1
 
-    - Understanding magnetic anomalies <1_basic_anomalies>
+    - Understanding TMI anomalies <1_basic_anomalies>
     - Loading data and cursory interpretation <2_load_data>
     - Equivalent source inversion <3_equivalent_source>
     - Upward continuation and reduction to pole <4_upward_continuation>
     - Polynomial detrending <5_detrending>
     - Data interpretation (including remanence) <6_data_interpretation>
-    - Uncertainties for magnetic data <7_uncertainties>
+    - Uncertainties for TMI anomaly data <7_uncertainties>
     - Mesh design <8_mesh_design>
     - Least-squares inversion <9_inversion>
     - Examining inversion outputs <10_inversion_results>

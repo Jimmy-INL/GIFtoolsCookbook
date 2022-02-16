@@ -22,8 +22,7 @@ The data used for this tutorial were collected at Dufferin Lake as part of a ura
     :width: 700
 
 
-Tutorial Sections
------------------
+**Tutorial Sections**
 
 .. toctree::
     :maxdepth: 1

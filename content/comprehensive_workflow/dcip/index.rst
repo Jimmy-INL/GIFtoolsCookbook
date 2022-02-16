@@ -22,8 +22,7 @@ The tutorial data were collected in order to delineate ore-bearing rock units at
 
 
 
-Tutorial Sections
------------------
+**Tutorial Sections**
 
 .. toctree::
     :maxdepth: 1
