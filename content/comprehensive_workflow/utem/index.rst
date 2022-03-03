@@ -27,7 +27,7 @@ Here, we present a general workflow for loading, interpreting and inverting "Uni
 .. toctree::
     :maxdepth: 1
 
-    - Understanding ZTEM anomalies <1_basic_anomalies>
+    - Understanding UTEM anomalies <1_basic_anomalies>
     .. - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
     .. - Standard assignment of uncertainties to ZTEM data <3_uncertainties>
     .. - Preparing data for inversion within the GIFtools framework <4_data_preparation>
