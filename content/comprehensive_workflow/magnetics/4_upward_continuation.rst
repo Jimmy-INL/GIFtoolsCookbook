@@ -18,7 +18,13 @@ Here, we show how equivalent source models can be used to compute the expected T
 Gridding (Optional)
 -------------------
 
-Survey lines are not perfectly straight and station spacings not necessarily uniform. If desired, the user can upward continue or perform the reduction to pole such that the result is defined on a set of uniformly gridded points. One thing to bear in mind is that you **cannot** use this gridding technique to interpolate to a finer horizontal spacing. The highest spatial frequency contained in the data are limited by the station and line spacing. So when creating the set of gridded points, the same line spacing and station spacing should be used. To create a gridded survey object for upward continuation or reduction to pole:
+Survey lines are not perfectly straight and station spacings not necessarily uniform. If desired, the user can upward continue or perform the reduction to pole such that the result is defined on a set of uniformly gridded points. Some things to keep in mind are:
+
+    - you **cannot** use this gridding technique to interpolate to a finer horizontal spacing. The smallest wavelength signal contained in the data is limited by the station and line spacing of the survey. So when creating the set of gridded points, the same line spacing and station spacing must be used.
+    - you **cannot** use this gridding technique to 'fill in' regions where you do not have data coverage.
+    - in general, we do not invert gridded data, unless they have been sufficiently upward continued. When in doubt, preserve the original horizontal locations when upward continuing.
+
+To create a gridded survey object for upward continuation or reduction to pole:
 
     - Use the :ref:`create magnetic survey <createSurveySimple>` utility to define a gridded survey at the desired height above the surface topography
     - Use :ref:`assign the field parameters <objectEditFieldParam>` to define the desired inducing field (e.g. vertical for reduction to pole)
