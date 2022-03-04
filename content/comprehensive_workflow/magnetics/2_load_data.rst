@@ -13,7 +13,7 @@ The first step in any project is to load field collected data and visualize it. 
 **The local tutorial data** were collected on the Earth's surface on the back of a Skidoo. The original TMI data were collected along many North-South lines with an average line spacing was 50 m; although this spacing is not uniform throughout the local survey area. To view the TMI anomaly, we will need to remove the Earth's inducing field from the original TMI data.
 
 
-.. important:: Requires GIFtools v2.35 or later.
+.. important:: Requires GIFtools v3.0 or later.
 
 Starting Your Project
 ---------------------

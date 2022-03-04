@@ -8,6 +8,8 @@ Comprehensive Workflows: TMI Magnetics
 
 **Published: February, 2022**
 
+**Requires GIFtools v3.0 or later**
+
 Here, we present a general workflow for loading, interpreting, processing and inverting total magnetic intensity (TMI) magnetic data. We begin with TMI data in a basic XYZ format. Our goal is to process and invert the TMI data to recover a 3D magnetic susceptibility model for a local survey area. For this tutorial, we have both local and regional datasets; the later of which can be used to constrain the local-scale inversion if available. You may work with the tutorial datasets provided or use your own data:
 
     - `Download the tutorial data <https://owncloud.eoas.ubc.ca/s/AKmzeokY9F4Ydqk/download>`_
