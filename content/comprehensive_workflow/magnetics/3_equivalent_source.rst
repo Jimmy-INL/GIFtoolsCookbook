@@ -17,24 +17,24 @@ In magnetics, equivalent source models are used to:
 
 .. _comprehensive_workflow_magnetics_3_detrend:
 
-Very Long Period Removal
-------------------------
+Background Signal Removal
+-------------------------
 
-As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long period (VLP) signals. To recover an equivalent source model that accurately characterizes local-scale anomalies, we must first remove the very-long period signal from the local TMI anomaly data. In the case of upward continuation, this signal can be added back afterwards so long as the inducing field remains roughly the same. We begin by:
+As discussed in the :ref:`understanding anomalies <comprehensive_workflow_magnetics_1_upcont>` section, equivalent source models are not able to accurately characterize very long wavelength signals (i.e. the background signal). To recover an equivalent source model that accurately characterizes local-scale anomalies, we must first remove the background signal from the local TMI anomaly data. In the case of upward continuation, this signal can be added back afterwards so long as the inducing field remains roughly the same. We begin by:
 
     - :ref:`plotting the data with VTK <viewData>`
 
-From here, there are several approaches you can take to determine the VLP signal from the TMI anomaly data column:
+From here, there are several approaches you can take to determine the background signal from the TMI anomaly data column:
 
     - **Option 1:** Examine the values away from any obvious anomalies on the standard data map. *Pro tip: Click the 'Plot Contours' tab. Set background colour to black and axes and labels to white. This will allow you to hover the cursor over data points and see the values in the bottom-left corner of the data map*
     - **Option 2:** Click the 'Profiler' tab. Here you can plot the anomaly values along a user-defined path
     - **Option 3:** fit a polynomial to a set of selected points. A detailed description of this can be found in the :ref:`polynomial detrending section <comprehensive_workflow_magnetics_5_approach>` of the tutorial.
 
 
-Once you have determine the very long period contribution, you subtract it from the original TMI anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
+Once you have determine the background contribution, subtract it from the original TMI anomaly data and define a new column (*B_anomaly_shifted*) using the :ref:`column calculator <objectCalculator>`.
 
 
-**For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the very long period signal. Therefore 375 nT were added to the original data column to create a column we call *B_anomaly_shifted*. These 'shifted' data are inverted to recover the equivalent source model.
+**For the local tutorial data**, we felt a constant value of -375 nT adequately characterized the background signal. Therefore 375 nT were added to the original data column to create a column we call *B_anomaly_shifted*. These 'shifted' data are inverted to recover the equivalent source model.
 
 
 .. figure:: images/dc_shift_local.png

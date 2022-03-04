@@ -29,7 +29,7 @@ To create a tensor mesh based on survey geometry:
     - **Cell size:** set the cell size for the core mesh cells.
     - **Horizontal Extent:** under 'Choose Object', select the magnetic data object then click 'calculate limits'. This defines your core mesh region
     - **Vertical Extent:** Depth of your core mesh region under surface topography
-    - **Padding Parameters:** Do not pad in the vertical direction. These cells are not used when modeling potential fields and would be set to inactive
+    - **Padding Parameters:** Do not pad in the upward direction, as air cells are not used when modeling potential fields
 
 
 Here are some rules of thumb for generating tensor meshes for magnetic inversion:

@@ -48,13 +48,19 @@ of 100 m and a horizontal spacing of 40 m is used.
     :align: center
     :width: 700
 
+    Susceptibility model in units SI (left). Observation locations and horizontal extent of target (right).
+
 
 Anomalies for Different Inclination Angles
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As shown below, different inclination angles for the Earth's inducing field produce different
-TMI anomalies. The declination was fixed at 0 degrees and the intensity was fixed at 55,000 nT.
-From the figures below, we see that:
+The GIF below demonstrates that different inclination angles for the Earth's inducing field produce different
+TMI anomalies. For this example, the declination was fixed at 0 degrees and the intensity was fixed at 55,000 nT.
+On the leftmore figure, we see the shape of the TMI for the current inducing field orientation. And on the rightmost figure,
+we see the TMI anomaly from South to North; the bold black line indicates the anomaly for the current inducing field orientation,
+the dashes gray lines denote the anomalies for all other orientations.
+
+From the GIF, we see that:
 
     - the peak anomaly amplitude isn't necessarily located directly over the target. This is only true for near-vertical inducing fields (high latitudes)
     - despite removing the IGRF (background field), the anomaly does not go to 0 away from the target. This is because the host rock contributes to the anomaly; i.e. we have not removed regional effects.
@@ -100,6 +106,8 @@ When examining TMI anomaly data to infer the presence of remanent magnetization,
     - Does the TMI anomaly produced by this structure line up with the declination angle of the Earth's field?
     - Plot the TMI profile over the target along the direction of the Earth's declination angle. Does this plot have the general shape you would expect if the magnetization were purely induced?
 
+Please note that in practice, it can be very difficult to infer the presence of remanent magnetization directly by examining observed TMI data; especially in complex geological environments. Remanent magnetization is commonly identified by performing a :ref:`reduction to pole <comprehensive_workflow_magnetics_1_rtp>` or by examining the output of an inversion that assumes purely induced magnetization.
+
 
 .. figure:: images/anomalies_remanence.png
     :align: center
@@ -124,6 +132,8 @@ We then use geophysical inversion to recover a susceptibility model that fits ou
 With the equivalent source model, we can predict the data at different locations and for different inducing field orientations.
 
 
+.. _comprehensive_workflow_magnetics_1_rtp:
+
 Reduction to Pole
 ^^^^^^^^^^^^^^^^^
 
@@ -144,18 +154,19 @@ For TMI magnetic data collected over a set of UXOs at low latitude, the results 
 Upward Continuation
 ^^^^^^^^^^^^^^^^^^^
 
-Field collected data (especially at the surface) may have high spatial frequency signals or noise that are not produced by targets of interest; making interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
-these higher frequency signals. Upward continuation is a method for removing erroneous high frequency signals from the data by computing the
+Field collected data (especially at the surface) may have short wavelength (high spatial frequency) signals or noise that are not produced by targets of interest; making interpretation difficult. Furthermore, finer mesh cells are required for geophysical inversion to accurately characterize
+these higher frequency signals. Upward continuation is a method for removing erroneous short wavelength signals from the data by computing the
 data as if it were collected at a higher elevation.
 
 Equivalent source models can be used to upward continue field collected data. The steps are as follows:
 
-    1) Estimate the very long period signal (regional or larger scale) by examining the background, then subtract it from the data. Generally a DC shift works. 
-    2) Invert the shifted data to obtain an equivalent sources model
-    3) Use the equivalent source model to predict the data at a higher elevation (using the same inducing field)
-    4) Add the very long period signal (or DC shift) back to the data.
+    1) Estimate the background signal; i.e. the very long wavelength signals attributed to regional or larger scale structures that cannot be fully captured in the observed data. The background signal is generally estimated by a constant value or by fitting the background TMI data with a low order polynomial.
+    2) Subtract the background signal from the observed data.
+    3) Invert the background removed data to obtain an equivalent source model
+    4) Use the equivalent source model to predict the data at a higher elevation (using the same inducing field)
+    5) (Optional) Add the background signal back to the data. This is only required independently collected datasets (e.g. local and regional) must be levelled.
 
-For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace that also contains an unknown broad regional structure. The data map indicates this regional feature produces a roughly 1000 nT anomaly within our survey area. This is subtracted from the data before upward continuing, then re-added as a final step. For a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well as data that were upward continued (dots).
+For data collect at a height of 1 m, we demonstrate upward continuation for a block within a halfspace that also contains an unknown broad regional structure. The data map indicates this regional feature produces a roughly 1000 nT anomaly within our survey area. 1000 nT is subtracted from the data before upward continuing, then re-added as a final step. For a profile along the Northing direction, we plot the true TMI data (lines) that would be measured at different heights as well as data that were upward continued (dots).
 
 
 .. figure:: images/anomalies_upward_continuation_shift.png
@@ -163,10 +174,10 @@ For data collect at a height of 1 m, we demonstrate upward continuation for a bl
     :width: 700
 
 
-**Why the shift is crucial:**
+**Why the removal of the background signal is crucial:**
 
-    - The equivalent source model tends to place larger amplitude structures in the padding cells if a DC shift is not applied to the data. The effect of these structures increases the more the data are upward continued.
-    - The signal produced by a large deep regional structure and a thin horizontal layer do not decay identically as a function of elevation. If one does not shift the data prior to upward continuing, the amplitude of the upward continued regional signal will be underestimated (see below.) 
+    - The equivalent source model tends to place larger amplitude structures in the padding cells if the background signal is not first removed from the data. The effect of these structures increases the more the data are upward continued.
+    - The signal produced by a large deep regional structure and a thin horizontal layer do not decay identically as a function of elevation. If one does not remove the background signal prior to upward continuing, the amplitude of the upward continued regional signal will be underestimated (see below.) 
 
 
 
