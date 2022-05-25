@@ -93,7 +93,7 @@ For UTEM systems, the time channels at which the fields are measured depend on t
 Plotting UTEM Data
 ------------------
 
-Let us assume the raw field measurements have been converted to B-field data for a step waveform with a current amplitude of 1; i.e. :math:`B_\sqcap (t)`. Here, we define common plotting conventions for UTEM data. The data maps presented here are for UTEM data collected over a conductive block near the middle of a square large loop transmitter. The survey geometry is shown on the right.
+Let us assume the raw field measurements have been converted to the B-field representation for a step waveform with a current amplitude of 1; i.e. :math:`B_\sqcap (t)`. Here, we define common plotting conventions for UTEM data. The data maps presented here are for UTEM data collected over a conductive block near the middle of a square large loop transmitter. The survey geometry is shown on the right.
 
 Unlike most TEM systems, UTEM instruments measure data during the on-time. The measured fields are dominated by the geometry of the primary field produced by the transmitter. Therefore anomalies resulting from conductive targets are very difficult to identify when the measured fields are plotted directly; see figure below. There are several ways to represent UTEM data that account for the geometry of the transmitter loop and highlight anomalous responses from the Earth. These are defined in the following subsections.
 
@@ -111,7 +111,7 @@ Unlike most TEM systems, UTEM instruments measure data during the on-time. The m
 Normalized by Primary Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The simplest way to mitigate the masking effect of the primary field is to normalize the data by the absolute value of the primary field. To accomplish this, the path of the transmitter loop must be sufficiently defined by taking GPS coordinates during the survey and converting the values to UTM. For each segment of the wire path, the free-space Biot-Savart field can be computed and summed.
+The simplest way to mitigate the masking effect of the primary field is to normalize the data by the absolute value of the primary field. To accomplish this, the path of the transmitter loop must be sufficiently defined by taking GPS coordinates during the survey and converting accordingly to UTM. For each segment of the wire path, the free-space Biot-Savart field can be computed and summed.
 
 Let :math:`\mathbf{b}_\sqcap(t_i)` represent the total field at time channel *i*, and let :math:`\mathbf{b_p}` represent the free-space B-field for a current amplitude of 1 A. The data values plotted are given by:
 
@@ -126,7 +126,7 @@ Therefore we are effectively representing the data as a percentage of the primar
     :align: center
     :width: 700
 
-    Normalized by primary field data for the B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_12 to Ch_0) along an Easting transect at y = 0 m (right).
+    Normalized B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_12 to Ch_0) along an Easting transect at y = 0 m (right).
 
 
 Primary Field Reduced Data
@@ -145,14 +145,14 @@ Where :math:`\mathbf{b}_\sqcap(t_i)` represents the total field value at time ch
     :align: center
     :width: 700
 
-    Primary reduced data for the B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data (Ch_12 to Ch_0) at each time channel along an Easting transect at y = 0 m (right).
+    Primary reduced data projected along the direction of the primary field at 1.56e-2 s (left). Profile data (Ch_12 to Ch_0) at each time channel along an Easting transect at y = 0 m (right).
 
 
 
 Channel Reduced Data
 ^^^^^^^^^^^^^^^^^^^^
 
-For a step-on current waveform, the measured total field should asymptote to the primary field after sufficent time; i.e. when all induced currents have sufficiently diffused. If we assume the inductive response is negligible at the latest time channel, then the data measured at the latest time channel is equivalent to the primary field; i.e. :math:`\mathbf{b}_\sqcap(t_{max}) \approx \mathbf{b_p}`.
+For a step excitation, the measured total field should asymptote to the primary field after sufficent time; i.e. when all induced currents have sufficiently diffused. If we assume the inductive response is negligible at the latest time channel (Ch_0), then the data measured at the latest time channel is effectively just the primary field; i.e. :math:`\mathbf{b}_\sqcap(t_{max}) \approx \mathbf{b_p}`.
 
 The channel reduced representation of the data is given by:
 
@@ -168,7 +168,7 @@ The channel reduced representation of the data is given by:
     Channel reduced data for the B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_12 to Ch_0) along an Easting transect at y = 0 m (right).
 
 
-The first two plotting approaches depended on having a high level of confidence that primary field computations are possible and sufficiently accurate. Channel reduced data offers a solution when this is not the case. However, the assumptions we made when defining channel reduced data are not correct in the presence of highly magnetized bodies.
+The first two plotting approaches depended on having a high level of confidence in the accuracy of the primary field computation. Channel reduced data offers a solution when this is not the case. However, the assumptions we made when defining channel reduced data are not correct in the presence of highly magnetized bodies; i.e. Ch_0 being equivalent to the primary field.
 
 |
 
@@ -177,7 +177,7 @@ The first two plotting approaches depended on having a high level of confidence 
 Surface UTEM Anomalies
 ----------------------
 
-We have chosen to explain the physics in accordance with the B-field resulting from step-excitation (as opposed to the dB/dt representation). **We have also chosen to describe anomalies in terms of primary normalized data and NOT primary reduced**. For primary reduced data, simply subtract a constant of 100\% from any of the data plots.
+Here, we have chosen to explain the physics in using the B-field resulting from step-excitation (as opposed to the dB/dt representation). **We have also chosen to describe anomalies using primary normalized data and NOT primary reduced**. For primary reduced data, simply subtract a constant of 100\% from any of the data plots.
 
 Anomaly for a Moderately Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -186,7 +186,7 @@ Anomaly for a Moderately Conductive Block (Primary Normalized)
     :align: right
     :width: 350
 
-Here, we discuss the characteristics of the UTEM data for a moderately conductive block located near the center of a large square loop. In this case, **we assume the period of the waveform is long enough for the secondary fields to decay completely before t = 0 s**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
+Here, we discuss the characteristics of the primary normalized data for a moderately conductive block (1 S/m) within a half-space (0.01 S/m) located near the center of a large square loop. In this case, **we assume the period of the waveform is long enough for the secondary fields to decay completely before t = 0 s**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
 .. figure:: images/primary_normalized_low.gif
     :align: center
@@ -196,7 +196,7 @@ Here, we discuss the characteristics of the UTEM data for a moderately conductiv
 **At t = 0:**
 
 - We are effectively seeing the steady-state B-field right before the step-on; i.e. the Biot-Savart field for a current of -1 A.
-- The data map for the normalized field projected along the direction of the primary field is -100\% everywhere since :math:`\mathbf{b}_\sqcap (0)=-\mathbf{b_p}`. 
+- The primary normalized data projected along the direction of the primary field is -100\% everywhere since :math:`\mathbf{b}_\sqcap (0)=-\mathbf{b_p}`. 
 
 **At early times:**
 
@@ -206,9 +206,9 @@ Here, we discuss the characteristics of the UTEM data for a moderately conductiv
 
 **At mid-times:**
 
-- "Mid-time" refers to time channels where currents induced in the host rock have decayed sufficiently but currents induced in conductive targets have not.
-- Over these times, we try to identify conductive structures.
-- These time channels are suitable for inversion, as they are most sensitive to the target.
+- Here, "mid-times" refers to time channels where currents induced in the host rock have decayed sufficiently but currents induced in conductive targets have not.
+- Over these times, we try to identify conductive targets.
+- These time channels are suitable for inversion, as they are sensitive to the target and not the background.
 
 **At late-times:**
 
@@ -228,7 +228,7 @@ Anomaly for a Highly Conductive Block (Primary Normalized)
     :align: right
     :width: 350
 
-Here, we discuss the characteristics of the UTEM data for a highly conductive block located near the center of a large square loop. In this case, **the waveform period is not long enough for the induced currents to decay fully over the course of each half-duty cycle**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
+Here, we discuss the characteristics of primary normalized data for a highly conductive block (1000 S/m) in a halfspace (0.01 S/m) located near the center of a large square loop. In this case, **the waveform period is not long enough for the induced currents to decay fully over the course of each half-duty cycle**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
 .. figure:: images/primary_normalized_high.gif
     :align: center
@@ -237,8 +237,8 @@ Here, we discuss the characteristics of the UTEM data for a highly conductive bl
 
 **At t = 0:**
 
-- Since the induced currents have not fully decayed over the course of the previous half duty cycle (-T/2 to 0), secondary fields are present at t = 0 s.
-- The remnants of the signal produced at t < 0 s reduces the amplitude primary normalized data.
+- Since the induced currents have not fully decayed over the course of the previous half duty cycle (from -T/2 to 0), secondary fields that oppose the primary field are present at t = 0 s.
+- Thus the remnants of the signal produced at t < 0 s reduces the amplitude of the primary normalized data.
 - This effect can be small (several percent) or very large (as seen above). The more conductive the target, the larger the effect and the more challenging it is to model accurately.
 
 **At early times:**
@@ -252,7 +252,7 @@ Here, we discuss the characteristics of the UTEM data for a highly conductive bl
 **At late-times:**
 
 - At late times, the signal produced by the target has not decayed but is easily distinguishable.
-- As t approaches T/2, the primary normalized data plots look like the ones at t = 0 s (except multplied by -1); i.e. we see the signal asymptote.
+- As t approaches T/2, the primary normalized data plots look like the ones at t = 0 s (except multplied by -1); i.e. we see the primary normalized data asymptote, just not to 100\%.
 
 
 Anomaly for a Conductive and Susceptible Block (Primary Normalized)
@@ -262,7 +262,7 @@ Anomaly for a Conductive and Susceptible Block (Primary Normalized)
     :align: right
     :width: 350
 
-Here, we discuss the characteristics of the UTEM data for a moderately conductive and magnetically susceptible block located near the center of a large square loop. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
+Here, we discuss the characteristics of primary normalized data for a moderately conductive (1 S/m) and magnetically susceptible (0.5 SI) block in a half-space (0.01 S/m) located near the center of a large square loop. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
 
 .. figure:: images/primary_normalized_susceptible.gif
@@ -273,8 +273,8 @@ Here, we discuss the characteristics of the UTEM data for a moderately conductiv
 **At t = 0:**
 
 - We are effectively seeing the steady-state B-field right before the step-on; i.e. for a current of -1 A.
-- In this case, the data map for the total field projected along the direction of the primary field has anomalous values below -100\% . These anomalous values are produced by the magnetostatic response of the block.
-- This effect is generally negligible (less than 1\%), but can be significant (as seen above) for susceptibilities larger than 0.1 SI.
+- In this case, the primary normalized data includes the magnetostatic response from the block. Note that primary normalized data projected along the direction of the primary field has anomalous values below -100\%.
+- The effect of magnetic susceptibility is generally negligible (less than 1\%), but can be significant (as seen above) for highly susceptible targets.
 
 **At early and mid-times:**
 
@@ -284,6 +284,6 @@ Here, we discuss the characteristics of the UTEM data for a moderately conductiv
 
 **At late-times:**
 
-- During the "late-times", the fields asymptote towards the steady-state total-field for a transmitter current of 1 A; which includes a magnetostatic response.
+- During the "late-times", the fields asymptote towards the steady-state for a transmitter current of 1 A; which includes a magnetostatic response.
 - It is over these time channels we generally examine the data maps to determine if there are susceptible structures.
-- In this case, the data map for the field projected along the direction of the primary field has values larger than 100\% at locations near the susceptible target.
+- In this case, the primary normalized data projected along the direction of the primary field has values larger than 100\% at locations near the susceptible target.
