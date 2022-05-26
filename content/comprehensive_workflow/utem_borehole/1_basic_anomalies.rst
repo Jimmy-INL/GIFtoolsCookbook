@@ -1,18 +1,18 @@
-.. _comprehensive_workflow_utem_1:
+.. _comprehensive_workflow_borehole_utem_1:
 
 
-Understanding Surface UTEM Anomalies
-====================================
+Understanding Borehole UTEM Anomalies
+=====================================
 
-In order to properly interpret surface UTEM data, it is import to first understand what fields are measured, how the data are plotted and the anomalies for basic structures. Here, we investigate the UTEM anomaly produced by a block in a half-space. The knowledge gained here can be used to determine the coordinate system and sign convention for field collected data, and the operations required to transform the raw data into UBC GIF convention.
+In order to properly interpret borehole UTEM data, it is import to first understand what fields are measured, how the data are plotted and the anomalies for basic structures. Here, we investigate the UTEM anomaly produced by a block in a half-space. The knowledge gained here can be used to determine the coordinate system and sign convention for field collected data, and the operations required to transform the raw data into UBC GIF convention.
 
-Introduction to Surface UTEM
-----------------------------
+Introduction to Borehole UTEM
+-----------------------------
 
 Survey Geometry and Fundamental Concept
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-During a UTEM survey, large inductive loop sources are placed on the Earth's surface. Depending on how each loop is coupled with the target, receivers may be located inside or outside the loop. Data may be collected for several sets of loops and receivers in order to excite the target from multiple directions.
+During a borehole UTEM survey, large inductive loop sources are placed on the Earth's surface. Depending on how each loop is coupled with the target, borehole receivers may be located inside or outside the loop. Data may be collected for several sets of loops and borehole receivers in order to excite the target from multiple directions.
 
 .. figure:: images/survey_geometry.png
     :align: center
@@ -82,7 +82,6 @@ For UTEM systems, the time channels at which the fields are measured depend on t
 - **Ch_n:** These refer to one or two time channels collected at :math:`t<0`; i.e. before the step-on occurs. For example, we may measure the fields at :math:`t = -T/2^{13}` to capture the steady-state B-field the moment before the step excitation.
 
 
-
 .. _comprehensive_workflow_utem_1_plotting:
 
 Plotting UTEM Data
@@ -99,16 +98,6 @@ Let us assume the raw field measurements have been converted to the B-field repr
 Unlike most TEM systems, UTEM instruments measure data during the on-time. The measured fields are dominated by the geometry of the primary field produced by the transmitter. Therefore anomalies resulting from conductive targets are very difficult to identify when the measured fields are plotted directly; see figure below. There are several ways to represent UTEM data that account for the geometry of the transmitter loop and highlight anomalous responses from the Earth. These are defined in the following subsections.
 
 
-.. figure:: images/total_field.png
-    :align: center
-    :width: 700
-
-    B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_n to Ch_0) along an Easting transect at y = 0 m (right).
-
-.. important:: The UTEM profile data at each time channel is plotted using a different color from blue (Ch_n: t = 0 s) to red (Ch_0: t = 0.875 s); see above.
-
-
-
 Normalized by Primary Field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -123,13 +112,6 @@ Let :math:`\mathbf{b}_\sqcap(t_i)` represent the total field at time channel *i*
 Therefore we are effectively representing the data as a percentage of the primary field.
 
 
-.. figure:: images/primary_normalized.png
-    :align: center
-    :width: 700
-
-    Normalized B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_n to Ch_0) along an Easting transect at y = 0 m (right).
-
-
 Primary Field Reduced Data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -139,15 +121,6 @@ Where :math:`\mathbf{b}_\sqcap(t_i)` represents the total field value at time ch
 
 .. math::
     \mathbf{d}(t_i) = 100\% \times \Bigg ( \frac{\mathbf{b}_\sqcap(t_i) - \mathbf{b_p}}{\big | \, \mathbf{b_p} \, \big |} \Bigg )
-
-
-
-.. figure:: images/primary_reduced.png
-    :align: center
-    :width: 700
-
-    Primary reduced data projected along the direction of the primary field at 1.56e-2 s (left). Profile data (Ch_n to Ch_0) at each time channel along an Easting transect at y = 0 m (right).
-
 
 
 Channel Reduced Data
@@ -160,13 +133,6 @@ The channel reduced representation of the data is given by:
 
 .. math::
     \mathbf{d}(t_i) = 100\% \times \Bigg ( \frac{\mathbf{b}_\sqcap(t_i) - \mathbf{b_\sqcap}(t_{max})}{\big | \, \mathbf{b}_\sqcap(t_{max}) \, \big |} \Bigg )
-
-
-.. figure:: images/primary_reduced.png
-    :align: center
-    :width: 700
-
-    Channel reduced data for the B-field projected along the direction of the primary field at 1.56e-2 s (left). Profile data at each time channel (Ch_n to Ch_0) along an Easting transect at y = 0 m (right).
 
 
 The first two plotting approaches depended on having a high level of confidence in the accuracy of the primary field computation. Channel reduced data offers a solution when this is not the case. However, the assumptions we made when defining channel reduced data are not correct in the presence of highly magnetized bodies; i.e. Ch_0 being equivalent to the primary field.
@@ -183,13 +149,9 @@ Here, we have chosen to explain the physics in using the B-field resulting from 
 Anomaly for a Moderately Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_low.PNG
-    :align: right
-    :width: 350
-
 Here, we discuss the characteristics of the primary normalized data for a moderately conductive block (1 S/m) within a half-space (0.01 S/m) located near the center of a large square loop. In this case, **we assume the period of the waveform is long enough for the secondary fields to decay completely before t = 0 s**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
-.. figure:: images/primary_normalized_low.gif
+.. figure:: images/primary_normalized_low.PNG
     :align: center
     :width: 700
 
@@ -225,13 +187,9 @@ Here, we discuss the characteristics of the primary normalized data for a modera
 Anomaly for a Highly Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_high.PNG
-    :align: right
-    :width: 350
-
 Here, we discuss the characteristics of primary normalized data for a highly conductive block (1000 S/m) in a halfspace (0.01 S/m) located near the center of a large square loop. In this case, **the waveform period is not long enough for the induced currents to decay fully over the course of each half-duty cycle**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
-.. figure:: images/primary_normalized_high.gif
+.. figure:: images/primary_normalized_high.PNG
     :align: center
     :width: 700
 
@@ -259,17 +217,11 @@ Here, we discuss the characteristics of primary normalized data for a highly con
 Anomaly for a Conductive and Susceptible Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_susceptible.PNG
-    :align: right
-    :width: 350
-
 Here, we discuss the characteristics of primary normalized data for a moderately conductive (1 S/m) and magnetically susceptible (1 SI) block in a half-space (0.01 S/m) located near the center of a large square loop. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
-
-.. figure:: images/primary_normalized_susceptible.gif
+.. figure:: images/primary_normalized_susceptible.PNG
     :align: center
     :width: 700
-
 
 **At t = 0:**
 

@@ -26,6 +26,7 @@ This section of the GIFtools cookbook is meant to provide practical tutorials fo
     MT: From EDI data to inversion <mt/index>
     ZTEM: From XYZ data to inversion <ztem/index>
     Surface UTEM: From AMIRA TEM data file to inversion <utem/index>
+    Borehole UTEM: From AMIRA TEM data file to inversion <utem_borehole/index>
 
 
 
