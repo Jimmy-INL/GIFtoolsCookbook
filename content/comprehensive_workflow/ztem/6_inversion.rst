@@ -36,7 +36,6 @@ We can now invert ZTEM data using E3DMT v1 or v2.
     - Use edit options for :ref:`v1 <invEditOptions_e3dmt_ver1>` or :ref:`v2 <invEditOptions_e3dmt_ver2>` to set the inversion parameters
     - Click *Apply and write files*
     - :ref:`Run the inversion <invRun>`
-    - :ref:`Load results <invLoadResults>`
 
 For the tutorial data, **we chose to invert using E3DMT v2**, as we were able to define the receiver loops. Things are effectively the same for E3DMT v1. The parameters used are shown below. **Note that we chose the data object that has shifted locations relative to discretized topography.**
 

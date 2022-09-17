@@ -20,7 +20,7 @@ The sampling rate in the along-line direction is generally much higher than is n
 
 **Our Approach:**
 
-The flight-line separation for the tutorial dataset is 200 m, indicating we may want to down-sample such that the minimum data separation is 150-200 m. We chose to down-sample the data such that the minimum data spacing was 400 m. This was done so we invert the data on a coarser mesh. For this step:
+The flight-line separation for the tutorial dataset is 200 m, indicating we may want to down-sample such that the minimum data separation is 150-200 m. We chose to down-sample the data such that the minimum data spacing was 400 m. This was done so we invert the data on a coarser mesh. If downsampling to a spacing that is larger than the line spacing, smaller-scale features will become less well-constrained by the data. For this step:
 
 	- :ref:`Down-sample based on distance<objectDataDownsample>`
 
@@ -28,7 +28,7 @@ The flight-line separation for the tutorial dataset is 200 m, indicating we may 
 Setting the Base Station
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The horizontal magnetic fields are general measured at a base station. In this case, we must define the base station location. For the tutorial data, the base station is located at Easting = 697523 m, Northing = 6375971 and elevation = 533 in UTM zone 12. To carry out this step:
+The horizontal magnetic fields are general measured at a base station. In this case, we must define the base station location. For the tutorial data, the base station is located at Easting = 697523 m, Northing = 6375971 m and elevation = 533 m in UTM zone 12. To carry out this step:
 
 	- :ref:`Set/reset base station<objectDataTypeZTEM_basestn>`
 

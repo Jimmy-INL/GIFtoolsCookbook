@@ -104,12 +104,14 @@ Tipper data after applying the transformation is shown below. Data are now in th
     ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
 
 
+.. _comprehensive_workflow_ztem_2_dt:
+
 Interpretation using total divergence
 -------------------------------------
 
 We can compute the total divergence parameter for the data at each frequency in order to locate obvious conductive and resistive structures. To do this, we must make sure that we have first :ref:`set IO headers <objectSetioHeaders>` to data columns in the UBC-GIF convention. To compute this quantity for the real and imaginary components:
 
-    - :ref:`Computer total divergence (DT) columns <objectDataManipulationZTEM_total_divergence>`
+    - :ref:`Compute total divergence (DT) columns <objectDataManipulationZTEM_total_divergence>`
 
 The total divergence parameter computed for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence parameter map indicates the existence of conductive structures within a more resistive background. The most prominent conductive feature strikes along a bearing of roughly 35 degrees from the North. This conductive feature is observed across all frequencies.
 
