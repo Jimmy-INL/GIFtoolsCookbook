@@ -77,6 +77,8 @@ We are simply recovering a model which fits the data exactly.
 
 
 
+.. _comprehensive_workflow_magnetics_3_better_fit:
+
 Applying Uncertainties
 ----------------------
 

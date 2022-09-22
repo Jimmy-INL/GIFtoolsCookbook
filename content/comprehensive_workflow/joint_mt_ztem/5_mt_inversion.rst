@@ -17,8 +17,8 @@ Mesh Design
 
 According to the apparent resistivity maps and sounding curves, the Earth is more conductive near the surface and more resistive at depth. Over the range of frequencies we are inverting (8 - 756 Hz), the apparent resistivities are generally between 100 - 1000 :math:`\Omega m`. From the skin depth formula:
 
-	- :math:`\delta_{min}` = 200 m
-	- :math:`\delta_{max}` = 5000 m
+	- :math:`\delta_{min}` = 182 m
+	- :math:`\delta_{max}` = 5590 m
 
 Here, we create an OcTree mesh using the E3DMT v2 utility. The steps are as follows:
 
@@ -36,6 +36,14 @@ For the field data provided, the following parameters we set in *Edit Options*.
 .. figure:: images/mesh_parameters_mt.png
     :align: center
     :width: 500
+
+**Discussion of Parameters:**
+
+    - The minimum MT station spacing was ~200 m. To have 2.5 cells per station, a minimum horizontal cell width of 80 m was chosen.
+    - Given the minimum skin depth was ~200 m, we chose a minimum vertical cell width that was at most 1/4 this value (i.e. 40 m).
+    - The width of the padding was set to 2 times the largest skin depth
+    - Over the frequencies we are inverting, we are likely only sensitive to the first few thousand meters. The sum of thickness 1, 2 and 3 were partitioned to sum to 4000 m.
+    - Unlike controlled source EM, natural source EM fields are very smooth and the discretization near the receivers can be less refined.
 
 
 Interface Weights
@@ -56,6 +64,10 @@ Interface weights were generated to enforce lateral smoothness within the top fe
     - :ref:`Run the utility <utilRun>`
     - :ref:`Load results <utilLoadResults>`
 
+**Discussion of Parameters:**
+
+    - Since MT stations are on the Earth's surface, sensitivities to the top layer are much larger than for airborne measurements. Therefore, we chose a fairly large value for the top layer. We then decreased the horizontal weighting exponentially for 2 more layers.
+
 
 Setup and Run Inversion
 -----------------------
@@ -75,6 +87,12 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
 
     Parameters used to invert the field dataset using E3DMT v2.
 
+**Discussion of Parameters:**
+
+    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting.
+    - The starting beta was chosen as a result of preliminary inversion attempts.
+    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have some over-fitting iterations, even if we globally over-estimate our uncertainties.
+    - We chose to invert for the smoothest model, which recovers a data driven result that does not depend on the reference model. We do this by setting *alpha S* to a very small value.
 
 
 Analysis of Results
@@ -89,9 +107,9 @@ Once the inversion has finished:
 
 The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
-	- the total misfit (not data misfit) does not reach the target (chi-factor of 0.5) before the maximum number of beta iterations allowed (we set this to 10 in the input file). Thus the algorithm finished because a maximum number of iterations were completed.
-	- the Tikhonov curve starts to flatten out around after the 8th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data.
-	- The **data misfit** at 8th iteration corresponds to a chi factor of 0.4. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten our near a chi-factor of 1.
+	- the inversion code reach target misfit at the 9th iteration.
+	- the Tikhonov curve starts to flatten out after the 7th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data.
+	- At the 7th iteration, the data misfit corresponds to a chi factor of 0.26. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten out when the data misfit corresponds to a chi-factor of 1.
 
 
 .. figure:: images/convergence_mt_002.PNG
@@ -106,7 +124,7 @@ Now that we have selected an iteration (or range of iterations) that we feel exp
     - :ref:`Load inversion results for these iterations <invLoadResults>`
 
 
-According the Tikhonov curve, the recovered model at iteration 8 has a good chance of explaining the data without fitting the noise.
+According the Tikhonov curve, the recovered model at iteration 7 has a good chance of explaining the data without fitting the noise.
 
 **Off-Diagonal Components:**
 
@@ -143,16 +161,15 @@ The observed data, predicted data and normalized misfits for diagonal impedance 
 Recovered Model
 ^^^^^^^^^^^^^^^
 
-The conductivity model recovered at the 8th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.25 S/m. According to the recovered model:
+The conductivity model recovered at the 7th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
 
-	- The basement is highly resistive.
 	- The regional conductivity is higher in the Northeast and Southwest, with a larger-scale resistive feature trending from Northwest to Southeast. This is consistent with our original interpretation of the ZTEM data using total divergence maps.
 	- Within the resistive feature are localized cluster of conductors.
 
 
-.. figure:: images/model_mt_iter8.png
+.. figure:: images/model_mt_iter7.png
     :align: center
     :width: 700
 
-    Recovered model at iteration 8.
+    Recovered model at iteration 7.
 
