@@ -6,12 +6,7 @@ MT Data Preparation and Uncertainties
 .. note:: The steps for preparaing and assigning uncertainties to ZTEM and MT data do not necessarily need to be done in a specific order. Here, we have chosen to start with the MT data.
 
 
-MT measurements provide comprehensive EM information by measuring multiple data components at frequencies spanning many orders of magnitude (mHz to kHz).
-Unfortunately, MT data collection is very time consuming and is rarely collected at more than a few dozen stations.
-ZTEM data can be collected efficiently over large areas.
-However, ZTEM data are collected over a much smaller range of frequencies (generally between 30 Hz and 720 Hz). 
-As a result, ZTEM data is generally used to provide limited information over a large area.
-And MT data is used to provide high quality information for specific purposes. Examples include:
+MT measurements provide comprehensive EM information by measuring multiple data components at frequencies spanning many orders of magnitude (mHz to kHz). Unfortunately, MT data collection is very time consuming and is rarely collected at more than a few dozen stations. ZTEM data can be collected efficiently over large areas. However, ZTEM data are collected over a much smaller range of frequencies (generally between 30 Hz and 720 Hz).  As a result, ZTEM data is generally used to provide limited information over a large area. And MT data is used to provide high quality information for specific purposes. Examples include:
 
     - using a spaced out set of MT stations characterize the regional geology
     - using a more localized cluster of MT station to better characterize a geological target
@@ -36,7 +31,7 @@ Frequency-Based Extraction
 The intended purpose for collecting the MT data and the computational resources available will determine which frequencies are extracted and used in our joint MT-ZTEM inversion.
 When looking forward to mesh design and joint inversion, we must consider the following:
 
-    1. The range of frequencies contained within the MT and ZTEM data being inverted should not exceed 3 orders of magnitude. This ensures the smallest cells in the mesh can adequately model the highest frequency. And ensures we can create a large enough mesh adequately model the lowest frequency. Since ZTEM data are collected between (30 Hz and 720 Hz), there is only a certain range of frequencies at which MT data can be used in a joint inversion.
+    1. The collective range of frequencies contained within the MT and ZTEM data being inverted should not exceed 3 orders of magnitude. This ensures the smallest cells in the mesh can adequately model the highest frequency. And ensures we can create a large enough mesh to adequately model the lowest frequency. Since ZTEM data are collected between (30 Hz and 720 Hz), there is only a certain range of frequencies at which MT data can be used in a joint inversion.
     
     2. The inversion algorithm must store a factorization for every unique frequency. And since MT and ZTEM systems don't collect data at identical frequencies, the computational resources required for joint MT-ZTEM inversion can be quite large. We are therefore limited in the number of MT data frequencies that can be used in our joint inversion.
 
@@ -61,7 +56,7 @@ Presently, E3DMT v2 is considered the superior code for inverting natural-source
 
 **Our approach:**
 
-According to the contractor, the electric field dipoles had lengths of 100 m. Receivers measuring the magnetic fields are much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m or 4 m. We used the following parameters to fill the fields:
+According to the contractor, the electric field dipoles had lengths of 100 m. Receivers measuring the magnetic fields were much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m or 4 m. We used the following parameters to fill the fields:
 
 	- **Hx, Hy receiver width: 2 m**
 	- **Hx, Hy number of segments: 4**
@@ -75,13 +70,14 @@ According to the contractor, the electric field dipoles had lengths of 100 m. Re
 
 
 
-
 Assigning Uncertainties
 -----------------------
 
+    - Use the :ref:`GUI for applying frequency-dependent uncertainties <objectAssignUncertGUI>`.
+
 **Off-Diagonal Impedances (ZXYR, ZXYI, ZYXR and ZYXI):**
 
-For off-diagonal impedance components, we applied both a percent and a floor. For all components and for all frequencies, the percent uncertainty was 5%. Choosing a floor was more involved. Just like in the :ref:`Cloncurry MT comprehensive workflow <comprehensive_workflow_mt_4>`, the floor uncertainty at each frequency was computed according to:
+For off-diagonal impedance components, we applied both a percent and a floor. For all components and for all frequencies, the percent uncertainty was 5%. Choosing a floor was more involved. Similar to the approach in the :ref:`Cloncurry MT comprehensive workflow <comprehensive_workflow_mt_4>`, the floor uncertainty at each frequency was computed according to:
 
 .. math::
     \varepsilon (f) = \sqrt{2\pi \mu f (0.5 \Omega m)}
@@ -91,7 +87,5 @@ This resulted in floor uncertainties of roughly 0.0055, 0.01, 0.018, 0.032 and 0
 
 **Diagonal Impedances (ZXXR, ZXXI, ZYYR and ZYYI):**
 
-For diagonal impedance components, we applied a floor uncertainty equal to 5% the maximum value. This was done separately for each component and for each frequency.
-
-
-    - Use the :ref:`GUI for applying frequency-dependent uncertainties <objectAssignUncertGUI>`.
+For diagonal impedance components, we applied a floor uncertainty equal to 5% the maximum amplitude. This was done separately for each component and for each frequency.
+    

@@ -40,9 +40,10 @@ For the field data provided, the following parameters we set in *Edit Options*.
 
 **Discussion of Parameters:**
 
-    - We wanted to run this inversion on a single 64 GB nodes. As a result, we downsampled the original ZTEM data to a minimum spacing of 400 m. To have 2.5 cells per station, a minimum horizontal cell width of 160 m was chosen.
+    - We wanted to run this inversion on a single 64 GB node. As a result, we downsampled the original ZTEM data to a minimum spacing of 400 m. And to have 2.5 cells per station, a minimum horizontal cell width of 160 m was chosen.
     - A minimum vertical cell width of 80 m was used so that the horizontal to vertical widths of cells did not exceed a factor of 2. When we consider skin depth however, this may not be fine enough to model the highest frequency accurately.
-    - The width of the padding was set to roughly times the largest skin depth
+    - The topography was also coarsened very quickly just outside the data coverage to reduce the size of the mesh. We may not be modeling the ZTEM data as accurately near the edges of our survey region. In *Make Polygon* you may want to use a value at least at least as large as *Thickness 1*.  
+    - The width of the padding was set to roughly 2 times the largest skin depth
     - Over the frequencies we are inverting, we are likely only sensitive to the first few thousand meters. The sum of thickness 1, 2 and 3 were partitioned to sum to 4000 m.
     - Unlike controlled source EM, natural source EM fields are very smooth and the discretization near the receivers can be less refined.
 
@@ -51,7 +52,7 @@ For the field data provided, the following parameters we set in *Edit Options*.
 Interface Weights
 -----------------
 
-Interface weights were generated to enforce lateral smoothness within the top few layers. For the tutorial MT data, we did the following:
+Interface weights were generated to enforce lateral smoothness within the top few layers. For the tutorial ZTEM data, we did the following:
 
     - :ref:`Create and interface weights utility <createinterfWeights>`
     - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
@@ -68,7 +69,7 @@ Interface weights were generated to enforce lateral smoothness within the top fe
 
 **Discussion of Parameters:**
 
-    - Since ZTEM are collected in the air, sensitivity to the top few layers is not as problematic. Compared to our MT inversion, we applied smaller interface weights.
+    - Since ZTEM are collected in the air, sensitivity to the top few layers is not as problematic as it is in MT. Compared to our MT inversion, we applied smaller interface weights.
 
 
 
@@ -93,11 +94,14 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
 
 **Discussion of Parameters:**
 
-    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for the more localized MT inversion.
+    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for the inversion of more localized MT data.
     - The starting beta was chosen as a result of preliminary inversion attempts.
     - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have some over-fitting iterations, even if we globally over-estimate our uncertainties.
+    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have iteration that fit the data well, even if we globally over-estimate our uncertainties. You wouldn't need to set such a low chi-factor if you had a much larger confidence in your uncertainties.
     - We chose to invert for the smoothest model, which recovers a data driven result that does not depend on the reference model. We do this by setting *alpha S* to a very small value.
 
+
+.. _comprehensive_workflow_mt_ztem_6_results:
 
 Analysis of Results
 -------------------
@@ -130,9 +134,9 @@ Now that we have selected an iteration (or range of iterations) that we feel exp
 
 According the Tikhonov curve, a recovered model within iterations 5-7 has a good change of explaining the data without fitting the noise. Here, we will examine **iteration 5**. For the example inversion, here are some things we noticed:
 
-    - the range of normalized misfits are generally consistent over all frequencies and over all components. This indicates that we are generally not drastically over-fitting certain components/frequencies at the expense of others.
-    - higher normalized misfits were observed at the lowest (30 Hz) and highest (720) frequencies. For the 720 Hz data this makes sense, as the uncertainties applied we larger relative to the maximum amplitude. This was a deliberate choice given that 720 Hz data are usually poorer in quality.
-    - the general shape of the main geophysical signatures are well reproduced by the predicted data at all frequencies and for all components. However, the amplitude for some features are underestimated. This indicates we are overfitting the background at the expense of fitting the anomalies. Although the amplitude was better reproduced at iterations 6 and 7, correlated features in the misfit maps remained.
+    - the range of normalized misfits are generally consistent over all frequencies and over all components. This indicates that we are not drastically over-fitting certain components/frequencies at the expense of others.
+    - however higher normalized misfits were observed at the lowest (30 Hz) and highest (720) frequencies. For the 720 Hz data this makes sense, as the uncertainties applied were larger relative to the maximum amplitude. This was a deliberate choice given that 720 Hz data are usually poorer in quality.
+    - the general shape of the main geophysical signatures are well reproduced by the predicted data at all frequencies and for all components. However, the amplitude for some features are underestimated. This indicates we are overfitting the background at the expense of fitting the anomalies. Although the amplitude was better reproduced at iterations 6 and 7, correlated features in the misfit maps remained and artifacts in the recovered models showed overfitting.
 
 
 .. figure:: images/misfit_ztem.png
@@ -144,8 +148,7 @@ According the Tikhonov curve, a recovered model within iterations 5-7 has a good
 
 For our example, better results could be obtained by considering the following:
 
-    1. to ensure we fit ZTEM anomalies and not the background, we can 
-    spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`Raglan magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
+    1. to ensure we fit ZTEM anomalies and not the background, we can spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`Raglan magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
 
     2. in order to run the inversion on a single 64 GB node, the smallest cell size was only 0.4 times the minimum skin depth. This is likely too coarse to model the highest frequencies with sufficient accuracy and would explain why the convergence became slower after iteration 5 but did not flatten.
 
@@ -182,6 +185,6 @@ Below, we compare MT and ZTEM inversion results on the scale of the MT survey. W
     :align: center
     :width: 700
 
-    Recovered model from ZTEM data at iteration 5 (MT survey coverage).
+    Recovered model from ZTEM data at iteration 5 (within MT survey coverage).
 
 

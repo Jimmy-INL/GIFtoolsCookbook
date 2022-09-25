@@ -9,21 +9,19 @@ Comprehensive Workflows: Joint MT/ZTEM
 **Published: October, 2022**
 
 
-Here, we present a general workflow for loading, interpreting, and jointly inverting Magnetotelluric (MT) and Z-axis Tipper electromagnetic (ZTEM) data. Our goal is to recover a single 3D conductivity model which explains both datasets. **We assume the reader is already familiar with comprehensive workflows that process and invert MT and ZTEM data separately** ; see :ref:`MT comprehensive workflow <comprehensive_workflow_mt_index>` and :ref:`ZTEM comprehensive workflow <comprehensive_workflow_ztem_index>` . This workflow focussed primarilly on joint inversion. However, we will link to relevant portions of the aforementioned workflows when necessary.
+Here, we present a general workflow for loading, interpreting, and jointly inverting Magnetotelluric (MT) and Z-axis Tipper electromagnetic (ZTEM) data. Our goal is to recover a single 3D conductivity model which explains both datasets. **We assume the reader is already familiar with comprehensive workflows for processing and inverting MT and ZTEM data separately so that more attention can be paid to joint inversion** ; see :ref:`MT comprehensive workflow <comprehensive_workflow_mt_index>` and :ref:`ZTEM comprehensive workflow <comprehensive_workflow_ztem_index>` . However, links to the content in previous comprehensive workflows will be provided when necessary. You may work with the tutorial dataset provided or your own data:
 
-You may work with the tutorial dataset provided or your own data:
-
-    .. - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_ztem.zip>`_
+    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt_ztem.zip>`_
 
 
 **Something about where the data came from**
 
-.. The data used for this tutorial were collected at Dufferin Lake as part of a uranium exploration project. The data are public domain. They were downloaded from the `Saskatchewan Mineral Assessment Database <https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/mineral-exploration-and-mining/saskatchewan-geological-survey/saskatchewan-mineral-assessment-database-smad>`__ . The original data have been down-sampled to make the size of data files more manageable.
+The data used for this tutorial were collected as part of the Copper Creek Project LLC near San Miguel, Arizona, USA. We greatly appreciate `Anglo American <http://www.angloamerican.ca/>`__ for providing the MT and ZTEM data used to create this comprehensive workflow. For expediency, the original MT and ZTEM data files have been pre-processed and output to UBC-GIF format.
 
 
-.. .. figure:: images/title_page.png
-..     :align: center
-..     :width: 700
+.. figure:: images/model_comparison.png
+    :align: center
+    :width: 700
 
 
 **Tutorial Sections**
@@ -37,8 +35,7 @@ You may work with the tutorial dataset provided or your own data:
     - ZTEM data preparation and uncertainties <4_ztem_data_preparation>
     - MT inversion and results <5_mt_inversion>
     - ZTEM inversion and results <6_ztem_inversion>
-    .. - Mesh design <5_mesh_design>
-    .. - Setting appropriate parameters and running the inversion <6_inversion>
-    .. - Examining convergence, data misfit and the recovered model <7_results>
+    - Joint inversion preparation <7_joint_inversion_preparation>
+    - Joint inversion results <8_joint_inversion_results>
 
  

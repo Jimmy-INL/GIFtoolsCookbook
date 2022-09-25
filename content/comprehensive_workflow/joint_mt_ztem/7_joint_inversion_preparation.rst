@@ -1,96 +1,133 @@
 .. _comprehensive_workflow_mt_ztem_7:
 
-Setting Up and Running a Joint Inversion
-========================================
+Preparation for the Joint Inversion
+===================================
+
+Here, we present the steps for preparing the data objects, mesh and interface weights that are to be used in the joint inversion. In general, we must:
+
+    - consider whether to jointly invert MT and ZTEM data over the entire region or on a more localized scale
+    - designing a mesh whose discretization is appropriate for both the MT and ZTEM data being inverted
+    - re-balance the uncertainties applied to the MT and ZTEM datasets
 
 
+Extracting Local-Scale Data (Optional)
+--------------------------------------
 
-MT measurements provide comprehensive EM information by measuring multiple data components at frequencies spanning many orders of magnitude (mHz to kHz).
-Unfortunately, MT data collection is very time consuming and is rarely collected at more than a few dozen stations.
-ZTEM data can be collected efficiently over large areas.
-However, ZTEM data are collected over a much smaller range of frequencies (generally between 30 Hz and 720 Hz). 
-As a result, ZTEM data is generally used to provide limited information over a large area.
-And MT data is used to provide high quality information for specific purposes. Examples include:
-
-    - using a spaced out set of MT stations characterize the regional geology
-    - using a more localized cluster of MT station to better characterize a geological target
-    - using higher frequency MT data to characterize the near-surface/overburden
-
-
-For independent MT inversion, a standard approach for assigning uncertainties and preparing MT data was covered in the Cloncurry MT comprehensive workflow.
-We strongly urge the reader to be familiar with this material. For reference, visit:
-
-    - :ref:`Preparing MT data <comprehensive_workflow_mt_3>`
-
-    - :ref:`Assigning uncertainties to MT data <comprehensive_workflow_mt_4>`
-
-
-
-Data Preparation
-----------------
-
-Frequency-Based Extraction
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The intended purpose for collecting the MT data and the computational resources available will determine which frequencies are extracted and used in our joint MT-ZTEM inversion.
-When looking forward to mesh design and joint inversion, we must consider the following:
-
-    1. The range of frequencies contained within the MT and ZTEM data being inverted should not exceed 3 orders of magnitude. This ensures the smallest cells in the mesh can adequately model the highest frequency. And ensures we can create a large enough mesh adequately model the lowest frequency. Since ZTEM data are collected between (30 Hz and 720 Hz), there is only a certain range of frequencies at which MT data can be used in a joint inversion.
-    
-    2. The inversion algorithm must store a factorization for every unique frequency. And since MT and ZTEM systems don't collect data at identical frequencies, the computational resources required for joint MT-ZTEM inversion can be quite large. We are therefore limited in the number of MT data frequencies that can be used in our joint inversion.
-
-
-Using GIFtools, we perform the frequency-based extraction:
-
-	- :ref:`Frequency-based extraction of data<objectTimeFreqExtract>`
-
+In the introduction of the :ref:`MT data preparation and uncertainties section <comprehensive_workflow_mt_ztem_3>`, we discussed the potential roles the MT data may have in your project. If the spatial coverage of the MT and ZTEM datasets are similar, you may choose to invert the data for the entire region. However if the MT data are clustered within a more localized area, we may extract a portion of the original ZTEM data and perform the joint invert on a finer scale.
 
 **Our approach:**
 
-For the tutorial data, we extracted MT data at 5 logarithmically spaced frequencies (8 Hz, 24 Hz, 80 Hz, 256 Hz and 756 Hz). Accoding to the :ref:`apparent resistivity sounding curves <comprehensive_workflow_mt_ztem_2_mt_interp>`, this range of frequencies appears to be sensitive to the nearer-surface conductive region and the background geology.
+The :ref:`results of the regional scale ZTEM inversion <comprehensive_workflow_mt_ztem_6_results>` indicated our mesh may have been too coarse to accurately model the data at higher frequencies. Furthermore, the MT data are within a local cluster and it is likely they are being used to constrain a geological target(s). For the tutorial dataset, we:
+
+    - Selectd a subset of the original ZTEM dataset and create a new data object. This was done by:
+
+        - :ref:`Plotting the data with VTK <viewData>`
+        - Clicking the 'Edit' tab and selecting the points we want changed. We chose a rectangle within Easting = (540000, 549000) and Northing = (3625000, 3632000).
+        - Clicking the 'Simple edit' tab. Then push the *Data not highlighted* button, push the *Delete locations* button, provide a new object name and *Apply*
+
+We then used the same :ref:`ZTEM data preparation <comprehensive_workflow_mt_ztem_4_preparation>` steps to:
+
+    - Downsample the data to a minimum distance of 250 m
+    - Define the base station
+    - Define the ZTEM data type
+    - Define the receivers
+
+
+Mesh Design
+-----------
+
+When designing a mesh for joint inversion, we must consider the frequencies and data spacings for all datasets. Some things to consider:
+
+    - The minimum horizontal cell width will depend on the smallest station spacing amongst all datasets
+    - The minimum vertical cell width will depend on the high frequency amongst all datasets
+    - The padding distance will depend on the lowest frequency amongst all datasets
+    - And even if the range of frequencies for each individual dataset is fairly small, **collectively** they shouldn't span more than 2-3 orders of magnitude
+
+Here, we create an OcTree mesh using the E3DMT v2 utility. The steps are as follows:
+
+    - :ref:`create OcTree mesh with E3DMT v2 utilities <createE3DMTv2octreeMesh>`
+
+Once you have created the object, complete the following steps:
+
+	1) Set the MT and ZTEM data objects being used to create the mesh
+	2) Define the mesh using *Edit Options*
+	3) Run the utility
+	4) Load results
+
+For the field data provided, the following parameters we set in *Edit Options*.
+
+.. figure:: images/mesh_parameters_joint.png
+    :align: center
+    :width: 500
+
+
+**Discussion of Parameters:**
+
+    - The highest and lowest frequencies were are found in the MT data (8 Hz and 756 Hz). We chose a minimum vertical cell width of 50 m (~30 % the skin depth), which is perhaps slightly too large to achieve optimum inversion results. 
+    - The ZTEM data was downsampled to a spacing of 250 m. Practically all of the MT stations are at least 250 m away from one another. So for the purposes of this tutorial, the horizontal cell width was set to 100 m.
+    - Preliminary inversion results supported out initial assumption that we are only sensitive to the first few thousand meters depth. As a result, we used the same thickness 1, 2 and 3 that were used in the MT inversion.
+    - Unlike controlled source EM, natural source EM fields are very smooth and the discretization near the receivers can be less refined.
 
 
 
-Defining Receivers
-^^^^^^^^^^^^^^^^^^
+Interface Weights
+-----------------
 
-Presently, E3DMT v2 is considered the superior code for inverting natural-source EM data. To use this code, we must define the receivers:
+Interface weights were generated to enforce lateral smoothness within the top few layers. For the tutorial data, we did the following:
 
-	- :ref:`Set/reset receivers from data locations<objectDataTypeMT_snid>`
+    - :ref:`Create and interface weights utility <createinterfWeights>`
+    - Use :ref:`edit options <utilEditOptions>` and set the following parameters:
 
-**Our approach:**
+        - set the OcTree mesh
+        - set as *log model*
+        - set topography as the active cells model
+        - set number of layers and corresponding weights (choose something exponentially decreasing. We chose 45, 15 and 5).
+        - Face value = 0.01
+        - Face tolerance = 0.01
 
-According to the contractor, the electric field dipoles had lengths of 100 m. Receivers measuring the magnetic fields are much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m or 4 m. We used the following parameters to fill the fields:
+    - :ref:`Run the utility <utilRun>`
+    - :ref:`Load results <utilLoadResults>`
 
-	- **Hx, Hy receiver width: 2 m**
-	- **Hx, Hy number of segments: 4**
-	- **Ex, Ey receiver length: 100 m**
-	- **Ex, Ey number of segments: 3**
-	- **Orientation from Nothing (deg): 0** (since data are defined Northing-Easting-Down)
-	- **Ex (Northing) shift:** 0 m Easting and 50 m Northing
-	- **Ey (Easting) shift:** 50 m Easting and 0 m Northing
+**Discussion of Parameters:**
 
-.. note:: If the loop receivers are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.
-
-
+    - Our choice in interface weights felt like a balance between those used in the MT and ZTEM inversions.
 
 
-Assigning Uncertainties
------------------------
+.. _comprehensive_workflow_mt_ztem_7_rebalancing:
 
-**Off-Diagonal Impedances (ZXYR, ZXYI, ZYXR and ZYXI):**
+Rebalancing Uncertainties
+-------------------------
 
-For off-diagonal impedance components, we applied both a percent and a floor. For all components and for all frequencies, the percent uncertainty was 5%. Choosing a floor was more involved. Just like in the :ref:`Cloncurry MT comprehensive workflow <comprehensive_workflow_mt_4>`, the floor uncertainty at each frequency was computed according to:
+.. important:: Prior to performing joint inversion, you must obtain satisfactory inversion results for each dataset separately!
+
+
+Let us start by considering inversion for a single dataset. In practice, the uncertainties assigned to the data are rarely ideal and we must examine the Tikhonov curve to infer the iteration at which the recovered model fits the data globally without over-fitting. Even if the selected model does not correspond to a chi-factor of 1 (i.e. :math:`\phi_d = N`), it is acceptable so long as 1) it reproduces the observed data accurately without overfitting, 2) there are no coherent artifacts in the misfit maps and 3) the level of misfit between each component and each frequency is balanced. However when jointly inverting two or more datasets, the uncertainties assigned to each dataset must also be balanced so that one dataset is not overfit at the expense of any others.
+
+**Mathematically Description:**
+
+Let :math:`\boldsymbol{\varepsilon}` be the original uncertainties used for independent inversion of a single dataset. If the recovered model corresponds to a chi-factor :math:`\chi`, then:
 
 .. math::
-    \varepsilon (f) = \sqrt{2\pi \mu f (0.5 \Omega m)}
-
-This resulted in floor uncertainties of roughly 0.0055, 0.01, 0.018, 0.032 and 0.055 V/A. Essentially, the floor uncertainties ensure we do not try to fit large localized fluctuations in high conductivity regions at the expense of properly fitting resistive structures.
+    \chi = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i} \Bigg |^2
 
 
-**Diagonal Impedances (ZXXR, ZXXI, ZYYR and ZYYI):**
+If we want the recovered model to correspond to a chi-factor of 1, we simply need to multiply the original uncertainties by :math:`\sqrt{\chi}` given that:
 
-For diagonal impedance components, we applied a floor uncertainty equal to 5% the maximum value. This was done separately for each component and for each frequency.
+.. math::
+    1 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i \sqrt{\chi} } \Bigg |^2 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i^* } \Bigg |^2
 
 
-    - Use the :ref:`GUI for applying frequency-dependent uncertainties <objectAssignUncertGUI>`.
+where :math:`\boldsymbol{\varepsilon}^*` are the 'balanced uncertainties'. In essence, we are multiplying the original uncertainties of each dataset so that if we were to re-run it, the recovered model would correspond to a chi-factor of 1.
+
+**Implementation:**
+
+For each dataset, the uncertainties are balanced by:
+
+    1) :ref:`examining the convergence curve <convergence_curve>` and obtaining the chi-factor for the model you chose from the independent inversion result, then
+    2) using the :ref:`column calculator <objectCalculator>` to multiply all uncertainty columns in the dataset by the square root of this value to obtain new uncertainty columns
+    3) set the uncertainties using :ref:`set IO headers <objectSetioHeaders>` to the new uncertainty columns.
+
+**For the tutorial data:**
+
+From the :ref:`MT inversion results <comprehensive_workflow_mt_ztem_5_results>`, we chose the 7th iteration (chi-factor 0.26). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.26} \approx 0.51`. From the :ref:`ZTEM inversion results <comprehensive_workflow_mt_ztem_6_results>`, we chose the 5th iteration (chi-factor 0.56). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.56} \approx 0.75`.
+

@@ -31,14 +31,14 @@ The steps for loading, visualizing and converting MT and ZTEM data to UBC-GIF co
 
     - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *topo.xyz* and is in the *assets* folder.
 
-    - :ref:`Import MT data <importNSEMData_e3dmt1>` from E3DMT v1 formatted file. The data file is named *mt_copper_creek_north.dat* and is in the *assets* folder. Data were collected at 36 stations at 57 frequencies from 0.0029297 Hz to 1,280 Hz.
+    - :ref:`Import MT data <importNSEMData_e3dmt1>` from E3DMT v1 formatted file. The data file is named *mt_data.dat* and is in the *assets* folder. Data were collected at 36 stations at 57 frequencies from 0.0029297 Hz to 1,280 Hz.
 
-    - :ref:`Import ZTEM data <importNSEMData_e3dmt1>` from E3DMT v1 formatted file. The data file is named *ztem_coppoer_creek_north.dat* and is in the *assets* folder. The dataset consists of 1269 line-kilometres of ZTEM data collected at 6 frequencies (30 Hz, 60 Hz, 90 Hz, 180 Hz, 360 Hz and 720 Hz).
+    - :ref:`Import ZTEM data <importNSEMData_e3dmt1>` from E3DMT v1 formatted file. The data file is named *ztem_data.dat* and is in the *assets* folder. The dataset consists of 1269 line-kilometres of ZTEM data collected at 6 frequencies (30 Hz, 60 Hz, 90 Hz, 180 Hz, 360 Hz and 720 Hz).
 
 
 **Remove dummy uncertainty columns:**
 
-To save the data files in UBC-GIF format, we set dummy uncertainties of 0 for all data columns. Assigning appropriate uncertainties is covered later in the workflow. At this time, please:
+To save the data files in UBC-GIF format, we set dummy uncertainties of 0 for all data components. Assigning appropriate uncertainties is covered later in the workflow. At this time, please:
 
     - :ref:`Use set IO headers <objectSetioHeaders>` to unset the uncertainty columns for the MT and ZTEM datasets
 
@@ -58,8 +58,7 @@ If you are not using the tutorial data, please see the following pages describin
 Apparent Resistivities and Total Divergence
 -------------------------------------------
 
-Now is a convenient time to compute the apparent resistivities from your MT impedance-tensor data and to compute the total divergence from you ZTEM data.
-Apparent resistivities are discussed on the :ref:`data preparation page within the MT comprehensive workflow <comprehensive_workflow_mt_3>`.
+Now is a convenient time to compute the apparent resistivities from your MT impedance-tensor data and to compute the total divergence from you ZTEM data. Apparent resistivities are discussed on the :ref:`data preparation page within the MT comprehensive workflow <comprehensive_workflow_mt_3>`.
 The total divergence representation of ZTEM data :ref:`is discussed here <comprehensive_workflow_ztem_2_dt>`.
 
 If you have :ref:`set the IO headers <objectSetioHeaders>` properly for the MT and ZTEM data within GIFtools:
@@ -72,7 +71,7 @@ If you have :ref:`set the IO headers <objectSetioHeaders>` properly for the MT a
 Interpretation of ZTEM Data
 ---------------------------
 
-The ZTEM data seems to indicate a large-scale structure trending from Northwest to Southeast that is more resistive than its neighbouring geology. This is especially visible in the 30 Hz data (shown below). At higher frequencies, smaller scale features become more visible.
+The ZTEM data indicates a large-scale structure trending from Northwest to Southeast that is more resistive than its neighbouring geology. This is especially visible in the 30 Hz data (shown below). At higher frequencies, smaller scale features become more visible.
 
 .. figure:: images/ztem_data_30Hz.png
     :align: center
@@ -80,7 +79,7 @@ The ZTEM data seems to indicate a large-scale structure trending from Northwest 
 
     ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates.
 
-The total divergence parameter computed for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence maps support the initial interpretation from the Tipper components. However, it appears that the aforementioned feature may not be overly resistive and that is instead flanked by structures more conductive than the background. The region of MT data coverage has been indicated for purposes of later comparison. 
+The total divergence parameter computed for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence maps support the initial interpretation from the Tipper components. However, the aforementioned feature may not be overly resistive. Instead, it may just be a region flanked by structures more conductive than the background. The region of MT data coverage has been indicated for purposes of later comparison. 
 
 .. figure:: images/ztem_data_dt.png
     :align: center
@@ -102,8 +101,7 @@ Below, apparent resitivities computed from the ZXY component are plotted at 32 H
 
     Apparent resistivities at 32 Hz (left), 96 Hz (middle) and 384 Hz (right) computed from ZXY. 
 
-Below, we plot the apparent resistivity sounding curves for all MT stations at all frequencies (0.0029297 Hz to 1,280 Hz).
-The highest frequency denotes a significant variation in apparent resistivities (50 :math:`\Omega m` to 2000 :math:`\Omega m` ), indicating some nearer surface regions at more conductive than others. All of the curves indicate an increase in resistivity with respect to depth for frequencies between (1 Hz and 100 Hz). Apparent resistivity curves computed from ZXY and ZYX components of the impedance tensor show significant differences. This tells us that a 1D interpretation of the MT data is insufficient in characterizing the region.
+Below, we plot the apparent resistivity sounding curves derived from the ZXY and ZYX components for all MT stations at all frequencies (0.0029297 Hz to 1,280 Hz). The highest frequency denotes a significant variation in apparent resistivities (50 :math:`\Omega m` to 2000 :math:`\Omega m` ), indicating some nearer surface regions at more conductive than others. All of the curves indicate an increase in resistivity with respect to depth for frequencies between (1 Hz and 100 Hz). Apparent resistivity curves computed from ZXY and ZYX components of the impedance tensor show significant differences. This tells us that a 1D interpretation of the MT data is insufficient in characterizing the region and that 3D interpretation in necessary.
 
 
 .. figure:: images/mt_app_res_soundings.png

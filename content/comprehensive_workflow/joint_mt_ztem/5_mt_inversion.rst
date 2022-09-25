@@ -40,7 +40,7 @@ For the field data provided, the following parameters we set in *Edit Options*.
 **Discussion of Parameters:**
 
     - The minimum MT station spacing was ~200 m. To have 2.5 cells per station, a minimum horizontal cell width of 80 m was chosen.
-    - Given the minimum skin depth was ~200 m, we chose a minimum vertical cell width that was at most 1/4 this value (i.e. 40 m).
+    - Given the minimum skin depth was ~200 m, we chose a minimum vertical cell width that was at most 1/4 this value (40 m in our case).
     - The width of the padding was set to 2 times the largest skin depth
     - Over the frequencies we are inverting, we are likely only sensitive to the first few thousand meters. The sum of thickness 1, 2 and 3 were partitioned to sum to 4000 m.
     - Unlike controlled source EM, natural source EM fields are very smooth and the discretization near the receivers can be less refined.
@@ -91,8 +91,11 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
 
     - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting.
     - The starting beta was chosen as a result of preliminary inversion attempts.
-    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have some over-fitting iterations, even if we globally over-estimate our uncertainties.
+    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have iteration that fit the data well, even if we globally over-estimate our uncertainties. You wouldn't need to set such a low chi-factor if you had a much larger confidence in your uncertainties.
     - We chose to invert for the smoothest model, which recovers a data driven result that does not depend on the reference model. We do this by setting *alpha S* to a very small value.
+
+
+.. _comprehensive_workflow_mt_ztem_5_results:
 
 
 Analysis of Results
@@ -107,9 +110,9 @@ Once the inversion has finished:
 
 The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
-	- the inversion code reach target misfit at the 9th iteration.
+	- the inversion code reached target misfit at the 9th iteration.
 	- the Tikhonov curve starts to flatten out after the 7th iteration, indicating the point on the Tikhonov curve after which recovered models start to over-fit the data.
-	- At the 7th iteration, the data misfit corresponds to a chi factor of 0.26. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten out when the data misfit corresponds to a chi-factor of 1.
+	- At the 7th iteration, the data misfit corresponds to a chi factor of 0.26. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten out when the data misfit corresponds to a chi-factor of 1 (i.e. :math:`\phi_d` = number of data).
 
 
 .. figure:: images/convergence_mt_002.PNG
@@ -164,7 +167,7 @@ Recovered Model
 The conductivity model recovered at the 7th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
 
 	- The regional conductivity is higher in the Northeast and Southwest, with a larger-scale resistive feature trending from Northwest to Southeast. This is consistent with our original interpretation of the ZTEM data using total divergence maps.
-	- Within the resistive feature are localized cluster of conductors.
+	- Within the resistive feature are a more localized cluster of conductors.
 
 
 .. figure:: images/model_mt_iter7.png
