@@ -38,12 +38,12 @@ When looking forward to mesh design and joint inversion, we must consider the fo
 
 Using GIFtools, we perform the frequency-based extraction:
 
-	- :ref:`Frequency-based extraction of data<objectTimeFreqExtract>`
+    - :ref:`Frequency-based extraction of data<objectTimeFreqExtract>`
 
 
 **Our approach:**
 
-For the tutorial data, we extracted MT data at 5 logarithmically spaced frequencies (8 Hz, 24 Hz, 80 Hz, 256 Hz and 756 Hz). Accoding to the :ref:`apparent resistivity sounding curves <comprehensive_workflow_mt_ztem_2_mt_interp>`, this range of frequencies appears to be sensitive to the nearer-surface conductive region and the background geology.
+For the tutorial data, we extracted MT data at 5 logarithmically spaced frequencies (8 Hz, 24 Hz, 80 Hz, 256 Hz and 756 Hz); which created the data object *mt_data_5freq*. Accoding to the :ref:`apparent resistivity sounding curves <comprehensive_workflow_mt_ztem_2_mt_interp>`, this range of frequencies appears to be sensitive to the nearer-surface conductive region and the background geology.
 
 
 
@@ -52,19 +52,21 @@ Defining Receivers
 
 Presently, E3DMT v2 is considered the superior code for inverting natural-source EM data. To use this code, we must define the receivers:
 
-	- :ref:`Set/reset receivers from data locations<objectDataTypeMT_snid>`
+    - :ref:`Set/reset receivers from data locations<objectDataTypeMT_snid>`
+
+We define the receivers on our frequency-extracted data object (*mt_data_5freq* in our case).
 
 **Our approach:**
 
 According to the contractor, the electric field dipoles had lengths of 100 m. Receivers measuring the magnetic fields were much smaller than the cell dimensions being used to model the fields. If the contractor does not provide you with the coil receiver's dimensions, you may choose a value such as 1 m or 4 m. We used the following parameters to fill the fields:
 
-	- **Hx, Hy receiver width: 2 m**
-	- **Hx, Hy number of segments: 4**
-	- **Ex, Ey receiver length: 100 m**
-	- **Ex, Ey number of segments: 3**
-	- **Orientation from Nothing (deg): 0** (since data are defined Northing-Easting-Down)
-	- **Ex (Northing) shift:** 0 m Easting and 50 m Northing
-	- **Ey (Easting) shift:** 50 m Easting and 0 m Northing
+    - **Hx, Hy receiver width: 2 m**
+    - **Hx, Hy number of segments: 4**
+    - **Ex, Ey receiver length: 100 m**
+    - **Ex, Ey number of segments: 3**
+    - **Orientation from Nothing (deg): 0** (since data are defined Northing-Easting-Down)
+    - **Ex (Northing) shift:** 0 m Easting and 50 m Northing
+    - **Ey (Easting) shift:** 50 m Easting and 0 m Northing
 
 .. note:: If the loop receivers are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.
 

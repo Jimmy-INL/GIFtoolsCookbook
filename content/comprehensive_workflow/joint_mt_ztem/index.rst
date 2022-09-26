@@ -11,17 +11,17 @@ Comprehensive Workflows: Joint MT/ZTEM
 
 Here, we present a general workflow for loading, interpreting, and jointly inverting Magnetotelluric (MT) and Z-axis Tipper electromagnetic (ZTEM) data. Our goal is to recover a single 3D conductivity model which explains both datasets. **We assume the reader is already familiar with comprehensive workflows for processing and inverting MT and ZTEM data separately so that more attention can be paid to joint inversion** ; see :ref:`MT comprehensive workflow <comprehensive_workflow_mt_index>` and :ref:`ZTEM comprehensive workflow <comprehensive_workflow_ztem_index>` . However, links to the content in previous comprehensive workflows will be provided when necessary. You may work with the tutorial dataset provided or your own data:
 
-    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt_ztem.zip>`_
+    - `Download the tutorial data <https://owncloud.eoas.ubc.ca/s/ozWD7wDBDRTpZAE/download>`_
 
 
-**Something about where the data came from**
+The data used for this tutorial were collected as part of the Copper Creek Project LLC near San Manuel, Arizona, USA. We greatly appreciate `Anglo American <http://www.angloamerican.ca/>`__ for providing the MT and ZTEM data used to create this comprehensive workflow. For expediency, the original MT and ZTEM data files have been pre-processed and output to UBC-GIF format.
 
-The data used for this tutorial were collected as part of the Copper Creek Project LLC near San Miguel, Arizona, USA. We greatly appreciate `Anglo American <http://www.angloamerican.ca/>`__ for providing the MT and ZTEM data used to create this comprehensive workflow. For expediency, the original MT and ZTEM data files have been pre-processed and output to UBC-GIF format.
+.. important:: Requires GIFtools v3.1 or later.
 
 
 .. figure:: images/model_comparison.png
     :align: center
-    :width: 700
+    :width: 550
 
 
 **Tutorial Sections**

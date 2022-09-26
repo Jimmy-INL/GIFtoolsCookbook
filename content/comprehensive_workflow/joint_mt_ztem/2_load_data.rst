@@ -27,7 +27,7 @@ The steps for loading, visualizing and converting MT and ZTEM data to UBC-GIF co
 
 **To import the tutorial data:**
 
-    - `download tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt_ztem.zip>`_ . It is from these data that we will demonstrate the workflow.
+    - `download tutorial data <Download the tutorial data <https://owncloud.eoas.ubc.ca/s/ozWD7wDBDRTpZAE/download>`_ . It is from these data that we will demonstrate the workflow.
 
     - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *topo.xyz* and is in the *assets* folder.
 

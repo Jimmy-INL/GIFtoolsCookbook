@@ -34,7 +34,9 @@ ZTEM data at 720 Hz is frequently poor quality and is not used in the inversion.
 The flight-line separation for the tutorial dataset is 200 m, indicating we may want to down-sample such that the minimum data separation is roughly 200 m.
 However, we chose to down-sample the data such that the minimum data spacing was 400 m. This was done to invert the data on a coarser mesh, allowing the inversion to be run on a single 64 GB node. For this step:
 
-	- :ref:`Down-sample based on distance<objectDataDownsample>`
+    - :ref:`Down-sample based on distance<objectDataDownsample>`
+
+which created the data object *ztem_data_ds400m*.
 
 
 Setting the Base Station
@@ -44,7 +46,7 @@ The horizontal magnetic fields are general measured at a base station. In GIFtoo
 For the tutorial data, the base station is located at Easting = 545905 m, Northing = 3623156 m and elevation = 1063 m in UTM zone 12.
 To carry out this step:
 
-	- :ref:`Set/reset base station<objectDataTypeZTEM_basestn>`
+    - :ref:`Set/reset base station<objectDataTypeZTEM_basestn>` to the downsampled data.
 
 
 Setting ZTEM Data Type
@@ -52,7 +54,7 @@ Setting ZTEM Data Type
 
 We need to specify if the horizontal fields are measured at a base station or using sensors attached to the aircraft. This is done with the following functionality:
 
-	- :ref:`Set ZTEM data type<objectDataTypeZTEM_datatype>`
+    - :ref:`Set ZTEM data type<objectDataTypeZTEM_datatype>` to the downsampled data.
 
 
 Defining Receivers
@@ -60,16 +62,16 @@ Defining Receivers
 
 Presently, E3DMT v2 is considered the superior code for inverting natural-source EM data. To use this code, we must define the receivers:
 
-	- :ref:`Set/reset receivers from data locations<objectDataTypeZTEM_snid>`
+    - :ref:`Set/reset receivers from data locations<objectDataTypeZTEM_snid>`
 
 **Our approach:**
 
 According to the contractor, *Hx* and *Hy* were measured at a base station. The receivers at the base station were square and had a side length of 3.04 m. *Hz* was measured with a circular loop with a diameter of 7.4 m. Thus we used the following parameters to fill in the fields:
 
-	- **Hx, Hy receiver width: 3.04**
-	- **Hx, Hy number of segments: 4**
-	- **Hz receiver width: 7.4**
-	- **Hz number of segments: 8**
-	- **Orientation from Nothing (deg): 0** (since all rotations to UBC-GIF were done already)
+    - **Hx, Hy receiver width: 3.04**
+    - **Hx, Hy number of segments: 4**
+    - **Hz receiver width: 7.4**
+    - **Hz number of segments: 8**
+    - **Orientation from Nothing (deg): 0** (since all rotations to UBC-GIF were done already)
 
 .. note:: If any of the loops are square, choose the number of segments to be 4. GIFtools will define the loop as a square with side length equal to the value specified.

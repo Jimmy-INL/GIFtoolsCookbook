@@ -3,13 +3,26 @@
 Performing Joint Inversion
 ==========================
 
-Here, we provide the steps for setting up and running a joint MT-ZTEM inversion with E3DMT v2. By now, we assume the process of setting up and choosing reasonable inversion parameters is well-understood; see the :ref:`Cloncurry MT comprehensive workflow <comprehensive_workflow_mt_6>` and :ref:`Dufferin lake ZTEM comprehensive workflow <comprehensive_workflow_mt_6>`. Here, we will focus on weighting that can be applied to each dataset in the joint inversion and how it impact the final inversion result.
+Here, we provide the steps for setting up and running a joint MT-ZTEM inversion with E3DMT v2. By now, we assume the process of setting up and choosing reasonable inversion parameters is well-understood; see the :ref:`Cloncurry MT comprehensive workflow <comprehensive_workflow_mt_6>` and :ref:`Dufferin lake ZTEM comprehensive workflow <comprehensive_workflow_mt_6>`.
 
 
 Inversion With No Data Weighting
 --------------------------------
 
-In this case, we assume that our uncertainties are balanced and that we want to fit each dataset in the joint inversion equally.
+At the end of the last section, we :ref:`balanced the uncertainties <comprehensive_workflow_mt_ztem_7_rebalancing>` by using the chi-factor for the recovered model for each independent inversion. Assuming this balance will carry over to the joint inversion and assuming we want to fit each dataset equally, there is no need to apply additional data weighting. We are effectively solving an inverse problem for the following misfit function:
+
+.. math::
+    \phi (\mathbf{m}) = \phi_{d,1} + \phi_{d,2} + \ldots + \beta \phi_m
+
+
+where the data misfit corresponding to each dataset has the form:
+
+.. math::
+    \phi_d = \sum_i^N \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i^*} \Bigg |^2
+
+
+and :math:`\varepsilon_i^*` is the uncertainty for datum :math:`i` used for the joint inversion.
+
 
 Setup and Run Inversion
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -32,10 +45,13 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
 
 **Discussion of Parameters:**
 
-    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for the more localized MT inversion.
+    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for previous MT and ZTEM inversions.
     - The starting beta was chosen as a result of preliminary inversion attempts.
-    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have some over-fitting iterations, even if we globally over-estimate our uncertainties.
-    - We chose to invert for the smoothest model, which recovers a data driven result that does not depend on the reference model. We do this by setting *alpha S* to a very small value.
+    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.9 given we expect the recovered model to occur closer to a chi-factor of 1. However, we would like to see some later iterations if the uncertainties for the joint inversion are too large.
+    - We chose to invert for the smoothest model, which is the same approach taken for the independent MT and ZTEM inversions.
+    - We chose 'No data weighting' for the time-being
+
+.. important:: The chi-factors used to balance the MT and ZTEM uncertainties for joint inversion were obtained through independent inversions with a particular regularization. In our case, inverting for the smoothest model, including the reference model in the derivative, and updating the reference model at every beta iteration. If you change the regularization when performing the joint inversion, there is no guarantee you have balance between your datasets; as one dataset might be easier to fit than another with a particular regularization.
 
 
 Convergence
@@ -47,11 +63,9 @@ Once the inversion has finished:
 
 The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
-    - the inversion code did not reach target misfit before the maximum number of allowable iterations (i.e. 10).
-    - the Tikhonov curve starts to become less steep after the 5th iteration, but does not flatten out. At each subsequent iteration, the misfit appears to be steadily decreasing. At this point, any iteration greater than or equal to 5 is candidate for further analysis.
-    - we looked at the largest conductivity values for the recovered models after iteration 5. We noticed that after iteration 7, the maximum conductivity in the recovered models became excessively large and kept increasing with each iteration.
-    - as a result, our model is likely within iterations 5-7. 
-    - the **data misfit** at 5th iteration corresponds to a chi factor of 0.56. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten our near a chi-factor of 1.
+    - the inversion reached target misfit at iteration 9.
+    - the uncertainties were balanced such that independent inversion of all datasets would yield recovered models corresponding to chi-factors of 1. We expected something similar for the joint inversion but the Tikhonov curve doesn't start to flatten out until iteration 6 or 7.
+    - ultimately, we chose to further examine iteration 6 (:math:`\chi=0.65`). 
 
 .. figure:: images/convergence_joint_002.PNG
     :align: center
@@ -64,47 +78,75 @@ Now that we have selected an iteration (or range of iterations) that we feel exp
 
     - :ref:`Load inversion results for these iterations <invLoadResults>`
 
-According the Tikhonov curve, a recovered model within iterations 5-7 has a good change of explaining the data without fitting the noise. Here, we will examine **iteration 5**. For the example inversion, here are some things we noticed:
+For the example inversion, here are some things we noticed about **iteration 6**:
 
-    - the range of normalized misfits are generally consistent over all frequencies and over all components. This indicates that we are generally not drastically over-fitting certain components/frequencies at the expense of others.
-    - higher normalized misfits were observed at the lowest (30 Hz) and highest (720) frequencies. For the 720 Hz data this makes sense, as the uncertainties applied we larger relative to the maximum amplitude. This was a deliberate choice given that 720 Hz data are usually poorer in quality.
-    - the general shape of the main geophysical signatures are well reproduced by the predicted data at all frequencies and for all components. However, the amplitude for some features are underestimated. This indicates we are overfitting the background at the expense of fitting the anomalies. Although the amplitude was better reproduced at iterations 6 and 7, correlated features in the misfit maps remained.
+    - just like in the independent inversion of the ZTEM data, the normalized misfits in the joint inversion also showed that we were underfitting the amplitudes of ZTEM anomalies. In addition, the largest data misfits were observed most prominently at the lowest (30 Hz) and highest (720 Hz) frequencies. 
+    - locations/frequencies showing the highest data misfits in the independent MT inversion were not identical to those in the joint inversion. This indicates the MT and ZTEM data could be working together to constrain structures. 
+    - compared to the normalized misfits for the ZTEM data, the normalized misfits for the MT data were a little higher. Not excessively higher, but noticeable. In this case, we may be over-fitting the background in the ZTEM data at the expense of fitting the MT data.
+    - for the purposes of this tutorial, we assigned simple uncertainties to the ZTEM data. However, by not correcting the assigned ZTEM uncertainties after our first ZTEM inversion, the quality of our joint inversion may be decreased.
 
 
 .. figure:: images/misfit_joint.png
     :align: center
     :width: 700
 
-    Predicted data, observed data and normalized misfit for all data components at 180 Hz. For each component, predicted and observe data are plotted on the same scale. All normalized misfit maps are plotted on a range from -2 to 2.
-
-
-For our example, better results could be obtained by considering the following:
-
-    1. to ensure we fit ZTEM anomalies and not the background, we can 
-    spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`Raglan magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
-
-    2. in order to run the inversion on a single 64 GB node, the smallest cell size was only 0.4 times the minimum skin depth. This is likely too coarse to model the highest frequencies with sufficient accuracy and would explain why the convergence became slower after iteration 5 but did not flatten.
+    Normalized misfits for MT and ZTEM data at a single frequency. All normalized misfit maps are plotted on a range from -2.5 to 2.5.
 
 
 Recovered Model
 ^^^^^^^^^^^^^^^
 
-The conductivity model recovered at the 5th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
+The conductivity model recovered at the 6th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
 
-    - a large-scale resistive feature is located between two more conductive regional features which trend from Northwest to Southeast. This is consistent with our original interpretation of the ZTEM data using total divergence maps.
-    - Within the resistive feature are localized regions of higher conductivity. However, these conductive features are not as strongly visible as in the MT inversion results.
+    - the overall characteristics of the recovered model is a blend between the independent MT and ZTEM recovered models.
+    - the independent MT inversion recovered a number of significant localized conductors. We surmized that only some of these conductors were sufficiently constrained by the MT data to exist. The remaining structures were likely artifacts. The same artifacts were not recovered after jointly inverting the MT and ZTEM data. 
+    - whereas the maximum conductivity values recovered from independent MT and ZTEM inversions would increase significantly with each successive decrease in the trade-off parameter (beta), the maximum conductivity value obtained from joint inversion was fairly robust. 
 
 
 .. figure:: images/model_joint_iter6.png
     :align: center
     :width: 700
 
-    Recovered model from ZTEM data at iteration 5.
-
+    Recovered model from ZTEM data at iteration 6.
 
 
 Inversion With Data Weighting
 -----------------------------
+
+Data weighting weighting is generally considered when:
+
+    - datasets are not fit evenly after joint inversion using balanced uncertainties (previous joint inversion)
+    - you want to prioritize fitting one dataset more than another due to the quality of the information it provided
+    - the number of data in each dataset differs drastically and you would like the data misfit between all datasets to be equal
+
+In this case, we want to solve the inverse problem for the following misfit function:
+
+
+.. math::
+    \phi (\mathbf{m}) = \dfrac{N}{\sum C_i} \Big [ \; C_1\phi_{d,1} + C_2\phi_{d,2} + \ldots \; \Big ] + \beta \phi_m
+
+
+where :math:`C_i` are the data weighting constants being applied and *N* is the number of datasets being jointly inverted. The data misfit corresponding to each dataset has the same form as before. And the constant out front ensure that the balance between the data misfits and the model objective function is not altered by applying data-based weighting; i.e. :math:`N = \sum C_i`.
+
+**General weights:**
+
+In this case, we define a weights :math:`C_1, C_2, \ldots` for each dataset. The larger the weight relative to the others, the more emphasis the inversion has on fitting that dataset. E.g for two dataset, we may supply the numbers :math:`C_1=4` and :math:`C_2=1`. We want our weighting to fit the first dataset more strongly. From the above expression, **the actual constants multiplying each data misfit term are** 8/5 and 2/5, respectively.
+
+**Weighting based on number of data:**
+
+When one dataset has many more data components and/or locations than another, the inversion may not need to fit the smaller dataset well to reach target misfit. In this case, you may choose to apply a weighting such that the data misfit terms contribute equally; i.e. :math:`\phi_{d,1}=\phi_{d,2}=\ldots \;`.
+Where :math:`n_i` is the total number of data for dataset *i*:
+
+.. math::
+    C_i = \frac{1}{n_i} \bigg [ \sum \frac{1}{n_i} \bigg ]^{-1}
+
+E.g. for two datasets such that :math:`n_1 = 1000` and :math:`n_2 = 4000`, we would have :math:`C_1 = 4/5` and :math:`C_2 = 1/5`. And **the actual constants multiplying each data misfit term are** 8/5 and 2/5, respectively.
+
+**Both**
+
+Both general and weighting based on the number of data can be applied simultaneously within GIFtools. The option to weight based on the number of data can be toggled on or off. And general weights can be modified or all set to a value of 1.
+
+
 
 Setup and Run Inversion
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -118,7 +160,7 @@ The joint MT-ZTEM inversion was carried out using E3DMT v2. There steps were as 
 
 For the tutorial dataset provided, the parameters used to invert the data are shown below.
 
-.. figure:: images/inv_parameters_joint.png
+.. figure:: images/inv_parameters_joint_dweighted.png
     :align: center
     :width: 700
 
@@ -127,10 +169,11 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
 
 **Discussion of Parameters:**
 
-    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for the more localized MT inversion.
+    - Background, starting and reference models of 0.002 S/m were set. This corresponds to a rough average value of the apparent resistivity sounding curves over the frequencies we are inverting. It also seemed to work well for previous MT and ZTEM inversions.
     - The starting beta was chosen as a result of preliminary inversion attempts.
-    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.4 to guarantee we will have some over-fitting iterations, even if we globally over-estimate our uncertainties.
-    - We chose to invert for the smoothest model, which recovers a data driven result that does not depend on the reference model. We do this by setting *alpha S* to a very small value.
+    - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.9 given we expect the recovered model to occur closer to a chi-factor of 1. However, we would like to see some later iterations if the uncertainties for the joint inversion are too large.
+    - We chose to invert for the smoothest model, which is the same approach taken for the independent MT and ZTEM inversions.
+    - We felt that the MT data were being underfit in the previous joint inversion. And as a result, the weights applied to the data for this inversion were 4.0 (MT data) and 1.0 (ZTEM data). Although the ZTEM data object has almost 10 times the amount of data as the MT data object, we did not want to weight based on the number of data. This was because the MT data coverage was sparse and we wanted to constrain our survey region more evenly.
 
 
 Convergence
@@ -142,11 +185,9 @@ Once the inversion has finished:
 
 The Tikhonov curve for our tutorial inversion is shown below. According to the figure:
 
-    - the inversion code did not reach target misfit before the maximum number of allowable iterations (i.e. 10).
-    - the Tikhonov curve starts to become less steep after the 5th iteration, but does not flatten out. At each subsequent iteration, the misfit appears to be steadily decreasing. At this point, any iteration greater than or equal to 5 is candidate for further analysis.
-    - we looked at the largest conductivity values for the recovered models after iteration 5. We noticed that after iteration 7, the maximum conductivity in the recovered models became excessively large and kept increasing with each iteration.
-    - as a result, our model is likely within iterations 5-7. 
-    - the **data misfit** at 5th iteration corresponds to a chi factor of 0.56. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten our near a chi-factor of 1.
+    - the inversion reached target misfit at iteration 7.
+    - Once again, the Tikhonov curve doesn't start to flatten out until iteration 6 or 7 so our recovered model likely won't correspond to a chi-factor of 1.
+    - ultimately, we chose to further examine iteration 6 (:math:`\chi=0.60`). 
 
 .. figure:: images/convergence_joint_002_dweighted.PNG
     :align: center
@@ -159,34 +200,28 @@ Now that we have selected an iteration (or range of iterations) that we feel exp
 
     - :ref:`Load inversion results for these iterations <invLoadResults>`
 
-According the Tikhonov curve, a recovered model within iterations 5-7 has a good change of explaining the data without fitting the noise. Here, we will examine **iteration 5**. For the example inversion, here are some things we noticed:
 
-    - the range of normalized misfits are generally consistent over all frequencies and over all components. This indicates that we are generally not drastically over-fitting certain components/frequencies at the expense of others.
-    - higher normalized misfits were observed at the lowest (30 Hz) and highest (720) frequencies. For the 720 Hz data this makes sense, as the uncertainties applied we larger relative to the maximum amplitude. This was a deliberate choice given that 720 Hz data are usually poorer in quality.
-    - the general shape of the main geophysical signatures are well reproduced by the predicted data at all frequencies and for all components. However, the amplitude for some features are underestimated. This indicates we are overfitting the background at the expense of fitting the anomalies. Although the amplitude was better reproduced at iterations 6 and 7, correlated features in the misfit maps remained.
+For the example inversion, here are some things we noticed about **iteration 6**:
+
+    - by applying a weighting to the data misfits, we did a much better job of fitting the MT data.
+    - the predicted ZTEM data also doesn't seem to overfit the background as the expense of the anomalies as much.
+    - and the global balance in normalize data misfits for the MT and ZTEM data seems much better.
 
 
 .. figure:: images/misfit_joint_dweighted.png
     :align: center
     :width: 700
 
-    Predicted data, observed data and normalized misfit for all data components at 180 Hz. For each component, predicted and observe data are plotted on the same scale. All normalized misfit maps are plotted on a range from -2 to 2.
-
-
-For our example, better results could be obtained by considering the following:
-
-    1. to ensure we fit ZTEM anomalies and not the background, we can spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`Raglan magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
-
-    2. in order to run the inversion on a single 64 GB node, the smallest cell size was only 0.4 times the minimum skin depth. This is likely too coarse to model the highest frequencies with sufficient accuracy and would explain why the convergence became slower after iteration 5 but did not flatten.
+    Normalized misfits for MT and ZTEM data at a single frequency. All normalized misfit maps are plotted on a range from -2.5 to 2.5.
 
 
 Recovered Model
 ^^^^^^^^^^^^^^^
 
-The conductivity model recovered at the 5th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
+The conductivity model recovered at the 6th iteration is shown below. The colormap was scaled to 1e-4 S/m to 0.1 S/m. According to the recovered model:
 
-    - a large-scale resistive feature is located between two more conductive regional features which trend from Northwest to Southeast. This is consistent with our original interpretation of the ZTEM data using total divergence maps.
-    - Within the resistive feature are localized regions of higher conductivity. However, these conductive features are not as strongly visible as in the MT inversion results.
+    - Because we are more heavily fitting the MT data, we noticed the largest conductivity values in the recovered model were slightly larger than in the previous joint inversion.
+    - However the existence, locations and dimensions of recovered structures were very consistent across both joint inversions.
 
 
 .. figure:: images/model_joint_iter6_dweighted.png
@@ -200,6 +235,7 @@ The conductivity model recovered at the 5th iteration is shown below. The colorm
 Comparison of All Inversions
 ----------------------------
 
+Below, we show our final recovered models within our area of interest from 1) independent MT inversion, 2) independent ZTEM inversion, 3) joint MT-ZTEM inversion without data weighting, and 4) joint MT-ZTEM inversion with data weighting. For this study, we see that ZTEM data were need to determine which targets inferred from the MT data were real. And MT data were needed to recover local-scale conductive structures.
 
 
 .. figure:: images/model_comparison.png

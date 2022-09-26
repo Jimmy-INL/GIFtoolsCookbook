@@ -17,8 +17,8 @@ Mesh Design
 
 According to the apparent resistivity maps and sounding curves, the Earth is more conductive near the surface and more resistive at depth. Over the range of frequencies at which we are inverting ZTEM data (30 - 720 Hz), the apparent resistivities are generally between 100 - 1000 :math:`\Omega m`. For a background resisitivity of 500 :math:`\Omega m`:
 
-	- :math:`\delta_{min}` = 186 m
-	- :math:`\delta_{max}` = 2887 m
+    - :math:`\delta_{min}` = 186 m
+    - :math:`\delta_{max}` = 2887 m
 
 Here, we create an OcTree mesh using the E3DMT v2 utility. The steps are as follows:
 
@@ -26,10 +26,11 @@ Here, we create an OcTree mesh using the E3DMT v2 utility. The steps are as foll
 
 Once you have created the object, complete the following steps:
 
-	1) Set the data object corresponding to the survey
-	2) Define the mesh using *Edit Options*
-	3) Run the utility
-	4) Load results
+    1) Set the data object corresponding to the survey
+    2) Define the mesh using *Edit Options*
+    3) Run the utility
+    4) Load results
+    5) Rename the ZTEM data object that is loaded from the outputs to something like *ztem_data_shifted*. The utility has shifted all ZTEM receivers to preserve flight height relative to the discretized topography.
 
 For the field data provided, the following parameters we set in *Edit Options*.
 
@@ -46,6 +47,7 @@ For the field data provided, the following parameters we set in *Edit Options*.
     - The width of the padding was set to roughly 2 times the largest skin depth
     - Over the frequencies we are inverting, we are likely only sensitive to the first few thousand meters. The sum of thickness 1, 2 and 3 were partitioned to sum to 4000 m.
     - Unlike controlled source EM, natural source EM fields are very smooth and the discretization near the receivers can be less refined.
+    - The 'Shift data' button is selected in order to create a receivers file whose receivers preserve the original flight height.
 
 
 

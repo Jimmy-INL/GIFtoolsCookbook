@@ -13,11 +13,11 @@ Here, we present the steps for preparing the data objects, mesh and interface we
 Extracting Local-Scale Data (Optional)
 --------------------------------------
 
-In the introduction of the :ref:`MT data preparation and uncertainties section <comprehensive_workflow_mt_ztem_3>`, we discussed the potential roles the MT data may have in your project. If the spatial coverage of the MT and ZTEM datasets are similar, you may choose to invert the data for the entire region. However if the MT data are clustered within a more localized area, we may extract a portion of the original ZTEM data and perform the joint invert on a finer scale.
+In the introduction of the :ref:`MT data preparation and uncertainties section <comprehensive_workflow_mt_ztem_3>`, we discussed the potential roles the MT data may have in a project. If the spatial coverage of the MT and ZTEM datasets are similar, you may choose to invert the data for the entire region. However if the MT data are clustered within a more localized area, we may extract a portion of the original ZTEM data and perform the joint invert on a finer scale.
 
 **Our approach:**
 
-The :ref:`results of the regional scale ZTEM inversion <comprehensive_workflow_mt_ztem_6_results>` indicated our mesh may have been too coarse to accurately model the data at higher frequencies. Furthermore, the MT data are within a local cluster and it is likely they are being used to constrain a geological target(s). For the tutorial dataset, we:
+The :ref:`results of the regional scale ZTEM inversion <comprehensive_workflow_mt_ztem_6_results>` indicated our mesh may have been too coarse to accurately model the data at higher frequencies and that we may have padded too quickly. Furthermore, the MT data are within a local cluster and it is likely they are being used to constrain more localized geological target(s). For the tutorial dataset, we:
 
     - Selectd a subset of the original ZTEM dataset and create a new data object. This was done by:
 
@@ -27,7 +27,7 @@ The :ref:`results of the regional scale ZTEM inversion <comprehensive_workflow_m
 
 We then used the same :ref:`ZTEM data preparation <comprehensive_workflow_mt_ztem_4_preparation>` steps to:
 
-    - Downsample the data to a minimum distance of 250 m
+    - Downsample the data to a minimum distance of 250 m. Call this *ztem_data_ds250m*
     - Define the base station
     - Define the ZTEM data type
     - Define the receivers
@@ -36,7 +36,7 @@ We then used the same :ref:`ZTEM data preparation <comprehensive_workflow_mt_zte
 Mesh Design
 -----------
 
-When designing a mesh for joint inversion, we must consider the frequencies and data spacings for all datasets. Some things to consider:
+When designing a mesh for joint inversion, we must consider the frequencies and data spacings for all datasets. Some things to keep in mind:
 
     - The minimum horizontal cell width will depend on the smallest station spacing amongst all datasets
     - The minimum vertical cell width will depend on the high frequency amongst all datasets
@@ -49,10 +49,11 @@ Here, we create an OcTree mesh using the E3DMT v2 utility. The steps are as foll
 
 Once you have created the object, complete the following steps:
 
-	1) Set the MT and ZTEM data objects being used to create the mesh
+	1) Set the MT and ZTEM data objects being used to create the mesh. In our case *mt_data_5freq* and *ztem_data_ds250m*.
 	2) Define the mesh using *Edit Options*
 	3) Run the utility
 	4) Load results
+	5) Rename the MT and ZTEM data objects that are loaded from the outputs to something like *mt_joint_shifted* and *ztem_joint_shifted*. The utility has shifted all e-field receivers to the discrete surface and preserved the elevation of all h-field receivers.
 
 For the field data provided, the following parameters we set in *Edit Options*.
 
@@ -95,39 +96,41 @@ Interface weights were generated to enforce lateral smoothness within the top fe
 
 .. _comprehensive_workflow_mt_ztem_7_rebalancing:
 
-Rebalancing Uncertainties
--------------------------
+Balancing Uncertainties
+-----------------------
 
 .. important:: Prior to performing joint inversion, you must obtain satisfactory inversion results for each dataset separately!
 
 
-Let us start by considering inversion for a single dataset. In practice, the uncertainties assigned to the data are rarely ideal and we must examine the Tikhonov curve to infer the iteration at which the recovered model fits the data globally without over-fitting. Even if the selected model does not correspond to a chi-factor of 1 (i.e. :math:`\phi_d = N`), it is acceptable so long as 1) it reproduces the observed data accurately without overfitting, 2) there are no coherent artifacts in the misfit maps and 3) the level of misfit between each component and each frequency is balanced. However when jointly inverting two or more datasets, the uncertainties assigned to each dataset must also be balanced so that one dataset is not overfit at the expense of any others.
+Let us start by considering inversion for a single dataset. In practice, the uncertainties assigned to the data are rarely ideal and we must examine the Tikhonov curve to infer the iteration at which the recovered model fits the data globally without over-fitting. Even if the selected model does not correspond to a chi-factor of 1 (i.e. :math:`\phi_d = N`), the model is reasonable so long as 1) it reproduces the observed data accurately without overfitting, 2) there are no coherent artifacts in the misfit maps and 3) the level of misfit between each component and each frequency is balanced.
+
+Joint inversion is more challenging, as the uncertainties assigned to each dataset must also be balanced so that one dataset is not overfit at the expense of any others. For each data object, we implement a simple approach for balancing the uncertainties.
 
 **Mathematically Description:**
 
-Let :math:`\boldsymbol{\varepsilon}` be the original uncertainties used for independent inversion of a single dataset. If the recovered model corresponds to a chi-factor :math:`\chi`, then:
+Let :math:`\boldsymbol{\varepsilon}` be the original uncertainties used for independent inversion of a single dataset. If the model we chose as the recovered model corresponds to a chi-factor :math:`\chi` (not necessarily 1), then from our definition of the data misfit:
 
 .. math::
     \chi = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i} \Bigg |^2
 
 
-If we want the recovered model to correspond to a chi-factor of 1, we simply need to multiply the original uncertainties by :math:`\sqrt{\chi}` given that:
+If we want the recovered model to corresponded to a chi-factor of 1, we would simply need to multiply the original uncertainties by :math:`\sqrt{\chi}` and re-run the inversion given that:
 
 .. math::
     1 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i \sqrt{\chi} } \Bigg |^2 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i^* } \Bigg |^2
 
 
-where :math:`\boldsymbol{\varepsilon}^*` are the 'balanced uncertainties'. In essence, we are multiplying the original uncertainties of each dataset so that if we were to re-run it, the recovered model would correspond to a chi-factor of 1.
+where :math:`\boldsymbol{\varepsilon}^* = \sqrt{\chi} \boldsymbol{\varepsilon}` are the 'balanced uncertainties'. In essence, we are multiplying the original uncertainties of each dataset so that if we were to re-run the set of independent inversions, the recovered models would all correspond to a chi-factor of 1. In doing so, we assume that each inversion fits their respective data equally at the same chi-factor. Furthermore, we assume this balance will transfer over when inverting the data jointly. 
 
 **Implementation:**
 
 For each dataset, the uncertainties are balanced by:
 
     1) :ref:`examining the convergence curve <convergence_curve>` and obtaining the chi-factor for the model you chose from the independent inversion result, then
-    2) using the :ref:`column calculator <objectCalculator>` to multiply all uncertainty columns in the dataset by the square root of this value to obtain new uncertainty columns
+    2) using the :ref:`column calculator <objectCalculator>` to multiply all uncertainty columns in the dataset by the square root of this value to obtain new uncertainty columns. We suggest creating new columns and giving them names like *ZXYR_UNCERT_NEW* so that you can keep your original uncertainty columns.
     3) set the uncertainties using :ref:`set IO headers <objectSetioHeaders>` to the new uncertainty columns.
 
 **For the tutorial data:**
 
-From the :ref:`MT inversion results <comprehensive_workflow_mt_ztem_5_results>`, we chose the 7th iteration (chi-factor 0.26). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.26} \approx 0.51`. From the :ref:`ZTEM inversion results <comprehensive_workflow_mt_ztem_6_results>`, we chose the 5th iteration (chi-factor 0.56). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.56} \approx 0.75`.
+From the :ref:`MT inversion results <comprehensive_workflow_mt_ztem_5_results>`, we chose the 7th iteration (chi-factor 0.26). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.26} \approx 0.51` and used to create a new set of uncertainty columns. From the :ref:`ZTEM inversion results <comprehensive_workflow_mt_ztem_6_results>`, we chose the 5th iteration (chi-factor 0.56). As a result, all uncertainty columns were multiplied by :math:`\sqrt{0.56} \approx 0.75` and used to create a new set of uncertainty columns.
 
