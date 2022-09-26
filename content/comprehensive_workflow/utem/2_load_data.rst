@@ -58,22 +58,22 @@ Some things to consider when examining your dataset may include:
 For the tutorial data, the real and imaginary components of the tipper data are plotted below. We see that data collected Southwest to Northeast and data collected Northeast to Southwest are very different at similar locations. This indicates the data coordinates are dependent on flight direction. According to the contractor, the imaginary component of the tutorial data are represented using a :math:`-i\omega t` Fourier convention. And for this particular dataset, we see that the real and imaginary components of the Tipper data have opposing sign. Note that at 90 Hz (seen below), induction is significant and the sign of the quadrature components has changed!!!
 
 
-.. figure:: images/ZTEM_raw_data.png
-    :align: center
-    :width: 700
+.. .. figure:: images/ZTEM_raw_data.png
+..     :align: center
+..     :width: 700
 
-    Raw ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz. Figure shows that data collected along different flight lines are not collected in the same coordinate system.
+..     Raw ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz. Figure shows that data collected along different flight lines are not collected in the same coordinate system.
 
 Below, we see the convention for data collection provided by the contractor. The plot defines Z as +ve upwards. The plot also indicates that the cross-line direction is 90 degrees counter clockwise from the along-line direction.
 
 Flying Northwest to Southeast (bearing = 125 degrees), our Re[Tzx] anomaly would be positive to the Northwest of a conductor and negative to the Southeast. Flying Southwest to Northeast (bearing = 35 degrees), our Re[Tzx] anomaly would be positive to the Southwest and negative to the Northeast.  
 
 
-.. figure:: images/ZTEM_contractor_convention.png
-    :align: center
-    :width: 500
+.. .. figure:: images/ZTEM_contractor_convention.png
+..     :align: center
+..     :width: 500
 
-    Cross-over polarization for data flown along bearing 125 degrees (left) and along 35 degrees (right).
+..     Cross-over polarization for data flown along bearing 125 degrees (left) and along 35 degrees (right).
 
 
 Transformation to UBC GIF Coordinates
@@ -94,11 +94,11 @@ To apply this transformation, we use the following utility:
 Tipper data after applying the transformation is shown below. Data are now in the UBC-GIF convention, where X = Northing, Y = Easting and Z is positive downward. The position of the data however, are still in standard UTM. The data map indicates a possible conductive feature that trends from the Southwest to the Northeast.
 
 
-.. figure:: images/ZTEM_rotated_data.png
-    :align: center
-    :width: 700
+.. .. figure:: images/ZTEM_rotated_data.png
+..     :align: center
+..     :width: 700
 
-    ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
+..     ZTEM data (TZXR, TZXI, TZYR and TZYI) at 90 Hz represented in UBC-GIF coordinates. Figure shows that all data are in the same coordinate system.
 
 
 Interpretation using total divergence
@@ -110,11 +110,11 @@ We can compute the total divergence parameter for the data at each frequency in 
 
 The total divergence parameter computed for real data at 30 Hz, 90 Hz and 360 Hz is shown below. The total divergence parameter map indicates the existence of conductive structures within a more resistive background. The most prominent conductive feature strikes along a bearing of roughly 35 degrees from the North. This conductive feature is observed across all frequencies.
 
-.. figure:: images/ZTEM_DT_data.png
-    :align: center
-    :width: 700
+.. .. figure:: images/ZTEM_DT_data.png
+..     :align: center
+..     :width: 700
 
-    Total divergence parameter for the real component at 30 Hz (left), 90 Hz (middle) and 360 Hz (right).
+..     Total divergence parameter for the real component at 30 Hz (left), 90 Hz (middle) and 360 Hz (right).
 
 
 .. note:: If structures were much more resistive than the background, they would be identified as large negative anomalies in the total divergence parameter map.

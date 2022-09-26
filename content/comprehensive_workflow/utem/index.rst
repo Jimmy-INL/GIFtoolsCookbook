@@ -28,11 +28,6 @@ Here, we present a general workflow for loading, interpreting and inverting surf
     :maxdepth: 1
 
     - Understanding UTEM anomalies <1_basic_anomalies>
-    .. - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
-    .. - Standard assignment of uncertainties to ZTEM data <3_uncertainties>
-    .. - Preparing data for inversion within the GIFtools framework <4_data_preparation>
-    .. - Mesh design <5_mesh_design>
-    .. - Setting appropriate parameters and running the inversion <6_inversion>
-    .. - Examining convergence, data misfit and the recovered model <7_results>
+    - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
 
  

@@ -71,7 +71,6 @@ Time Channels
 For UTEM systems, the time channels at which the fields are measured depend on the period of the waveform; generally 0.1 s to several seconds. Unlike most TEM systems, **the time channels are organized from latest to earliest**. Where *T* denotes the period of the waveform, the time channels for UTEM systems are described below:
 
 - **Ch_0:** The latest time channel. Data at this time channel is supposed to represent the steady-state B-field expected at a sufficient time after the step-on excitation. Ideally this would be measured at time *T/2* , but in practice it is measured slightly earlier.
-|
 
 - **Ch_i:** Time channels used for interpretation. Most UTEM systems have roughly 10-13 of these time channels. The latest time channel is at time *Ch_1 ~ T/4*. And from latest to earliest, the time of the channel is decreased by a factor of 2. Thus:
 
