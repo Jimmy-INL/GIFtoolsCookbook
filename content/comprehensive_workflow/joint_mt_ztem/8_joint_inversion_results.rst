@@ -9,19 +9,7 @@ Here, we provide the steps for setting up and running a joint MT-ZTEM inversion 
 Inversion With No Data Weighting
 --------------------------------
 
-At the end of the last section, we :ref:`balanced the uncertainties <comprehensive_workflow_mt_ztem_7_rebalancing>` by using the chi-factor for the recovered model for each independent inversion. Assuming this balance will carry over to the joint inversion and assuming we want to fit each dataset equally, there is no need to apply additional data weighting. We are effectively solving an inverse problem for the following misfit function:
-
-.. math::
-    \phi (\mathbf{m}) = \phi_{d,1} + \phi_{d,2} + \ldots + \beta \phi_m
-
-
-where the data misfit corresponding to each dataset has the form:
-
-.. math::
-    \phi_d = \sum_i^N \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i^*} \Bigg |^2
-
-
-and :math:`\varepsilon_i^*` is the uncertainty for datum :math:`i` used for the joint inversion.
+At the end of the last section, we :ref:`balanced the uncertainties <comprehensive_workflow_mt_ztem_7_rebalancing>` by using the chi-factor for the recovered model for each independent inversion. Assuming this balance will carry over to the joint inversion and assuming we want to fit each dataset equally, there is no need to apply additional data weighting.
 
 
 Setup and Run Inversion
@@ -119,33 +107,9 @@ Data weighting weighting is generally considered when:
     - you want to prioritize fitting one dataset more than another due to the quality of the information it provided
     - the number of data in each dataset differs drastically and you would like the data misfit between all datasets to be equal
 
-In this case, we want to solve the inverse problem for the following misfit function:
+For reference, see inversion with data weighting section of our :ref:`joint inversion and data weighting page <Fundamentals_Joint>`.
 
-
-.. math::
-    \phi (\mathbf{m}) = \dfrac{N}{\sum C_i} \Big [ \; C_1\phi_{d,1} + C_2\phi_{d,2} + \ldots \; \Big ] + \beta \phi_m
-
-
-where :math:`C_i` are the data weighting constants being applied and *N* is the number of datasets being jointly inverted. The data misfit corresponding to each dataset has the same form as before. And the constant out front ensure that the balance between the data misfits and the model objective function is not altered by applying data-based weighting; i.e. :math:`N = \sum C_i`.
-
-**General weights:**
-
-In this case, we define a weights :math:`C_1, C_2, \ldots` for each dataset. The larger the weight relative to the others, the more emphasis the inversion has on fitting that dataset. E.g for two dataset, we may supply the numbers :math:`C_1=4` and :math:`C_2=1`. We want our weighting to fit the first dataset more strongly. From the above expression, **the actual constants multiplying each data misfit term are** 8/5 and 2/5, respectively.
-
-**Weighting based on number of data:**
-
-When one dataset has many more data components and/or locations than another, the inversion may not need to fit the smaller dataset well to reach target misfit. In this case, you may choose to apply a weighting such that the data misfit terms contribute equally; i.e. :math:`\phi_{d,1}=\phi_{d,2}=\ldots \;`.
-Where :math:`n_i` is the total number of data for dataset *i*:
-
-.. math::
-    C_i = \frac{1}{n_i} \bigg [ \sum \frac{1}{n_i} \bigg ]^{-1}
-
-E.g. for two datasets such that :math:`n_1 = 1000` and :math:`n_2 = 4000`, we would have :math:`C_1 = 4/5` and :math:`C_2 = 1/5`. And **the actual constants multiplying each data misfit term are** 8/5 and 2/5, respectively.
-
-**Both**
-
-Both general and weighting based on the number of data can be applied simultaneously within GIFtools. The option to weight based on the number of data can be toggled on or off. And general weights can be modified or all set to a value of 1.
-
+**For the tutorial data,** we felt that the MT data were being underfit in the previous joint inversion. To fit the MT data better, we apply a larger weighting to the MT data than to the ZTEM data. Although the ZTEM data object has almost 10 times the amount of data as the MT data object, we did not want to accomplish our task by applying weights based on the number of data. This was because the MT data coverage was sparse and we wanted to constrain our survey region more evenly.
 
 
 Setup and Run Inversion
@@ -173,7 +137,7 @@ For the tutorial dataset provided, the parameters used to invert the data are sh
     - The starting beta was chosen as a result of preliminary inversion attempts.
     - The inversion code will terminate when the total misfit (not data misfit) reaches the target chi-factor. We chose 0.9 given we expect the recovered model to occur closer to a chi-factor of 1. However, we would like to see some later iterations if the uncertainties for the joint inversion are too large.
     - We chose to invert for the smoothest model, which is the same approach taken for the independent MT and ZTEM inversions.
-    - We felt that the MT data were being underfit in the previous joint inversion. And as a result, the weights applied to the data for this inversion were 4.0 (MT data) and 1.0 (ZTEM data). Although the ZTEM data object has almost 10 times the amount of data as the MT data object, we did not want to weight based on the number of data. This was because the MT data coverage was sparse and we wanted to constrain our survey region more evenly.
+    - To fit the MT data better without underfitting regions outside the MT data coverage, the weights applied to the data for this inversion were 4.0 (MT data) and 1.0 (ZTEM data).
 
 
 Convergence

@@ -10,6 +10,8 @@ Here, we present the steps for preparing the data objects, mesh and interface we
     - re-balance the uncertainties applied to the MT and ZTEM datasets
 
 
+.. important:: Prior to performing joint inversion, you must obtain satisfactory inversion results for each dataset separately!
+
 Extracting Local-Scale Data (Optional)
 --------------------------------------
 
@@ -99,28 +101,8 @@ Interface weights were generated to enforce lateral smoothness within the top fe
 Balancing Uncertainties
 -----------------------
 
-.. important:: Prior to performing joint inversion, you must obtain satisfactory inversion results for each dataset separately!
+Joint inversion is more challenging, as the uncertainties assigned to each dataset must also be balanced so that one dataset is not overfit at the expense of any others. For each data object, we implement a simple approach for balancing the uncertainties. For reference, see the balancing uncertainties for joint inversion section of our :ref:`joint inversion and data weighting page <Fundamentals_Joint>`.
 
-
-Let us start by considering inversion for a single dataset. In practice, the uncertainties assigned to the data are rarely ideal and we must examine the Tikhonov curve to infer the iteration at which the recovered model fits the data globally without over-fitting. Even if the selected model does not correspond to a chi-factor of 1 (i.e. :math:`\phi_d = N`), the model is reasonable so long as 1) it reproduces the observed data accurately without overfitting, 2) there are no coherent artifacts in the misfit maps and 3) the level of misfit between each component and each frequency is balanced.
-
-Joint inversion is more challenging, as the uncertainties assigned to each dataset must also be balanced so that one dataset is not overfit at the expense of any others. For each data object, we implement a simple approach for balancing the uncertainties.
-
-**Mathematically Description:**
-
-Let :math:`\boldsymbol{\varepsilon}` be the original uncertainties used for independent inversion of a single dataset. If the model we chose as the recovered model corresponds to a chi-factor :math:`\chi` (not necessarily 1), then from our definition of the data misfit:
-
-.. math::
-    \chi = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i} \Bigg |^2
-
-
-If we want the recovered model to corresponded to a chi-factor of 1, we would simply need to multiply the original uncertainties by :math:`\sqrt{\chi}` and re-run the inversion given that:
-
-.. math::
-    1 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i \sqrt{\chi} } \Bigg |^2 = \frac{1}{N} \sum_i^N \; \Bigg | \frac{d_i^{pre} - d_i^{obs}}{\varepsilon_i^* } \Bigg |^2
-
-
-where :math:`\boldsymbol{\varepsilon}^* = \sqrt{\chi} \boldsymbol{\varepsilon}` are the 'balanced uncertainties'. In essence, we are multiplying the original uncertainties of each dataset so that if we were to re-run the set of independent inversions, the recovered models would all correspond to a chi-factor of 1. In doing so, we assume that each inversion fits their respective data equally at the same chi-factor. Furthermore, we assume this balance will transfer over when inverting the data jointly. 
 
 **Implementation:**
 
@@ -129,6 +111,7 @@ For each dataset, the uncertainties are balanced by:
     1) :ref:`examining the convergence curve <convergence_curve>` and obtaining the chi-factor for the model you chose from the independent inversion result, then
     2) using the :ref:`column calculator <objectCalculator>` to multiply all uncertainty columns in the dataset by the square root of this value to obtain new uncertainty columns. We suggest creating new columns and giving them names like *ZXYR_UNCERT_NEW* so that you can keep your original uncertainty columns.
     3) set the uncertainties using :ref:`set IO headers <objectSetioHeaders>` to the new uncertainty columns.
+
 
 **For the tutorial data:**
 

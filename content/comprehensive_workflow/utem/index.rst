@@ -27,7 +27,7 @@ Here, we present a general workflow for loading, interpreting and inverting surf
 .. toctree::
     :maxdepth: 1
 
-    - Understanding UTEM anomalies <1_basic_anomalies>
-    - Loading geophysical data and transforming from along-line cross-line convention to GIF convention <2_load_data>
+    - Understanding surface UTEM anomalies <1_basic_anomalies>
+    - Loading UTEM data from AMIRA TEM files and initial interpretation <2_load_data>
 
  
