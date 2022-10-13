@@ -133,13 +133,13 @@ Inversion Parameters
         **tol_ipcg:** relative tolerance for solution (default = 0.01)
         **max_iter_ipcg:** maximum number of IPCG iterations (20)
 
-    - **Data weighting for joint inversion:** If multiple datasets are being inverted jointly, then the contribution of each dataset towards the total data misfit should be weighted; otherwise, the inversion does not fit each dataset evenly. For more details, see :ref:`fundamentals of inversion <Fundamentals_Joint>`. For E3DMT version 1, options are:
+    - **Data weighting for joint inversion:** If multiple datasets are being inverted jointly, you may want influence how well the inversion fits each dataset. For more details, see :ref:`fundamentals of inversion <Fundamentals_Joint>`. By default, no data weighting is applied. For E3DMT version 1, options for data weighting are:
 
-        - **No weighting between datasets:** Used if only a single dataset is being inverted .
-        - **Weight by relative number of data:** Suggested if multiple datasets are being inverted. This option will automatically weight the contribution of the data misfits for each datasets in order to fit each dataset equally.
-        - **Data weighting constants:** Specify the set of weighting constants for joint inversion. Weighting based on the number of data is still applied and the constants entered are scaled such that the target misfit for the inversion remains the same. 
+        - **Apply weighting to data:** If this box is selected, the user must supply a weighting constant for each of the data objects they selected in the table provided. Enter values of 1 for no weighting.
+        - **Weight by number of data:** If this box is not selected, data weighting is defined in the table provided. If selected, each dataset will be weighted based on the number of data it has. 
+        
 
-    .. note:: The E3DMT version 1 executable does not have the ability to perform joint inversion. To carry out the joint inversion of MT and ZTEM data, the uncertainties are scaled by a constant factor. Although the uncertainties are changed, the target misfit for the inversion (total # data :math:`\times` chi factor) does not.
+    .. note:: The E3DMT version 1 executable does not have the ability to perform joint inversion directly. To carry out the joint inversion of MT and ZTEM data, the uncertainties are scaled by a constant factor. Although the uncertainties are changed, the target misfit for the inversion (total # data :math:`\times` chi factor) does not. However, the original uncertainties are preserved within the GIFtools framework when plotting misfit maps.
 
     - **BICG settings:** If solving the forward problem using an iterative solver, these parameters specify the tolerances and stopping criteria for the BiCGstab algorithm.
 
@@ -286,6 +286,14 @@ Inversion Parameters
 
         - **tol_ipcg:** relative tolerance for solution (default = 0.01)
         - **max_iter_ipcg:** maximum number of IPCG iterations (20)
+
+    - **Data weighting for joint inversion:** If multiple datasets are being inverted jointly, you may want influence how well the inversion fits each dataset. For more details, see :ref:`fundamentals of inversion <Fundamentals_Joint>`. By default, no data weighting is applied. For E3DMT version 1, options for data weighting are:
+
+        - **Apply weighting to data:** If this box is selected, the user must supply a weighting constant for each of the data objects they selected in the table provided. Enter values of 1 for no weighting.
+        - **Weight by number of data:** If this box is not selected, data weighting is defined in the table provided. If selected, each dataset will be weighted based on the number of data it has. 
+        
+
+    .. note:: The E3DMT version 1 executable does not have the ability to perform joint inversion directly. To carry out the joint inversion of MT and ZTEM data, the uncertainties are scaled by a constant factor. Although the uncertainties are changed, the target misfit for the inversion (total # data :math:`\times` chi factor) does not. However, the original uncertainties are preserved within the GIFtools framework when plotting misfit maps.
 
     - **Memory settings:** This code factors the forward system at each frequency for repeated use in the inversion algorithm. The user has a choice in where the factorizations are stored:
 

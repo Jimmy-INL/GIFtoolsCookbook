@@ -23,7 +23,7 @@ Only when the convergence and data misfit are acceptable can we infer geological
 Convergence
 ^^^^^^^^^^^
 
-Once the inversion outputs have been loaded (done in the :ref:`inversion section<comprehensive_workflow_ztem_6>`)
+Once the inversion has finished:
 
 	- :ref:`View convergence <convergence_curve>`
 
@@ -39,6 +39,10 @@ The Tikhonov curve for our example inversion is shown below. According to the fi
 
 Data Misfit
 ^^^^^^^^^^^
+
+Now that we have selected an iteration (or range of iterations) that we feel explains the data without overfitting:
+
+    - :ref:`Load inversion results for these iterations <invLoadResults>`
 
 According the Tikhonov curve, the recovered model at iteration 4 has a good change of explaining the data without fitting the noise. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
 

@@ -10,7 +10,7 @@ Here, we demonstrate a common practice for examining the output of the inversion
 	- see if the inversion is able to reach target misfit
 	- infer whether the target misfit is reasonable; i.e. did we globally over or under-estimate the uncertainties on our data
 
-We then assess how well a given recovered model explains the data by looking at the predicted data, observed data and normalized data misfit maps. From this we can determine whether:
+We then assess how well a given recovered model explains the data by looking at the predicted data, observed data and normalized data misfit maps for a given iteration. From this we can determine whether:
 
 	- the predicted data fits the amplitude, shape and character of observed anomalies for each component and for each frequency
 	- the estimated uncertainties were reasonable for each component and for each frequency.
@@ -23,7 +23,7 @@ Only when the convergence and data misfit are acceptable can we infer geological
 Convergence
 ^^^^^^^^^^^
 
-Once the inversion outputs have been loaded (done in the :ref:`inversion section<comprehensive_workflow_mt_6>`)
+Once the inversion has finished:
 
 	- :ref:`View convergence <convergence_curve>`
 
@@ -40,6 +40,11 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
 
 Data Misfit
 ^^^^^^^^^^^
+
+Now that we have selected an iteration (or range of iterations) that we feel explains the data without overfitting:
+
+    - :ref:`Load inversion results for these iterations <invLoadResults>`
+
 
 According the Tikhonov curve, the recovered model at iteration 4 has a good chance of explaining the data without fitting the noise. To be sure however, we must examine the observed data, predicted data and data misfit for the corresponding model. Here are some good questions to ask during this step:
 

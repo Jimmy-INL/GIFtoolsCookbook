@@ -25,6 +25,9 @@ This section of the GIFtools cookbook is meant to provide practical tutorials fo
     DCIP: From UBC-GIF/XYZ to DC and IP inversion <dcip/index>
     MT: From EDI data to inversion <mt/index>
     ZTEM: From XYZ data to inversion <ztem/index>
+    Joint MT-ZTEM inversion <joint_mt_ztem/index>
+    Surface UTEM: From AMIRA TEM data file to inversion (incomplete) <utem/index>
+    Borehole UTEM: From AMIRA TEM data file to inversion (incomplete) <utem_borehole/index>
 
 
 

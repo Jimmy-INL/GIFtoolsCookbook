@@ -5,7 +5,7 @@
 Sparse-Norm Inversion
 =====================
 
-For magnetic inversion using UBC-GIF codes, sparse norm inversion can be used to recover compact and/or blocky structures. The ability to recovered structures with sharper boundaries marks a major improvement over classic least-squares inversion; which recoveres smooth structures with smeared boundaries. The :ref:`fundamentals of inversion section <file:///D:/Documents/Repositories/GIFtoolsCookbook/_build/html/content/fundamentals/Norms.html>` provides useful background information.
+For magnetic inversion using UBC-GIF codes, sparse norm inversion can be used to recover compact and/or blocky structures. The ability to recovered structures with sharper boundaries marks a major improvement over classic least-squares inversion; which recoveres smooth structures with smeared boundaries. The :ref:`fundamentals of inversion section <Fundamentals_Norms>` provides useful background information.
 
 Here, we demonstrate how to setup and run sparse-norm inversions using the GIFtools framework. We also provide several inversion examples for our local tutorial data. We will invert the same data as in :ref:`the previous section <comprehensive_workflow_magnetics_11>`; i.e. the *B_regional_detrended* data column.
 
