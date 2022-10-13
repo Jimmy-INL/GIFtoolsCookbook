@@ -36,6 +36,6 @@ The data used for this tutorial were collected as part of the Copper Creek Proje
     - MT inversion and results <5_mt_inversion>
     - ZTEM inversion and results <6_ztem_inversion>
     - Joint inversion preparation <7_joint_inversion_preparation>
-    - Joint inversion results <8_joint_inversion_results>
+    - Joint inversion and results <8_joint_inversion_results>
 
  
