@@ -63,6 +63,7 @@ For the field data provided, the following parameters we set in *Edit Options*.
     :align: center
     :width: 500
 
+|
 
 **Discussion of Parameters:**
 

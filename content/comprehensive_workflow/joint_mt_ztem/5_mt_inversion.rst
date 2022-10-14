@@ -38,6 +38,8 @@ Once you have created the object, complete the following steps:
     :align: center
     :width: 500
 
+|
+
 **Discussion of Parameters:**
 
     - The minimum MT station spacing was ~200 m. To have 2.5 cells per station, a minimum horizontal cell width of 80 m was chosen.
@@ -117,7 +119,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - At the 7th iteration, the data misfit corresponds to a chi factor of 0.26. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten out when the data misfit corresponds to a chi-factor of 1 (i.e. :math:`\phi_d` = number of data).
 
 
-.. figure:: images/convergence_mt_002.PNG
+.. figure:: images/convergence_mt_002.png
     :align: center
     :width: 700
 

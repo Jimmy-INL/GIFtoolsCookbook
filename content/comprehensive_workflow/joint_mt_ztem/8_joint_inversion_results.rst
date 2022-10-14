@@ -55,7 +55,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - the uncertainties were balanced such that independent inversion of all datasets would yield recovered models corresponding to chi-factors of 1. We expected something similar for the joint inversion but the Tikhonov curve doesn't start to flatten out until iteration 6 or 7.
     - ultimately, we chose to further examine iteration 6 (:math:`\chi=0.65`). 
 
-.. figure:: images/convergence_joint_002.PNG
+.. figure:: images/convergence_joint_002.png
     :align: center
     :width: 700
 
@@ -153,7 +153,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - Once again, the Tikhonov curve doesn't start to flatten out until iteration 6 or 7 so our recovered model likely won't correspond to a chi-factor of 1.
     - ultimately, we chose to further examine iteration 6 (:math:`\chi=0.60`). 
 
-.. figure:: images/convergence_joint_002_dweighted.PNG
+.. figure:: images/convergence_joint_002_dweighted.png
     :align: center
     :width: 700
 

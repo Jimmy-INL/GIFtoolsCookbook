@@ -24,6 +24,8 @@ The data used for this tutorial were collected as part of the Copper Creek Proje
     :width: 550
 
 
+|
+
 **Tutorial Sections**
 
 .. toctree::

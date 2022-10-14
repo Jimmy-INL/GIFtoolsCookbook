@@ -39,6 +39,8 @@ For the field data provided, the following parameters we set in *Edit Options*.
     :width: 500
 
 
+|
+
 **Discussion of Parameters:**
 
     - We wanted to run this inversion on a single 64 GB node. As a result, we downsampled the original ZTEM data to a minimum spacing of 400 m. And to have 2.5 cells per station, a minimum horizontal cell width of 160 m was chosen.
@@ -123,7 +125,7 @@ The Tikhonov curve for our tutorial inversion is shown below. According to the f
     - as a result, our model is likely within iterations 5-7. 
     - the **data misfit** at 5th iteration corresponds to a chi factor of 0.56. Therefore, we have likely over-estimated the global level of uncertainty on our data. If estimated correctly, we would expect the convergence curve to flatten our near a chi-factor of 1.
 
-.. figure:: images/convergence_ztem_002.PNG
+.. figure:: images/convergence_ztem_002.png
     :align: center
     :width: 700
 
