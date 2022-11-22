@@ -14,7 +14,7 @@ Here, we present a general workflow for loading, interpreting, and jointly inver
     - `Download the tutorial data <https://owncloud.eoas.ubc.ca/s/ozWD7wDBDRTpZAE/download>`_
 
 
-The data used for this tutorial were collected as part of the Copper Creek Project LLC near San Manuel, Arizona, USA. We greatly appreciate `Anglo American <http://www.angloamerican.ca/>`__ for providing the MT and ZTEM data used to create this comprehensive workflow. For expediency, the original MT and ZTEM data files have been pre-processed and output to UBC-GIF format.
+The data used for this tutorial were collected as part of the Copper Creek Project LLC near San Manuel, Arizona, USA. We greatly appreciate `Anglo American <http://www.angloamerican.ca/>`__ and `Faraday Copper <https://faradaycopper.com/>`__ for providing the MT and ZTEM data used to create this comprehensive workflow. For expediency, the original MT and ZTEM data files have been pre-processed and output to UBC-GIF format.
 
 .. important:: Requires GIFtools v3.1 or later.
 
