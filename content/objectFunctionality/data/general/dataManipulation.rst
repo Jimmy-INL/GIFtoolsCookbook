@@ -119,7 +119,7 @@ This functionality is used to apply basic math operations to a column of data.
 To access this functionality, click on the data item of interest and use the
 menu:
 
-**Data manipulation** |rarr| **Calculate**
+**Data manipulation** |rarr| **Calculate** |rarr| **Calculator**
 
 Actions can be performed through the following pop-up window:
 

@@ -21,6 +21,7 @@ There are four types of TEM data that can be loaded from files:
     - :ref:`GIF H3DTD | TDoctree format <importTDoctreeV1data>`
     - :ref:`GIF TDoctree v2 format <importTDoctreeV2data>`
     - :ref:`XYZ format <importXYZemData>`
+    - :ref:`AMIRA TEM file <importAMIRATEM>`
 
 |
 |
@@ -96,3 +97,16 @@ The receivers and transmitters are defined by their respective input files. As a
 
 .. _EM1DFM file format: https://em1dfm.readthedocs.io/en/latest/content/files/supporting.html#observation-file
 .. _EM1DTM file format: https://em1dtm.readthedocs.io/en/latest/content/files/supporting.html#observation-file
+
+
+.. _importAMIRATEM:
+
+AMIRA TEM File
+^^^^^^^^^^^^^^
+
+Loads data from AMIRA TEM formatted file; `see reference <https://www.aseg.org.au/sites/default/files/pdf/FORMAT_FOR_EXCHANGE_OF_ELECTRICAL_SURVEY_DATA_Ver001.pdf>`_ .
+The the user may choose to import the data to a *TEMdata* or *TEM3Dsounding* object. To import:
+
+**Import** |rarr| **Data** |rarr| **Time-domain EM** |rarr| **AMIRA .TEM file**
+
+The TEM file contains one or more directional components of the measured field. If the data are imported to a *TEMdata* object, any missing field component will be assigned a flag value of NaN. If the data are imported to *TEM3Dsounding* , than an individual *TEM3Dsounding* object is created for each component; allowing for easier assignment of receivers.
