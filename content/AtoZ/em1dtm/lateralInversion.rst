@@ -57,7 +57,7 @@ Setup for the Exercise
     - :ref:`Create elevation from surface topography<objectElevFromSurface>`
         - Set elevation at 40 m above topography
         - :ref:`Set i/o header<objectSetioHeaders>` for Z to the elevation column you just created.
-    - :ref:`Import and set waveform<objectEMwaveform_import>`
+    - :ref:`Import and set waveform<objectEMdtype_waveform_import>`
     - Assign :ref:`uncertainties from file <objectAssignUncertFile>` ``Uncertainties.dat``
 
 .. raw:: html

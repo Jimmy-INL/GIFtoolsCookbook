@@ -69,7 +69,7 @@ Since the raw data were formatted according to the XYZ format, the transmitter a
         - Click **at surface** and use the altitude data column from the FEMsounding object
         - :ref:`Set i/o header<objectSetioHeaders>` for Z to the elevation column you just created
 
-    - :ref:`Add transmitters<objectEMaddTx>` to set the locations of the transmitters **relative to the current xyz data locations**. Use the following parameters:
+    - :ref:`Add transmitters<objectEMdtype_addTx>` to set the locations of the transmitters **relative to the current xyz data locations**. Use the following parameters:
 
         - Dipole moment = 1 Am :math:`\! ^2`
         - Set Rotation angle as "Relative to bearing" and set bearing to calculate
@@ -78,7 +78,7 @@ Since the raw data were formatted according to the XYZ format, the transmitter a
         - Set vertical offset as altitude column from data object
 
 
-    - :ref:`Add receivers<objectEMaddRx>` to set the locations of the receivers **relative to the transmitter locations**. Use the following parameters:
+    - :ref:`Add receivers<objectEMdtype_addRx>` to set the locations of the receivers **relative to the transmitter locations**. Use the following parameters:
 
         - Dipole moment = 1 Am :math:`\! ^2`
         - Set Rotation angle as "Relative to bearing" and use the bearing column that was calculated when adding transmitters

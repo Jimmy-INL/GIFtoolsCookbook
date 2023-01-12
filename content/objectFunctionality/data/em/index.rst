@@ -14,9 +14,11 @@ EM Data
 
 There are 6 main types of EM data that can be created in GIFtools.
 
-- :ref:`EMdata <objectEMDataIndex_EMdata>`
-- :ref:`EM1Dsounding <objectEMDataIndex_EM1Dsounding>`
-- :ref:`EM3Dsounding <objectEMDataIndex_EM3Dsounding>`
+- :ref:`FEM1Dsounding and TEM1Dsounding <objectEMDataIndex_EM1Dsounding>`
+- :ref:`FEMdata <objectEMDataIndex_FEMdata>`
+- :ref:`TEMdata <objectEMDataIndex_TEMdata>`
+- :ref:`FEM3Dsounding <objectEMDataIndex_FEM3Dsounding>`
+- :ref:`TEM3Dsounding <objectEMDataIndex_TEM3Dsounding>`
 
 .. _objectEMDataIndex_FEMdata:
 
@@ -53,7 +55,7 @@ The ``TEMdata`` is used in conjunction with the following codes:
     - `TDoctree v1 <https://tdoctree.readthedocs.io/en/tdoctree_ver1/>`_
 
 
-.. _objectEMDataIndex_FEM1Dsounding:
+.. _objectEMDataIndex_EM1Dsounding:
 
 FEM1Dsounding and TEM1Dsounding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,7 +84,7 @@ And the ``FEM1Dsounding`` data class is used for:
 
 
 
-.. _objectEMDataIndex_EM3Dsounding:
+.. _objectEMDataIndex_FEM3Dsounding:
 
 FEM3Dsounding
 ^^^^^^^^^^^^^
@@ -99,6 +101,8 @@ This data class is use for:
     - `E3Dv2 <https://e3d.readthedocs.io>`_
     - `E3Dv2 tiled <https://e3d.readthedocs.io/en/e3dinv_ver2_tiled>`_
 
+
+.. _objectEMDataIndex_TEM3Dsounding:
 
 TEM3Dsounding
 ^^^^^^^^^^^^^

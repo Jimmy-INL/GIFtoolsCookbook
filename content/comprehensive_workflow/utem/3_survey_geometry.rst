@@ -55,20 +55,28 @@ Computing the Primary Field
 
 Now that we have defined the transmitter and receivers for all data objects:
 
-    .. - :ref:`Compute Biot-Savart Primary Field<>`
+    - :ref:`Compute Biot-Savart Primary Field<objectEMBiotSavart>`
 
+For each data object, we have computed and created columns for the magnetic field along the receiver direction as well as the magnitude.
 
 
 Converting Field Data to UTEM Representations
 ---------------------------------------------
 
+Converting total B-field data to primary reduced data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
 
+Converting primary reduced data to total B-field data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Visualization
--------------
+
+
+
+Preliminary Interpretation
+--------------------------
 
 
 

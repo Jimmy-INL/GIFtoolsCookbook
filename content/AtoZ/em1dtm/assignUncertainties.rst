@@ -74,7 +74,7 @@ point.
         - From the ``TKCdata_VTEM`` data object use the ``ralt`` data column to shift the location vertically.
         - :ref:`Set i/o header<objectSetioHeaders>` for Z to the elevation column you just created
 
-    - :ref:`Add transmitters<objectEMaddTx>` to set the locations of the transmitters **relative to the current xyz data locations**. For the coincident loop system used for the survey we set the following parameters:
+    - :ref:`Add transmitters<objectEMdtype_addTx>` to set the locations of the transmitters **relative to the current xyz data locations**. For the coincident loop system used for the survey we set the following parameters:
 
         - Loop transmitter with radius of 10 m
         - Along-line offset = 0 m
@@ -82,7 +82,7 @@ point.
         - Set vertical offset as altitude column (``ralt``) from TEMsounding object
 
 
-    - :ref:`Add receivers<objectEMaddRx>` to set the locations of the receivers **relative to the transmitter locations**. Use the following parameters:
+    - :ref:`Add receivers<objectEMdtype_addRx>` to set the locations of the receivers **relative to the transmitter locations**. Use the following parameters:
 
         - Dipole moment = 1 Am :math:`\! ^2`
         - Along-line offset = 0 m
@@ -91,7 +91,7 @@ point.
 
     - :ref:`Set data normalization to Volts<objectEMsetDataNorm_TEM>`. This determines the data units written to the observations file and interpreted by the EM1DTM code.
     - :ref:`Set time normalization to seconds<objectEMsetTimeNorm>`
-    - :ref:`Import and set waveform<objectEMwaveform_import>` using the file **VTEM.wave** (3D format)
+    - :ref:`Import and set waveform<objectEMdtype_waveform_import>` using the file **VTEM.wave** (3D format)
 
 
 .. important:: In keeping with a commonly used convention, we have chosen to plot -dBz/dt to show a positive decaying response; thus dBz/dt for a coincident loop system is negative and decaying in the universal coordinate system used by GIFtools. When loading TEM which are not already in GIF format, it is important that the sign of the vertical response is correct.

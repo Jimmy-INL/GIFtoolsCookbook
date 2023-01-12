@@ -142,7 +142,7 @@ Actions can be performed through the following pop-up window:
     - *Deg -> Rad:* returns ``Property`` in radian; e.g. :math:`y = x * \pi / 180`
     - *Rad -> Deg:* returns ``Property`` in degree; e.g. :math:`y = x * 180 / \pi`
 **Step 2: Set :math:`x`** Choose a property ``Property`` from the drop-down menu
-    - OPTIONAL: For :ref:`EMdata <objectEMdtype_EMdata>` objects, operations can be applied on a single frequency or time channel.
+    - OPTIONAL: For EM data objects, operations can be applied on a single frequency or time channel.
 **Step 3: Set :math:`c`**
     - OPTION 1: Chose a ``Property`` from the object
     - OPTION 2: Enter a number into the field for ``Value``

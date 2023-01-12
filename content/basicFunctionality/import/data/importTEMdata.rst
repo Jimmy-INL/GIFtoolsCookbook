@@ -34,7 +34,7 @@ EM1DTM format
 Loads a data file for the :ref:`EM1DTM inversion
 <invEditOptions_em1dtm>` and forward modeling codes. The data position is set
 relative to the transmitter as specified by the `EM1DTM file format`_.
-The function returns a :ref:`TEM1Dsounding <objectEMdtype_EM1Dsounding>` object.
+The function returns a :ref:`TEM1Dsounding <objectEMDataIndex_EM1Dsounding>` object.
 
 **Import** |rarr| **Data** |rarr| **Frequency-domain EM** |rarr| **GIF EM1D format**
 
@@ -64,12 +64,12 @@ H3DTD | TDoctree format
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Loads data files formated for the H3DTD, `TDoctree <https://tdoctree.readthedocs.io/en/tdoctree/content/files/obsFile.html>`_ and `TDoctree tiled <https://tdoctree.readthedocs.io/en/tdoctree_tiled/content/files/obsFile.html>`_ codes.
-The function returns a :ref:`TEMdata <objectEMdtype_EMdata>` object where only the transmitter geometry is defined. The receivers are defined as point measurements that samples the fields (E, H) along the Cartesian axes.
+The function returns a :ref:`TEMdata <objectEMDataIndex_TEMdata>` object where only the transmitter geometry is defined. The receivers are defined as point measurements that samples the fields (E, H) along the Cartesian axes.
 
 **Import** |rarr| **Data** |rarr| **Time-domain EM** |rarr| **GIF H3DTD | TDoctree format**
 
 
-.. note:: The :ref:`TEMdata <objectEMdtype_EMdata>` object assumes that the provided field data have been measured along the Cartesian axes or that the user has rotated the fields in pre-processing. For more general cases with arbitrary receivers orientation (in-line), consider making use of the :ref:`TEM3Dsounding <objectEMdtype_EM3Dsounding>` class.
+.. note:: The :ref:`TEMdata <objectEMDataIndex_TEMdata>` object assumes that the provided field data have been measured along the Cartesian axes or that the user has rotated the fields in pre-processing. For more general cases with arbitrary receivers orientation (in-line), consider making use of the :ref:`TEM3Dsounding <objectEMDataIndex_TEM3Dsounding>` class.
 
 
 .. _importTDoctreeV2data:
@@ -78,7 +78,7 @@ TDoctree v2 format
 ^^^^^^^^^^^^^^^^^^
 
 Loads data specifically formatted for the `TDoctree v2 <https://tdoctree.readthedocs.io/en/tdoctree_v2/content/files/obsFile.html>`_ code.
-The function returns a :ref:`TEM3Dsounding <objectEMdtype_EM3Dsounding>` object.
+The function returns a :ref:`TEM3Dsounding <objectEMDataIndex_TEM3Dsounding>` object.
 
 **Import** |rarr| **Data** |rarr| **Time-domain EM** |rarr| **GIF TDoctree v2 format**
 

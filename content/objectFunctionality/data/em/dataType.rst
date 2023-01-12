@@ -9,13 +9,55 @@ EM Data Type Functionality
 
 .. _objectEMdtype_EM3Dsounding_tx:
 
-Defining Transmitters (3D EM and sounding data)
------------------------------------------------
+Defining Transmitters
+---------------------
 
 For ``FEM3Ddata``, ``FEM3Dsounding``, ``TEM3Ddata`` and ``TEM3Dsounding`` data objects, we can define transmitters for the survey.
 This functionality is accessed using the drop-down menu:
 
 **"data type menu"** |rarr| **Add Transmitters**
+
+
+
+.. _objectEMdtype_addTx:
+
+Add Transmitters to 1D sounding
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Here, the user may specify the transmitter locations
+and properties based on the data locations.
+
+.. figure:: ../../../../images/object/data/em/addTransmitters.png
+    :align: center
+    :width: 400
+
+
+Select the object: **"data type menu"** |rarr| **Add transmitters**
+
+- Transmitter geometry
+    - **From File:** Lets the user import a template geometry (XYZ coordinates) defining the transmitter coil.
+    - **Loop:** Defines a simple loop transmitter with radius set by the user.
+    - **Dipole:** Defines a dipole transmitter with moment set by the user (for EM1Dinversion)
+- Bearing
+    - **Calculate:**  Let GIFtools determine the bearing of survey lines. Assumes that the survey points are sorted in order of acquisition.
+    - **From data object:** Bearing already supplied by the data object.
+- Offsets relative to bearing (XYZ)
+    - **Along-line offset:** Distance along the survey lines between the data location and transmitter
+    - **Cross-line offset:** Distance perpendicular to the survey lines between the data location and transmitter
+    - **Vertical offset:** Elevation difference between the data location and transmitter. For the :ref:`EM1Dsounding <objectEMDataIndex_EM1Dsounding>` class, the offset is relative to the ground.
+- Rotation angles
+    - **Relative to bearing:** Apply the rotation angles relative to the flight line orientation. Otherwise angles are relative to the Cartesian grid.
+    - **Pitch angle:** Rotation angle about the wings of the bird. Positive angle moves the nose up, tail down.
+    - **Roll angle:** Rotation angle about the length of the bird. Positive angle moves the left wing up, right wing down.
+    - **Yaw angle:** Rotation angle about the XY plane. Positive angle rotates the bird clockwise.
+
+
+.. figure:: ../../../../images/object/data/em/PitchRollYaw.png
+    :align: center
+    :scale: 100%
+
+
+.. important:: Make sure you have :ref:`set i/o headers<objectSetioHeaders>` for the xyz-data locations. This functionality computes the transmitter locations based on the i/o headers.
 
 
 
@@ -45,14 +87,19 @@ Create a single inductive or galvanic source for all data in the object. This fu
 
 .. _objectEMdtype_EM3Dsounding_rx:
 
-Defining Receivers (3D EM and sounding data)
------------------------------------------------
+Defining Receivers
+------------------
 
 For ``FEM3Dsounding`` and ``TEM3Dsounding`` data objects, we can define receivers for the survey.
 This functionality is accessed using the drop-down menu:
 
 **"data type menu"** |rarr| **Add Receivers**
 
+
+.. _objectEMdtype_addRx:
+
+Add Receivers to 1D sounding
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 .. _objectEMdtype_EM3Dsounding_rx_airborne:
@@ -88,7 +135,7 @@ Select the object and the menu **"data type menu"** |rarr| **Remove receivers**
 
 
 
-.. _objectEMtype_waveform:
+.. _objectEMdtype_waveform:
 
 Waveform (TDEM objects only)
 ----------------------------
@@ -98,7 +145,7 @@ Here, we describe functionality related to defining, viewing and exporting wavef
 **data type menu** |rarr| **Waveform**
 
 
-.. _objectEMtype_waveform_exp:
+.. _objectEMdtype_waveform_exp:
 
 Create Exponent On - Ramp Off
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -122,7 +169,7 @@ The parameters defining this waveform are as follows:
 
 
 
-.. _objectEMtype_waveform_stepoff:
+.. _objectEMdtype_waveform_stepoff:
 
 Create Step Off
 ^^^^^^^^^^^^^^^
@@ -141,7 +188,7 @@ The parameters defining this waveform are as follows:
 
 
 
-.. _objectEMtype_waveform_import:
+.. _objectEMdtype_waveform_import:
 
 Import a Waveform
 ^^^^^^^^^^^^^^^^^
@@ -151,7 +198,7 @@ Here, the user imports a custom waveform from a text file and sets it to the sel
 **data type menu** |rarr| **Waveform** |rarr| **Import (3D format)**
 
 
-.. _objectEMtype_waveform_view:
+.. _objectEMdtype_waveform_view:
 
 View
 ^^^^
@@ -160,7 +207,7 @@ Here, the user may look at the waveform assigned to the selected TEM data object
 
 **data type menu** |rarr| **Waveform** |rarr| **View**
 
-.. _objectEMtype_waveform_1D:
+.. _objectEMdtype_waveform_1D:
 
 Export for 1D
 ^^^^^^^^^^^^^
@@ -170,7 +217,7 @@ Here, the user may export the waveform in the format used by the EM1DTM code. Th
 **data type menu** |rarr| **Waveform** |rarr| **Export for 1D**
 
 
-.. _objectEMtype_waveform_3D:
+.. _objectEMdtype_waveform_3D:
 
 Export for 3D
 ^^^^^^^^^^^^^

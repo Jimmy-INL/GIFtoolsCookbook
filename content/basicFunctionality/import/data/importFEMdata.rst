@@ -34,7 +34,7 @@ EM1DFM format
 Loads a data file for the :ref:`EM1DFM inversion
 <invEditOptions_em1dfm>` and forward modeling codes. The data position is set
 relative to the transmitter as specified by the `EM1DFM file format`_.
-The function returns a :ref:`FEM1Dsounding <objectEMdtype_EM1Dsounding>` object.
+The function returns a :ref:`FEM1Dsounding <objectEMDataIndex_EM1Dsounding>` object.
 
 **Import** |rarr| **Data** |rarr| **Frequency-domain EM** |rarr| **GIF EM1D format**
 
@@ -64,15 +64,15 @@ E3D format
 ^^^^^^^^^^
 
 Loads data files formated for the original `E3D data file format <https://e3d.readthedocs.io/en/e3d/content/files/obsFile.html>`_ .
-The function returns an :ref:`FEMdata <objectEMdtype_EMdata>` object where only the transmitter geometry is defined. The receivers are defined as point measurements that samples the fields (E, H) along the Cartesian axes.
+The function returns an :ref:`FEMdata <objectEMDataIndex_FEMdata>` object where only the transmitter geometry is defined. The receivers are defined as point measurements that samples the fields (E, H) along the Cartesian axes.
 
 **Import** |rarr| **Data** |rarr| **Frequency-domain EM** |rarr| **GIF E3D format**
 
-.. note:: The :ref:`FEMdata <objectEMdtype_EMdata>` object assumes that the
+.. note:: The :ref:`FEMdata <objectEMDataIndex_FEMdata>` object assumes that the
     provided field data have been measured along the Cartesian axes or that the
     user has rotated the fields in pre-processing. For more general cases with
     arbitrary receivers orientation (in-line), consider making use of the
-    :ref:`FEM3Dsounding <objectEMdtype_EM3Dsounding>` class.
+    :ref:`FEM3Dsounding <objectEMDataIndex_FEM3Dsounding>` class.
 
 
 .. _importE3Dv2data:
@@ -82,7 +82,7 @@ E3D v2 format
 
 Loads data specifically formatted for the `E3D v2 <https://e3d.readthedocs.io/en/e3d_v2/content/files/obsFile.html>`_
 and `E3D v2 tiled <https://e3d.readthedocs.io/en/e3d_v2_tiled/content/files/obsFile.html>`_ codes.
-The function returns an :ref:`FEM3Dsounding <objectEMdtype_EM3Dsounding>` object.
+The function returns an :ref:`FEM3Dsounding <objectEMDataIndex_FEM3Dsounding>` object.
 
 **Import** |rarr| **Data** |rarr| **Frequency-domain EM** |rarr| **GIF E3D v2 format**
 
