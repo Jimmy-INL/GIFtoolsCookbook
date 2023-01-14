@@ -28,7 +28,7 @@ Here, we import the UTEM data and topography. We assume the data corresponding t
 
     - First, :ref:`import topography data (XYZ format) <importTopo>`. The data file is named *topo_local.xyz*.
 
-    - For each transmitter loop, **Create** |rarr| **Folder** . Name each folder according to the loop ID. In our case, we have *Loop 1501, Loop 1502* and *Loop 1503*.
+    - For each transmitter loop, **Create** |rarr| **Folder** . Name each folder according to the loop ID. In our case, we have *Loop_1501, Loop_1502* and *Loop_1503*.
 
     - To import the UTEM data for each loop, **first** select the corresponding folder. Then:
 
@@ -54,7 +54,7 @@ For your dataset, carry out the following steps **if necessary** for all data ob
     - if converting from dB/dt to B-field, multiply the data by T/4 where T is the period of the waveform. The explanation for this can be found in the :ref:`understanding anomalies section <comprehensive_workflow_utem_1>`.
 
 
-.. note:: It will be important to keep track of what each data column represents as we move through the tutorial. When modifying each data object, we suggest keeping the original data column intact, creating a new column for the final values and calling the new column 'B_TOTAL'. 
+.. note:: It will be important to keep track of what each data column represents as we move through the tutorial. When modifying each data object, we suggest keeping the original data column intact, creating a new column for the final values and calling this new column 'B_TOTAL'. 
 
 
 **For the tutorial dataset**, the time channels were provided in *ms*, UTEM data were provided as B-field measurements using units of *nT* and the data were not previously normalized by the transmitter waveform amplitude. As a result, we applied the following operations:
@@ -66,6 +66,21 @@ For your dataset, carry out the following steps **if necessary** for all data ob
         - Loop 1501: 6.012 A
         - Loop 1502: 5.531 A
         - Loop 1503: 4.460 A
+
+
+Below, we :ref:`plot <viewData>` the vertical component of the total B-field for each of our receiver loops. According to our data:
+
+    - Data were collected at the same locations for all 3 transmitter loops. But data for each loop was collect at different time channels. This is common for surface UTEM surveys. Provided the period of the transmitter waveforms are sufficiently different, data for multiple transmitter loops can be collected simultaneously then separated using digital signal processing techniques.
+    - Signatures in the data are greatly impacted by the primary field. Recall that UTEM instruments measure fields during the on-time. To interpret the response from any conductive targets, we will need to remove the primary field.
+    - Loop 1501 lies to the East of the receiver locations, loop 1502 lies to the North, and loop 1503 surrounds the receiver locations. 
+
+
+
+.. figure:: images/bz_total.png
+    :align: center
+    :width: 700
+
+    Vertical component of the total B-field for all transmitter loops at times near 0.01 s.
 
 
 Standard UTEM Data Representations

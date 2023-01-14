@@ -222,6 +222,7 @@ Here, we discuss the characteristics of the primary normalized data for a modera
     - In the case of **primary reduced data**, the removal of the free-space primary field effectively shifts the data maps so that they asymptote to 0\%. So long as *Ch_0* is approximately measuring a steady-state field, this is also true for **channel reduced data**.  
 
 
+.. _comprehensive_workflow_utem_1_conductor:
 
 Anomaly for a Highly Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -256,6 +257,8 @@ Here, we discuss the characteristics of primary normalized data for a highly con
 - At late times, the signal produced by the target has not decayed but is easily distinguishable.
 - As t approaches T/2, the primary normalized data plots look like the ones at t = 0 s (except multplied by -1); i.e. we see the primary normalized data asymptote, just not to 100\%.
 
+
+.. _comprehensive_workflow_utem_1_susceptible:
 
 Anomaly for a Conductive and Susceptible Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
