@@ -121,7 +121,7 @@ Make sure to go through the 'clean' data objects and ensure you didn't miss any 
 Converting Between UTEM Data Representations
 --------------------------------------------
 
-In :ref:`plotting UTEM data <comprehensive_workflow_utem_1_plotting>` we defined the conversions between measured fields and various data conventions used for plotting. In each case, the conversion may be done using:
+In :ref:`understanding UTEM anomalies <comprehensive_workflow_utem_1_plotting>` we defined the conversions between measured fields and various data conventions used for plotting. In each case, the conversion may be done using:
 
     - the :ref:`column calculator <objectCalculator>` 
 

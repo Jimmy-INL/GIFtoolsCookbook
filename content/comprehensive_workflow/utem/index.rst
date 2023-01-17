@@ -33,5 +33,8 @@ Here, we present a general workflow for loading, interpreting and inverting surf
     - Understanding surface UTEM anomalies <1_basic_anomalies>
     - Loading UTEM data and proper units <2_load_data>
     - Defining survey geometry and plotting data <3_survey_geometry>
+    - Data extraction and type <4_data_preparation>
+    - Assigning uncertainties <5_uncertainties>
+    - Mesh design <6_mesh_design>
 
  
