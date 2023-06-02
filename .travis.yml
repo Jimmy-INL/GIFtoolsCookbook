@@ -1,13 +1,13 @@
 language: python
 python:
-  - "3.7"
+  - "3.8"
 
 # command to install dependencies
 install: "pip install -r requirements.txt"
 
 # command to run tests
-# script: nosetests tests
-script: sphinx-build -nW -b html -d _build/doctrees . _build/html
+script: nosetests tests
+#script: sphinx-build -nW -b html -d _build/doctrees . _build/html
 
 # Flags used here, not in `make html`:
 #  -n   Run in nit-picky mode. Currently, this generates warnings for all missing references.

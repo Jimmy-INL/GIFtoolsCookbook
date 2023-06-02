@@ -1,0 +1,37 @@
+
+Parallelized with OpenMP.  # of threads: 12
+
+ ipoctree_inv  (20200508) May 08 2020
+
+ Developed by University of British Columbia
+ Geophysical Inversion Facility  (UBC-GIF)
+
+ (C) Copyright 1992 - 2020, UBC-GIF,
+ Department of Earth and Ocean Sciences, UBC
+ http://gif.eos.ubc.ca/
+
+ ipoctree_inv started on:  3/01/2021  10:28:40
+
+ipoctree_inv input file format:
+
+octree mesh file
+LOC_XY|LOC_XYZ data file
+initial model file | VALUE
+reference model file | VALUE
+conductivity model
+topography active cell file | ALL_ACTIVE
+model active cell file | ALL_ACTIVE
+cell weighting file | NO_WEIGHT
+interface weighting file | NO_FACE_WEIGHT | USE_EKBLOM
+Ws weight file | NO_WEIGHT
+DEFAULT  |  beta_max  beta_min  beta_factor
+alpha_s  alpha_x  alpha_y  alpha_z
+chifact
+tol_nl  mindm  iter_per_beta
+tol_ipcg  max_iter_ipcg
+CHANGE_MREF | NOT_CHANGE_MREF
+SMOOTH_MOD | SMOOTH_MOD_DIF
+BOUNDS_NONE | BOUNDS_CONST bl bu | BOUNDS_FILE file
+ 
+ ipoctree_inv ended on:  3/01/2021  10:28:40
+TOTAL cpu time:   0:00:00.01
