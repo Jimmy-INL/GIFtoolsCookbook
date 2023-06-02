@@ -188,9 +188,9 @@ Anomaly for a Moderately Conductive Block (Primary Normalized)
 
 Here, we discuss the characteristics of the primary normalized data for a moderately conductive block (1 S/m) within a half-space (0.01 S/m) located near the center of a large square loop. In this case, **we assume the period of the waveform is long enough for the secondary fields to decay completely before t = 0 s**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
-.. figure:: images/primary_normalized_low.gif
-    :align: center
-    :width: 700
+.. .. figure:: images/primary_normalized_low.gif
+..     :align: center
+..     :width: 700
 
 
 **At t = 0:**
@@ -230,9 +230,9 @@ Anomaly for a Highly Conductive Block (Primary Normalized)
 
 Here, we discuss the characteristics of primary normalized data for a highly conductive block (1000 S/m) in a halfspace (0.01 S/m) located near the center of a large square loop. In this case, **the waveform period is not long enough for the induced currents to decay fully over the course of each half-duty cycle**. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
-.. figure:: images/primary_normalized_high.gif
-    :align: center
-    :width: 700
+.. .. figure:: images/primary_normalized_high.gif
+..     :align: center
+..     :width: 700
 
 
 **At t = 0:**
@@ -265,9 +265,9 @@ Anomaly for a Conductive and Susceptible Block (Primary Normalized)
 Here, we discuss the characteristics of primary normalized data for a moderately conductive (1 S/m) and magnetically susceptible (1 SI) block in a half-space (0.01 S/m) located near the center of a large square loop. Fields are measured several meters above the surface of the Earth. Data maps for the x, y and z components of the B-field normalized by the absolute value of the primary field are plotted below.
 
 
-.. figure:: images/primary_normalized_susceptible.gif
-    :align: center
-    :width: 700
+.. .. figure:: images/primary_normalized_susceptible.gif
+..     :align: center
+..     :width: 700
 
 
 **At t = 0:**
