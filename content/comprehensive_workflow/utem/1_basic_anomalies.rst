@@ -183,7 +183,7 @@ Here, we have chosen to explain the physics in using the B-field resulting from 
 Anomaly for a Moderately Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_low.PNG
+.. figure:: images/primary_normalized_low.png
     :align: right
     :width: 350
 
@@ -226,7 +226,7 @@ Here, we discuss the characteristics of the primary normalized data for a modera
 Anomaly for a Highly Conductive Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_high.PNG
+.. figure:: images/primary_normalized_high.png
     :align: right
     :width: 350
 
@@ -262,7 +262,7 @@ Here, we discuss the characteristics of primary normalized data for a highly con
 Anomaly for a Conductive and Susceptible Block (Primary Normalized)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/primary_normalized_susceptible.PNG
+.. figure:: images/primary_normalized_susceptible.png
     :align: right
     :width: 350
 
