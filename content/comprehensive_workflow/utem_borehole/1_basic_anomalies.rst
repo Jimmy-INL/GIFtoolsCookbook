@@ -78,7 +78,7 @@ For UTEM systems, the time channels at which the fields are measured depend on t
 
 
 .. math::
-    \textrm{Ch_i} \approx \dfrac{T}{2^{i+1}}
+    Ch \_ i \approx \frac{T}{2^{i+1}}
 
 
 .. _comprehensive_workflow_utem_borehole_1_plotting:

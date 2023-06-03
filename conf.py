@@ -63,9 +63,16 @@ linkcheck_ignore = [
   'https://e3dmt.readthedocs.io/en/latest/content/files/obsFile.html#version-2-2017',
   'https://e3dmt.readthedocs.io/en/latest/content/files/preFile.html#version-2-2017',
   'https://dcip2d.readthedocs.io/en/latest/content/backgroundtheory.html#equation-intMOF',
-  'http://dcip2d.readthedocs.io/en/latest/content/backgroundtheory.html#equation-intMOF']
-linkcheck_retries = 4
-linkcheck_timeout = 800
+  'http://dcip2d.readthedocs.io/en/latest/content/backgroundtheory.html#equation-intMOF',
+  'https://youtu.be/rJFbWIBp6mE',
+  'https://youtu.be/Jnl6_SKRFQ0',
+  'https://youtu.be/h9Vd-YPmuvY',
+  'https://youtu.be/Z0Aikqpnt2o',
+  'https://youtu.be/rJFbWIBp6mE',
+  'https://youtu.be/Jnl6_SKRFQ0'
+]
+linkcheck_retries = 3
+linkcheck_timeout = 500
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
