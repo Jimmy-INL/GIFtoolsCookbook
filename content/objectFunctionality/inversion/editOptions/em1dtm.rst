@@ -5,7 +5,7 @@
 Edit Options for EM1DTM Inversion Objects
 =========================================
 
-This functionality is responsible for setting all inversion parameters pertaining to the EM1DTM code. The list of parameters used to run the EM1DTM Fortran code are described in the EM1DTM package website; see `main input file <http://em1dtm.readthedocs.io/en/latest/content/files/input_em1dtm.html>`__ and `inversion methodologies <http://em1dtm.readthedocs.io/en/latest/content/theory.html#inversion-methodologies>`__. The edit options window is comprised of 3 tabs:
+This functionality is responsible for setting all inversion parameters pertaining to the EM1DTM code. The list of parameters used to run the EM1DTM Fortran code are described in the `EM1DTM package manual <https://owncloud.eoas.ubc.ca/s/RGKKjNn5ewkzfjN/download>`__; also see `inversion methodologies <http://em1dtm.readthedocs.io/en/latest/content/theory.html#inversion-methodologies>`__. The edit options window is comprised of 3 tabs:
 
     - **Global:** Sets global inversion parameters such as the 1D mesh, data object, 1D inversion type, model type and computation of the trade-off parameter
     - **Conductivity:** specifies the starting model, reference model and regularization for conductivity in the inversion
@@ -35,7 +35,7 @@ Global Tab
     - conductivity and positive susceptibility models
     - conductivity and unbounded susceptibility models
 
-**Solver Options:** Solver options set several parameters used in the EM1DTM Fortran code. The details of each parameters are discussed in the `EM1DTM manual under main input file <http://em1dtm.readthedocs.io/en/latest/content/files/input_em1dtm.html>`__
+**Solver Options:** Solver options set several parameters used in the EM1DTM Fortran code. The details of each parameters are discussed in the `EM1DTM manual  <https://owncloud.eoas.ubc.ca/s/RGKKjNn5ewkzfjN/download>`__
 
 **Mode:** GIFtools is capable of carrying out three distinct 1D inversion approaches:
 
@@ -49,20 +49,20 @@ Global Tab
 
 For each 1D inversion being run by the EM1DTM Fortran code, there are 4 ways in which the trade-off parameter (:math:`\beta`) can be calculated. The performance of each trade-off mode is determine by a set of parameters:
 
-    - `Discrepancy <http://em1dtm.readthedocs.io/en/latest/content/theory.html#algorithm-2-discrepancy-principle>`__
+    - **Discrepancy:**
         - **Chi Factor** and **Tolerance:** The algorithm will find the :math:`\beta` such that the data misfit :math:`\phi_d` is within :math:`N \times (C.F. \, \pm \, Tol)` where :math:`N` is the number of observations, :math:`C.F.` is the chi factor and :math:`Tol` is the tolerance. Generally a :math:`C.F.=1` and :math:`Tol=0.1` are used (static and adaptive only)
         - **Initial Chi Factor** and **Cooling Factor:** This chooses the :math:`\beta` for the first iteration according to the aforementioned method. In this case the tolerance is set automatically. For each new global iteration, :math:`\beta_i = \beta_{i-1}/C`, where :math:`C>1` is the cooling factor (laterally constrained only)
         - **Max Beta Iterations:** Maximum number of new :math:`\beta` the algorithm will compute to find best value
         - **Max Global Iterations:** Maximum number of iterations for which the laterally constrained inversion will find a new 3D model
-    - `Fixed trade-off <http://em1dtm.readthedocs.io/en/latest/content/theory.html#algorithm-1-fixed-trade-off-parameter>`__
+    - **Fixed trade-off:**
         - **Beta:** For static and adaptive 1D, the user specifies a constant value and the problem is solved using that :math:`\beta`. For laterally constrained 1D, this represents the initial :math:`\beta` value.
         - **Cooling Factor:** For each iteration, :math:`\beta_i = \beta_{i-1}/C`, where :math:`C>1` is the cooling factor
         - **Max Beta Iterations:** Maximum number of decreases in :math:`\beta` the algorithm will use to hit target misfit
         - **Max Global Iterations:** Maximum number of iterations for which the laterally constrained inversion will find a new 3D model
-    - `GCV <http://em1dtm.readthedocs.io/en/latest/content/theory.html#algorithm-3-gcv-criterion>`__ (static and adaptive only)
+    - **GCV (static and adaptive only):**
         - **Max Beta Decrease:** Maximum allowable decrease in :math:`\beta` for estimated of :math:`\beta` using the GCV method
         - **Max Beta Iterations:** Maximum number of new :math:`\beta` the algorithm will compute to find the best value
-    - `L-curve <http://em1dtm.readthedocs.io/en/latest/content/theory.html#algorithm-4-l-curve-criterion>`__ (static and adaptive only)
+    - **L-curve (static and adaptive only):**
         - **Max Beta Decrease:** Maximum allowable decrease in :math:`\beta` for estimated of :math:`\beta` using the L-curve criterion
         - **Max Beta Iterations:** Maximum number of new :math:`\beta` the algorithm will compute to find the best value
 

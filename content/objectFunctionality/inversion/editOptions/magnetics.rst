@@ -10,9 +10,9 @@ Edit Options for Magnetic Inversion Objects
 Mag and Mag Amplitude Inversion (Mag3D)
 ---------------------------------------
 
-This functionality is responsible for setting all inversion parameters pertaining to the 3D magnetic inversion codes (Mag inversion and Mag amplitude inversion); see `MAG3D background theory <http://mag3d.readthedocs.io/en/latest/content/theory.html>`__. The edit options window is comprised of 3 tabs:
+This functionality is responsible for setting all inversion parameters pertaining to the 3D magnetic inversion codes (Mag inversion and Mag amplitude inversion); see `MAG3D background theory <https://mag3d.readthedocs.io/en/v6/content/theory.html>`__. The edit options window is comprised of 3 tabs:
 
-    - **Sensitivity:** Sets the mesh, observed data, topography, `sensitivity weighting <http://mag3d.readthedocs.io/en/latest/content/theory.html#depth-weighting-and-distance-weighting>`__ and `wavelet compression <http://mag3d.readthedocs.io/en/latest/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
+    - **Sensitivity:** Sets the mesh, observed data, topography, `sensitivity weighting <https://mag3d.readthedocs.io/en/v6/content/theory.html#depth-weighting-and-distance-weighting>`__ and `wavelet compression <https://mag3d.readthedocs.io/en/v6/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
     - **Inversion:** Sets protocols for the :ref:`trade-off parameter<Fundamentals_Beta>` (:math:`\beta`) and all parameters pertaining to the model objective function (:ref:`alphas<Fundamentals_alphas>`, :ref:`cells weights<Fundamentals_WeightingMatrix>`, upper and lower bounds, active cells, reference models and starting models)
     - **Blocky model norms (ver 5.1 and above):** can be activated to recover sparse and blocky models; see :ref:`sparse and blocky norms<Fundamentals_Norms>`
 
@@ -51,13 +51,13 @@ Sensitivity Tab
 
     - **Topography:** a topography data object. Leave as *null* for flat topography at an elevation of 0 m.
 
-    - **Weighting:** set the type and parameters for sensitivity weighting. The parameters which define the sensitivity weighting are described in the `Mag3D manual <http://mag3d.readthedocs.io/en/latest/content/theory.html#depth-weighting-for-surface-or-airborne-data>`__ .
+    - **Weighting:** set the type and parameters for sensitivity weighting. The parameters which define the sensitivity weighting are described in the `Mag3D manual <https://mag3d.readthedocs.io/en/v6/content/theory.html#depth-weighting-and-distance-weighting>`__ .
 
         - **Type:** Depth or distance. The choice determines the expression used for the weighting
         - **Exponent:** Given by :math:`\alpha` in the manual. This parameter has *default* = 3 to reflect the fact dipolar fields fall of as :math:`1/r^3`
         - **Z0 or R0:** These constants are defined by equations in the manual. **R0** and **Z0** are small and generally chosen to be 1/4 the length of the smallest cell dimension
 
-    - **Wavelet parameter:** wavelet compression of the sensitivity matrix is used reduced the memory requirements for storing the sensitivity matrix and improve the speed of the inversion algorithm. The details of this are described in the `Mag3D manual <http://mag3d.readthedocs.io/en/latest/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
+    - **Wavelet parameter:** wavelet compression of the sensitivity matrix is used reduced the memory requirements for storing the sensitivity matrix and improve the speed of the inversion algorithm. The details of this are described in the `Mag3D manual <https://mag3d.readthedocs.io/en/v6/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
 
         - **Type:** sets the type of wavelet transform applied to the rows of the sensitivity matrix
 
@@ -77,7 +77,7 @@ Inversion Tab
         - **Discrepancy:** sets the stopping criteria for the inversion using the :ref:`discrepancy principle <Fundamentals_Beta_Discrepancy>`. *Chi-factor* determines the stopping criteria and *tolerance* sets how close to the ideal stopping criteria before the inversion is terminated.
         - **User Input:** the user specifies the exact value for the trade-off parameter (*beta* )
 
-    - **Weighting:** Sets the weights for smallness and smoothness regularization in x, y and z; for relevant equations `see manual <http://mag3d.readthedocs.io/en/latest/content/theory.html#inversion-methodology>`__ .
+    - **Weighting:** Sets the weights for smallness and smoothness regularization in x, y and z; for relevant equations `see manual <https://mag3d.readthedocs.io/en/v6/content/theory.html>`__ .
 
         - **Default:** Sets the values of *alpha S*, *alpha X*, *alpha Y* and *alpha Z* based on cell dimensions
         - **Alphas:** Sets specific values for *alpha S*, *alpha X*, *alpha Y* and *alpha Z*
@@ -150,7 +150,7 @@ This functionality is responsible for setting all inversion parameters
 pertaining to the 3D magnetic vector intensity inversion code. The edit
 options window is comprised of 4 tabs:
 
-    - **Sensitivity:** Sets the mesh, observed data, topography, `sensitivity weighting <http://mag3d.readthedocs.io/en/latest/content/theory.html#depth-weighting-and-distance-weighting>`__ and `wavelet compression <http://mag3d.readthedocs.io/en/latest/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
+    - **Sensitivity:** Sets the mesh, observed data, topography, `sensitivity weighting <https://mvi.readthedocs.io/en/v3/content/theory.html#sensitivity-weighting>`__ and `wavelet compression <https://mvi.readthedocs.io/en/v3/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
     - **Inversion** |rarr| **General:** Sets parameters for the magnetic susceptibility model being recovered
     - **Inversion** |rarr| **Vector Options:** Sets parameters for the magnetic remanence being recovered
     - **Sparsity**: Set the sparsity parameters for the induced and remanent components.
@@ -187,7 +187,7 @@ Sensitivity Tab
 
     - **Topography:** a topography data object. Leave as *null* for flat topography at an elevation of 0 m.
 
-    - **Wavelet parameter:** wavelet compression of the sensitivity matrix is used reduced the memory requirements for storing the sensitivity matrix and improve the speed of the inversion algorithm. The details of this are described in the `Mag3D manual <http://mag3d.readthedocs.io/en/latest/content/theory.html#wavelet-compression-of-sensitivity-matrix>`__
+    - **Wavelet parameter:** wavelet compression of the sensitivity matrix is used reduced the memory requirements for storing the sensitivity matrix and improve the speed of the inversion algorithm. The details of this are described in the `Mag3D manual <https://mvi.readthedocs.io/en/v3/content/programs/mviinv.html>`__
 
         - **Type:** sets the type of wavelet transform applied to the rows of the sensitivity matrix
         - **Mode:**
@@ -208,7 +208,7 @@ Inversion (General) Tabs
         - **Discrepancy:** sets the stopping criteria for the inversion using the :ref:`discrepancy principle <Fundamentals_Beta_Discrepancy>`. *Chi-factor* determines the stopping criteria and *tolerance* sets how close to the ideal stopping criteria before the inversion is terminated.
         - **User Input:** the user specifies the exact value for the trade-off parameter (*beta*)
 
-    - **Weighting:** Sets the weights for smallness and smoothness regularization in x, y and z; for relevant equations `see manual <http://mvi.readthedocs.io/en/latest/content/theory.html#regularization>`__ .
+    - **Weighting:** Sets the weights for smallness and smoothness regularization in x, y and z; for relevant equations `see manual <https://mvi.readthedocs.io/en/v3/content/theory.html#regularization>`__ .
 
         - **Default:** Sets the values of *alpha S*, *alpha X*, *alpha Y* and *alpha Z* based on cell dimensions
         - **Alphas:** Sets specific values for *alpha S*, *alpha X*, *alpha Y* and *alpha Z*

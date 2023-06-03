@@ -7,9 +7,9 @@ Polynomial Detrending and Levelling
 
 **Polynomial detrending** is used to remove the background signal (i.e. very long wavelength signals) from the data in order to more accurately characterize local magnetic anomalies; see the image below. Failure to remove the background signal from magnetic data prior to inversion can result in artifacts and structures which mischaracterize local anomalies.
 
-.. figure:: https://gpg.geosci.xyz/_images/regional.gif
+.. figure:: images/poly_detrending_schematic.png
     :align: center
-
+    :width: 550
 
 **Levelling** is sometimes required when you have both local and regional scale data collected during different surveys. Here, the levelling is a DC shift that is added to one of the datasets, so that the background values for both datasets are comparable in the same region.
 

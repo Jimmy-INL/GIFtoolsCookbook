@@ -10,9 +10,8 @@ Specifying Parameters for FEM Sounding Inversion
     :align: right
     :scale: 50%
 
-Here, we detail the process of defining the survey parameters used in EM1DFM
-inversions. For `GIF formatted 1D FEM data
-<http://em1dfm.readthedocs.io/en/latest/content/files/supporting.html>`__, the
+Here, we detail the process of defining the survey parameters used in EM1DFM inversions. For `GIF formatted 1D FEM data
+<https://em1dfm.readthedocs.io/en/latest/content/files/supporting.html>`__ , the
 survey parameters are automatically read into GIFtools. For :ref:`XYZ<XYZfile>` and :ref:`CSV<CSVfile>` files however, the survey information
 must be specified by the user. In this exercise, we:
 

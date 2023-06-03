@@ -72,13 +72,13 @@ For UTEM systems, the time channels at which the fields are measured depend on t
 
 - **Ch_0:** The latest time channel. Data at this time channel is supposed to represent the steady-state B-field expected at a sufficient time after the step-on excitation. Ideally this would be measured at time *T/2* , but in practice it is measured slightly earlier.
 
+- **Ch_n:** These refer to one or two time channels collected at :math:`t<0`; i.e. before the step-on occurs. For example, we may measure the fields at :math:`t = -T/2^{13}` to capture the steady-state B-field the moment before the step excitation.
+
 - **Ch_i:** Time channels used for interpretation. Most UTEM systems have roughly 10-13 of these time channels. The latest time channel is at time *Ch_1 ~ T/4*. And from latest to earliest, the time of the channel is decreased by a factor of 2. Thus:
 
+
 .. math::
-    \textrm{Ch_i} \approx \frac{T}{2^{i+1}}
-
-
-- **Ch_n:** These refer to one or two time channels collected at :math:`t<0`; i.e. before the step-on occurs. For example, we may measure the fields at :math:`t = -T/2^{13}` to capture the steady-state B-field the moment before the step excitation.
+    Ch \_ i \approx \frac{T}{2^{i+1}}
 
 
 .. _comprehensive_workflow_utem_borehole_1_plotting:

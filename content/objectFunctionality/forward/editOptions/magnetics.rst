@@ -11,7 +11,7 @@ Edit Options for Magnetic Forward Modeling Objects
 Mag3D
 -----
 
-This functionality is responsible for setting all forward modeling parameters pertaining to the “magfor3d”, "magfor3d_51" and "magfor3d_60" forward modeling codes; see `MAG3D manual <http://mag3d.readthedocs.io/en/latest/>`__ . Within the edit options window, the user may set the following parameters:
+This functionality is responsible for setting all forward modeling parameters pertaining to the “magfor3d”, "magfor3d_51" and "magfor3d_60" forward modeling codes; see `MAG3D manual <https://mag3d.readthedocs.io/en/v6/>`__ . Within the edit options window, the user may set the following parameters:
 
     - **Model:** A magnetic susceptibility model. Because the model is already associated with a mesh within GIFtools, the mesh does not need to be specified here.
 
