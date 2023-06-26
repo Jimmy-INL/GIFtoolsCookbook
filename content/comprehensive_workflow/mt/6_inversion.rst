@@ -27,8 +27,8 @@ When inverting MT data, the E3DMT codes have a tendency to place conductive stru
 
 
 
-Create, Run and Load Inversion
-------------------------------
+Create and Run Inversion
+------------------------
 
 We can now invert MT data using E3DMT v1 or v2. 
 

@@ -27,8 +27,8 @@ When inverting ZTEM data, the E3DMT codes have a tendency to place conductive st
 
 
 
-Create, Run and Load Inversion
-------------------------------
+Create and Run Inversion
+------------------------
 
 We can now invert ZTEM data using E3DMT v1 or v2. 
 
