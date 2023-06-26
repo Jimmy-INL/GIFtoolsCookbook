@@ -24,6 +24,7 @@ The options for each inversion type are organized as follows:
        EM1DFM Inversions <em1dfm>
        EM1DTM Inversions <em1dtm>
        Frequency Domain EM <fdem>
+       Time Domain EM <tdem>
        Natural Source EM (MT and ZTEM) <nsem>
 
 

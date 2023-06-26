@@ -117,7 +117,6 @@ To remove erroneous data:
 Make sure to go through the 'clean' data objects and ensure you didn't miss any remaining erroneous data. Also ensure that you have no obvious remaining signature from the primary field. If the primary field has not be adequately removed, it may impact your interpretation and final inversion result.
 
 
-
 Converting Between UTEM Data Representations
 --------------------------------------------
 

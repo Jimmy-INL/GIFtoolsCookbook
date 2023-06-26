@@ -125,13 +125,19 @@ Frequency-domain EM (FEM) data can be inverted through the program ``E3D``, whic
 Create an TEM data inversion
 ----------------------------
 
-Time-domain EM (TEM) data can be inverted through the programs ``TDoctree (1 mesh)`` or ``TDoctree (tiled)``, which require an :ref:`ocTree mesh <meshOctreefile>`. To create the inversion objects, use the menu structure:
+Time-domain EM data, such as airborne TEM, surface/borehole UTEM, TEMSAM data can be inverted using a multitude of executables. To create the inversion objects, use the menu structure:
 
-**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TD octree (1 mesh)**
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **H3DTD ver 1 (tensor)**
 
-**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TD octree (tiled)**
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **H3DTD ver 2 (tensor)**
 
-**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **EM1DTM (1D)**
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TDoctree (octree)**
+
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TDoctree tiled (octree)**
+
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TDoctree v2 (octree)**
+
+**Create** |rarr| **Inversion** |rarr| **Time-domain EM** |rarr| **TDRH v2 (octree)**
 
 
 .. _createMTZTEMInv:
@@ -139,7 +145,9 @@ Time-domain EM (TEM) data can be inverted through the programs ``TDoctree (1 mes
 Create a natural-source EM inversion
 ------------------------------------
 
-Natural-source EM data, such as ZTEM or MT data can be inverted on an octree mesh using ``E3DMT ver 1`` or ``E3DMT ver 2``. To create the inversion objects, use the menu structure:
+Natural-source EM data, such as ZTEM or MT data can be inverted using ``MTZ3D``, ``E3DMT ver 1`` or ``E3DMT ver 2``. To create the inversion objects, use the menu structure:
+
+**Create** |rarr| **Inversion** |rarr| **Natural-source EM** |rarr| **MTZ3D (tensor)**
 
 **Create** |rarr| **Inversion** |rarr| **Natural-source EM** |rarr| **E3DMT ver 1 (octree)**
 

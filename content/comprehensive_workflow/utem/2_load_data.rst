@@ -37,6 +37,8 @@ Here, we import the UTEM data and topography. We assume the data corresponding t
         - If your data are stored within XYZ files, use :ref:`import XYZ file <importXYZemData>` to *TEM3Dsounding* object
 
 
+.. note:: **For the tutorial data,** we renamed each of the loaded data objects to keep track of subsequent processing steps more easily. Our names contained the loop number and directional component (e.g. *Loop_1501_X*).
+
 
 Units and Normalization
 -----------------------

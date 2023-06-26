@@ -133,7 +133,34 @@ Calculate Transmitter-Receiver seperation
 This function computes the in-line, cross-line and vertical seperation between the transmitter and receiver for each datum.
 
 
+.. _parseEM3DsoundingbyTx:
 
+Parse FEM/TEM 3D Sounding by Transmitter
+----------------------------------------
+
+This functionality is available for *FEM3Dsounding* and *TEM3Dsounding* data objects. When EM3Dsounding
+objects contain data at the same location for multiple transmitters (e.g. surface UTEM), the data viewer
+cannot be opened. This functionality parses the data object into a data object for each transmitter. 
+
+This functionality can be accessed through:
+
+**Data manipulation** |rarr| **Create new item** |rarr| **Parse EM3Dsounding by transmitter**
+
+
+.. _mergeParsedEM3Dsounding:
+
+Merge Parsed FEM/TEM 3D Soundings
+---------------------------------
+
+This functionality is available for *FEM3Dsounding* and *TEM3Dsounding* data objects.
+This functionality is primarily used for merging multiple EM3Dsounding objects to
+create a single data object that can be used to construct a mesh.
+The number of data locations and times/frequencies do not need to be the same. However,
+**the columns in each object must be identical;** i.e. number of columns, names, etc...
+
+This functionality can be accessed through:
+
+**Data manipulation** |rarr| **Create new item** |rarr| **Merge parsed EM3Dsounding data**
 
 
 

@@ -10,28 +10,45 @@ Here we provide a basic approach for mesh design when inverting surface UTEM dat
 Diffusion Distance
 ^^^^^^^^^^^^^^^^^^
 
-For time-domain data, an important step is to compute the minimum and maximum diffusion distances for the data you want to invert. The `diffusion distance <https://em.geosci.xyz/content/maxwell1_fundamentals/transient_planewaves_homogeneous/peakdistance.html>`__ at time *t* depends on the time and electrical resistivity/conductivity:
+Diffusion distance must always be considered when choosing a padding thickness and minimum cell size for the mesh.
+The `diffusion distance <https://em.geosci.xyz/content/maxwell1_fundamentals/transient_planewaves_homogeneous/peakdistance.html>`__ at time *t* depends on the time and electrical resistivity/conductivity:
 
 .. math::
 	\delta \approx 1260 \sqrt{\frac{t}{\sigma}} = 1260 \sqrt{\rho t}
 
-The background resistivity can be obtained from the apparent resistivity maps and sounding curves.
 
+Ideally, the smallest cell size is less than 1/4 the smallest diffusion distance; which depends on the earliest time channel and largest conductivity.
+And the thickness of the padding is 2-3 times the largest diffusion distance; which is obtained using the latest time channel and background conductivity.
+Computing diffusion distances is easier when conductivities/resistivities can be obtained quantitatively from apparent resistivity maps and sounding curves.
+If this information is unavailable, one may need to use other source of a-priori information; e.g. rock property measurements.
 
-**Our Approach:**
+Meshing parameters based on diffusion distances work well when conductivities do not span too many orders of magnitude. **For the tutorial data,** an exact background conductivity was not provided. However the host rock is so resistive that its TEM response is negligible at the latest time channels. We also know that our targets are highly conductive plate-like structures (> 10 S/m). It is therefore unlikely we will be able to generate a mesh that 1) has small enough cells to model TEM responses from the plate targets accurately, and 2) has a total number of cells small enough for the inversion to be computationally feasible. Regardless, we gain valuable insight by performing and voxel-based inversion anyway. Our choice in meshing parameters is discussed in the *Create Mesh* subsection.
 
-According to the apparent resistivity maps and sounding curves, the Earth is fairly conductive. Over the range of frequencies we are inverting, we estimated a background resistivity of 20 :math:`\Omega m`. From the skin depth formula:
+Data Object for Meshing
+^^^^^^^^^^^^^^^^^^^^^^^
 
-	- :math:`\delta_{min}` = 104 m
-	- :math:`\delta_{max}` = 1462 m
+Mesh utilities within the GIFtools framework generate meshes based on survey geometry. The data object representing the survey geometry should contain 1) the geometries of all transmitter loops, and 2) receiver locations downsampled to a reasonable spacing. Presently, the data we intend to invert has been parsed into a multitude of data objects. Here, we explain how to create a data object for generating the mesh with GIFtools utilities.
+
+**First step:** We begin by merging a selected set of data objects that collectively contain all transmitter loops and receiver locations. To do this, use:
+
+	- :ref:`Merge TEM3Dsounding data <mergeParsedEM3Dsounding>`.
+
+.. important:: This functionality will **only** work if all selected data objects have the exact same columns. **For the tutorial data,** the simplest option was to merge an unprocessed data object for loops 1501, 1502 and 1503; given the receiver locations are the same for all data objects.
+
+**Second step:** To reduce computation time, we downsample the newly created data object based on a minimum desired station spacing.
+The sampling rate in the along-line direction is generally much higher than is needed to characterize UTEM anomalies. Furthermore, 3D EM inversions are generally unable to recover geologically plausible models when the data spacing is less than 2-3 horizontal cell widths.
+To create the downsampled data object: 
+
+	- :ref:`Down-sample based on distance <objectDataDownsample>`. **For the tutorial data,** a minimum station spacing of 111 m was used.
 
 
 Create Mesh
 ^^^^^^^^^^^
 
-Here, we explain how to create an OcTree mesh based on surface UTEM survey geometry. We also explain the reasoning for the parameter values entered. We can create OcTree meshes from UTEM surveys with the following utility:
+Here, we explain how to create an OcTree mesh based on surface UTEM survey geometry. We also explain the reasoning for the parameter values entered.
+We can create OcTree meshes from UTEM surveys with the following utility:
 
-	- :ref:`create OcTree mesh with TDoctree v2 utilities <createTDoctreev2octreeMesh>`
+	- :ref:`create OcTree mesh with TDoctree v2/TDRH v2 utilities <createTDoctreeMeshv2>`
 
 Once you have created the object, complete the following steps:
 
@@ -40,32 +57,23 @@ Once you have created the object, complete the following steps:
 	3) Run the utility
 	4) Load results
 
-For the field data provided, we chose to create the mesh using E3DMT v2 utilities. This was done because we are able to define the dipole and loop receivers. The parameters set in *Edit Options* are shown below along with reasoning for several important choices. For definitions of the parameters, consult the `E3DMT <https://e3dmt.readthedocs.io/en/e3dmt/content/inputfiles/createOcTree.html>`__ or `E3DMT v2 <https://e3dmt.readthedocs.io/en/e3dmt_v2/content/inputfiles/createOcTree.html>`__ manual.
 
+Parameters used to define the mesh for the field dataset using TDoctree v2 / TDRH v2 mesh utility are shown below.
 
 .. figure:: images/mesh_design.png
     :align: center
     :width: 500
 
-    Parameters used to define the mesh for the field dataset using E3DMT v2 mesh utility.
 
+**Minimum cell size:** The minimum cell size is determined by the station spacing and/or the smallest diffusion distance. It is good to have a least 2.5-3 cells between each station. And since we downsampled to have a minimum station spacing of 111 m, a minimum cell size of 40 m was chosen. Note that we didn't consider minimum diffusion distance. In the *Diffusion Distance* subsection, we explained that tutorial data collected at Raglan posed a significant challenge, as the conductivities in the survey area span many orders of magnitude. We expect to gain useful insight by inverting the data on this mesh, but it will likely be very difficult to fit the UTEM anomalies from the plate conductors accurately.  
 
-**Minimum cell width (vertical):** The minimum vertical cell width is determined primarily by the smallest skin depth. If the topography is flat and the geology is relatively simple, the minimum vertical cell width can be roughly 10%-20% the minimum skin depth. For the tutorial data set, a minimum vertical cell width of 25 m was chosen.
+**Max. topo cell:** Even if the topography is significant, we do not want to over-discretize in regions far away from the survey, as the fields there do not greatly impact the data. We chose to set this parameter as a larger number. If you want to more finely discretize the topography, set this to 8, 4, or even 2.
 
-**Minimum cell width (horizontal):** The minimum horizontal cell width is usually determined by the station spacing. It is good to have a least 3 cells between each station. For the tutorial data, the station spacing is roughly 2 km. Since the source is a vertically propagating plane-wave, we can discretize much more coarsely in the horizontal than in the vertical. However there are limits to this. To balance mesh size and ensure we model the fields correctly, we chose a minimum horizontal cell width of 250 m. 
+**Padding cell expansions:** The extent of the mesh depends on the largest skin depth. The mesh should extend 2-3 times the largest skin depths from the survey region in all directions. Because OcTree meshes pad out so effectively, setting this to be very large does not add many additional cells. Given the host rock is known to be fairly resistive, we chose to pad out 50,000 m. Given the latest time channel being inverted for the tutorial data is ~0.2, the padding based on diffusional distance should be reasonable so long as the host conductivity isn't significantly smaller than 0.0005 S/m.
 
+**Core region discretization:** The discretization of the core region was chosen based on what we know about the scale of the structures we are trying to characterize.
 
-**Max. topo cell:** Even if the topography is significant, we do not want to over-discretize in regions far away from the survey, as the fields there do not greatly impact the data. As a result, this parameter was set to a larger number. If you want to more finely discretize the topography, set this to 8, 4, or even 2. E3DMT v1 does not have this option.
+**Number of cells around Rx (and Tx):** sets the number of fine cells around nodes defining transmitters and receivers. Near the transmitters especially, it is important to have enough fine mesh cells; as the magnitude and direction of the primary field varies significantly about the transmitter. Near the receivers, we assume the fields are smoother and we simply need to ensure interpolation error is reasonable.
 
-**Padding cell expansions:** The extent of the mesh depends on the largest skin depth. The mesh should extend 2-3 times the largest skin depths from the survey region in all directions. Because OcTree meshes pad out so effectively, setting this to be very large does not add many additional cells.
+**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In practice, this should be 1-2 times the smallest background diffusion distance. To keep the mesh size reasonable, we chose 240 m.
 
-**Core region discretization:** *Thickness 1 *should be used to discretize the region sensitive to the highest frequencies (2-3 smallest skin depths). *Thickness 2* and *3* should be used to discretize the additional regions sensitive to he lower frequencies. *Thickness 1 + Thickness 2 + Thickness 3* should be roughly equal to at least 1 largest skin depth.
-
-**Number of cells around Rx:** The number of fine mesh cells near receivers does need to be as large for natural source EM modeling as is does for controlled source EM modeling. Fields associated with natural sources are are much smoother. You can make the mesh a much more reasonable size by taking advantage of this, however sufficient discretization is still required to model the fields accurately.
-
-**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In practice, this should be 1-2 times the smallest skin depth.
-
-**Shift data:** We chose to shift the data locations so that receivers lie on the discretized topography. If you fail to do this, you may be measuring electric fields in the air. **See important notices below**.
-
-
-.. important:: If you choose to *shift data* for E3DMT v2 utilities, the mesh utility will create a receivers file. When loading output, a new data object is created under the mesh utility. All the receivers are organized to measure the fields at the appropriate places. But if you are concerned, you can repeat the steps in the :ref:`data preparation section <comprehensive_workflow_mt_4>` .

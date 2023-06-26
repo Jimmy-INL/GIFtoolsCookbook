@@ -117,6 +117,7 @@ object:
 This data class is use for:
 
     - `TDoctree v2 <https://tdoctree.readthedocs.io/en/tdoctree_ver2/>`_
+    - `TDRH v2 <https://tdrh.readthedocs.io/en/tdrh_v2/>`_
 
 
 

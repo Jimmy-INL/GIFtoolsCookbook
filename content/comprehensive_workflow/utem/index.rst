@@ -36,5 +36,6 @@ Here, we present a general workflow for loading, interpreting and inverting surf
     - Data extraction and type <4_data_preparation>
     - Assigning uncertainties <5_uncertainties>
     - Mesh design <6_mesh_design>
+    - Unconstained voxel inversion <7_unconstrained_inversion>
 
  

@@ -92,7 +92,7 @@ Interaction with the Fortran utility program ``create_octree_mesh_td`` can be do
 **Create** |rarr| **Fortran utility program** |rarr| **Create ocTree mesh** |rarr| **TDoctree (TEMdata)**
 
 
-.. _createTDoctreeMeshv2:
+.. _createTDoctreeMeshTiled:
 
 Create a tiled ocTree mesh from TEM data
 ----------------------------------------
@@ -103,7 +103,7 @@ Interaction with the Fortran utility program ``create_octree_mesh_td_tiled`` can
 **Create** |rarr| **Fortran utility program** |rarr| **Create ocTree mesh** |rarr| **TDoctree tiled (TEMdata)**
 
 
-.. _createTDoctreeMeshv2Tiled:
+.. _createTDoctreeMeshv2:
 
 Create an ocTree mesh from TEM 3D sounding data
 -----------------------------------------------
