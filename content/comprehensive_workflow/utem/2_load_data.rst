@@ -22,7 +22,7 @@ Starting Your Project
 Import Files
 ------------
 
-.. note:: If you do not have AMIRA TEM formatted data from which to work with, you may `download tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_ . It is from this dataset that we will demonstrate the workflow.
+.. note:: If you do not have AMIRA TEM formatted data from which to work with, you may `download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_utem.zip>`_ . It is from this dataset that we will demonstrate the workflow.
 
 Here, we import the UTEM data and topography. We assume the data corresponding to each transmitter loop is stored within a separate file.
 

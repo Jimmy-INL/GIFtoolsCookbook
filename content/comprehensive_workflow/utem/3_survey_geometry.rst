@@ -8,9 +8,6 @@ By plotting total B-field data, we learned that signatures in the total field ar
 It is clear the representation of the data being inverted is not the same as the representation of the data used for interpretation. And as such, we need a means of converting between the two. Except when working with channel reduced data, this conversion requires that we know the primary field. Here, we define the survey geometry (source and receivers) for each data object and use it to compute the analytic primary field. We then demonstrate how total B-field measurements can be converted to representations used for plotting, and visa versa.
 
 
-.. important:: Requires GIFtools v3.1 or later.
-
-
 Defining the Survey Geometry
 ----------------------------
 
