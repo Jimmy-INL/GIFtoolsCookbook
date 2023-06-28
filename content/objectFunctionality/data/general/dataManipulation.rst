@@ -382,6 +382,17 @@ To apply a constant floor value and identical percent when computing uncertainti
 **Data manipulation** |rarr| **Assign uncertainties** |rarr| **Simple**
 
 
+.. _objectAddColumnsFromObj:
+
+Add columns from another data object of same type
+-------------------------------------------------
+
+Import specified data columns from one data object into a selected data object. **Requires both objects to have the same number of data (i.e. rows).** This functionality is useful when importing data columns into data objects corresponding to predicted data; output either from forward modeling or inversion.
+To call this functionality:
+
+**Data manipulation** |rarr| **Add data columns from another [data type] object**
+
+
 
 .. _objectCombineData:
 
