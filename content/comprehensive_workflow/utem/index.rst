@@ -19,7 +19,7 @@ Here, we present a general workflow for loading, interpreting and inverting surf
 The data used for this tutorial were collected at the Raglan Mine - Main Sill site. We would like to thank `Glencore <www.glencore.com>`__, and especially Daryl Ball, for providing the local survey data used to create this comprehensive workflow. **Please note** the Raglan UTEM dataset presents unique challenges, as we are attempting to recover a highly conductive plate-like target. This particular class of problem is an ongoing research topic. We have chosen to discuss the challenges of recovering highly conductive plate-like targets from surface UTEM data using voxel-based inversion codes.
 
 
-.. figure:: images/inv_unconstrained_with_sus.png
+.. figure:: images/title_page.png
     :align: center
     :width: 500
 

@@ -37,7 +37,7 @@ During field data collection, standard UTEM systems measure directional componen
 Defining UTEM Data
 ^^^^^^^^^^^^^^^^^^
 
-Let :math:`\xi_b(t)` represent some impulse response function for the magnetic field observed at a receiver. For the trangular current waveform :math:`w_{\wedge}(t)` illustrated above, the B-field at the receiver can be represented as a convolution:
+Let :math:`\xi_b(t)` represent some impulse response function for the magnetic field observed at a receiver. For the triangular current waveform :math:`w_{\wedge}(t)` illustrated above, the B-field at the receiver can be represented as a convolution:
 
 .. math::
     B_\wedge (t) = \int_{-\infty}^{\infty} w_\wedge (t) \, \xi_b(t-\tau ) \, d\tau
@@ -62,7 +62,7 @@ where :math:`T` represent the period of both current waveforms. As a result, the
 
 
 The above expression shows that raw dB/dt data collected during the survey (normalized by the transmitter current amplitude) can be multiplied by T/4 to obtain equivalent B-field data for the step waveform.
-**And therefore, UTEM data can be defined as 1) the dB/dt reponse for a triangular waveform, or 2) the B-field for the step waveform.** Conventionally, the B-field representation is interpreted to understand the Earth's response. However, both the dB/dt and B-field representations of the data can be inverted; so long as the correct waveform is used.
+**And therefore, UTEM data can be defined as 1) the dB/dt response for a triangular waveform, or 2) the B-field for the step waveform.** Conventionally, the B-field representation is interpreted to understand the Earth's response. However, both the dB/dt and B-field representations of the data can be inverted; so long as the correct waveform is used.
 
 
 Time Channels
@@ -125,7 +125,7 @@ Where :math:`\mathbf{b}_\sqcap(t_i)` represents the total field value at time ch
 Channel Reduced Data
 ^^^^^^^^^^^^^^^^^^^^
 
-For a step excitation, the measured total field should asymptote to the primary field after sufficent time; i.e. when all induced currents have sufficiently diffused. If we assume the inductive response is negligible at the latest time channel (Ch_0), then the data measured at the latest time channel is effectively just the primary field; i.e. :math:`\mathbf{b}_\sqcap(t_{max}) \approx \mathbf{b_p}`.
+For a step excitation, the measured total field should asymptote to the primary field after sufficient time; i.e. when all induced currents have sufficiently diffused. If we assume the inductive response is negligible at the latest time channel (Ch_0), then the data measured at the latest time channel is effectively just the primary field; i.e. :math:`\mathbf{b}_\sqcap(t_{max}) \approx \mathbf{b_p}`.
 
 The channel reduced representation of the data is given by:
 
@@ -210,7 +210,7 @@ Here, we discuss the characteristics of primary normalized data for a highly con
 **At late-times:**
 
 - At late times, the signal produced by the target has not decayed but is easily distinguishable.
-- As t approaches T/2, the primary normalized data plots look like the ones at t = 0 s (except multplied by -1); i.e. we see the primary normalized data asymptote, just not to 100\%.
+- As t approaches T/2, the primary normalized data plots look like the ones at t = 0 s (except multiplied by -1); i.e. we see the primary normalized data asymptote, just not to 100\%.
 
 
 Anomaly for a Conductive and Susceptible Block (Primary Normalized)

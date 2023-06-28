@@ -18,8 +18,8 @@ We must now ask ourselves, **what representation of the fields should we invert?
 
     - There doesn't seem to be a general consensus on which field representation should be inverted.
     - The difference between the true primary field and the numerical primary field computed by the code is significant. As a result, it is important to analytically remove the primary field from the data and invert the secondary field - not the total field. 
-    - If you choose to invert B-field data, you should first transform the data into H-field values, then invert with a code that uses the H-field formulation (*tdoctree v1*). If you choose to invert dB/dt data, the inversion code should use an E-field formulation; as dB/dt can be computed naturally when the electric field is solved on the mesh (*tdoctree v2, tdrh v2*).
-    - If there is a significant magnetostatic response in the data, you will need to solve a much more challenging static problem at *t0* if the H-field formulation (*tdoctree v1*) is used. For the E-field formulation (*tdoctree v2, tdrh v2*), the electric fields are zero. In our experience, the E-field formulation seems to model magnetic effects better than the H-field formulation.
+    - If you choose to invert B-field data, you should first transform the data into H-field values, then invert with a code that uses the H-field formulation (e.g. *tdoctree v1*). If you choose to invert dB/dt data, the inversion code should use an E-field formulation; as dB/dt can be computed naturally when the electric field is solved on the mesh (*tdoctree v2, tdrh v2*).
+    - If there is a significant magnetostatic response in the data, you will need to solve a much more challenging static problem at *t0* if the H-field formulation (i.e. *tdoctree v1*) is used. For the E-field formulation (*tdoctree v2, tdrh v2*), the electric fields are zero. In our experience, the E-field formulation seems to model magnetic effects better than the H-field formulation.
 
 
 Ultimately, we encourage the user to **invert dB/dt data with tdrh v2** at this time.
@@ -52,7 +52,7 @@ Since we initially loaded B-field data, we ultimately needed to convert to secon
 Extracting Time Channels
 ------------------------
 
-Not all of the data collected by the UTEM is inverted. For example, field measurements at t < 0 s are meant to capture the steady-state B-field just before the corresponding step-excitation occurs. Here, we decide which time channels are sensitive to the target and of sufficient quality. We then extract these data from each of our data objects.
+Not all of the data collected by UTEM systems is inverted. For example, field measurements at t < 0 s are meant to capture the steady-state B-field just before the corresponding step-excitation occurs. Here, we decide which time channels are sensitive to the target and of sufficient quality. We then extract these data from each of our data objects.
 
 Things to consider
 ^^^^^^^^^^^^^^^^^^
@@ -65,7 +65,7 @@ Things to consider
 
 **Late time channels:**
 
-    - In the absence of sufficiently conductive structures, the TEM response may have decayed almost compeletely by the latest time channel(s). In this case, the data might be noisy and/or not contain significant signal from the target.
+    - In the absence of sufficiently conductive structures, the TEM response may have decayed almost completely by the latest time channel(s). In this case, the data might be noisy and/or not contain significant signal from the target.
     - For sufficiently conductive targets within a resistive host, the latest time channels provide data that are sensitive to the target and not the host; making them ideal for inversion.
 
 

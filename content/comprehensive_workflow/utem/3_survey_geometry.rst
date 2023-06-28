@@ -11,7 +11,7 @@ It is clear the representation of the data being inverted is not the same as the
 Defining the Survey Geometry
 ----------------------------
 
-During the survey, it is common for practitioners to map the wire path of each transmitter loop with GPS and convert the values to UTM coordinates. The set of discrete wire segments defining the loop can be used to compute the primary field analytically according to the Biot-Savart law. The orientations of UTEM receivers are also collected. This information is especially important when field components are not necessary collected along the X, Y and Z directions.
+During the survey, it is common for practitioners to map the wire path of each transmitter loop with GPS and convert the values to UTM coordinates. The set of discrete wire segments defining the loop can be used to compute the primary field analytically according to the Biot-Savart law. The orientations of UTEM receivers are also collected. This information is especially important when field components are not necessarily collected along the X, Y and Z directions.
 
 
 Transmitters
@@ -21,7 +21,7 @@ To define the transmitter for each data object, we:
 
     - use the :ref:`create single inductive/galvanic sources <objectEMdtype_EM3Dsounding_tx_surface>` functionality
     - select 'load text file'
-    - find the XYZ file containing the nodes which define the loop and load; e.g. *wire_path_1501.txt*
+    - find the XYZ file in the *assets* folder containing the nodes which define the loop, then load; e.g. *wire_path_1501.txt*
     - the click 'OK'
 
 
@@ -37,13 +37,13 @@ To define the receivers for each data object, we:
     
 **For the tutorial data:**
 
-    - select 'square loop' and set the 'loop width' to 1 m. So long as the loop dimension is significantly smaller than the minimum cell size used to construct the mesh, we are effectively modeling the fields at a point.
-    - set the 'loop path/integration path' to be 'Right-handed/CCW'. We will be inverting the data with the *TDRH octree v2* code, which uses a universally right-handed coordinate system.
+    - select 'square loop' and set the 'loop width' to 1 m. So long as the loop dimension is sufficiently smaller than the minimum cell size used to construct the mesh, we are effectively modeling the fields at a point.
+    - set the 'loop path/integration path' to be 'Right-handed/CCW'. We will be inverting the data with the *TDRH v2* code, which uses a universally right-handed coordinate system.
     - since the tutorial data are defined along the X, Y and Z directions, and the bearing is left as 0 (Northing), within the 'Orientation' box:
 
-        - Select 'Horizontal coplanar' to define X-component data
-        - Select 'Vertical coaxial' to define Y-component data
-        - Select 'Vertical coplanar' to define Z-component data
+        - Select 'Horizontal co-planar' to define X-component data
+        - Select 'Vertical co-axial' to define Y-component data
+        - Select 'Vertical co-planar' to define Z-component data
 
 
 
@@ -65,11 +65,11 @@ This is accomplished using:
 
 Before transforming field data into a representation suitable for interpretation, the primary field computed in GIFtools can be used to
 
-    - decypher the coordinate system used by the dataset and determine whether it must be transformed into the standard right-handed Cartesian components
+    - decipher the coordinate system used by the dataset and determine whether it must be transformed into the standard right-handed Cartesian components
     - determine whether the data are in fact defined using the correct units 
 
 
-**For the tutorial data,** we show the vertical component of the total B-field and primary B-field. Examination concluded that the UTEM data we loaded into GIFtools were used the standard Cartesian coordinate system (i.e. right-handed). The vertical component of the primary and total fields for loop 1503 are similar in magnitude; which is expected given the survey geometry. As a result, we are confident the field values are in the correct units (i.e. Teslas).
+**For the tutorial data,** we show the vertical component of the total B-field and primary B-field. Examination concluded that the UTEM data loaded into GIFtools used the standard Cartesian coordinate system (i.e. right-handed). The vertical component of the primary and total fields for loop 1503 are similar in magnitude; which is expected given the survey geometry. As a result, we are confident the field values are in the correct units (i.e. Teslas).
 
 
 
@@ -89,7 +89,7 @@ Here, the analytic primary field is removed from the total field data. We then e
     - use the :ref:`column calculator <objectCalculator>`. Make sure to create a new column and name it something like 'B_SECONDARY' to avoid later confusion.
 
 
-Ideally, the primary field would have been removed precisely and the user could observe the secondary TEM response cleanly. However, it is common for certain receivers to collect poor quality data that must be remove from each data object. **For the tutorial data,** we see examples where the secondary field data are clean and where erroneous data must be removed.
+Ideally, the primary field would have been removed precisely and the user could observe the secondary TEM response cleanly. However, it is common for certain receivers to collect poor quality data. Data for these receivers must be remove from each data object. **For the tutorial data,** we see examples where the secondary field data are clean and where erroneous data must be removed.
 
 
 .. figure:: images/bs_erroneous.png
@@ -102,7 +102,7 @@ To remove erroneous data:
     - Select the data object and :ref:`plot with VTK viewer <viewData>`
     - Select the 'B_SECONDARY' column from the 'Current data' drop-down menu.
     - Click the 'Edit' tab, select the square selector icon. While this icon is highlighted, you can select data. Next, click 'View' to go back.
-    - For each time channel selected from the drop-down menu, examine the plot. If you identify a bad receiver, hold Ctrl and select the data point. If you are not holding Ctrl, you will unselect all previous data points.
+    - For each time channel selected from the drop-down menu, examine the plot. If you identify a bad receiver, hold Ctrl and select the data point. If you are not holding Ctrl, you will un-select all previous data points.
     - Once all the desired points are selected, click the 'Edit' tab, then click the 'Simple edit' tab.
 
         - Under 'Data selection', click 'Data not highlighted'
@@ -122,7 +122,7 @@ In :ref:`understanding UTEM anomalies <comprehensive_workflow_utem_1_plotting>` 
     - the :ref:`column calculator <objectCalculator>` 
 
 
-**For the tutorial data,** we have already computed the secondary field and we would like to plot primary reduced data. In this case, we simply need to divide the secondary field column ('B_SECONDARY') by the magnitude of the primary field ('B_abs') that we computed analytically, then multiply by 100 (if desired). We doing the initial division, we create a data column 'PRIMARY_REDUCED'. The reverse could be done to convert from primary reduced data to secondary/total field data. It is also possible to subtract the latest time channel from all times if the user would like to work with channel reduced data.
+**For the tutorial data,** we have already computed the secondary field and we would like to plot primary reduced data. In this case, we simply need to divide the secondary field column ('B_SECONDARY') by the magnitude of the primary field ('B_abs') that we computed analytically, then multiply by 100 (if desired). When doing the initial division, we create a data column 'PRIMARY_REDUCED'. The reverse could be done to convert from primary reduced data to secondary/total field data. It is also possible to subtract the latest time channel from all times if the user would like to work with channel reduced data.
 
 
 .. _comprehensive_workflow_utem_3_interp:
@@ -130,11 +130,10 @@ In :ref:`understanding UTEM anomalies <comprehensive_workflow_utem_1_plotting>` 
 Preliminary Interpretation
 --------------------------
 
-Below, we have provided several meaningful plots used to interpret the data from its primary reduced representation. From examining the data maps, we determine 3 notable signature:
+Below, we have provided several meaningful plots used to interpret the data from its primary reduced representation. From examining the data maps, we determine 2 notable signatures:
 
     - A large WSW to ENE trending feature in the Northern region of the data coverage. This signature is most prominent in data collected using loops 1501 and 1502; i.e. the loops that are offset from the receiver locations.
-    - A large isolated conductor in the middle/Southeast region of the data coverage. This signature is prominent in data collected using loop 1503.
-    - A much less prominent WSW to ENE trending feature in the Southeast corner of the survey region. This signature shows up in multiple components of the data for all loops, but is generally much weaker than the dominant signature.
+    - An isolated conductor in the middle/Southeast region of the data coverage. This signature is prominent in data collected using loop 1503.
 
 
 .. figure:: images/interpretation_primary_reduced_map_Ch4.png

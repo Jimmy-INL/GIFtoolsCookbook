@@ -11,7 +11,7 @@ Diffusion Distance
 ^^^^^^^^^^^^^^^^^^
 
 Diffusion distance must always be considered when choosing a padding thickness and minimum cell size for the mesh.
-The `diffusion distance <https://em.geosci.xyz/content/maxwell1_fundamentals/transient_planewaves_homogeneous/peakdistance.html>`__ at time *t* depends on the time and electrical resistivity/conductivity:
+The `diffusion distance <https://em.geosci.xyz/content/maxwell1_fundamentals/transient_planewaves_homogeneous/peakdistance.html>`__ at time *t* depends on the time channel and electrical resistivity/conductivity:
 
 .. math::
 	\delta \approx 1260 \sqrt{\frac{t}{\sigma}} = 1260 \sqrt{\rho t}
@@ -58,22 +58,23 @@ Once you have created the object, complete the following steps:
 	4) Load results
 
 
-Parameters used to define the mesh for the field dataset using TDoctree v2 / TDRH v2 mesh utility are shown below.
+Parameters used to define the mesh for the **tutorial data** using TDoctree v2 / TDRH v2 mesh utility are shown below.
 
 .. figure:: images/mesh_design.png
     :align: center
     :width: 500
 
+|
 
-**Minimum cell size:** The minimum cell size is determined by the station spacing and/or the smallest diffusion distance. It is good to have a least 2.5-3 cells between each station. And since we downsampled to have a minimum station spacing of 111 m, a minimum cell size of 40 m was chosen. Note that we didn't consider minimum diffusion distance. In the *Diffusion Distance* subsection, we explained that tutorial data collected at Raglan posed a significant challenge, as the conductivities in the survey area span many orders of magnitude. We expect to gain useful insight by inverting the data on this mesh, but it will likely be very difficult to fit the UTEM anomalies from the plate conductors accurately.  
+**Minimum cell size:** The minimum cell size is determined by the station spacing and/or the smallest diffusion distance. It is good to have a least 2.5-3 cells between each station. And since we downsampled to have a minimum station spacing of 111 m, a minimum cell size of 40 m was chosen. Note that we didn't consider minimum diffusion distance. In the *Diffusion Distance* subsection, we explained that tutorial data collected at Raglan posed a significant challenge, as the conductivities in the survey area span many orders of magnitude. We expect to gain useful insight by inverting the data on this mesh, but it will likely be very difficult to fit the observed anomalies from plate conductors accurately.  
 
 **Max. topo cell:** Even if the topography is significant, we do not want to over-discretize in regions far away from the survey, as the fields there do not greatly impact the data. We chose to set this parameter as a larger number. If you want to more finely discretize the topography, set this to 8, 4, or even 2.
 
-**Padding cell expansions:** The extent of the mesh depends on the largest skin depth. The mesh should extend 2-3 times the largest skin depths from the survey region in all directions. Because OcTree meshes pad out so effectively, setting this to be very large does not add many additional cells. Given the host rock is known to be fairly resistive, we chose to pad out 50,000 m. Given the latest time channel being inverted for the tutorial data is ~0.2, the padding based on diffusional distance should be reasonable so long as the host conductivity isn't significantly smaller than 0.0005 S/m.
+**Padding cell expansions:** The extent of the mesh depends on the largest skin depth. The mesh should extend 2-3 times the largest skin depths from the survey region in all directions. Because OcTree meshes pad out so effectively, setting this to be very large does not add many additional cells. Given the host rock is known to be fairly resistive, we chose to pad out 50,000 m. Given the latest time channel being inverted for the tutorial data is ~0.2 s, the padding based on diffusion distance should be reasonable so long as the host conductivity isn't significantly smaller than 0.0005 S/m.
 
-**Core region discretization:** The discretization of the core region was chosen based on what we know about the scale of the structures we are trying to characterize.
+**Core region discretization:** Discretization of the core region depends on skin depth and what we know about the scale of the structures we are trying to characterize. Here, the finest cell discretization was used up to a depth of 480 m. The cell dimensions were coarsened by a factor of 2 for the next 640 m, and again for the following 640 m. Assuming the background conductivity is ~0.0005 S/m, and given the earlier time channel being used is ~0.0006 s, the minimum diffusion distance for the background is ~1400 m. If we are worried about modeling the background response more accurately at early times, we may consider extending the region of finest cell discretization to a larger depth below surface; perhaps 0.5 - 1 times the background diffusion distance.
 
 **Number of cells around Rx (and Tx):** sets the number of fine cells around nodes defining transmitters and receivers. Near the transmitters especially, it is important to have enough fine mesh cells; as the magnitude and direction of the primary field varies significantly about the transmitter. Near the receivers, we assume the fields are smoother and we simply need to ensure interpolation error is reasonable.
 
-**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In practice, this should be 1-2 times the smallest background diffusion distance. To keep the mesh size reasonable, we chose 240 m.
+**Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In practice, this should be at least 0.5 times the smallest background diffusion distance. To keep the mesh size reasonable however, we chose 240 m.
 

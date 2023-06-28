@@ -24,11 +24,11 @@ Import Files
 
 .. note:: If you do not have AMIRA TEM formatted data from which to work with, you may `download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_utem.zip>`_ . It is from this dataset that we will demonstrate the workflow.
 
-Here, we import the UTEM data and topography. We assume the data corresponding to each transmitter loop is stored within a separate file.
+Here, we import the UTEM data and topography. These can be imported from the *assets* folder. We assume the data corresponding to each transmitter loop is stored within a separate file.
 
     - First, :ref:`import topography data (XYZ format) <importTopo>`. The data file is named *topo_local.xyz*.
 
-    - For each transmitter loop, **Create** |rarr| **Folder** . Name each folder according to the loop ID. In our case, we have *Loop_1501, Loop_1502* and *Loop_1503*.
+    - For each transmitter loop, use **Create** |rarr| **Folder** within GIFtools to keep track of things. Name each folder according to the loop ID. In our case, we have *Loop_1501, Loop_1502* and *Loop_1503*.
 
     - To import the UTEM data for each loop, **first** select the corresponding folder. Then:
 
@@ -46,7 +46,7 @@ Units and Normalization
 B-field or dB/dt Data
 ^^^^^^^^^^^^^^^^^^^^^
 
-If UTEM data are provided as B-field or dB/dt measurements, we must ensure the units are compatible with GIFtools and the UBC-GIF codes. Within the UBC-GIF framework, time channels are represented in seconds, B-field TEM data are represented in Teslas, and dB/dt data are represented in T/s. We must also ensure B or dB/dt data for each transmitter has been normalized by the corresponding waveform amplitude. And in the case of dB/dt data, we must convert to the corresponding B-field representation; required for removing primary signal from total field data.
+If UTEM data are provided as B-field or dB/dt measurements, we must ensure the units are compatible with GIFtools and the UBC-GIF codes. Within the UBC-GIF framework, time channels are represented in seconds, B-field TEM data are represented in Teslas, and dB/dt data are represented in T/s. We must also ensure B or dB/dt data for each transmitter has been normalized by the current waveform amplitude. And in the case of dB/dt data, we must convert to the corresponding B-field representation; required for removing primary signal from total field data.
 
 For your dataset, carry out the following steps **if necessary** for all data objects:
 
