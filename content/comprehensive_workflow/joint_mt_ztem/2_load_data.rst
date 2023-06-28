@@ -10,7 +10,7 @@ Loading and Transforming Field Data into GIF Convention
 The first step in any project is to load field collected data and visualize it. MT and ZTEM datasets are challenging to work with for several reasons. First, they are computed by applying a non-trivial operations to the Cartesian components of measured electric/magnetic fields. Second, MT and ZTEM data values are frequently represented in a survey-dependent coordinate system.
 
 
-.. important:: Requires GIFtools v3.1 or later.
+.. important:: Requires GIFtools v3.2 or later.
 
 
 Starting Your Project and Importing Files

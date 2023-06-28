@@ -10,7 +10,7 @@ The first step in any project is to load field collected data and visualize it. 
 Here, we load UTEM data into GIFtools. And if the data are B-field or dB/dt measurements, we then ensure the units are consistent with those required by GIFtools. **The tutorial UTEM data** are total B-field measurements within AMIRA TEM files.
 
 
-.. important:: Requires GIFtools v3.1 or later.
+.. important:: Requires GIFtools v3.2 or later.
 
 Starting Your Project
 ---------------------

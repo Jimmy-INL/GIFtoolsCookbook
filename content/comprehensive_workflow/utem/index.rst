@@ -8,13 +8,12 @@ Comprehensive Workflows: Surface UTEM
 
 **Author: Devin C. Cowan**
 
-**Published: March, 2020**
+**Published: June, 2023**
 
 
 Here, we present a general workflow for loading, interpreting and inverting surface "University of Toronto ElecroMagnetometer" (UTEM) data. We begin with UTEM data in AMIRA TEM files. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
 
-    .. - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_utem.zip>`_
-
+    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_utem.zip>`_
 
 
 The data used for this tutorial were collected at the Raglan Mine - Main Sill site. We would like to thank `Glencore <www.glencore.com>`__, and especially Daryl Ball, for providing the local survey data used to create this comprehensive workflow. **Please note** the Raglan UTEM dataset presents unique challenges, as we are attempting to recover a highly conductive plate-like target. This particular class of problem is an ongoing research topic. We have chosen to discuss the challenges of recovering highly conductive plate-like targets from surface UTEM data using voxel-based inversion codes.

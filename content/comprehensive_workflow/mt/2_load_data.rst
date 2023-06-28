@@ -10,7 +10,7 @@ The first step in any project is to load field collected data and visualize it. 
 
 Here, we will assume that you have some processed EDI formatted impedance data. The goal is to transform these data into UBC-GIF convention so that we can work within the GIFtools framework. Using contractor information and GIFtools, we will show how this is possible.
 
-.. important:: Requires GIFtools v2.30 or later.
+.. important:: Requires GIFtools v3.2 or later.
 
 Starting Your Project
 ---------------------
