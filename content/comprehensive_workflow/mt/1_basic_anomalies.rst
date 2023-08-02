@@ -64,7 +64,7 @@ Let us work in the UBC-GIF data convention; where X is Northing, Y is Easting, Z
 Impedances over a compact resistor
 ----------------------------------
 
-Let us work in the UBC-GIF data convention; where X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}`and :math:`Z_{yy}` anomalies over a resistive block are shown below. The resistor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.00001 S/m. If your data are in the UBC-GIF convention, then over a resistor:
+Let us work in the UBC-GIF data convention; where X is Northing, Y is Easting, Z is +ve downward and a :math:`-i\omega t` Fourier convention is used. The real and imaginary components of the :math:`Z_{xx}`, :math:`Z_{xy}`, :math:`Z_{yx}` and :math:`Z_{yy}` anomalies over a resistive block are shown below. The resistor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.00001 S/m. If your data are in the UBC-GIF convention, then over a resistor:
 
 	- :math:`Z_{xy}` data will be in the lower-right quadrant of the complex plane and :math:`Z_{yx}` data will be in the upper-left quadrant; unless data are collected near major 3D structures. For more detail on this, see :ref:`data conventions for MT <sign_mt_conv>`.
 	- the amplitude of the :math:`Z_{xy}` and :math:`Z_{yx}` components increases.
