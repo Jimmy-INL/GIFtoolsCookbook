@@ -20,12 +20,12 @@ MobileMT systems measure 2 orthogonal horizontal components of the electric fiel
 The datum for MobileMT is an apparent conductivity :math:`\sigma_a`. In much of the `theory presented by Expert Geophysics <https://www.expertgeophysics.com/wp-content/uploads/2019/08/MobileMT-acquisitionprocessing.pdf>`__ for their MobileMT system, the apparent conductivity is related to the determinant of the 3x2 admittance tensor as follows:
 
 .. math::
-    \sigma_a = \mu \omega \big | det(\mathbf{Y})^2 \big |
+    \sigma_a = \mu \omega \big | det(\mathbf{Y}) \big |
 
 The exact method for taking the determinant of the 3x2 matrix is considered proprietary by Expert Geophysics. However, most practitioners assume that since Hz is much weaker than Hx and Hy in the absence of major 3D effects, the last row of the admittance tensor can be neglected and the determinant reduces to:
 
 .. math::
-    det(\mathbf{Y}) \approx \sqrt{Y_{xx} Y_{yy} - Y_{xy} Y_{yx}}
+    det(\mathbf{Y}) \approx Y_{xx} Y_{yy} - Y_{xy} Y_{yx}
 
 
 For a 3-dimensional Earth, the reduced admittance tensor can be defined using the ratios of electric and magnetic field components in both the x and y directions for 2 orthogonal plane wave polarizations; one polarization with the electric field along the x axis and one polarization with the electric file along the y axis. We can define the reduced admittance tensor as the inverse of the :ref:`impedance tensor used to define classic MT data <comprehensive_workflow_mt_1>`. Therefore:
@@ -41,23 +41,42 @@ where 1 and 2 refer to fields associated with plane waves polarized along two pe
 
 .. _comprehensive_workflow_mmt_1_conductor:
 
-MobileMT data over a compact conductor
---------------------------------------
+MobileMT data over a conductor and a resistor
+---------------------------------------------
 
-Here, we plot the apparent conductivities from simulated MobileMT data collected over a conductive block. For comparison, we also plot apparent conductivities computed from the Zxy component of surface MT data. The conductor is buried at a depth of 500 m. Its East-West dimension is 2000 m and its North-South dimension is 1000 m. The background conductivity is 0.001 S/m and the conductivity of the block is 0.1 S/m. The base station used to collect horizontal electric field measurements for the MobileMT data was located at (-4000, -4000, 0); far away from the conductor.
+Here, we plot the apparent conductivities from simulated MobileMT data collected over a conductive block and over a resistive block. For each simulation, the block is buried at a depth of 500 m. The East-West dimension of the block is 2000 m and the North-South dimension is 1000 m. The background conductivity is 0.001 S/m. The conductivity of the conductive block is 0.1 S/m. The conductivity of the resistive block is 0.00001 S/m. The base station used to collect horizontal electric field measurements for the MobileMT data was located at (-4000, -4000, 0); far away from the conductor.
 
 .. figure:: images/conductor_survey.png
     :align: center
     :width: 350
 
-    MobileMT survey geometry.
+    MobileMT survey geometry for a conductor in a halfspace.
 
 
-For both MobileMT and classic MT data, apparent conductivities/resistivities can be used to:
+Below, we plot the apparent conductivities at 10 Hz, 100 Hz and 1000 Hz. Away from the block, the apparent conductivities are roughly equal to the background conductivity of 0.001 S/m. This is expected when the background conductivity is homogeneous. For frequencies sensitive to the block, see that the existence of a conductor increases the apparent conductivities, and the existence of a resistor reduces apparent conductivities. At the highest frequency, the skin depth is small and we are not sensitive to the block, so the apparent conductivity more or less equal to the background conductivity.
 
-    - estimate the background resistivity of your survey region
-    - determine how the resistivity of an area changes with respect to depth, as different frequencies are sensitive to different depths
-    - more easily identify potential conductive and/or resistive targets
+
+.. figure:: images/mmt_con_block.png
+    :align: center
+    :width: 700
+
+    MobileMT apparent conductivities over a conductive block at 10 Hz, 100 Hz and 1000 Hz.
+
+
+.. figure:: images/mmt_res_block.png
+    :align: center
+    :width: 700
+
+    MobileMT apparent conductivities over a resistive block at 10 Hz, 100 Hz and 1000 Hz.
+
+
+MobileMT vs MT data over a compact conductor
+--------------------------------------------
+
+Here, the MobileMT data simulated in the previous section is compared to apparent resistivities computed from classic MT data. In this case, the :math:`Z_{xy}` impedance is used to compute apparent conductivities from MT data via:
+
+.. math::
+    \sigma_a = \frac{\omega \mu}{| Z_{xy} |^2}
 
 
 Below, we plot apparent conductivities at 10 Hz, 100 Hz and 1000 Hz. Away from the block, the apparent conductivities in both the MobileMT and classic MT plots are equal to the background conductivity of 0.001 S/m. This is expected when the background conductivity is homogeneous. At the highest frequency, the skin depth is small and we are not sensitive to the block, so the apparent conductivity is once again equal to the background conductivity.
@@ -68,13 +87,13 @@ This is because the electric field measurements used to compute MobileMT data ar
 And since the electric field measured at the base station is not sensitive to the block, the magnetic fields are solely responsible for the decrease in observed apparent conductivities. The largest observed anomalies in the MobileMT and classic MT data also seem to appear at different frequencies.
 
 
-.. figure:: images/conductor_anomaly.png
+.. figure:: images/mmt_con_block.png
     :align: center
     :width: 700
 
-    MobileMT apparent conductivities at 10 Hz, 100 Hz and 1000 Hz.
+    Apparent conductivities from :math:`Z_{xy}` impedances at 10 Hz, 100 Hz and 1000 Hz.
 
-.. figure:: images/conductor_anomaly_mt.png
+.. figure:: images/mmt_con_block_mt.png
     :align: center
     :width: 700
 
@@ -93,16 +112,19 @@ Here, we demonstrate the impact of conductive/resistive structures near the Mobi
 
     MobileMT survey geometry.
 
-Apparent conductivities are computed using electric field measurements at the base station. Therefore the conductivity near the base station heavily influences MobileMT data. Let us examine the apparent conductivities at 1000 Hz. Once again, the data are not sensitive to the conductive block due to the skin depth of the host. However, the apparent conductivities are ~0.008 S/m despite the host conductivity near the conductor being 0.001 S/m.
+Apparent conductivities are computed using electric field measurements at the base station. Therefore the conductivity near the base station heavily influences MobileMT data. Away from the block, we see that the apparent conductivities are ~0.008 S/m; which is much closer to the base station conductivity than the host conductivity. Essentially, the existence of moderately conductive material at the base station has decreased the amplitude of the measured electric fields, and in turn, increased the magnitudes of all apparent conductivity values. The opposite would be observed if the region around the base station were more resistive. This "shift" in apparent conductivities is observed at other frequencies. However the amplitude of local anomalies relative to the background value for each frequency seem to be relatively well-preserved.
 
-The existence of moderately conductive material at the base station has decreased the amplitude of the measured electric fields, and in turn, increased the magnitudes of apparent conductivity values. The opposite would be observed if the region around the base station were more resistive. This "shift" in apparent conductivities is observed at other frequencies. However the amplitude of local anomalies relative to the background value for each frequency seem to be relatively well-preserved.
+Numerical simulations have shown that the general amplitude of apparent conductivities are primarily driven by the conductivity at the base station. And that anomalies in the MobileMT data result from anomalous magnetic fields due to the presence of conductors and/or resistors within the survey area. So although MobileMT data can be used to infer the existence of anomalous conductors and/or resistors within a region of interest, it may not be suitable for estimating the true conductivity within that region.
 
 
-.. figure:: images/conductor_anomaly_base_station.png
+.. figure:: images/mmt_con_block.png
     :align: center
     :width: 700
 
-    MobileMT apparent conductivities at 10 Hz, 100 Hz and 1000 Hz.
+    MobileMT apparent conductivities for a block in a half-space at 10 Hz, 100 Hz and 1000 Hz.
 
+.. figure:: images/mmt_con_block_con_slab.png
+    :align: center
+    :width: 700
 
-From this experiment, we conclude that MobileMT data are sensitive to the distribution of electrical conductivities in the vicinity of both the base station location and the region of interest. And although structures near the base station will produce a "shift" in the observed apparent conductivities, the amplitudes of MobileMT data anomalies relative to the background are determined by the observed magnetic field. 
+    MobileMT apparent conductivities for a base station conductivity of 0.01 S/m at 10 Hz, 100 Hz and 1000 Hz.
