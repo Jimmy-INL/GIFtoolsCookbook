@@ -31,11 +31,11 @@ Here, we present a general workflow for loading, interpreting and inverting `Exp
     :maxdepth: 1
 
     - Understanding MobileMT data <1_basic_anomalies>
-    .. - Loading geophysical data and ascertaining if it is in GIF convention <2_load_data>
-    .. - Preparing data for inversion within the GIFtools framework <3_data_preparation>
-    .. - Standard assignment of uncertainties to MT data <4_uncertainties>
-    .. - Mesh design <5_mesh_design>
-    .. - Setting appropriate parameters and running the inversion <6_inversion>
-    .. - Examining convergence, data misfit and the recovered model <7_results>
+    - Loading and visualizing Mobile MT data <2_load_data>
+    - Assigning uncertainties <3_uncertainties>
+    - Preparing data for inversion within the GIFtools framework <4_data_preparation>
+    - Mesh design <5_mesh_design>
+    - Setting appropriate parameters and running the inversion <6_inversion>
+    - Examining convergence, data misfit and the recovered model <7_results>
 
  

@@ -75,10 +75,10 @@ For the background, starting and reference models, we chose 0.001 S/m. This valu
 If you choose a background conductivity that is lower than the true conductivity:
 
     - The overall range of conductivities in the recovered model may be lower than the true range of conductivities.
-    - Your inversion will be more sensitive to structures at depth. Recovered conductors may be lower conductivity and placed at larger depths.
+    - Your inversion will be more sensitive to structures at depth. Recovered structures may be lower conductivity and placed at larger depths.
 
 If you choose a background conductivity that is higher than the true conductivity:
 
     - The overall range of conductivities in the recovered model may be higher than the true range of conductivities.
-    - Your inversion will be not but as sensitive to structures at depth. Recovered conductors may highly conductive and placed at shallower depths.
+    - Your inversion will note be as sensitive to structures at depth. Recovered conductors may be highly conductive and placed at shallower depths.
 

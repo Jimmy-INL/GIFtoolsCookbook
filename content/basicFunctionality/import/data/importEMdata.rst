@@ -20,8 +20,8 @@ Frequency-domain (FEM), Time-domain (TEM) and Natural Source (NSEM) electromagne
 
 .. _importXYZemData:
 
-Import XYZ EM data
-^^^^^^^^^^^^^^^^^^
+Import XYZ or CSV EM data
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Common to FEM, TEM and ZTEM, data be can loaded from a general column file that contains position and multiple data channels.
 
