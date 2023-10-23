@@ -10,7 +10,7 @@ Here we provide a basic approach for mesh design when inverting MobileMT data. T
 Skin Depth
 ^^^^^^^^^^
 
-For frequency-dependent data, an important step is to compute the minimum and maximum skin depth for the data you want to invert. The minimum and maximum skin depths can be used to estimate the depth range your data are sensitive to. The skin depth depends on frequency and the electrical resistivity/conductivity:
+For frequency-dependent data, an important step is to compute the minimum and maximum skin depths for the data you want to invert. The minimum and maximum skin depths can be used to estimate the depth range your data are sensitive to. Skin depth depends on the operating frequency and subsurface electrical resistivity/conductivity. For a homogeneous medium,
 
 .. math::
     \delta \approx 500 \sqrt{\frac{\rho}{f}} = 500 \sqrt{\frac{1}{\sigma f}}
@@ -19,7 +19,7 @@ Unlike classic MT data, you may not be able to estimate the host conductivity wi
 
 **Our Approach:**
 
-From the :ref:`loading and visualization <comprehensive_workflow_mmt_2>` section of the tutorial, we determined the range of apparent conductivities within our data to be roughly 5e-4 S/m to 5e-3 S/m. We assume the host conductivity within our region of interest lies somewhere within this range. The largest skin depth is computed by taking the smallest apparent conductivity (5e-4 S/m) and smallest operating frequency (42 Hz):
+From the :ref:`loading and visualization <comprehensive_workflow_mmt_2>` section of the tutorial, the range of apparent conductivity values within our data was roughly 5e-4 S/m to 5e-3 S/m. Here, we assume the host conductivity within our region of interest lies somewhere within this range. The largest skin depth is computed by taking the smallest apparent conductivity (5e-4 S/m) and smallest operating frequency (42 Hz):
 
 .. math::
     \delta_{max} \approx 500 \sqrt{\frac{1}{\sigma_{min} f_{min}}} = 3,450 m
@@ -52,7 +52,7 @@ The parameters set in *Edit Options* are shown below along with reasoning for se
 
     Parameters used to define the mesh for the field dataset using E3DMT v2 mesh utility.
 
-**Minimum cell width (horizontal):** A minimum horizontal cell width of 50 m was chosen based on a minimum data separation of 125 m. In practice, the user should have at least 2-3 cells between each data point. In general, the down-sampling and minimum horizontal cell width is dependent on the flight-line separation and smoothness of the observed data.
+**Minimum cell width (horizontal):** A minimum horizontal cell width of 50 m was chosen based on a minimum data separation of 125 m. To be safe, the user should generally have at least 2-3 cells between each data point. In general, the down-sampling and minimum horizontal cell width is dependent on the flight-line separation and smoothness of the observed data.
 
 **Minimum cell width (vertical):** The minimum vertical cell width is determined primarily by the smallest skin depth. If the topography is flat and the geology is relatively simple, the minimum vertical cell width can be roughly 10%-20% the minimum skin depth. Because the source signal for natural source EM data is a vertically propagating plane-wave, it is sometimes more beneficial to discretize in the vertical more than in the horizontal; because lateral variations in the fields are smaller. For the tutorial data, a minimum vertical cell width of 25 m was chosen.
 
@@ -66,4 +66,4 @@ The parameters set in *Edit Options* are shown below along with reasoning for se
 
 **Make polygon:** For UBC-GIF v2 codes, this parameter controls the horizontal extent of the core mesh region. In pratice, this should be 1-2 times the smallest skin depth.
 
-**Shift data:** We chose to shift the data locations so that electric field measurements occur on the discretize surface topography and that fleight height is preserved for magnetic field measurements. If you choose to *shift data* for E3DMT v2 utilities, the mesh utility will create a receivers file. When loading output, a new data object is created under the mesh utility. You will notice that the base station is **not** defined and that the *MobileMT data type* is 'MTH'. This is not a problem, as all receivers are organized to measure the fields at the appropriate places. But if you are concerned, you can repeat the steps in the :ref:`data preparation section <comprehensive_workflow_mmt_4>` .
+**Shift data:** We chose to shift the data locations so that electric field measurements occur on the discretize surface topography and that fleight height is preserved for magnetic field measurements. If you choose to *shift data* for E3DMT v2 utilities, the mesh utility will create a receivers file. When loading the outputs, a new data object is created under the mesh utility. You will notice that the base station is **not** defined and that the *MobileMT data type* is 'MTH'. This is not a problem, as all receivers are organized to measure the fields at the appropriate places. But if you are concerned, you can repeat the steps in the :ref:`data preparation section <comprehensive_workflow_mmt_4>` .

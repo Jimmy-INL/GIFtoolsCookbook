@@ -27,9 +27,9 @@ Import Files
 
 Here, we import the MobileMT data and topography.
 
-    - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *mmt_topo.xyz* and is in the *assets* folder.
+    - :ref:`Import topography data (XYZ format) <importTopo>`. The data file is named *mmt_topo.xyz* and is located in the *assets* folder.
 
-    - :ref:`Import MobileMT data from CSV <importXYZemData>`. Use **Import** |rarr| **Data** |rarr| **Natural Source EM** |rarr| **MobileMT general ASCII**. The data file is named *mmt_data.csv* and is in the *assets* folder. If you are using the tutorial data:
+    - :ref:`Import MobileMT data from CSV <importXYZemData>`. Use **Import** |rarr| **Data** |rarr| **Natural Source EM** |rarr| **MobileMT general ASCII**. The data file is named *mmt_data.csv* and is located in the *assets* folder. If you are using the tutorial data:
 
         - We are loading data at 13 frequencies: 42, 54, 70, 91, 118, 152, 197, 256, 332, 432, 561, 730 and 948 Hz.
         - There is only 1 data group. We will give it the name 'SIGMA' because MobileMT data are apparent conductivities.
@@ -42,7 +42,7 @@ Here, we import the MobileMT data and topography.
 Units
 -----
 
-After loading data files into the GIFtools framework, we must always ensure the units of the data are consistent with UBC-GIF convention. If we open the *MobileMT_Cochrane_readme.txt* file within the *assets* folder, we see the units for the data columns. Columns corresponding to locations are in meters, which is consistent with UBC-GIF. However, the apparent conductivities are currently represented in mS/m, whereas UBC-GIF uses S/m.
+After loading data files into the GIFtools framework, we must always ensure the units of the data are consistent with UBC-GIF convention. For the tutorial dataset, the columns corresponding to locations are in meters, which is consistent with UBC-GIF. However, the apparent conductivities are represented in mS/m, whereas UBC-GIF uses S/m.
 
 To convert the apparent conductivities from mS/m to S/m, we use the:
 

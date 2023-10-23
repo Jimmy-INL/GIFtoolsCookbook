@@ -15,7 +15,7 @@ These steps are covered here.
 Down-Sampling
 ^^^^^^^^^^^^^
 
-The sampling rate in the along-line direction is generally much higher than is needed to characterize MobileMT anomalies. Furthermore, 3D EM inversions are can have trouble recovering geologically plausible models when the data spacing is less than 2-3 horizontal cell widths; unless the measured fields are sufficiently smooth. As a result, you may consider some aspects of mesh design during this step. The desired station spacing is generally determined by the flight-line separation. Here, we down-sample the data based on a desired minimum separation.
+The sampling rate in the along-line direction is generally much higher than is needed to characterize MobileMT anomalies. Furthermore, 3D EM inversions can have trouble converging to a geologically plausible model when the data spacing is less than 2-3 horizontal cell widths; unless the measured fields are sufficiently smooth. As a result, you may consider some aspects of mesh design during this step. The desired station spacing is generally determined by the flight-line separation. Here, we down-sample the data based on a desired minimum separation.
 
 **Our Approach:**
 
@@ -36,13 +36,13 @@ The horizontal electric fields are measured at a surface base station. Here, we 
 Defining Receivers
 ^^^^^^^^^^^^^^^^^^
 
-E3DMT v2 requires the user to define the receiver loops. To define the receiver loops, we use the following functionality:
+E3DMT v2 requires the user to define the receivers used to measure electric and magnetic fields. To define the receivers, we use the following functionality:
 
     - :ref:`Set/reset receivers from data locations<objectDataTypeMT_snid>`
 
 **Our approach:**
 
-We were not provided with the dimensions of the receiver loops measuring magnetic fields. However, it is generally safe to assume the dimensions are much smaller than the minimum cell size in the mesh we will create. In this case, we set the width of the receiver loops measuring magnetic fields to 1 m, and made the loops square by defining the number of segments as 4. The lengths of the dipole receivers measuring electric fields were 100 m. Because MobileMT data are computed by taking the determinant of the admittance tensor, the choice in orientation should be redundant, and so it is left as 0 degrees.
+We were not provided with the dimensions of the receiver loops measuring magnetic fields. For MobileMT, it is generally safe to assume the dimensions of the receiver loops are much smaller than the minimum cell size of the mesh we will create. In this case, we set the width of the receiver loops measuring magnetic fields to 1 m, and made the loops square by defining the number of segments as 4. The lengths of the dipole receivers measuring electric fields were 100 m. Because MobileMT data are computed by taking the determinant of the admittance tensor, the choice in orientation should be redundant, and so it is left as 0 degrees.
 
     - **Hx, Hy receiver width: 1**
     - **Hx, Hy number of segments: 4**
