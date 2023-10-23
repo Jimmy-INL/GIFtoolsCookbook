@@ -6,23 +6,19 @@ Comprehensive Workflows: MobileMT
 
 **Author: Devin C. Cowan**
 
-**Published: August, 2023**
+**Published: October, 2023**
 
-Here, we present a general workflow for loading, interpreting and inverting `Expert Geophysics <https://www.expertgeophysics.com/wp-content/uploads/2020/01/EGL-MobileMT_19-08.pdf>`__ MobileMT data.
+Here, we present a general workflow for loading, interpreting and inverting `Expert Geophysics <https://www.expertgeophysics.com/wp-content/uploads/2020/01/EGL-MobileMT_19-08.pdf>`__ MobileMT data. We begin with CSV formatted data and local topography. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
 
-.. We begin with MT data in EMAP standard EDI file format. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
-
-..     - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mt.zip>`_
+    - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_mmt.zip>`_
 
 
-.. These data were acquired from a `Geoscience Australia public database <https://data.gov.au/dataset/ds-ga-b20cdc13-039f-4217-b154-9d6e01208054/details?q=>`__ . We would like to acknowledge Geoscience Australia and Geological Survey of Queensland for allowing us to use this dataset to complete the tutorial. To reduce computation time and memory requirements, we have chosen to start with a subset of the original dataset.
+The data used for this tutorial were collected at a test site near Cochrane, Ontario, Canada. We greatly appreciate Rio Tinto for providing data used to create this comprehensive workflow.
 
 
-.. .. figure:: images/title_page.png
-..     :align: center
-..     :width: 700
-
-
+.. figure:: images/title_image.png
+    :align: center
+    :width: 700
 
 
 **Tutorial Sections**
