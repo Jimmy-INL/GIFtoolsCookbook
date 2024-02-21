@@ -7,12 +7,8 @@
 Comprehensive Workflows: Borehole UTEM
 ======================================
 
-**Author: Devin C. Cowan**
 
-**Published: March, 2020**
-
-
-Here, we present a general workflow for loading, interpreting and inverting surface "University of Toronto ElecroMagnetometer" (UTEM) data. We begin with UTEM data in AMIRA TEM files. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
+Here, we present a general workflow for loading, interpreting and inverting borehole "University of Toronto ElecroMagnetometer" (UTEM) data. We begin with UTEM data in AMIRA TEM files. Our goal is to invert the data to recover a 3D conductivity model. You may work with the tutorial dataset provided or your own data:
 
 ..     - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_ztem.zip>`_
 
