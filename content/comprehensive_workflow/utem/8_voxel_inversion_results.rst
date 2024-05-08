@@ -83,7 +83,7 @@ The plate-conductor is not the most conductive feature recovered by the inversio
 
     Recovered conductivity model at iteration 10, plotted using a 0.05 S/m cutoff (left) and a 1 S/m cutoff (right).
 
-:ref:`In another comprehensive workflow <comprehensive_workflow_magnetics_index>`, total magnetic intensity data were inverted to recover a magnetic susceptibility model for Raglan. Here, we plot the recovered conductivity model at iteration 10 (0.05 S/m cutoff) and the final susceptibility model (0.1 SI cutoff). It is clear that the plate-conductor lies on the boundary of the susceptible unit; which happens to be consistent with the known geology at Raglan.
+:ref:`In another comprehensive workflow <comprehensive_workflow_magnetics_index>`, total magnetic intensity data were inverted to recover a magnetic susceptibility model at this site. Here, we plot the recovered conductivity model at iteration 10 (0.05 S/m cutoff) and the final susceptibility model (0.1 SI cutoff). It is clear that the plate-conductor lies on the boundary of the susceptible unit; which happens to be consistent with the known geology.
 
 
 .. figure:: images/inv_unconstrained_with_sus.png
