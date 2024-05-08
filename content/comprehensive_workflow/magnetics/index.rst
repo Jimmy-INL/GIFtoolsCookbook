@@ -15,7 +15,7 @@ Here, we present a general workflow for loading, interpreting, processing and in
     - `Download the tutorial data <https://owncloud.eoas.ubc.ca/s/AKmzeokY9F4Ydqk/download>`_
 
 
-We would like to thank `Glencore <https://www.glencore.com/>`__ , and especially Daryl Ball, for providing the local survey data used to create this comprehensive workflow. The regional-scale data were queried from the `Natural Resources Canada Geoscience Data Repository for Geophysical Data <http://gdr.agg.nrcan.gc.ca/gdrdap/dap/search-eng.php>`__ .
+We would like to thank our program sponsors for providing the local survey data used to create this comprehensive workflow. The regional-scale data were queried from the `Natural Resources Canada Geoscience Data Repository for Geophysical Data <http://gdr.agg.nrcan.gc.ca/gdrdap/dap/search-eng.php>`__ .
 
 
 .. figure:: images/title_page.png
