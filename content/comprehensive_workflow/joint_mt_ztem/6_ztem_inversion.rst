@@ -152,7 +152,7 @@ According the Tikhonov curve, a recovered model within iterations 5-7 has a good
 
 For our example, better results could be obtained by considering the following:
 
-    1. to ensure we fit ZTEM anomalies and not the background, we can spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`Raglan magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
+    1. to ensure we fit ZTEM anomalies and not the background, we can spatially selected data at each frequency and for each component, assign a reduced uncertainty to those data, then re-run the inversion. The steps for modifying the uncertainties this way were explained in the :ref:`magnetics comprehensive workflow <comprehensive_workflow_magnetics_3_better_fit>`.
 
     2. in order to run the inversion on a single 64 GB node, the smallest cell size was only 0.4 times the minimum skin depth. This is likely too coarse to model the highest frequencies with sufficient accuracy and would explain why the convergence became slower after iteration 5 but did not flatten.
 
