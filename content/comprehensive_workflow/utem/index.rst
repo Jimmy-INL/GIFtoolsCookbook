@@ -16,7 +16,7 @@ Here, we present a general workflow for loading, interpreting and inverting surf
     - `Download the tutorial data <https://github.com/ubcgif/GIFtoolsCookbook/raw/master/assets/comprehensive_tutorial_utem.zip>`_
 
 
-The data used for this tutorial were collected at the Raglan Mine - Main Sill site. We would like to thank our program sponsors for providing the local survey data used to create this comprehensive workflow. **Please note** the Raglan UTEM dataset presents unique challenges, as we are attempting to recover a highly conductive plate-like target. This particular class of problem is an ongoing research topic. We have chosen to discuss the challenges of recovering highly conductive plate-like targets from surface UTEM data using voxel-based inversion codes.
+The data used for this tutorial were collected at a Nickel-Copper-Sulphide property in the Nunavik region of Northern Quebec. We would like to thank our program sponsors for providing the local survey data used to create this comprehensive workflow. **Please note** this UTEM dataset presents unique challenges, as we are attempting to recover a highly conductive plate-like target. This particular class of problem is an ongoing research topic. We have chosen to discuss the challenges of recovering highly conductive plate-like targets from surface UTEM data using voxel-based inversion codes.
 
 
 .. figure:: images/title_page.png
